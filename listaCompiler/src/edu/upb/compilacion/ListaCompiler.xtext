@@ -2,8 +2,17 @@ grammar edu.upb.compilacion.ListaCompiler with org.eclipse.xtext.common.Terminal
 
 generate listaCompiler "http://www.upb.edu/compilacion/ListaCompiler"
 
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';
+Lista:
+	"Holi" name=STRING;
+
+Function: name=IDFUNCVAR "(" ")";
+
+IntList: 
+	"["(INTEGER + ("," INTEGER)*)?"]"
+;
+
+terminal INTEGER: '-'?INT;
+
+terminal BOOL: "true" | "false";
+
+terminal IDFUNCVAR: ('a'..'z')('A'..'Z'|'a'..'z')*;
