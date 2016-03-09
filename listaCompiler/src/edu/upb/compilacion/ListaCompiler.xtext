@@ -5,7 +5,7 @@ generate listaCompiler "http://www.upb.edu/compilacion/ListaCompiler"
 Lista:
 	"Holi" name=STRING;
 
-Function: name=IDFUNCVAR "(" ")";
+Function: name=IDFUNCVAR "(" (param+=IDFUNCVAR (',' param+=IDFUNCVAR)* '->')? ")";
 
 IntList: 
 	"["(INTEGER + ("," INTEGER)*)?"]"

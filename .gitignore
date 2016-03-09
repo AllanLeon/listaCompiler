@@ -7,5 +7,3 @@ target
 
 .gradle
 build/
-!**/src/**/build/
-!**/xtend-gen/**/build/
