@@ -1,0 +1,9 @@
+grammar edu.upb.compilacion.ListaCompiler with org.eclipse.xtext.common.Terminals
+
+generate listaCompiler "http://www.upb.edu/compilacion/ListaCompiler"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
