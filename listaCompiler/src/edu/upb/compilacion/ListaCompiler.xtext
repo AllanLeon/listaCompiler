@@ -3,16 +3,50 @@ grammar edu.upb.compilacion.ListaCompiler with org.eclipse.xtext.common.Terminal
 generate listaCompiler "http://www.upb.edu/compilacion/ListaCompiler"
 
 Lista:
-	"Holi" name=STRING;
+	lines+=(Evaluation | FunctionDefinition)+;
 
-Function: name=IDFUNCVAR "(" (param+=IDFUNCVAR (',' param+=IDFUNCVAR)* '->')? ")";
+Evaluation:
+	"?" return=Expression ";"
+;
+
+FunctionDefinition: name=IDFUNCVAR "(" (params+=IDFUNCVAR (',' params+=IDFUNCVAR)*)? ")"
+	"=" return=Expression ";"
+;
+
+Expression:
+	args+=Term (operators+=Operator args+=Term)*
+;
+
+Term: DataType | FunctionCall | ControlFlow;
+
+ControlFlow: name=CFLOW "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")";
+
+FunctionCall: function=(PreDefFunction | [FunctionDefinition|IDFUNCVAR]) "(" (args+=Term ("," args+=Term)*)? ")";
+
+DataType: val=INTEGER | val=BOOL | val=STRING | var=IDFUNCVAR | IntList;
 
 IntList: 
-	"["(INTEGER + ("," INTEGER)*)?"]"
+	"["{IntList} (elems+=INTEGER + ("," elems+=INTEGER)*)?"]"
 ;
+
+PreDefFunction: name=PDFUNCTION;
+
+Operator: type=IDOPINT | type=IDOPBOOL | type=IDOPSTR | type=IDOPGLOBAL;
+
+terminal CFLOW: "if";
+
+terminal PDFUNCTION: "length" | "cons" | "car" | "cdr" | "isEmpty" | "show";
 
 terminal INTEGER: '-'?INT;
 
 terminal BOOL: "true" | "false";
 
-terminal IDFUNCVAR: ('a'..'z')('A'..'Z'|'a'..'z')*;
+terminal IDFUNCVAR: ('a'..'z')('A'..'Z'|'a'..'z'|'0'..'9')*;
+
+terminal IDOPINT: '+' | '-' | '*' | '/' | '<' | '>';
+
+terminal IDOPBOOL: '&' | '|' | '!';
+
+terminal IDOPSTR: '++';
+
+terminal IDOPGLOBAL: '==';

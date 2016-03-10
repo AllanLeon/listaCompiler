@@ -12,17 +12,31 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalListaCompilerLexer extends Lexer {
-    public static final int RULE_ID=8;
-    public static final int RULE_WS=11;
-    public static final int RULE_STRING=4;
-    public static final int RULE_ANY_OTHER=12;
-    public static final int RULE_BOOL=7;
-    public static final int RULE_SL_COMMENT=10;
-    public static final int RULE_INT=5;
-    public static final int RULE_ML_COMMENT=9;
-    public static final int T__13=13;
+    public static final int RULE_IDOPINT=10;
+    public static final int RULE_IDOPSTR=12;
+    public static final int RULE_PDFUNCTION=9;
+    public static final int RULE_STRING=8;
+    public static final int RULE_SL_COMMENT=17;
+    public static final int RULE_IDOPGLOBAL=13;
     public static final int EOF=-1;
+    public static final int RULE_ID=15;
+    public static final int RULE_WS=18;
+    public static final int RULE_IDFUNCVAR=4;
+    public static final int RULE_ANY_OTHER=19;
+    public static final int RULE_BOOL=7;
+    public static final int T__26=26;
+    public static final int T__27=27;
+    public static final int RULE_IDOPBOOL=11;
+    public static final int RULE_INT=14;
+    public static final int T__22=22;
+    public static final int RULE_ML_COMMENT=16;
+    public static final int T__23=23;
+    public static final int T__24=24;
+    public static final int T__25=25;
+    public static final int RULE_CFLOW=5;
     public static final int RULE_INTEGER=6;
+    public static final int T__20=20;
+    public static final int T__21=21;
 
     // delegates
     // delegators
@@ -37,15 +51,175 @@ public class InternalListaCompilerLexer extends Lexer {
     }
     public String getGrammarFileName() { return "../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g"; }
 
-    // $ANTLR start "T__13"
-    public final void mT__13() throws RecognitionException {
+    // $ANTLR start "T__20"
+    public final void mT__20() throws RecognitionException {
         try {
-            int _type = T__13;
+            int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:11:7: ( 'Holi' )
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:11:9: 'Holi'
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:11:7: ( '?' )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:11:9: '?'
             {
-            match("Holi"); 
+            match('?'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__20"
+
+    // $ANTLR start "T__21"
+    public final void mT__21() throws RecognitionException {
+        try {
+            int _type = T__21;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:12:7: ( ';' )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:12:9: ';'
+            {
+            match(';'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__21"
+
+    // $ANTLR start "T__22"
+    public final void mT__22() throws RecognitionException {
+        try {
+            int _type = T__22;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:13:7: ( '(' )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:13:9: '('
+            {
+            match('('); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__22"
+
+    // $ANTLR start "T__23"
+    public final void mT__23() throws RecognitionException {
+        try {
+            int _type = T__23;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:14:7: ( ')' )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:14:9: ')'
+            {
+            match(')'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__23"
+
+    // $ANTLR start "T__24"
+    public final void mT__24() throws RecognitionException {
+        try {
+            int _type = T__24;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:15:7: ( '=' )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:15:9: '='
+            {
+            match('='); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__24"
+
+    // $ANTLR start "T__25"
+    public final void mT__25() throws RecognitionException {
+        try {
+            int _type = T__25;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:16:7: ( ',' )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:16:9: ','
+            {
+            match(','); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__25"
+
+    // $ANTLR start "T__26"
+    public final void mT__26() throws RecognitionException {
+        try {
+            int _type = T__26;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:17:7: ( '[' )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:17:9: '['
+            {
+            match('['); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__26"
+
+    // $ANTLR start "T__27"
+    public final void mT__27() throws RecognitionException {
+        try {
+            int _type = T__27;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:18:7: ( ']' )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:18:9: ']'
+            {
+            match(']'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__27"
+
+    // $ANTLR start "RULE_CFLOW"
+    public final void mRULE_CFLOW() throws RecognitionException {
+        try {
+            int _type = RULE_CFLOW;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2266:12: ( 'if' )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2266:14: 'if'
+            {
+            match("if"); 
 
 
             }
@@ -56,26 +230,149 @@ public class InternalListaCompilerLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__13"
+    // $ANTLR end "RULE_CFLOW"
+
+    // $ANTLR start "RULE_PDFUNCTION"
+    public final void mRULE_PDFUNCTION() throws RecognitionException {
+        try {
+            int _type = RULE_PDFUNCTION;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2268:17: ( ( 'length' | 'cons' | 'car' | 'cdr' | 'isEmpty' | 'show' ) )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2268:19: ( 'length' | 'cons' | 'car' | 'cdr' | 'isEmpty' | 'show' )
+            {
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2268:19: ( 'length' | 'cons' | 'car' | 'cdr' | 'isEmpty' | 'show' )
+            int alt1=6;
+            switch ( input.LA(1) ) {
+            case 'l':
+                {
+                alt1=1;
+                }
+                break;
+            case 'c':
+                {
+                switch ( input.LA(2) ) {
+                case 'o':
+                    {
+                    alt1=2;
+                    }
+                    break;
+                case 'a':
+                    {
+                    alt1=3;
+                    }
+                    break;
+                case 'd':
+                    {
+                    alt1=4;
+                    }
+                    break;
+                default:
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 1, 2, input);
+
+                    throw nvae;
+                }
+
+                }
+                break;
+            case 'i':
+                {
+                alt1=5;
+                }
+                break;
+            case 's':
+                {
+                alt1=6;
+                }
+                break;
+            default:
+                NoViableAltException nvae =
+                    new NoViableAltException("", 1, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt1) {
+                case 1 :
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2268:20: 'length'
+                    {
+                    match("length"); 
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2268:29: 'cons'
+                    {
+                    match("cons"); 
+
+
+                    }
+                    break;
+                case 3 :
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2268:36: 'car'
+                    {
+                    match("car"); 
+
+
+                    }
+                    break;
+                case 4 :
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2268:42: 'cdr'
+                    {
+                    match("cdr"); 
+
+
+                    }
+                    break;
+                case 5 :
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2268:48: 'isEmpty'
+                    {
+                    match("isEmpty"); 
+
+
+                    }
+                    break;
+                case 6 :
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2268:58: 'show'
+                    {
+                    match("show"); 
+
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_PDFUNCTION"
 
     // $ANTLR start "RULE_INTEGER"
     public final void mRULE_INTEGER() throws RecognitionException {
         try {
             int _type = RULE_INTEGER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:170:14: ( ( '-' )? RULE_INT )
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:170:16: ( '-' )? RULE_INT
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2270:14: ( ( '-' )? RULE_INT )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2270:16: ( '-' )? RULE_INT
             {
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:170:16: ( '-' )?
-            int alt1=2;
-            int LA1_0 = input.LA(1);
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2270:16: ( '-' )?
+            int alt2=2;
+            int LA2_0 = input.LA(1);
 
-            if ( (LA1_0=='-') ) {
-                alt1=1;
+            if ( (LA2_0=='-') ) {
+                alt2=1;
             }
-            switch (alt1) {
+            switch (alt2) {
                 case 1 :
-                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:170:16: '-'
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2270:16: '-'
                     {
                     match('-'); 
 
@@ -101,28 +398,28 @@ public class InternalListaCompilerLexer extends Lexer {
         try {
             int _type = RULE_BOOL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:172:11: ( ( 'true' | 'false' ) )
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:172:13: ( 'true' | 'false' )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2272:11: ( ( 'true' | 'false' ) )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2272:13: ( 'true' | 'false' )
             {
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:172:13: ( 'true' | 'false' )
-            int alt2=2;
-            int LA2_0 = input.LA(1);
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2272:13: ( 'true' | 'false' )
+            int alt3=2;
+            int LA3_0 = input.LA(1);
 
-            if ( (LA2_0=='t') ) {
-                alt2=1;
+            if ( (LA3_0=='t') ) {
+                alt3=1;
             }
-            else if ( (LA2_0=='f') ) {
-                alt2=2;
+            else if ( (LA3_0=='f') ) {
+                alt3=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 2, 0, input);
+                    new NoViableAltException("", 3, 0, input);
 
                 throw nvae;
             }
-            switch (alt2) {
+            switch (alt3) {
                 case 1 :
-                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:172:14: 'true'
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2272:14: 'true'
                     {
                     match("true"); 
 
@@ -130,7 +427,7 @@ public class InternalListaCompilerLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:172:21: 'false'
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2272:21: 'false'
                     {
                     match("false"); 
 
@@ -151,48 +448,22 @@ public class InternalListaCompilerLexer extends Lexer {
     }
     // $ANTLR end "RULE_BOOL"
 
-    // $ANTLR start "RULE_ID"
-    public final void mRULE_ID() throws RecognitionException {
+    // $ANTLR start "RULE_IDFUNCVAR"
+    public final void mRULE_IDFUNCVAR() throws RecognitionException {
         try {
-            int _type = RULE_ID;
+            int _type = RULE_IDFUNCVAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:174:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:174:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2274:16: ( 'a' .. 'z' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )* )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2274:18: 'a' .. 'z' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )*
             {
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:174:11: ( '^' )?
-            int alt3=2;
-            int LA3_0 = input.LA(1);
-
-            if ( (LA3_0=='^') ) {
-                alt3=1;
-            }
-            switch (alt3) {
-                case 1 :
-                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:174:11: '^'
-                    {
-                    match('^'); 
-
-                    }
-                    break;
-
-            }
-
-            if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
-                input.consume();
-
-            }
-            else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;}
-
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:174:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            matchRange('a','z'); 
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2274:27: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )*
             loop4:
             do {
                 int alt4=2;
                 int LA4_0 = input.LA(1);
 
-                if ( ((LA4_0>='0' && LA4_0<='9')||(LA4_0>='A' && LA4_0<='Z')||LA4_0=='_'||(LA4_0>='a' && LA4_0<='z')) ) {
+                if ( ((LA4_0>='0' && LA4_0<='9')||(LA4_0>='A' && LA4_0<='Z')||(LA4_0>='a' && LA4_0<='z')) ) {
                     alt4=1;
                 }
 
@@ -201,7 +472,7 @@ public class InternalListaCompilerLexer extends Lexer {
             	case 1 :
             	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:
             	    {
-            	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
+            	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
 
             	    }
@@ -228,6 +499,183 @@ public class InternalListaCompilerLexer extends Lexer {
         finally {
         }
     }
+    // $ANTLR end "RULE_IDFUNCVAR"
+
+    // $ANTLR start "RULE_IDOPINT"
+    public final void mRULE_IDOPINT() throws RecognitionException {
+        try {
+            int _type = RULE_IDOPINT;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2276:14: ( ( '+' | '-' | '*' | '/' | '<' | '>' ) )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2276:16: ( '+' | '-' | '*' | '/' | '<' | '>' )
+            {
+            if ( (input.LA(1)>='*' && input.LA(1)<='+')||input.LA(1)=='-'||input.LA(1)=='/'||input.LA(1)=='<'||input.LA(1)=='>' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_IDOPINT"
+
+    // $ANTLR start "RULE_IDOPBOOL"
+    public final void mRULE_IDOPBOOL() throws RecognitionException {
+        try {
+            int _type = RULE_IDOPBOOL;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2278:15: ( ( '&' | '|' | '!' ) )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2278:17: ( '&' | '|' | '!' )
+            {
+            if ( input.LA(1)=='!'||input.LA(1)=='&'||input.LA(1)=='|' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_IDOPBOOL"
+
+    // $ANTLR start "RULE_IDOPSTR"
+    public final void mRULE_IDOPSTR() throws RecognitionException {
+        try {
+            int _type = RULE_IDOPSTR;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2280:14: ( '++' )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2280:16: '++'
+            {
+            match("++"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_IDOPSTR"
+
+    // $ANTLR start "RULE_IDOPGLOBAL"
+    public final void mRULE_IDOPGLOBAL() throws RecognitionException {
+        try {
+            int _type = RULE_IDOPGLOBAL;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2282:17: ( '==' )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2282:19: '=='
+            {
+            match("=="); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_IDOPGLOBAL"
+
+    // $ANTLR start "RULE_ID"
+    public final void mRULE_ID() throws RecognitionException {
+        try {
+            int _type = RULE_ID;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2284:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2284:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            {
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2284:11: ( '^' )?
+            int alt5=2;
+            int LA5_0 = input.LA(1);
+
+            if ( (LA5_0=='^') ) {
+                alt5=1;
+            }
+            switch (alt5) {
+                case 1 :
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2284:11: '^'
+                    {
+                    match('^'); 
+
+                    }
+                    break;
+
+            }
+
+            if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2284:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            loop6:
+            do {
+                int alt6=2;
+                int LA6_0 = input.LA(1);
+
+                if ( ((LA6_0>='0' && LA6_0<='9')||(LA6_0>='A' && LA6_0<='Z')||LA6_0=='_'||(LA6_0>='a' && LA6_0<='z')) ) {
+                    alt6=1;
+                }
+
+
+                switch (alt6) {
+            	case 1 :
+            	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:
+            	    {
+            	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
+            	        input.consume();
+
+            	    }
+            	    else {
+            	        MismatchedSetException mse = new MismatchedSetException(null,input);
+            	        recover(mse);
+            	        throw mse;}
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop6;
+                }
+            } while (true);
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
     // $ANTLR end "RULE_ID"
 
     // $ANTLR start "RULE_INT"
@@ -235,24 +683,24 @@ public class InternalListaCompilerLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:176:10: ( ( '0' .. '9' )+ )
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:176:12: ( '0' .. '9' )+
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2286:10: ( ( '0' .. '9' )+ )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2286:12: ( '0' .. '9' )+
             {
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:176:12: ( '0' .. '9' )+
-            int cnt5=0;
-            loop5:
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2286:12: ( '0' .. '9' )+
+            int cnt7=0;
+            loop7:
             do {
-                int alt5=2;
-                int LA5_0 = input.LA(1);
+                int alt7=2;
+                int LA7_0 = input.LA(1);
 
-                if ( ((LA5_0>='0' && LA5_0<='9')) ) {
-                    alt5=1;
+                if ( ((LA7_0>='0' && LA7_0<='9')) ) {
+                    alt7=1;
                 }
 
 
-                switch (alt5) {
+                switch (alt7) {
             	case 1 :
-            	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:176:13: '0' .. '9'
+            	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2286:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -260,12 +708,12 @@ public class InternalListaCompilerLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt5 >= 1 ) break loop5;
+            	    if ( cnt7 >= 1 ) break loop7;
                         EarlyExitException eee =
-                            new EarlyExitException(5, input);
+                            new EarlyExitException(7, input);
                         throw eee;
                 }
-                cnt5++;
+                cnt7++;
             } while (true);
 
 
@@ -284,47 +732,47 @@ public class InternalListaCompilerLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:178:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:178:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2288:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2288:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:178:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            int alt8=2;
-            int LA8_0 = input.LA(1);
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2288:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            int alt10=2;
+            int LA10_0 = input.LA(1);
 
-            if ( (LA8_0=='\"') ) {
-                alt8=1;
+            if ( (LA10_0=='\"') ) {
+                alt10=1;
             }
-            else if ( (LA8_0=='\'') ) {
-                alt8=2;
+            else if ( (LA10_0=='\'') ) {
+                alt10=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 8, 0, input);
+                    new NoViableAltException("", 10, 0, input);
 
                 throw nvae;
             }
-            switch (alt8) {
+            switch (alt10) {
                 case 1 :
-                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:178:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2288:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:178:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
-                    loop6:
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2288:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    loop8:
                     do {
-                        int alt6=3;
-                        int LA6_0 = input.LA(1);
+                        int alt8=3;
+                        int LA8_0 = input.LA(1);
 
-                        if ( (LA6_0=='\\') ) {
-                            alt6=1;
+                        if ( (LA8_0=='\\') ) {
+                            alt8=1;
                         }
-                        else if ( ((LA6_0>='\u0000' && LA6_0<='!')||(LA6_0>='#' && LA6_0<='[')||(LA6_0>=']' && LA6_0<='\uFFFF')) ) {
-                            alt6=2;
+                        else if ( ((LA8_0>='\u0000' && LA8_0<='!')||(LA8_0>='#' && LA8_0<='[')||(LA8_0>=']' && LA8_0<='\uFFFF')) ) {
+                            alt8=2;
                         }
 
 
-                        switch (alt6) {
+                        switch (alt8) {
                     	case 1 :
-                    	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:178:21: '\\\\' .
+                    	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2288:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -332,7 +780,7 @@ public class InternalListaCompilerLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:178:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2288:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -348,7 +796,7 @@ public class InternalListaCompilerLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop6;
+                    	    break loop8;
                         }
                     } while (true);
 
@@ -357,26 +805,26 @@ public class InternalListaCompilerLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:178:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2288:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:178:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
-                    loop7:
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2288:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    loop9:
                     do {
-                        int alt7=3;
-                        int LA7_0 = input.LA(1);
+                        int alt9=3;
+                        int LA9_0 = input.LA(1);
 
-                        if ( (LA7_0=='\\') ) {
-                            alt7=1;
+                        if ( (LA9_0=='\\') ) {
+                            alt9=1;
                         }
-                        else if ( ((LA7_0>='\u0000' && LA7_0<='&')||(LA7_0>='(' && LA7_0<='[')||(LA7_0>=']' && LA7_0<='\uFFFF')) ) {
-                            alt7=2;
+                        else if ( ((LA9_0>='\u0000' && LA9_0<='&')||(LA9_0>='(' && LA9_0<='[')||(LA9_0>=']' && LA9_0<='\uFFFF')) ) {
+                            alt9=2;
                         }
 
 
-                        switch (alt7) {
+                        switch (alt9) {
                     	case 1 :
-                    	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:178:54: '\\\\' .
+                    	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2288:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -384,7 +832,7 @@ public class InternalListaCompilerLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:178:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2288:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -400,7 +848,7 @@ public class InternalListaCompilerLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop7;
+                    	    break loop9;
                         }
                     } while (true);
 
@@ -427,37 +875,37 @@ public class InternalListaCompilerLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:180:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:180:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2290:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2290:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:180:24: ( options {greedy=false; } : . )*
-            loop9:
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2290:24: ( options {greedy=false; } : . )*
+            loop11:
             do {
-                int alt9=2;
-                int LA9_0 = input.LA(1);
+                int alt11=2;
+                int LA11_0 = input.LA(1);
 
-                if ( (LA9_0=='*') ) {
-                    int LA9_1 = input.LA(2);
+                if ( (LA11_0=='*') ) {
+                    int LA11_1 = input.LA(2);
 
-                    if ( (LA9_1=='/') ) {
-                        alt9=2;
+                    if ( (LA11_1=='/') ) {
+                        alt11=2;
                     }
-                    else if ( ((LA9_1>='\u0000' && LA9_1<='.')||(LA9_1>='0' && LA9_1<='\uFFFF')) ) {
-                        alt9=1;
+                    else if ( ((LA11_1>='\u0000' && LA11_1<='.')||(LA11_1>='0' && LA11_1<='\uFFFF')) ) {
+                        alt11=1;
                     }
 
 
                 }
-                else if ( ((LA9_0>='\u0000' && LA9_0<=')')||(LA9_0>='+' && LA9_0<='\uFFFF')) ) {
-                    alt9=1;
+                else if ( ((LA11_0>='\u0000' && LA11_0<=')')||(LA11_0>='+' && LA11_0<='\uFFFF')) ) {
+                    alt11=1;
                 }
 
 
-                switch (alt9) {
+                switch (alt11) {
             	case 1 :
-            	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:180:52: .
+            	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2290:52: .
             	    {
             	    matchAny(); 
 
@@ -465,7 +913,7 @@ public class InternalListaCompilerLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop9;
+            	    break loop11;
                 }
             } while (true);
 
@@ -487,25 +935,25 @@ public class InternalListaCompilerLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:182:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:182:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2292:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2292:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:182:24: (~ ( ( '\\n' | '\\r' ) ) )*
-            loop10:
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2292:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            loop12:
             do {
-                int alt10=2;
-                int LA10_0 = input.LA(1);
+                int alt12=2;
+                int LA12_0 = input.LA(1);
 
-                if ( ((LA10_0>='\u0000' && LA10_0<='\t')||(LA10_0>='\u000B' && LA10_0<='\f')||(LA10_0>='\u000E' && LA10_0<='\uFFFF')) ) {
-                    alt10=1;
+                if ( ((LA12_0>='\u0000' && LA12_0<='\t')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\uFFFF')) ) {
+                    alt12=1;
                 }
 
 
-                switch (alt10) {
+                switch (alt12) {
             	case 1 :
-            	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:182:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2292:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -521,31 +969,31 @@ public class InternalListaCompilerLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop10;
+            	    break loop12;
                 }
             } while (true);
 
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:182:40: ( ( '\\r' )? '\\n' )?
-            int alt12=2;
-            int LA12_0 = input.LA(1);
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2292:40: ( ( '\\r' )? '\\n' )?
+            int alt14=2;
+            int LA14_0 = input.LA(1);
 
-            if ( (LA12_0=='\n'||LA12_0=='\r') ) {
-                alt12=1;
+            if ( (LA14_0=='\n'||LA14_0=='\r') ) {
+                alt14=1;
             }
-            switch (alt12) {
+            switch (alt14) {
                 case 1 :
-                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:182:41: ( '\\r' )? '\\n'
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2292:41: ( '\\r' )? '\\n'
                     {
-                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:182:41: ( '\\r' )?
-                    int alt11=2;
-                    int LA11_0 = input.LA(1);
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2292:41: ( '\\r' )?
+                    int alt13=2;
+                    int LA13_0 = input.LA(1);
 
-                    if ( (LA11_0=='\r') ) {
-                        alt11=1;
+                    if ( (LA13_0=='\r') ) {
+                        alt13=1;
                     }
-                    switch (alt11) {
+                    switch (alt13) {
                         case 1 :
-                            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:182:41: '\\r'
+                            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2292:41: '\\r'
                             {
                             match('\r'); 
 
@@ -577,22 +1025,22 @@ public class InternalListaCompilerLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:184:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:184:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2294:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2294:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:184:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
-            int cnt13=0;
-            loop13:
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2294:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            int cnt15=0;
+            loop15:
             do {
-                int alt13=2;
-                int LA13_0 = input.LA(1);
+                int alt15=2;
+                int LA15_0 = input.LA(1);
 
-                if ( ((LA13_0>='\t' && LA13_0<='\n')||LA13_0=='\r'||LA13_0==' ') ) {
-                    alt13=1;
+                if ( ((LA15_0>='\t' && LA15_0<='\n')||LA15_0=='\r'||LA15_0==' ') ) {
+                    alt15=1;
                 }
 
 
-                switch (alt13) {
+                switch (alt15) {
             	case 1 :
             	    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:
             	    {
@@ -610,12 +1058,12 @@ public class InternalListaCompilerLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt13 >= 1 ) break loop13;
+            	    if ( cnt15 >= 1 ) break loop15;
                         EarlyExitException eee =
-                            new EarlyExitException(13, input);
+                            new EarlyExitException(15, input);
                         throw eee;
                 }
-                cnt13++;
+                cnt15++;
             } while (true);
 
 
@@ -634,8 +1082,8 @@ public class InternalListaCompilerLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:186:16: ( . )
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:186:18: .
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2296:16: ( . )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:2296:18: .
             {
             matchAny(); 
 
@@ -650,75 +1098,173 @@ public class InternalListaCompilerLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:8: ( T__13 | RULE_INTEGER | RULE_BOOL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt14=10;
-        alt14 = dfa14.predict(input);
-        switch (alt14) {
+        // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:8: ( T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | RULE_CFLOW | RULE_PDFUNCTION | RULE_INTEGER | RULE_BOOL | RULE_IDFUNCVAR | RULE_IDOPINT | RULE_IDOPBOOL | RULE_IDOPSTR | RULE_IDOPGLOBAL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt16=24;
+        alt16 = dfa16.predict(input);
+        switch (alt16) {
             case 1 :
-                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:10: T__13
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:10: T__20
                 {
-                mT__13(); 
+                mT__20(); 
 
                 }
                 break;
             case 2 :
-                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:16: RULE_INTEGER
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:16: T__21
+                {
+                mT__21(); 
+
+                }
+                break;
+            case 3 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:22: T__22
+                {
+                mT__22(); 
+
+                }
+                break;
+            case 4 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:28: T__23
+                {
+                mT__23(); 
+
+                }
+                break;
+            case 5 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:34: T__24
+                {
+                mT__24(); 
+
+                }
+                break;
+            case 6 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:40: T__25
+                {
+                mT__25(); 
+
+                }
+                break;
+            case 7 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:46: T__26
+                {
+                mT__26(); 
+
+                }
+                break;
+            case 8 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:52: T__27
+                {
+                mT__27(); 
+
+                }
+                break;
+            case 9 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:58: RULE_CFLOW
+                {
+                mRULE_CFLOW(); 
+
+                }
+                break;
+            case 10 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:69: RULE_PDFUNCTION
+                {
+                mRULE_PDFUNCTION(); 
+
+                }
+                break;
+            case 11 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:85: RULE_INTEGER
                 {
                 mRULE_INTEGER(); 
 
                 }
                 break;
-            case 3 :
-                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:29: RULE_BOOL
+            case 12 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:98: RULE_BOOL
                 {
                 mRULE_BOOL(); 
 
                 }
                 break;
-            case 4 :
-                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:39: RULE_ID
+            case 13 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:108: RULE_IDFUNCVAR
+                {
+                mRULE_IDFUNCVAR(); 
+
+                }
+                break;
+            case 14 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:123: RULE_IDOPINT
+                {
+                mRULE_IDOPINT(); 
+
+                }
+                break;
+            case 15 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:136: RULE_IDOPBOOL
+                {
+                mRULE_IDOPBOOL(); 
+
+                }
+                break;
+            case 16 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:150: RULE_IDOPSTR
+                {
+                mRULE_IDOPSTR(); 
+
+                }
+                break;
+            case 17 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:163: RULE_IDOPGLOBAL
+                {
+                mRULE_IDOPGLOBAL(); 
+
+                }
+                break;
+            case 18 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:179: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 5 :
-                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:47: RULE_INT
+            case 19 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:187: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 6 :
-                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:56: RULE_STRING
+            case 20 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:196: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 7 :
-                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:68: RULE_ML_COMMENT
+            case 21 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:208: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 8 :
-                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:84: RULE_SL_COMMENT
+            case 22 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:224: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 9 :
-                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:100: RULE_WS
+            case 23 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:240: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 10 :
-                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:108: RULE_ANY_OTHER
+            case 24 :
+                // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1:248: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -730,151 +1276,238 @@ public class InternalListaCompilerLexer extends Lexer {
     }
 
 
-    protected DFA14 dfa14 = new DFA14(this);
-    static final String DFA14_eotS =
-        "\1\uffff\1\16\1\14\1\17\2\16\1\14\1\uffff\3\14\2\uffff\1\16\2\uffff"+
-        "\1\17\2\16\4\uffff\3\16\1\35\1\36\1\16\2\uffff\1\36";
-    static final String DFA14_eofS =
-        "\40\uffff";
-    static final String DFA14_minS =
-        "\1\0\1\157\2\60\1\162\1\141\1\101\1\uffff\2\0\1\52\2\uffff\1\154"+
-        "\2\uffff\1\60\1\165\1\154\4\uffff\1\151\1\145\1\163\2\60\1\145\2"+
-        "\uffff\1\60";
-    static final String DFA14_maxS =
-        "\1\uffff\1\157\2\71\1\162\1\141\1\172\1\uffff\2\uffff\1\57\2\uffff"+
-        "\1\154\2\uffff\1\71\1\165\1\154\4\uffff\1\151\1\145\1\163\2\172"+
-        "\1\145\2\uffff\1\172";
-    static final String DFA14_acceptS =
-        "\7\uffff\1\4\3\uffff\1\11\1\12\1\uffff\1\4\1\2\3\uffff\1\6\1\7"+
-        "\1\10\1\11\6\uffff\1\1\1\3\1\uffff";
-    static final String DFA14_specialS =
-        "\1\2\7\uffff\1\1\1\0\26\uffff}>";
-    static final String[] DFA14_transitionS = {
-            "\11\14\2\13\2\14\1\13\22\14\1\13\1\14\1\10\4\14\1\11\5\14\1"+
-            "\2\1\14\1\12\12\3\7\14\7\7\1\1\22\7\3\14\1\6\1\7\1\14\5\7\1"+
-            "\5\15\7\1\4\6\7\uff85\14",
-            "\1\15",
-            "\12\17",
-            "\12\20",
-            "\1\21",
-            "\1\22",
-            "\32\16\4\uffff\1\16\1\uffff\32\16",
-            "",
-            "\0\23",
-            "\0\23",
-            "\1\24\4\uffff\1\25",
-            "",
-            "",
-            "\1\27",
-            "",
-            "",
-            "\12\20",
-            "\1\30",
-            "\1\31",
+    protected DFA16 dfa16 = new DFA16(this);
+    static final String DFA16_eotS =
+        "\5\uffff\1\41\3\uffff\4\50\1\57\1\60\3\50\1\57\1\uffff\1\57\1\33"+
+        "\1\uffff\2\33\14\uffff\1\72\2\50\2\uffff\5\50\2\uffff\1\60\2\50"+
+        "\7\uffff\3\50\2\106\5\50\1\106\1\uffff\1\106\1\114\3\50\1\uffff"+
+        "\1\114\1\50\2\106";
+    static final String DFA16_eofS =
+        "\121\uffff";
+    static final String DFA16_minS =
+        "\1\0\4\uffff\1\75\3\uffff\11\60\1\53\1\uffff\1\52\1\101\1\uffff"+
+        "\2\0\14\uffff\3\60\2\uffff\5\60\2\uffff\3\60\7\uffff\13\60\1\uffff"+
+        "\5\60\1\uffff\4\60";
+    static final String DFA16_maxS =
+        "\1\uffff\4\uffff\1\75\3\uffff\4\172\2\71\3\172\1\53\1\uffff\1\57"+
+        "\1\172\1\uffff\2\uffff\14\uffff\3\172\2\uffff\5\172\2\uffff\1\71"+
+        "\2\172\7\uffff\13\172\1\uffff\5\172\1\uffff\4\172";
+    static final String DFA16_acceptS =
+        "\1\uffff\1\1\1\2\1\3\1\4\1\uffff\1\6\1\7\1\10\12\uffff\1\17\2\uffff"+
+        "\1\22\2\uffff\1\16\1\27\1\30\1\1\1\2\1\3\1\4\1\21\1\5\1\6\1\7\1"+
+        "\10\3\uffff\1\15\1\22\5\uffff\1\16\1\13\3\uffff\1\20\1\17\1\25\1"+
+        "\26\1\24\1\27\1\11\13\uffff\1\12\5\uffff\1\14\4\uffff";
+    static final String DFA16_specialS =
+        "\1\1\26\uffff\1\0\1\2\70\uffff}>";
+    static final String[] DFA16_transitionS = {
+            "\11\33\2\32\2\33\1\32\22\33\1\32\1\23\1\27\3\33\1\23\1\30\1"+
+            "\3\1\4\1\31\1\22\1\6\1\15\1\33\1\24\12\16\1\33\1\2\1\31\1\5"+
+            "\1\31\1\1\1\33\32\26\1\7\1\33\1\10\1\25\1\26\1\33\2\21\1\13"+
+            "\2\21\1\20\2\21\1\11\2\21\1\12\6\21\1\14\1\17\6\21\1\33\1\23"+
+            "\uff83\33",
             "",
             "",
             "",
             "",
-            "\1\32",
-            "\1\33",
-            "\1\34",
-            "\12\16\7\uffff\32\16\4\uffff\1\16\1\uffff\32\16",
-            "\12\16\7\uffff\32\16\4\uffff\1\16\1\uffff\32\16",
-            "\1\37",
+            "\1\40",
             "",
             "",
-            "\12\16\7\uffff\32\16\4\uffff\1\16\1\uffff\32\16"
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\5\47\1\45\14\47"+
+            "\1\46\7\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\4\47\1\52\25\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\1\54\2\47\1\55\12"+
+            "\47\1\53\13\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\7\47\1\56\22\47",
+            "\12\60",
+            "\12\61",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\21\47\1\62\10\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\1\63\31\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\32\47",
+            "\1\64",
+            "",
+            "\1\66\4\uffff\1\67",
+            "\32\51\4\uffff\1\51\1\uffff\32\51",
+            "",
+            "\0\70",
+            "\0\70",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\32\47",
+            "\12\47\7\uffff\4\47\1\73\25\47\4\uffff\1\51\1\uffff\32\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\32\47",
+            "",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\15\47\1\74\14\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\15\47\1\75\14\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\21\47\1\76\10\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\21\47\1\77\10\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\16\47\1\100\13\47",
+            "",
+            "",
+            "\12\61",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\24\47\1\101\5\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\13\47\1\102\16\47",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\14\47\1\103\15\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\6\47\1\104\23\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\22\47\1\105\7\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\32\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\32\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\26\47\1\107\3\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\4\47\1\110\25\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\22\47\1\111\7\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\17\47\1\112\12\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\23\47\1\113\6\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\32\47",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\32\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\32\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\4\47\1\115\25\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\23\47\1\116\6\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\7\47\1\117\22\47",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\32\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\30\47\1\120\1\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\32\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\51\1\uffff\32\47"
     };
 
-    static final short[] DFA14_eot = DFA.unpackEncodedString(DFA14_eotS);
-    static final short[] DFA14_eof = DFA.unpackEncodedString(DFA14_eofS);
-    static final char[] DFA14_min = DFA.unpackEncodedStringToUnsignedChars(DFA14_minS);
-    static final char[] DFA14_max = DFA.unpackEncodedStringToUnsignedChars(DFA14_maxS);
-    static final short[] DFA14_accept = DFA.unpackEncodedString(DFA14_acceptS);
-    static final short[] DFA14_special = DFA.unpackEncodedString(DFA14_specialS);
-    static final short[][] DFA14_transition;
+    static final short[] DFA16_eot = DFA.unpackEncodedString(DFA16_eotS);
+    static final short[] DFA16_eof = DFA.unpackEncodedString(DFA16_eofS);
+    static final char[] DFA16_min = DFA.unpackEncodedStringToUnsignedChars(DFA16_minS);
+    static final char[] DFA16_max = DFA.unpackEncodedStringToUnsignedChars(DFA16_maxS);
+    static final short[] DFA16_accept = DFA.unpackEncodedString(DFA16_acceptS);
+    static final short[] DFA16_special = DFA.unpackEncodedString(DFA16_specialS);
+    static final short[][] DFA16_transition;
 
     static {
-        int numStates = DFA14_transitionS.length;
-        DFA14_transition = new short[numStates][];
+        int numStates = DFA16_transitionS.length;
+        DFA16_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA14_transition[i] = DFA.unpackEncodedString(DFA14_transitionS[i]);
+            DFA16_transition[i] = DFA.unpackEncodedString(DFA16_transitionS[i]);
         }
     }
 
-    class DFA14 extends DFA {
+    class DFA16 extends DFA {
 
-        public DFA14(BaseRecognizer recognizer) {
+        public DFA16(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 14;
-            this.eot = DFA14_eot;
-            this.eof = DFA14_eof;
-            this.min = DFA14_min;
-            this.max = DFA14_max;
-            this.accept = DFA14_accept;
-            this.special = DFA14_special;
-            this.transition = DFA14_transition;
+            this.decisionNumber = 16;
+            this.eot = DFA16_eot;
+            this.eof = DFA16_eof;
+            this.min = DFA16_min;
+            this.max = DFA16_max;
+            this.accept = DFA16_accept;
+            this.special = DFA16_special;
+            this.transition = DFA16_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__13 | RULE_INTEGER | RULE_BOOL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | RULE_CFLOW | RULE_PDFUNCTION | RULE_INTEGER | RULE_BOOL | RULE_IDFUNCVAR | RULE_IDOPINT | RULE_IDOPBOOL | RULE_IDOPSTR | RULE_IDOPGLOBAL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA14_9 = input.LA(1);
+                        int LA16_23 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA14_9>='\u0000' && LA14_9<='\uFFFF')) ) {s = 19;}
+                        if ( ((LA16_23>='\u0000' && LA16_23<='\uFFFF')) ) {s = 56;}
 
-                        else s = 12;
+                        else s = 27;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA14_8 = input.LA(1);
+                        int LA16_0 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA14_8>='\u0000' && LA14_8<='\uFFFF')) ) {s = 19;}
+                        if ( (LA16_0=='?') ) {s = 1;}
 
-                        else s = 12;
+                        else if ( (LA16_0==';') ) {s = 2;}
+
+                        else if ( (LA16_0=='(') ) {s = 3;}
+
+                        else if ( (LA16_0==')') ) {s = 4;}
+
+                        else if ( (LA16_0=='=') ) {s = 5;}
+
+                        else if ( (LA16_0==',') ) {s = 6;}
+
+                        else if ( (LA16_0=='[') ) {s = 7;}
+
+                        else if ( (LA16_0==']') ) {s = 8;}
+
+                        else if ( (LA16_0=='i') ) {s = 9;}
+
+                        else if ( (LA16_0=='l') ) {s = 10;}
+
+                        else if ( (LA16_0=='c') ) {s = 11;}
+
+                        else if ( (LA16_0=='s') ) {s = 12;}
+
+                        else if ( (LA16_0=='-') ) {s = 13;}
+
+                        else if ( ((LA16_0>='0' && LA16_0<='9')) ) {s = 14;}
+
+                        else if ( (LA16_0=='t') ) {s = 15;}
+
+                        else if ( (LA16_0=='f') ) {s = 16;}
+
+                        else if ( ((LA16_0>='a' && LA16_0<='b')||(LA16_0>='d' && LA16_0<='e')||(LA16_0>='g' && LA16_0<='h')||(LA16_0>='j' && LA16_0<='k')||(LA16_0>='m' && LA16_0<='r')||(LA16_0>='u' && LA16_0<='z')) ) {s = 17;}
+
+                        else if ( (LA16_0=='+') ) {s = 18;}
+
+                        else if ( (LA16_0=='!'||LA16_0=='&'||LA16_0=='|') ) {s = 19;}
+
+                        else if ( (LA16_0=='/') ) {s = 20;}
+
+                        else if ( (LA16_0=='^') ) {s = 21;}
+
+                        else if ( ((LA16_0>='A' && LA16_0<='Z')||LA16_0=='_') ) {s = 22;}
+
+                        else if ( (LA16_0=='\"') ) {s = 23;}
+
+                        else if ( (LA16_0=='\'') ) {s = 24;}
+
+                        else if ( (LA16_0=='*'||LA16_0=='<'||LA16_0=='>') ) {s = 25;}
+
+                        else if ( ((LA16_0>='\t' && LA16_0<='\n')||LA16_0=='\r'||LA16_0==' ') ) {s = 26;}
+
+                        else if ( ((LA16_0>='\u0000' && LA16_0<='\b')||(LA16_0>='\u000B' && LA16_0<='\f')||(LA16_0>='\u000E' && LA16_0<='\u001F')||(LA16_0>='#' && LA16_0<='%')||LA16_0=='.'||LA16_0==':'||LA16_0=='@'||LA16_0=='\\'||LA16_0=='`'||LA16_0=='{'||(LA16_0>='}' && LA16_0<='\uFFFF')) ) {s = 27;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA14_0 = input.LA(1);
+                        int LA16_24 = input.LA(1);
 
                         s = -1;
-                        if ( (LA14_0=='H') ) {s = 1;}
+                        if ( ((LA16_24>='\u0000' && LA16_24<='\uFFFF')) ) {s = 56;}
 
-                        else if ( (LA14_0=='-') ) {s = 2;}
-
-                        else if ( ((LA14_0>='0' && LA14_0<='9')) ) {s = 3;}
-
-                        else if ( (LA14_0=='t') ) {s = 4;}
-
-                        else if ( (LA14_0=='f') ) {s = 5;}
-
-                        else if ( (LA14_0=='^') ) {s = 6;}
-
-                        else if ( ((LA14_0>='A' && LA14_0<='G')||(LA14_0>='I' && LA14_0<='Z')||LA14_0=='_'||(LA14_0>='a' && LA14_0<='e')||(LA14_0>='g' && LA14_0<='s')||(LA14_0>='u' && LA14_0<='z')) ) {s = 7;}
-
-                        else if ( (LA14_0=='\"') ) {s = 8;}
-
-                        else if ( (LA14_0=='\'') ) {s = 9;}
-
-                        else if ( (LA14_0=='/') ) {s = 10;}
-
-                        else if ( ((LA14_0>='\t' && LA14_0<='\n')||LA14_0=='\r'||LA14_0==' ') ) {s = 11;}
-
-                        else if ( ((LA14_0>='\u0000' && LA14_0<='\b')||(LA14_0>='\u000B' && LA14_0<='\f')||(LA14_0>='\u000E' && LA14_0<='\u001F')||LA14_0=='!'||(LA14_0>='#' && LA14_0<='&')||(LA14_0>='(' && LA14_0<=',')||LA14_0=='.'||(LA14_0>=':' && LA14_0<='@')||(LA14_0>='[' && LA14_0<=']')||LA14_0=='`'||(LA14_0>='{' && LA14_0<='\uFFFF')) ) {s = 12;}
+                        else s = 27;
 
                         if ( s>=0 ) return s;
                         break;
             }
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 14, _s, input);
+                new NoViableAltException(getDescription(), 16, _s, input);
             error(nvae);
             throw nvae;
         }
