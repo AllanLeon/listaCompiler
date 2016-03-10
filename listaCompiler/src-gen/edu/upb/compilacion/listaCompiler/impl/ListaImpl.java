@@ -5,12 +5,20 @@ package edu.upb.compilacion.listaCompiler.impl;
 import edu.upb.compilacion.listaCompiler.Lista;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.upb.compilacion.listaCompiler.impl.ListaImpl#getName <em>Name</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.impl.ListaImpl#getLines <em>Lines</em>}</li>
  * </ul>
  *
  * @generated
@@ -28,24 +36,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class ListaImpl extends MinimalEObjectImpl.Container implements Lista
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getLines() <em>Lines</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getLines()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
+  protected EList<EObject> lines;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,9 +71,13 @@ public class ListaImpl extends MinimalEObjectImpl.Container implements Lista
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public EList<EObject> getLines()
   {
-    return name;
+    if (lines == null)
+    {
+      lines = new EObjectContainmentEList<EObject>(EObject.class, this, ListaCompilerPackage.LISTA__LINES);
+    }
+    return lines;
   }
 
   /**
@@ -83,12 +85,15 @@ public class ListaImpl extends MinimalEObjectImpl.Container implements Lista
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.LISTA__NAME, oldName, name));
+    switch (featureID)
+    {
+      case ListaCompilerPackage.LISTA__LINES:
+        return ((InternalEList<?>)getLines()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -101,8 +106,8 @@ public class ListaImpl extends MinimalEObjectImpl.Container implements Lista
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.LISTA__NAME:
-        return getName();
+      case ListaCompilerPackage.LISTA__LINES:
+        return getLines();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -112,13 +117,15 @@ public class ListaImpl extends MinimalEObjectImpl.Container implements Lista
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.LISTA__NAME:
-        setName((String)newValue);
+      case ListaCompilerPackage.LISTA__LINES:
+        getLines().clear();
+        getLines().addAll((Collection<? extends EObject>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -134,8 +141,8 @@ public class ListaImpl extends MinimalEObjectImpl.Container implements Lista
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.LISTA__NAME:
-        setName(NAME_EDEFAULT);
+      case ListaCompilerPackage.LISTA__LINES:
+        getLines().clear();
         return;
     }
     super.eUnset(featureID);
@@ -151,27 +158,10 @@ public class ListaImpl extends MinimalEObjectImpl.Container implements Lista
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.LISTA__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ListaCompilerPackage.LISTA__LINES:
+        return lines != null && !lines.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //ListaImpl

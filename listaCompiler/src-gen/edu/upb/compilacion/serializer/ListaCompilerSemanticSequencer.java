@@ -5,8 +5,17 @@ package edu.upb.compilacion.serializer;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import edu.upb.compilacion.listaCompiler.ControlFlow;
+import edu.upb.compilacion.listaCompiler.DataType;
+import edu.upb.compilacion.listaCompiler.Evaluation;
+import edu.upb.compilacion.listaCompiler.Expression;
+import edu.upb.compilacion.listaCompiler.FunctionCall;
+import edu.upb.compilacion.listaCompiler.FunctionDefinition;
+import edu.upb.compilacion.listaCompiler.IntList;
 import edu.upb.compilacion.listaCompiler.Lista;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
+import edu.upb.compilacion.listaCompiler.Operator;
+import edu.upb.compilacion.listaCompiler.PreDefFunction;
 import edu.upb.compilacion.services.ListaCompilerGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
@@ -29,8 +38,35 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	@Override
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == ListaCompilerPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+			case ListaCompilerPackage.CONTROL_FLOW:
+				sequence_ControlFlow(context, (ControlFlow) semanticObject); 
+				return; 
+			case ListaCompilerPackage.DATA_TYPE:
+				sequence_DataType(context, (DataType) semanticObject); 
+				return; 
+			case ListaCompilerPackage.EVALUATION:
+				sequence_Evaluation(context, (Evaluation) semanticObject); 
+				return; 
+			case ListaCompilerPackage.EXPRESSION:
+				sequence_Expression(context, (Expression) semanticObject); 
+				return; 
+			case ListaCompilerPackage.FUNCTION_CALL:
+				sequence_FunctionCall(context, (FunctionCall) semanticObject); 
+				return; 
+			case ListaCompilerPackage.FUNCTION_DEFINITION:
+				sequence_FunctionDefinition(context, (FunctionDefinition) semanticObject); 
+				return; 
+			case ListaCompilerPackage.INT_LIST:
+				sequence_IntList(context, (IntList) semanticObject); 
+				return; 
 			case ListaCompilerPackage.LISTA:
 				sequence_Lista(context, (Lista) semanticObject); 
+				return; 
+			case ListaCompilerPackage.OPERATOR:
+				sequence_Operator(context, (Operator) semanticObject); 
+				return; 
+			case ListaCompilerPackage.PRE_DEF_FUNCTION:
+				sequence_PreDefFunction(context, (PreDefFunction) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -38,16 +74,120 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     name=STRING
+	 *     (name=CFLOW cond=Expression iftrue=Expression iffalse=Expression)
 	 */
-	protected void sequence_Lista(EObject context, Lista semanticObject) {
+	protected void sequence_ControlFlow(EObject context, ControlFlow semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.LISTA__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.LISTA__NAME));
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.CONTROL_FLOW__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.CONTROL_FLOW__NAME));
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.CONTROL_FLOW__COND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.CONTROL_FLOW__COND));
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.CONTROL_FLOW__IFTRUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.CONTROL_FLOW__IFTRUE));
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.CONTROL_FLOW__IFFALSE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.CONTROL_FLOW__IFFALSE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getListaAccess().getNameSTRINGTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getControlFlowAccess().getNameCFLOWTerminalRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getControlFlowAccess().getCondExpressionParserRuleCall_2_0(), semanticObject.getCond());
+		feeder.accept(grammarAccess.getControlFlowAccess().getIftrueExpressionParserRuleCall_4_0(), semanticObject.getIftrue());
+		feeder.accept(grammarAccess.getControlFlowAccess().getIffalseExpressionParserRuleCall_6_0(), semanticObject.getIffalse());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (val=INTEGER | val=BOOL | val=STRING | var=IDFUNCVAR)
+	 */
+	protected void sequence_DataType(EObject context, DataType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     return=Expression
+	 */
+	protected void sequence_Evaluation(EObject context, Evaluation semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.EVALUATION__RETURN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.EVALUATION__RETURN));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getEvaluationAccess().getReturnExpressionParserRuleCall_1_0(), semanticObject.getReturn());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (args+=Term (operators+=Operator args+=Term)*)
+	 */
+	protected void sequence_Expression(EObject context, Expression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ((function=PreDefFunction | function=[FunctionDefinition|IDFUNCVAR]) (args+=Term args+=Term*)?)
+	 */
+	protected void sequence_FunctionCall(EObject context, FunctionCall semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=IDFUNCVAR (params+=IDFUNCVAR params+=IDFUNCVAR*)? return=Expression)
+	 */
+	protected void sequence_FunctionDefinition(EObject context, FunctionDefinition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     ((elems+=INTEGER+ elems+=INTEGER*)?)
+	 */
+	protected void sequence_IntList(EObject context, IntList semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (lines+=Evaluation | lines+=FunctionDefinition)+
+	 */
+	protected void sequence_Lista(EObject context, Lista semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (type=IDOPINT | type=IDOPBOOL | type=IDOPSTR | type=IDOPGLOBAL)
+	 */
+	protected void sequence_Operator(EObject context, Operator semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     name=PDFUNCTION
+	 */
+	protected void sequence_PreDefFunction(EObject context, PreDefFunction semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.PRE_DEF_FUNCTION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.PRE_DEF_FUNCTION__NAME));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getPreDefFunctionAccess().getNamePDFUNCTIONTerminalRuleCall_0(), semanticObject.getName());
 		feeder.finish();
 	}
 }

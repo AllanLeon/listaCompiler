@@ -37,8 +37,51 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getListaAccess().getGroup(), "rule__Lista__Group__0");
-					put(grammarAccess.getListaAccess().getNameAssignment_1(), "rule__Lista__NameAssignment_1");
+					put(grammarAccess.getListaAccess().getLinesAlternatives_0(), "rule__Lista__LinesAlternatives_0");
+					put(grammarAccess.getTermAccess().getAlternatives(), "rule__Term__Alternatives");
+					put(grammarAccess.getFunctionCallAccess().getFunctionAlternatives_0_0(), "rule__FunctionCall__FunctionAlternatives_0_0");
+					put(grammarAccess.getDataTypeAccess().getAlternatives(), "rule__DataType__Alternatives");
+					put(grammarAccess.getOperatorAccess().getAlternatives(), "rule__Operator__Alternatives");
+					put(grammarAccess.getEvaluationAccess().getGroup(), "rule__Evaluation__Group__0");
+					put(grammarAccess.getFunctionDefinitionAccess().getGroup(), "rule__FunctionDefinition__Group__0");
+					put(grammarAccess.getFunctionDefinitionAccess().getGroup_2(), "rule__FunctionDefinition__Group_2__0");
+					put(grammarAccess.getFunctionDefinitionAccess().getGroup_2_1(), "rule__FunctionDefinition__Group_2_1__0");
+					put(grammarAccess.getExpressionAccess().getGroup(), "rule__Expression__Group__0");
+					put(grammarAccess.getExpressionAccess().getGroup_1(), "rule__Expression__Group_1__0");
+					put(grammarAccess.getControlFlowAccess().getGroup(), "rule__ControlFlow__Group__0");
+					put(grammarAccess.getFunctionCallAccess().getGroup(), "rule__FunctionCall__Group__0");
+					put(grammarAccess.getFunctionCallAccess().getGroup_2(), "rule__FunctionCall__Group_2__0");
+					put(grammarAccess.getFunctionCallAccess().getGroup_2_1(), "rule__FunctionCall__Group_2_1__0");
+					put(grammarAccess.getIntListAccess().getGroup(), "rule__IntList__Group__0");
+					put(grammarAccess.getIntListAccess().getGroup_2(), "rule__IntList__Group_2__0");
+					put(grammarAccess.getIntListAccess().getGroup_2_1(), "rule__IntList__Group_2_1__0");
+					put(grammarAccess.getListaAccess().getLinesAssignment(), "rule__Lista__LinesAssignment");
+					put(grammarAccess.getEvaluationAccess().getReturnAssignment_1(), "rule__Evaluation__ReturnAssignment_1");
+					put(grammarAccess.getFunctionDefinitionAccess().getNameAssignment_0(), "rule__FunctionDefinition__NameAssignment_0");
+					put(grammarAccess.getFunctionDefinitionAccess().getParamsAssignment_2_0(), "rule__FunctionDefinition__ParamsAssignment_2_0");
+					put(grammarAccess.getFunctionDefinitionAccess().getParamsAssignment_2_1_1(), "rule__FunctionDefinition__ParamsAssignment_2_1_1");
+					put(grammarAccess.getFunctionDefinitionAccess().getReturnAssignment_5(), "rule__FunctionDefinition__ReturnAssignment_5");
+					put(grammarAccess.getExpressionAccess().getArgsAssignment_0(), "rule__Expression__ArgsAssignment_0");
+					put(grammarAccess.getExpressionAccess().getOperatorsAssignment_1_0(), "rule__Expression__OperatorsAssignment_1_0");
+					put(grammarAccess.getExpressionAccess().getArgsAssignment_1_1(), "rule__Expression__ArgsAssignment_1_1");
+					put(grammarAccess.getControlFlowAccess().getNameAssignment_0(), "rule__ControlFlow__NameAssignment_0");
+					put(grammarAccess.getControlFlowAccess().getCondAssignment_2(), "rule__ControlFlow__CondAssignment_2");
+					put(grammarAccess.getControlFlowAccess().getIftrueAssignment_4(), "rule__ControlFlow__IftrueAssignment_4");
+					put(grammarAccess.getControlFlowAccess().getIffalseAssignment_6(), "rule__ControlFlow__IffalseAssignment_6");
+					put(grammarAccess.getFunctionCallAccess().getFunctionAssignment_0(), "rule__FunctionCall__FunctionAssignment_0");
+					put(grammarAccess.getFunctionCallAccess().getArgsAssignment_2_0(), "rule__FunctionCall__ArgsAssignment_2_0");
+					put(grammarAccess.getFunctionCallAccess().getArgsAssignment_2_1_1(), "rule__FunctionCall__ArgsAssignment_2_1_1");
+					put(grammarAccess.getDataTypeAccess().getValAssignment_0(), "rule__DataType__ValAssignment_0");
+					put(grammarAccess.getDataTypeAccess().getValAssignment_1(), "rule__DataType__ValAssignment_1");
+					put(grammarAccess.getDataTypeAccess().getValAssignment_2(), "rule__DataType__ValAssignment_2");
+					put(grammarAccess.getDataTypeAccess().getVarAssignment_3(), "rule__DataType__VarAssignment_3");
+					put(grammarAccess.getIntListAccess().getElemsAssignment_2_0(), "rule__IntList__ElemsAssignment_2_0");
+					put(grammarAccess.getIntListAccess().getElemsAssignment_2_1_1(), "rule__IntList__ElemsAssignment_2_1_1");
+					put(grammarAccess.getPreDefFunctionAccess().getNameAssignment(), "rule__PreDefFunction__NameAssignment");
+					put(grammarAccess.getOperatorAccess().getTypeAssignment_0(), "rule__Operator__TypeAssignment_0");
+					put(grammarAccess.getOperatorAccess().getTypeAssignment_1(), "rule__Operator__TypeAssignment_1");
+					put(grammarAccess.getOperatorAccess().getTypeAssignment_2(), "rule__Operator__TypeAssignment_2");
+					put(grammarAccess.getOperatorAccess().getTypeAssignment_3(), "rule__Operator__TypeAssignment_3");
 				}
 			};
 		}

@@ -65,6 +65,16 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
     switch (eClass.getClassifierID())
     {
       case ListaCompilerPackage.LISTA: return createLista();
+      case ListaCompilerPackage.EVALUATION: return createEvaluation();
+      case ListaCompilerPackage.FUNCTION_DEFINITION: return createFunctionDefinition();
+      case ListaCompilerPackage.EXPRESSION: return createExpression();
+      case ListaCompilerPackage.TERM: return createTerm();
+      case ListaCompilerPackage.CONTROL_FLOW: return createControlFlow();
+      case ListaCompilerPackage.FUNCTION_CALL: return createFunctionCall();
+      case ListaCompilerPackage.DATA_TYPE: return createDataType();
+      case ListaCompilerPackage.INT_LIST: return createIntList();
+      case ListaCompilerPackage.PRE_DEF_FUNCTION: return createPreDefFunction();
+      case ListaCompilerPackage.OPERATOR: return createOperator();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -79,6 +89,116 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
   {
     ListaImpl lista = new ListaImpl();
     return lista;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Evaluation createEvaluation()
+  {
+    EvaluationImpl evaluation = new EvaluationImpl();
+    return evaluation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FunctionDefinition createFunctionDefinition()
+  {
+    FunctionDefinitionImpl functionDefinition = new FunctionDefinitionImpl();
+    return functionDefinition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Expression createExpression()
+  {
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Term createTerm()
+  {
+    TermImpl term = new TermImpl();
+    return term;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ControlFlow createControlFlow()
+  {
+    ControlFlowImpl controlFlow = new ControlFlowImpl();
+    return controlFlow;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FunctionCall createFunctionCall()
+  {
+    FunctionCallImpl functionCall = new FunctionCallImpl();
+    return functionCall;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DataType createDataType()
+  {
+    DataTypeImpl dataType = new DataTypeImpl();
+    return dataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IntList createIntList()
+  {
+    IntListImpl intList = new IntListImpl();
+    return intList;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PreDefFunction createPreDefFunction()
+  {
+    PreDefFunctionImpl preDefFunction = new PreDefFunctionImpl();
+    return preDefFunction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Operator createOperator()
+  {
+    OperatorImpl operator = new OperatorImpl();
+    return operator;
   }
 
   /**
