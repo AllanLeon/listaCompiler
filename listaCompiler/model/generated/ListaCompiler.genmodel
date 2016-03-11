@@ -18,33 +18,50 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//FunctionDefinition/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//FunctionDefinition/return"/>
     </genClasses>
-    <genClasses ecoreClass="ListaCompiler.ecore#//Expression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//Expression/args"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//Expression/operators"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//Expression"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//FirstLevelExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//FirstLevelExp/first"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//FirstLevelExp/second"/>
+    </genClasses>
+    <genClasses ecoreClass="ListaCompiler.ecore#//SecondLevelExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//SecondLevelExp/first"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//SecondLevelExp/second"/>
+    </genClasses>
+    <genClasses ecoreClass="ListaCompiler.ecore#//ThirdLevelExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//ThirdLevelExp/first"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//ThirdLevelExp/second"/>
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//Term"/>
-    <genClasses ecoreClass="ListaCompiler.ecore#//ControlFlow">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//ControlFlow/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//ControlFlow/cond"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//ControlFlow/iftrue"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//ControlFlow/iffalse"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//MyInteger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//MyInteger/val"/>
+    </genClasses>
+    <genClasses ecoreClass="ListaCompiler.ecore#//PosInteger"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//NegInteger"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//MyVariable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//MyVariable/var"/>
+    </genClasses>
+    <genClasses ecoreClass="ListaCompiler.ecore#//BoolTerm"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//MyBool">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//MyBool/val"/>
+    </genClasses>
+    <genClasses ecoreClass="ListaCompiler.ecore#//MyString">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//MyString/val"/>
+    </genClasses>
+    <genClasses ecoreClass="ListaCompiler.ecore#//IfControlFlow">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//IfControlFlow/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//IfControlFlow/cond"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//IfControlFlow/iftrue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//IfControlFlow/iffalse"/>
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//FunctionCall">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//FunctionCall/function"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//FunctionCall/args"/>
     </genClasses>
-    <genClasses ecoreClass="ListaCompiler.ecore#//DataType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//DataType/val"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//DataType/var"/>
-    </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//IntList">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//IntList/elems"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//IntList/elems"/>
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//PreDefFunction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//PreDefFunction/name"/>
-    </genClasses>
-    <genClasses ecoreClass="ListaCompiler.ecore#//Operator">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//Operator/type"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

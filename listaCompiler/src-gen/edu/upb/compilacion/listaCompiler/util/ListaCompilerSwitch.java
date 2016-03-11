@@ -100,6 +100,28 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ListaCompilerPackage.FIRST_LEVEL_EXP:
+      {
+        FirstLevelExp firstLevelExp = (FirstLevelExp)theEObject;
+        T result = caseFirstLevelExp(firstLevelExp);
+        if (result == null) result = caseExpression(firstLevelExp);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.SECOND_LEVEL_EXP:
+      {
+        SecondLevelExp secondLevelExp = (SecondLevelExp)theEObject;
+        T result = caseSecondLevelExp(secondLevelExp);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.THIRD_LEVEL_EXP:
+      {
+        ThirdLevelExp thirdLevelExp = (ThirdLevelExp)theEObject;
+        T result = caseThirdLevelExp(thirdLevelExp);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ListaCompilerPackage.TERM:
       {
         Term term = (Term)theEObject;
@@ -107,11 +129,70 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ListaCompilerPackage.CONTROL_FLOW:
+      case ListaCompilerPackage.MY_INTEGER:
       {
-        ControlFlow controlFlow = (ControlFlow)theEObject;
-        T result = caseControlFlow(controlFlow);
-        if (result == null) result = caseTerm(controlFlow);
+        MyInteger myInteger = (MyInteger)theEObject;
+        T result = caseMyInteger(myInteger);
+        if (result == null) result = caseTerm(myInteger);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.POS_INTEGER:
+      {
+        PosInteger posInteger = (PosInteger)theEObject;
+        T result = casePosInteger(posInteger);
+        if (result == null) result = caseMyInteger(posInteger);
+        if (result == null) result = caseTerm(posInteger);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.NEG_INTEGER:
+      {
+        NegInteger negInteger = (NegInteger)theEObject;
+        T result = caseNegInteger(negInteger);
+        if (result == null) result = caseMyInteger(negInteger);
+        if (result == null) result = caseTerm(negInteger);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.MY_VARIABLE:
+      {
+        MyVariable myVariable = (MyVariable)theEObject;
+        T result = caseMyVariable(myVariable);
+        if (result == null) result = caseTerm(myVariable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.BOOL_TERM:
+      {
+        BoolTerm boolTerm = (BoolTerm)theEObject;
+        T result = caseBoolTerm(boolTerm);
+        if (result == null) result = caseTerm(boolTerm);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.MY_BOOL:
+      {
+        MyBool myBool = (MyBool)theEObject;
+        T result = caseMyBool(myBool);
+        if (result == null) result = caseBoolTerm(myBool);
+        if (result == null) result = caseTerm(myBool);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.MY_STRING:
+      {
+        MyString myString = (MyString)theEObject;
+        T result = caseMyString(myString);
+        if (result == null) result = caseTerm(myString);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.IF_CONTROL_FLOW:
+      {
+        IfControlFlow ifControlFlow = (IfControlFlow)theEObject;
+        T result = caseIfControlFlow(ifControlFlow);
+        if (result == null) result = caseTerm(ifControlFlow);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -123,19 +204,10 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ListaCompilerPackage.DATA_TYPE:
-      {
-        DataType dataType = (DataType)theEObject;
-        T result = caseDataType(dataType);
-        if (result == null) result = caseTerm(dataType);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case ListaCompilerPackage.INT_LIST:
       {
         IntList intList = (IntList)theEObject;
         T result = caseIntList(intList);
-        if (result == null) result = caseDataType(intList);
         if (result == null) result = caseTerm(intList);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -144,13 +216,6 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         PreDefFunction preDefFunction = (PreDefFunction)theEObject;
         T result = casePreDefFunction(preDefFunction);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ListaCompilerPackage.OPERATOR:
-      {
-        Operator operator = (Operator)theEObject;
-        T result = caseOperator(operator);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -223,6 +288,54 @@ public class ListaCompilerSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>First Level Exp</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>First Level Exp</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFirstLevelExp(FirstLevelExp object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Second Level Exp</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Second Level Exp</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSecondLevelExp(SecondLevelExp object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Third Level Exp</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Third Level Exp</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseThirdLevelExp(ThirdLevelExp object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Term</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -239,17 +352,129 @@ public class ListaCompilerSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Control Flow</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>My Integer</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Control Flow</em>'.
+   * @return the result of interpreting the object as an instance of '<em>My Integer</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseControlFlow(ControlFlow object)
+  public T caseMyInteger(MyInteger object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pos Integer</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pos Integer</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePosInteger(PosInteger object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Neg Integer</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Neg Integer</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNegInteger(NegInteger object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>My Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>My Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMyVariable(MyVariable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Bool Term</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Bool Term</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBoolTerm(BoolTerm object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>My Bool</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>My Bool</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMyBool(MyBool object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>My String</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>My String</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMyString(MyString object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>If Control Flow</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>If Control Flow</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIfControlFlow(IfControlFlow object)
   {
     return null;
   }
@@ -266,22 +491,6 @@ public class ListaCompilerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseFunctionCall(FunctionCall object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Data Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Data Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDataType(DataType object)
   {
     return null;
   }
@@ -314,22 +523,6 @@ public class ListaCompilerSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePreDefFunction(PreDefFunction object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Operator</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Operator</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseOperator(Operator object)
   {
     return null;
   }

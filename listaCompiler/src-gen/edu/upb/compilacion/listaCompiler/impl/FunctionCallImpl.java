@@ -2,9 +2,9 @@
  */
 package edu.upb.compilacion.listaCompiler.impl;
 
+import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FunctionCall;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
-import edu.upb.compilacion.listaCompiler.Term;
 
 import java.util.Collection;
 
@@ -56,7 +56,7 @@ public class FunctionCallImpl extends TermImpl implements FunctionCall
    * @generated
    * @ordered
    */
-  protected EList<Term> args;
+  protected EList<Expression> args;
 
   /**
    * <!-- begin-user-doc -->
@@ -132,11 +132,11 @@ public class FunctionCallImpl extends TermImpl implements FunctionCall
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Term> getArgs()
+  public EList<Expression> getArgs()
   {
     if (args == null)
     {
-      args = new EObjectContainmentEList<Term>(Term.class, this, ListaCompilerPackage.FUNCTION_CALL__ARGS);
+      args = new EObjectContainmentEList<Expression>(Expression.class, this, ListaCompilerPackage.FUNCTION_CALL__ARGS);
     }
     return args;
   }
@@ -193,7 +193,7 @@ public class FunctionCallImpl extends TermImpl implements FunctionCall
         return;
       case ListaCompilerPackage.FUNCTION_CALL__ARGS:
         getArgs().clear();
-        getArgs().addAll((Collection<? extends Term>)newValue);
+        getArgs().addAll((Collection<? extends Expression>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

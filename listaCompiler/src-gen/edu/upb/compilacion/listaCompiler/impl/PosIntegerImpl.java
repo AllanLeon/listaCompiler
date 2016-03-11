@@ -2,28 +2,26 @@
  */
 package edu.upb.compilacion.listaCompiler.impl;
 
-import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
+import edu.upb.compilacion.listaCompiler.PosInteger;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expression</b></em>'.
+ * An implementation of the model object '<em><b>Pos Integer</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expression
+public class PosIntegerImpl extends MyIntegerImpl implements PosInteger
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExpressionImpl()
+  protected PosIntegerImpl()
   {
     super();
   }
@@ -36,7 +34,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
   @Override
   protected EClass eStaticClass()
   {
-    return ListaCompilerPackage.Literals.EXPRESSION;
+    return ListaCompilerPackage.Literals.POS_INTEGER;
   }
 
-} //ExpressionImpl
+} //PosIntegerImpl

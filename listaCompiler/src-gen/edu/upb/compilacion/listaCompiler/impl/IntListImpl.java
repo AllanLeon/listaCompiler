@@ -4,14 +4,19 @@ package edu.upb.compilacion.listaCompiler.impl;
 
 import edu.upb.compilacion.listaCompiler.IntList;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
+import edu.upb.compilacion.listaCompiler.MyInteger;
 
 import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,17 +31,17 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  *
  * @generated
  */
-public class IntListImpl extends DataTypeImpl implements IntList
+public class IntListImpl extends TermImpl implements IntList
 {
   /**
-   * The cached value of the '{@link #getElems() <em>Elems</em>}' attribute list.
+   * The cached value of the '{@link #getElems() <em>Elems</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getElems()
    * @generated
    * @ordered
    */
-  protected EList<String> elems;
+  protected EList<MyInteger> elems;
 
   /**
    * <!-- begin-user-doc -->
@@ -64,13 +69,29 @@ public class IntListImpl extends DataTypeImpl implements IntList
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getElems()
+  public EList<MyInteger> getElems()
   {
     if (elems == null)
     {
-      elems = new EDataTypeEList<String>(String.class, this, ListaCompilerPackage.INT_LIST__ELEMS);
+      elems = new EObjectContainmentEList<MyInteger>(MyInteger.class, this, ListaCompilerPackage.INT_LIST__ELEMS);
     }
     return elems;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ListaCompilerPackage.INT_LIST__ELEMS:
+        return ((InternalEList<?>)getElems()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -102,7 +123,7 @@ public class IntListImpl extends DataTypeImpl implements IntList
     {
       case ListaCompilerPackage.INT_LIST__ELEMS:
         getElems().clear();
-        getElems().addAll((Collection<? extends String>)newValue);
+        getElems().addAll((Collection<? extends MyInteger>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -139,23 +160,6 @@ public class IntListImpl extends DataTypeImpl implements IntList
         return elems != null && !elems.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (elems: ");
-    result.append(elems);
-    result.append(')');
-    return result.toString();
   }
 
 } //IntListImpl

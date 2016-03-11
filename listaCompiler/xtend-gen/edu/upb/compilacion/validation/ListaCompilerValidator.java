@@ -3,10 +3,10 @@
  */
 package edu.upb.compilacion.validation;
 
+import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FunctionCall;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
-import edu.upb.compilacion.listaCompiler.Term;
 import edu.upb.compilacion.validation.AbstractListaCompilerValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -29,7 +29,7 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
       if ((function instanceof FunctionDefinition)) {
         EList<String> _params = ((FunctionDefinition) function).getParams();
         final int paramsize = ((Object[])Conversions.unwrapArray(_params, Object.class)).length;
-        EList<Term> _args = fcall.getArgs();
+        EList<Expression> _args = fcall.getArgs();
         int _length = ((Object[])Conversions.unwrapArray(_args, Object.class)).length;
         boolean _notEquals = (_length != paramsize);
         if (_notEquals) {
@@ -43,19 +43,5 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
       _xblockexpression = _xifexpression;
     }
     return _xblockexpression;
-  }
-  
-  @Check
-  public void checkParametersTypes(final /* CompositeTerm */Object term) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getType is undefined for the type ListaCompilerValidator"
-      + "\nThe method or field AdtPackage is undefined for the type ListaCompilerValidator"
-      + "\nargs cannot be resolved"
-      + "\nop cannot be resolved"
-      + "\nparam cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\nLiterals cannot be resolved"
-      + "\nCOMPOSITE_TERM__ARGS cannot be resolved");
   }
 }
