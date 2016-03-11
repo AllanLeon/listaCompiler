@@ -53,7 +53,7 @@ public interface FunctionCall extends Term
 
   /**
    * Returns the value of the '<em><b>Args</b></em>' containment reference list.
-   * The list contents are of type {@link edu.upb.compilacion.listaCompiler.Term}.
+   * The list contents are of type {@link edu.upb.compilacion.listaCompiler.Expression}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Args</em>' containment reference list isn't clear,
@@ -65,6 +65,6 @@ public interface FunctionCall extends Term
    * @model containment="true"
    * @generated
    */
-  EList<Term> getArgs();
+  EList<Expression> getArgs();
 
 } // FunctionCall

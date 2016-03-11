@@ -44,7 +44,7 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		}
 	}
 
-	@Check
+	/*@Check
 	def checkParametersTypes(CompositeTerm term) {
 		var index = 0
 		var current = ''
@@ -58,6 +58,6 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 			}
 			index++
 		}
-	}
+	}*/
 
 }

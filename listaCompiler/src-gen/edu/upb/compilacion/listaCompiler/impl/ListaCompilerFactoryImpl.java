@@ -68,13 +68,21 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
       case ListaCompilerPackage.EVALUATION: return createEvaluation();
       case ListaCompilerPackage.FUNCTION_DEFINITION: return createFunctionDefinition();
       case ListaCompilerPackage.EXPRESSION: return createExpression();
+      case ListaCompilerPackage.FIRST_LEVEL_EXP: return createFirstLevelExp();
+      case ListaCompilerPackage.SECOND_LEVEL_EXP: return createSecondLevelExp();
+      case ListaCompilerPackage.THIRD_LEVEL_EXP: return createThirdLevelExp();
       case ListaCompilerPackage.TERM: return createTerm();
-      case ListaCompilerPackage.CONTROL_FLOW: return createControlFlow();
+      case ListaCompilerPackage.MY_INTEGER: return createMyInteger();
+      case ListaCompilerPackage.POS_INTEGER: return createPosInteger();
+      case ListaCompilerPackage.NEG_INTEGER: return createNegInteger();
+      case ListaCompilerPackage.MY_VARIABLE: return createMyVariable();
+      case ListaCompilerPackage.BOOL_TERM: return createBoolTerm();
+      case ListaCompilerPackage.MY_BOOL: return createMyBool();
+      case ListaCompilerPackage.MY_STRING: return createMyString();
+      case ListaCompilerPackage.IF_CONTROL_FLOW: return createIfControlFlow();
       case ListaCompilerPackage.FUNCTION_CALL: return createFunctionCall();
-      case ListaCompilerPackage.DATA_TYPE: return createDataType();
       case ListaCompilerPackage.INT_LIST: return createIntList();
       case ListaCompilerPackage.PRE_DEF_FUNCTION: return createPreDefFunction();
-      case ListaCompilerPackage.OPERATOR: return createOperator();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -129,6 +137,39 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
+  public FirstLevelExp createFirstLevelExp()
+  {
+    FirstLevelExpImpl firstLevelExp = new FirstLevelExpImpl();
+    return firstLevelExp;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SecondLevelExp createSecondLevelExp()
+  {
+    SecondLevelExpImpl secondLevelExp = new SecondLevelExpImpl();
+    return secondLevelExp;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ThirdLevelExp createThirdLevelExp()
+  {
+    ThirdLevelExpImpl thirdLevelExp = new ThirdLevelExpImpl();
+    return thirdLevelExp;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Term createTerm()
   {
     TermImpl term = new TermImpl();
@@ -140,10 +181,87 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public ControlFlow createControlFlow()
+  public MyInteger createMyInteger()
   {
-    ControlFlowImpl controlFlow = new ControlFlowImpl();
-    return controlFlow;
+    MyIntegerImpl myInteger = new MyIntegerImpl();
+    return myInteger;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PosInteger createPosInteger()
+  {
+    PosIntegerImpl posInteger = new PosIntegerImpl();
+    return posInteger;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NegInteger createNegInteger()
+  {
+    NegIntegerImpl negInteger = new NegIntegerImpl();
+    return negInteger;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MyVariable createMyVariable()
+  {
+    MyVariableImpl myVariable = new MyVariableImpl();
+    return myVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BoolTerm createBoolTerm()
+  {
+    BoolTermImpl boolTerm = new BoolTermImpl();
+    return boolTerm;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MyBool createMyBool()
+  {
+    MyBoolImpl myBool = new MyBoolImpl();
+    return myBool;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MyString createMyString()
+  {
+    MyStringImpl myString = new MyStringImpl();
+    return myString;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IfControlFlow createIfControlFlow()
+  {
+    IfControlFlowImpl ifControlFlow = new IfControlFlowImpl();
+    return ifControlFlow;
   }
 
   /**
@@ -155,17 +273,6 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
   {
     FunctionCallImpl functionCall = new FunctionCallImpl();
     return functionCall;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public DataType createDataType()
-  {
-    DataTypeImpl dataType = new DataTypeImpl();
-    return dataType;
   }
 
   /**
@@ -188,17 +295,6 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
   {
     PreDefFunctionImpl preDefFunction = new PreDefFunctionImpl();
     return preDefFunction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Operator createOperator()
-  {
-    OperatorImpl operator = new OperatorImpl();
-    return operator;
   }
 
   /**

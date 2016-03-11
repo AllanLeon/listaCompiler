@@ -2,8 +2,8 @@
  */
 package edu.upb.compilacion.listaCompiler.impl;
 
-import edu.upb.compilacion.listaCompiler.ControlFlow;
 import edu.upb.compilacion.listaCompiler.Expression;
+import edu.upb.compilacion.listaCompiler.IfControlFlow;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -16,21 +16,21 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Control Flow</b></em>'.
+ * An implementation of the model object '<em><b>If Control Flow</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.upb.compilacion.listaCompiler.impl.ControlFlowImpl#getName <em>Name</em>}</li>
- *   <li>{@link edu.upb.compilacion.listaCompiler.impl.ControlFlowImpl#getCond <em>Cond</em>}</li>
- *   <li>{@link edu.upb.compilacion.listaCompiler.impl.ControlFlowImpl#getIftrue <em>Iftrue</em>}</li>
- *   <li>{@link edu.upb.compilacion.listaCompiler.impl.ControlFlowImpl#getIffalse <em>Iffalse</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.impl.IfControlFlowImpl#getName <em>Name</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.impl.IfControlFlowImpl#getCond <em>Cond</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.impl.IfControlFlowImpl#getIftrue <em>Iftrue</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.impl.IfControlFlowImpl#getIffalse <em>Iffalse</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ControlFlowImpl extends TermImpl implements ControlFlow
+public class IfControlFlowImpl extends TermImpl implements IfControlFlow
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -87,7 +87,7 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ControlFlowImpl()
+  protected IfControlFlowImpl()
   {
     super();
   }
@@ -100,7 +100,7 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
   @Override
   protected EClass eStaticClass()
   {
-    return ListaCompilerPackage.Literals.CONTROL_FLOW;
+    return ListaCompilerPackage.Literals.IF_CONTROL_FLOW;
   }
 
   /**
@@ -123,7 +123,7 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.CONTROL_FLOW__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.IF_CONTROL_FLOW__NAME, oldName, name));
   }
 
   /**
@@ -147,7 +147,7 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
     cond = newCond;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.CONTROL_FLOW__COND, oldCond, newCond);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.IF_CONTROL_FLOW__COND, oldCond, newCond);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -164,14 +164,14 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
     {
       NotificationChain msgs = null;
       if (cond != null)
-        msgs = ((InternalEObject)cond).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.CONTROL_FLOW__COND, null, msgs);
+        msgs = ((InternalEObject)cond).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.IF_CONTROL_FLOW__COND, null, msgs);
       if (newCond != null)
-        msgs = ((InternalEObject)newCond).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.CONTROL_FLOW__COND, null, msgs);
+        msgs = ((InternalEObject)newCond).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.IF_CONTROL_FLOW__COND, null, msgs);
       msgs = basicSetCond(newCond, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.CONTROL_FLOW__COND, newCond, newCond));
+      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.IF_CONTROL_FLOW__COND, newCond, newCond));
   }
 
   /**
@@ -195,7 +195,7 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
     iftrue = newIftrue;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.CONTROL_FLOW__IFTRUE, oldIftrue, newIftrue);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.IF_CONTROL_FLOW__IFTRUE, oldIftrue, newIftrue);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -212,14 +212,14 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
     {
       NotificationChain msgs = null;
       if (iftrue != null)
-        msgs = ((InternalEObject)iftrue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.CONTROL_FLOW__IFTRUE, null, msgs);
+        msgs = ((InternalEObject)iftrue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.IF_CONTROL_FLOW__IFTRUE, null, msgs);
       if (newIftrue != null)
-        msgs = ((InternalEObject)newIftrue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.CONTROL_FLOW__IFTRUE, null, msgs);
+        msgs = ((InternalEObject)newIftrue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.IF_CONTROL_FLOW__IFTRUE, null, msgs);
       msgs = basicSetIftrue(newIftrue, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.CONTROL_FLOW__IFTRUE, newIftrue, newIftrue));
+      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.IF_CONTROL_FLOW__IFTRUE, newIftrue, newIftrue));
   }
 
   /**
@@ -243,7 +243,7 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
     iffalse = newIffalse;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.CONTROL_FLOW__IFFALSE, oldIffalse, newIffalse);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.IF_CONTROL_FLOW__IFFALSE, oldIffalse, newIffalse);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -260,14 +260,14 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
     {
       NotificationChain msgs = null;
       if (iffalse != null)
-        msgs = ((InternalEObject)iffalse).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.CONTROL_FLOW__IFFALSE, null, msgs);
+        msgs = ((InternalEObject)iffalse).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.IF_CONTROL_FLOW__IFFALSE, null, msgs);
       if (newIffalse != null)
-        msgs = ((InternalEObject)newIffalse).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.CONTROL_FLOW__IFFALSE, null, msgs);
+        msgs = ((InternalEObject)newIffalse).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.IF_CONTROL_FLOW__IFFALSE, null, msgs);
       msgs = basicSetIffalse(newIffalse, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.CONTROL_FLOW__IFFALSE, newIffalse, newIffalse));
+      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.IF_CONTROL_FLOW__IFFALSE, newIffalse, newIffalse));
   }
 
   /**
@@ -280,11 +280,11 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.CONTROL_FLOW__COND:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__COND:
         return basicSetCond(null, msgs);
-      case ListaCompilerPackage.CONTROL_FLOW__IFTRUE:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__IFTRUE:
         return basicSetIftrue(null, msgs);
-      case ListaCompilerPackage.CONTROL_FLOW__IFFALSE:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__IFFALSE:
         return basicSetIffalse(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -300,13 +300,13 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.CONTROL_FLOW__NAME:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__NAME:
         return getName();
-      case ListaCompilerPackage.CONTROL_FLOW__COND:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__COND:
         return getCond();
-      case ListaCompilerPackage.CONTROL_FLOW__IFTRUE:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__IFTRUE:
         return getIftrue();
-      case ListaCompilerPackage.CONTROL_FLOW__IFFALSE:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__IFFALSE:
         return getIffalse();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -322,16 +322,16 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.CONTROL_FLOW__NAME:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__NAME:
         setName((String)newValue);
         return;
-      case ListaCompilerPackage.CONTROL_FLOW__COND:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__COND:
         setCond((Expression)newValue);
         return;
-      case ListaCompilerPackage.CONTROL_FLOW__IFTRUE:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__IFTRUE:
         setIftrue((Expression)newValue);
         return;
-      case ListaCompilerPackage.CONTROL_FLOW__IFFALSE:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__IFFALSE:
         setIffalse((Expression)newValue);
         return;
     }
@@ -348,16 +348,16 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.CONTROL_FLOW__NAME:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ListaCompilerPackage.CONTROL_FLOW__COND:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__COND:
         setCond((Expression)null);
         return;
-      case ListaCompilerPackage.CONTROL_FLOW__IFTRUE:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__IFTRUE:
         setIftrue((Expression)null);
         return;
-      case ListaCompilerPackage.CONTROL_FLOW__IFFALSE:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__IFFALSE:
         setIffalse((Expression)null);
         return;
     }
@@ -374,13 +374,13 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.CONTROL_FLOW__NAME:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ListaCompilerPackage.CONTROL_FLOW__COND:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__COND:
         return cond != null;
-      case ListaCompilerPackage.CONTROL_FLOW__IFTRUE:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__IFTRUE:
         return iftrue != null;
-      case ListaCompilerPackage.CONTROL_FLOW__IFFALSE:
+      case ListaCompilerPackage.IF_CONTROL_FLOW__IFFALSE:
         return iffalse != null;
     }
     return super.eIsSet(featureID);
@@ -403,4 +403,4 @@ public class ControlFlowImpl extends TermImpl implements ControlFlow
     return result.toString();
   }
 
-} //ControlFlowImpl
+} //IfControlFlowImpl

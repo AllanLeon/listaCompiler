@@ -95,24 +95,69 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
         return createExpressionAdapter();
       }
       @Override
+      public Adapter caseFirstLevelExp(FirstLevelExp object)
+      {
+        return createFirstLevelExpAdapter();
+      }
+      @Override
+      public Adapter caseSecondLevelExp(SecondLevelExp object)
+      {
+        return createSecondLevelExpAdapter();
+      }
+      @Override
+      public Adapter caseThirdLevelExp(ThirdLevelExp object)
+      {
+        return createThirdLevelExpAdapter();
+      }
+      @Override
       public Adapter caseTerm(Term object)
       {
         return createTermAdapter();
       }
       @Override
-      public Adapter caseControlFlow(ControlFlow object)
+      public Adapter caseMyInteger(MyInteger object)
       {
-        return createControlFlowAdapter();
+        return createMyIntegerAdapter();
+      }
+      @Override
+      public Adapter casePosInteger(PosInteger object)
+      {
+        return createPosIntegerAdapter();
+      }
+      @Override
+      public Adapter caseNegInteger(NegInteger object)
+      {
+        return createNegIntegerAdapter();
+      }
+      @Override
+      public Adapter caseMyVariable(MyVariable object)
+      {
+        return createMyVariableAdapter();
+      }
+      @Override
+      public Adapter caseBoolTerm(BoolTerm object)
+      {
+        return createBoolTermAdapter();
+      }
+      @Override
+      public Adapter caseMyBool(MyBool object)
+      {
+        return createMyBoolAdapter();
+      }
+      @Override
+      public Adapter caseMyString(MyString object)
+      {
+        return createMyStringAdapter();
+      }
+      @Override
+      public Adapter caseIfControlFlow(IfControlFlow object)
+      {
+        return createIfControlFlowAdapter();
       }
       @Override
       public Adapter caseFunctionCall(FunctionCall object)
       {
         return createFunctionCallAdapter();
-      }
-      @Override
-      public Adapter caseDataType(DataType object)
-      {
-        return createDataTypeAdapter();
       }
       @Override
       public Adapter caseIntList(IntList object)
@@ -123,11 +168,6 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
       public Adapter casePreDefFunction(PreDefFunction object)
       {
         return createPreDefFunctionAdapter();
-      }
-      @Override
-      public Adapter caseOperator(Operator object)
-      {
-        return createOperatorAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -212,6 +252,51 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.FirstLevelExp <em>First Level Exp</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.FirstLevelExp
+   * @generated
+   */
+  public Adapter createFirstLevelExpAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.SecondLevelExp <em>Second Level Exp</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.SecondLevelExp
+   * @generated
+   */
+  public Adapter createSecondLevelExpAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.ThirdLevelExp <em>Third Level Exp</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.ThirdLevelExp
+   * @generated
+   */
+  public Adapter createThirdLevelExpAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.Term <em>Term</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -227,16 +312,121 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.ControlFlow <em>Control Flow</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.MyInteger <em>My Integer</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.upb.compilacion.listaCompiler.ControlFlow
+   * @see edu.upb.compilacion.listaCompiler.MyInteger
    * @generated
    */
-  public Adapter createControlFlowAdapter()
+  public Adapter createMyIntegerAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.PosInteger <em>Pos Integer</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.PosInteger
+   * @generated
+   */
+  public Adapter createPosIntegerAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.NegInteger <em>Neg Integer</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.NegInteger
+   * @generated
+   */
+  public Adapter createNegIntegerAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.MyVariable <em>My Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.MyVariable
+   * @generated
+   */
+  public Adapter createMyVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.BoolTerm <em>Bool Term</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.BoolTerm
+   * @generated
+   */
+  public Adapter createBoolTermAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.MyBool <em>My Bool</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.MyBool
+   * @generated
+   */
+  public Adapter createMyBoolAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.MyString <em>My String</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.MyString
+   * @generated
+   */
+  public Adapter createMyStringAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.IfControlFlow <em>If Control Flow</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.IfControlFlow
+   * @generated
+   */
+  public Adapter createIfControlFlowAdapter()
   {
     return null;
   }
@@ -252,21 +442,6 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createFunctionCallAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.DataType <em>Data Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.upb.compilacion.listaCompiler.DataType
-   * @generated
-   */
-  public Adapter createDataTypeAdapter()
   {
     return null;
   }
@@ -297,21 +472,6 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPreDefFunctionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.Operator <em>Operator</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.upb.compilacion.listaCompiler.Operator
-   * @generated
-   */
-  public Adapter createOperatorAdapter()
   {
     return null;
   }

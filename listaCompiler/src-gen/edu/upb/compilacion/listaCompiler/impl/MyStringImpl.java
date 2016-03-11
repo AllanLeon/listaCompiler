@@ -3,56 +3,55 @@
 package edu.upb.compilacion.listaCompiler.impl;
 
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
-import edu.upb.compilacion.listaCompiler.Operator;
+import edu.upb.compilacion.listaCompiler.MyString;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Operator</b></em>'.
+ * An implementation of the model object '<em><b>My String</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.upb.compilacion.listaCompiler.impl.OperatorImpl#getType <em>Type</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.impl.MyStringImpl#getVal <em>Val</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class OperatorImpl extends MinimalEObjectImpl.Container implements Operator
+public class MyStringImpl extends TermImpl implements MyString
 {
   /**
-   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * The default value of the '{@link #getVal() <em>Val</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getVal()
    * @generated
    * @ordered
    */
-  protected static final String TYPE_EDEFAULT = null;
+  protected static final String VAL_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * The cached value of the '{@link #getVal() <em>Val</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getVal()
    * @generated
    * @ordered
    */
-  protected String type = TYPE_EDEFAULT;
+  protected String val = VAL_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected OperatorImpl()
+  protected MyStringImpl()
   {
     super();
   }
@@ -65,7 +64,7 @@ public class OperatorImpl extends MinimalEObjectImpl.Container implements Operat
   @Override
   protected EClass eStaticClass()
   {
-    return ListaCompilerPackage.Literals.OPERATOR;
+    return ListaCompilerPackage.Literals.MY_STRING;
   }
 
   /**
@@ -73,9 +72,9 @@ public class OperatorImpl extends MinimalEObjectImpl.Container implements Operat
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getType()
+  public String getVal()
   {
-    return type;
+    return val;
   }
 
   /**
@@ -83,12 +82,12 @@ public class OperatorImpl extends MinimalEObjectImpl.Container implements Operat
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(String newType)
+  public void setVal(String newVal)
   {
-    String oldType = type;
-    type = newType;
+    String oldVal = val;
+    val = newVal;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.OPERATOR__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.MY_STRING__VAL, oldVal, val));
   }
 
   /**
@@ -101,8 +100,8 @@ public class OperatorImpl extends MinimalEObjectImpl.Container implements Operat
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.OPERATOR__TYPE:
-        return getType();
+      case ListaCompilerPackage.MY_STRING__VAL:
+        return getVal();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -117,8 +116,8 @@ public class OperatorImpl extends MinimalEObjectImpl.Container implements Operat
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.OPERATOR__TYPE:
-        setType((String)newValue);
+      case ListaCompilerPackage.MY_STRING__VAL:
+        setVal((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -134,8 +133,8 @@ public class OperatorImpl extends MinimalEObjectImpl.Container implements Operat
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.OPERATOR__TYPE:
-        setType(TYPE_EDEFAULT);
+      case ListaCompilerPackage.MY_STRING__VAL:
+        setVal(VAL_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -151,8 +150,8 @@ public class OperatorImpl extends MinimalEObjectImpl.Container implements Operat
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.OPERATOR__TYPE:
-        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+      case ListaCompilerPackage.MY_STRING__VAL:
+        return VAL_EDEFAULT == null ? val != null : !VAL_EDEFAULT.equals(val);
     }
     return super.eIsSet(featureID);
   }
@@ -168,10 +167,10 @@ public class OperatorImpl extends MinimalEObjectImpl.Container implements Operat
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (type: ");
-    result.append(type);
+    result.append(" (val: ");
+    result.append(val);
     result.append(')');
     return result.toString();
   }
 
-} //OperatorImpl
+} //MyStringImpl

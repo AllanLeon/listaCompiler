@@ -59,6 +59,33 @@ public interface ListaCompilerFactory extends EFactory
   Expression createExpression();
 
   /**
+   * Returns a new object of class '<em>First Level Exp</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>First Level Exp</em>'.
+   * @generated
+   */
+  FirstLevelExp createFirstLevelExp();
+
+  /**
+   * Returns a new object of class '<em>Second Level Exp</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Second Level Exp</em>'.
+   * @generated
+   */
+  SecondLevelExp createSecondLevelExp();
+
+  /**
+   * Returns a new object of class '<em>Third Level Exp</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Third Level Exp</em>'.
+   * @generated
+   */
+  ThirdLevelExp createThirdLevelExp();
+
+  /**
    * Returns a new object of class '<em>Term</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -68,13 +95,76 @@ public interface ListaCompilerFactory extends EFactory
   Term createTerm();
 
   /**
-   * Returns a new object of class '<em>Control Flow</em>'.
+   * Returns a new object of class '<em>My Integer</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Control Flow</em>'.
+   * @return a new object of class '<em>My Integer</em>'.
    * @generated
    */
-  ControlFlow createControlFlow();
+  MyInteger createMyInteger();
+
+  /**
+   * Returns a new object of class '<em>Pos Integer</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pos Integer</em>'.
+   * @generated
+   */
+  PosInteger createPosInteger();
+
+  /**
+   * Returns a new object of class '<em>Neg Integer</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Neg Integer</em>'.
+   * @generated
+   */
+  NegInteger createNegInteger();
+
+  /**
+   * Returns a new object of class '<em>My Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>My Variable</em>'.
+   * @generated
+   */
+  MyVariable createMyVariable();
+
+  /**
+   * Returns a new object of class '<em>Bool Term</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Bool Term</em>'.
+   * @generated
+   */
+  BoolTerm createBoolTerm();
+
+  /**
+   * Returns a new object of class '<em>My Bool</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>My Bool</em>'.
+   * @generated
+   */
+  MyBool createMyBool();
+
+  /**
+   * Returns a new object of class '<em>My String</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>My String</em>'.
+   * @generated
+   */
+  MyString createMyString();
+
+  /**
+   * Returns a new object of class '<em>If Control Flow</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>If Control Flow</em>'.
+   * @generated
+   */
+  IfControlFlow createIfControlFlow();
 
   /**
    * Returns a new object of class '<em>Function Call</em>'.
@@ -84,15 +174,6 @@ public interface ListaCompilerFactory extends EFactory
    * @generated
    */
   FunctionCall createFunctionCall();
-
-  /**
-   * Returns a new object of class '<em>Data Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Data Type</em>'.
-   * @generated
-   */
-  DataType createDataType();
 
   /**
    * Returns a new object of class '<em>Int List</em>'.
@@ -111,15 +192,6 @@ public interface ListaCompilerFactory extends EFactory
    * @generated
    */
   PreDefFunction createPreDefFunction();
-
-  /**
-   * Returns a new object of class '<em>Operator</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Operator</em>'.
-   * @generated
-   */
-  Operator createOperator();
 
   /**
    * Returns the package supported by this factory.
