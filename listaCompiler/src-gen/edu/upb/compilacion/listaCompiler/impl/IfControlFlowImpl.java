@@ -2,6 +2,7 @@
  */
 package edu.upb.compilacion.listaCompiler.impl;
 
+import edu.upb.compilacion.listaCompiler.CFlow;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.IfControlFlow;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
@@ -40,7 +41,7 @@ public class IfControlFlowImpl extends TermImpl implements IfControlFlow
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final CFlow NAME_EDEFAULT = CFlow.IF;
 
   /**
    * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -50,7 +51,7 @@ public class IfControlFlowImpl extends TermImpl implements IfControlFlow
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected CFlow name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getCond() <em>Cond</em>}' containment reference.
@@ -108,7 +109,7 @@ public class IfControlFlowImpl extends TermImpl implements IfControlFlow
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public CFlow getName()
   {
     return name;
   }
@@ -118,10 +119,10 @@ public class IfControlFlowImpl extends TermImpl implements IfControlFlow
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public void setName(CFlow newName)
   {
-    String oldName = name;
-    name = newName;
+    CFlow oldName = name;
+    name = newName == null ? NAME_EDEFAULT : newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.IF_CONTROL_FLOW__NAME, oldName, name));
   }
@@ -323,7 +324,7 @@ public class IfControlFlowImpl extends TermImpl implements IfControlFlow
     switch (featureID)
     {
       case ListaCompilerPackage.IF_CONTROL_FLOW__NAME:
-        setName((String)newValue);
+        setName((CFlow)newValue);
         return;
       case ListaCompilerPackage.IF_CONTROL_FLOW__COND:
         setCond((Expression)newValue);
@@ -375,7 +376,7 @@ public class IfControlFlowImpl extends TermImpl implements IfControlFlow
     switch (featureID)
     {
       case ListaCompilerPackage.IF_CONTROL_FLOW__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+        return name != NAME_EDEFAULT;
       case ListaCompilerPackage.IF_CONTROL_FLOW__COND:
         return cond != null;
       case ListaCompilerPackage.IF_CONTROL_FLOW__IFTRUE:

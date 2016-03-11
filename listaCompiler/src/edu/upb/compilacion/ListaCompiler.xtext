@@ -13,24 +13,28 @@ FunctionDefinition: name=IDFUNCVAR "(" (params+=IDFUNCVAR (',' params+=IDFUNCVAR
 	"=" return=Expression ";"
 ;
 
-Expression:
+Expression: 
 	FirstLevelExp
 ;
 
 FirstLevelExp:
-	first=SecondLevelExp ((">" | "<" | "&" | "|" | "==") second=FirstLevelExp)?
+	first=SecondLevelExp (("&" | "|") second=FirstLevelExp)?
 ;
 
 SecondLevelExp:
-	first=ThirdLevelExp (("+" | "-" | "++") second=SecondLevelExp)?
+	first=ThirdLevelExp ((">" | "<" | "==") second=SecondLevelExp)?
 ;
 
 ThirdLevelExp:
-	first=Term (("*" | "/") second=ThirdLevelExp)?
+	first=FourthLevelExp (("+" | "-" | "++") second=ThirdLevelExp)?
+;
+
+FourthLevelExp:
+	first=Term (("*" | "/") second=FourthLevelExp)?
 ;
 
 Term:
-	MyInteger | MyString | BoolTerm | MyVariable | IntList | FunctionCall | IfControlFlow
+	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow
 ;
 
 MyInteger:
@@ -49,33 +53,66 @@ MyVariable:
 	var=IDFUNCVAR
 ;
 
-BoolTerm:
-	"!" MyBool | MyBool
+MyBool:
+	PosBool | NegBool
 ;
 
-MyBool:
-	val=BOOL
+PosBool:
+	val=Bool
+;
+
+NegBool:
+	"!" val=Bool
 ;
 
 MyString:
 	val=STRING
 ;
 
-IfControlFlow: name=IFCFLOW "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")";
-
-FunctionCall: function=(PreDefFunction | [FunctionDefinition|IDFUNCVAR]) "(" (args+=Expression ("," args+=Expression)*)? ")";
-
-
-IntList: 
-	"["{IntList} (elems+=MyInteger + ("," elems+=MyInteger)*)?"]"
+IfControlFlow:
+	name=CFlow "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")"
 ;
 
-PreDefFunction: name=PDFUNCTION;
+FunctionCall:
+	PreDefFunctionCall | UserDefFunctionCall
+;
 
-terminal IFCFLOW: "if";
+PreDefFunctionCall:
+	function=PDFunction "(" (args+=Expression ("," args+=Expression)*)? ")"
+;
 
-terminal PDFUNCTION: "length" | "cons" | "car" | "cdr" | "isEmpty" | "show";
+UserDefFunctionCall:
+	function=[FunctionDefinition|IDFUNCVAR] "(" (args+=Expression ("," args+=Expression)*)? ")"
+;
 
-terminal BOOL: "true" | "false";
+
+List: 
+	"["{IntList} (elems+=ListElem + ("," elems+=ListElem)*)?"]"
+;
+
+ListElem:
+	MyInteger | MyVariable
+;
+
+PreDefFunction: 
+	name=PDFunction
+;
+
+enum Bool:
+	true = "true" | false="false"
+;
+
+enum PDFunction:
+	length = "length" |
+	cons = "cons" |
+	car = "car" |
+	cdr = "cdr" |
+	isEmpty = "isEmpty" |
+	show = "show"
+;
+
+enum CFlow:
+	if = "if"
+;
 
 terminal IDFUNCVAR: ('a'..'z')('A'..'Z'|'a'..'z'|'0'..'9')*;

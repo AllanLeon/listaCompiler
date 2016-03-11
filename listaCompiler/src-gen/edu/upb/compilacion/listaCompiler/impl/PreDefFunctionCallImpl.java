@@ -2,9 +2,9 @@
  */
 package edu.upb.compilacion.listaCompiler.impl;
 
-import edu.upb.compilacion.listaCompiler.Bool;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
-import edu.upb.compilacion.listaCompiler.MyBool;
+import edu.upb.compilacion.listaCompiler.PDFunction;
+import edu.upb.compilacion.listaCompiler.PreDefFunctionCall;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -14,45 +14,45 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>My Bool</b></em>'.
+ * An implementation of the model object '<em><b>Pre Def Function Call</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.upb.compilacion.listaCompiler.impl.MyBoolImpl#getVal <em>Val</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.impl.PreDefFunctionCallImpl#getFunction <em>Function</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class MyBoolImpl extends TermImpl implements MyBool
+public class PreDefFunctionCallImpl extends FunctionCallImpl implements PreDefFunctionCall
 {
   /**
-   * The default value of the '{@link #getVal() <em>Val</em>}' attribute.
+   * The default value of the '{@link #getFunction() <em>Function</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVal()
+   * @see #getFunction()
    * @generated
    * @ordered
    */
-  protected static final Bool VAL_EDEFAULT = Bool.TRUE;
+  protected static final PDFunction FUNCTION_EDEFAULT = PDFunction.LENGTH;
 
   /**
-   * The cached value of the '{@link #getVal() <em>Val</em>}' attribute.
+   * The cached value of the '{@link #getFunction() <em>Function</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVal()
+   * @see #getFunction()
    * @generated
    * @ordered
    */
-  protected Bool val = VAL_EDEFAULT;
+  protected PDFunction function = FUNCTION_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected MyBoolImpl()
+  protected PreDefFunctionCallImpl()
   {
     super();
   }
@@ -65,7 +65,7 @@ public class MyBoolImpl extends TermImpl implements MyBool
   @Override
   protected EClass eStaticClass()
   {
-    return ListaCompilerPackage.Literals.MY_BOOL;
+    return ListaCompilerPackage.Literals.PRE_DEF_FUNCTION_CALL;
   }
 
   /**
@@ -73,9 +73,9 @@ public class MyBoolImpl extends TermImpl implements MyBool
    * <!-- end-user-doc -->
    * @generated
    */
-  public Bool getVal()
+  public PDFunction getFunction()
   {
-    return val;
+    return function;
   }
 
   /**
@@ -83,12 +83,12 @@ public class MyBoolImpl extends TermImpl implements MyBool
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setVal(Bool newVal)
+  public void setFunction(PDFunction newFunction)
   {
-    Bool oldVal = val;
-    val = newVal == null ? VAL_EDEFAULT : newVal;
+    PDFunction oldFunction = function;
+    function = newFunction == null ? FUNCTION_EDEFAULT : newFunction;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.MY_BOOL__VAL, oldVal, val));
+      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.PRE_DEF_FUNCTION_CALL__FUNCTION, oldFunction, function));
   }
 
   /**
@@ -101,8 +101,8 @@ public class MyBoolImpl extends TermImpl implements MyBool
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.MY_BOOL__VAL:
-        return getVal();
+      case ListaCompilerPackage.PRE_DEF_FUNCTION_CALL__FUNCTION:
+        return getFunction();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -117,8 +117,8 @@ public class MyBoolImpl extends TermImpl implements MyBool
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.MY_BOOL__VAL:
-        setVal((Bool)newValue);
+      case ListaCompilerPackage.PRE_DEF_FUNCTION_CALL__FUNCTION:
+        setFunction((PDFunction)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -134,8 +134,8 @@ public class MyBoolImpl extends TermImpl implements MyBool
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.MY_BOOL__VAL:
-        setVal(VAL_EDEFAULT);
+      case ListaCompilerPackage.PRE_DEF_FUNCTION_CALL__FUNCTION:
+        setFunction(FUNCTION_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -151,8 +151,8 @@ public class MyBoolImpl extends TermImpl implements MyBool
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.MY_BOOL__VAL:
-        return val != VAL_EDEFAULT;
+      case ListaCompilerPackage.PRE_DEF_FUNCTION_CALL__FUNCTION:
+        return function != FUNCTION_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -168,10 +168,10 @@ public class MyBoolImpl extends TermImpl implements MyBool
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (val: ");
-    result.append(val);
+    result.append(" (function: ");
+    result.append(function);
     result.append(')');
     return result.toString();
   }
 
-} //MyBoolImpl
+} //PreDefFunctionCallImpl

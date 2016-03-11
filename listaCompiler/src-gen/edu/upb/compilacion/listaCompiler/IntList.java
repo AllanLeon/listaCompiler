@@ -20,11 +20,11 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IntList extends Term
+public interface IntList extends List
 {
   /**
    * Returns the value of the '<em><b>Elems</b></em>' containment reference list.
-   * The list contents are of type {@link edu.upb.compilacion.listaCompiler.MyInteger}.
+   * The list contents are of type {@link edu.upb.compilacion.listaCompiler.ListElem}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Elems</em>' containment reference list isn't clear,
@@ -36,6 +36,6 @@ public interface IntList extends Term
    * @model containment="true"
    * @generated
    */
-  EList<MyInteger> getElems();
+  EList<ListElem> getElems();
 
 } // IntList
