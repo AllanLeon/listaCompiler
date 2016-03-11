@@ -3,6 +3,11 @@
  */
 package edu.upb.compilacion.validation
 
+import edu.upb.compilacion.listaCompiler.FunctionCall
+import edu.upb.compilacion.listaCompiler.FunctionDefinition
+import org.eclipse.xtext.validation.Check
+import edu.upb.compilacion.listaCompiler.ListaCompilerPackage
+
 //import org.eclipse.xtext.validation.Check
 
 /**
@@ -22,4 +27,37 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 //					INVALID_NAME)
 //		}
 //	}
+
+	@Check
+	def checkParametersNumber(FunctionCall fcall) {
+		val function = fcall.function;
+		if (function instanceof FunctionDefinition) {
+			val paramsize = (function as FunctionDefinition).params.length;
+			if (fcall.args.length != paramsize) {
+				error('Wrong number of parameters, should be ' + paramsize,
+					ListaCompilerPackage.Literals.FUNCTION_CALL__ARGS,
+					'wrongParametersNumber'
+				)
+			}
+		} else {
+			
+		}
+	}
+
+	@Check
+	def checkParametersTypes(CompositeTerm term) {
+		var index = 0
+		var current = ''
+		for (st : term.args) {
+			current = term.op.param.get(index).name
+			if (current.equals(getType(st))) {
+				error('Wrong parameter type',
+					AdtPackage.Literals.COMPOSITE_TERM__ARGS,
+					'wrongParametersTypes'
+				)
+			}
+			index++
+		}
+	}
+
 }

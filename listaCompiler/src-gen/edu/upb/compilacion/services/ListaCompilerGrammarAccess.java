@@ -697,11 +697,12 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal INTEGER:
-	//	"-"? INT;
+	//	"-"? "0".."9"+;
 	public TerminalRule getINTEGERRule() {
 		return tINTEGER;
 	} 
 
+	////terminal INTEGER returns ecore::EInt: '-'? '0'..'9'+;
 	//terminal BOOL:
 	//	"true" | "false";
 	public TerminalRule getBOOLRule() {

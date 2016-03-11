@@ -934,7 +934,7 @@ RULE_CFLOW : 'if';
 
 RULE_PDFUNCTION : ('length'|'cons'|'car'|'cdr'|'isEmpty'|'show');
 
-RULE_INTEGER : '-'? RULE_INT;
+RULE_INTEGER : '-'? ('0'..'9')+;
 
 RULE_BOOL : ('true'|'false');
 

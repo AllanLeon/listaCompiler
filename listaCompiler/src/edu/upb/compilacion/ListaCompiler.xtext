@@ -21,7 +21,7 @@ Term: DataType | FunctionCall | ControlFlow;
 
 ControlFlow: name=CFLOW "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")";
 
-FunctionCall: function=(PreDefFunction | [FunctionDefinition|IDFUNCVAR]) "(" (args+=Term ("," args+=Term)*)? ")";
+FunctionCall: function=[FunctionDefinition|IDFUNCVAR] "(" (args+=Term ("," args+=Term)*)? ")";
 
 DataType: val=INTEGER | val=BOOL | val=STRING | var=IDFUNCVAR | IntList;
 
@@ -37,7 +37,7 @@ terminal CFLOW: "if";
 
 terminal PDFUNCTION: "length" | "cons" | "car" | "cdr" | "isEmpty" | "show";
 
-terminal INTEGER: '-'?INT;
+terminal INTEGER: '-'? ('0'..'9')+;
 
 terminal BOOL: "true" | "false";
 

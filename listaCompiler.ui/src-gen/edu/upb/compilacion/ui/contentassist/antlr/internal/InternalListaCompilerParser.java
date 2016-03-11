@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalListaCompilerParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_IDFUNCVAR", "RULE_CFLOW", "RULE_INTEGER", "RULE_BOOL", "RULE_STRING", "RULE_PDFUNCTION", "RULE_IDOPINT", "RULE_IDOPBOOL", "RULE_IDOPSTR", "RULE_IDOPGLOBAL", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'?'", "';'", "'('", "')'", "'='", "','", "'['", "']'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_IDFUNCVAR", "RULE_CFLOW", "RULE_INTEGER", "RULE_BOOL", "RULE_STRING", "RULE_PDFUNCTION", "RULE_IDOPINT", "RULE_IDOPBOOL", "RULE_IDOPSTR", "RULE_IDOPGLOBAL", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'?'", "';'", "'('", "')'", "'='", "','", "'['", "']'"
     };
     public static final int RULE_IDOPINT=10;
     public static final int RULE_IDOPSTR=12;
@@ -31,7 +31,7 @@ public class InternalListaCompilerParser extends AbstractInternalContentAssistPa
     public static final int RULE_SL_COMMENT=17;
     public static final int RULE_IDOPGLOBAL=13;
     public static final int EOF=-1;
-    public static final int RULE_ID=15;
+    public static final int RULE_ID=14;
     public static final int RULE_WS=18;
     public static final int RULE_IDFUNCVAR=4;
     public static final int RULE_ANY_OTHER=19;
@@ -39,7 +39,7 @@ public class InternalListaCompilerParser extends AbstractInternalContentAssistPa
     public static final int T__26=26;
     public static final int T__27=27;
     public static final int RULE_IDOPBOOL=11;
-    public static final int RULE_INT=14;
+    public static final int RULE_INT=15;
     public static final int T__22=22;
     public static final int RULE_ML_COMMENT=16;
     public static final int T__23=23;
