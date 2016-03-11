@@ -14,12 +14,8 @@ FunctionDefinition: name=IDFUNCVAR "(" (params+=IDFUNCVAR (',' params+=IDFUNCVAR
 ;
 
 Expression:
-	//IntExpression //| BoolExpression | StringExpression |IntList
-	//args+=Term (operators+=Operator args+=Term)*
 	FirstLevelExp
 ;
-
-//Term: DataType | FunctionCall | IfControlFlow;
 
 FirstLevelExp:
 	first=SecondLevelExp ((">" | "<" | "&" | "|" | "==") second=FirstLevelExp)?
@@ -37,22 +33,6 @@ Term:
 	MyInteger | MyString | BoolTerm | MyVariable | IntList | FunctionCall | IfControlFlow
 ;
 
-/*IntExpression:
-	leftI=IntTerm (("+" | "-" | ">") rightI=IntExpression)? //| IntTerm
-;
-
-IntTerm:
-	leftI=IntFactor (("*" | "/") rightI=IntTerm)? //| IntFactor
-;
-
-IntFactor:
-	MyNumber //| "(" IntExpression ")"
-;
-
-MyNumber:
-	MyInteger | MyVariable | FunctionCall | IfControlFlow
-;*/
-
 MyInteger:
 	PosInteger | NegInteger
 ;
@@ -69,18 +49,6 @@ MyVariable:
 	var=IDFUNCVAR
 ;
 
-/*BoolExpression:
-	leftB=BoolTerm ("&" | "|") rightB=BoolExpression | BoolTerm
-;
-
-BoolTerm:
-	"!" BoolFactor | BoolFactor
-;
-
-BoolFactor:
-	MyBool | MyVariable// | FunctionCall | IfControlFlow
-;*/
-
 BoolTerm:
 	"!" MyBool | MyBool
 ;
@@ -89,21 +57,12 @@ MyBool:
 	val=BOOL
 ;
 
-/*StringExpression:
-	leftS=StringFactor "++" rightS=StringExpression | StringFactor
-;
-
-StringFactor:
-	MyString | MyVariable //| FunctionCall | IfControlFlow
-;*/
-
 MyString:
 	val=STRING
 ;
 
 IfControlFlow: name=IFCFLOW "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")";
 
-//FunctionCall: function=[FunctionDefinition|IDFUNCVAR] "(" (args+=Term ("," args+=Term)*)? ")";
 FunctionCall: function=(PreDefFunction | [FunctionDefinition|IDFUNCVAR]) "(" (args+=Expression ("," args+=Expression)*)? ")";
 
 

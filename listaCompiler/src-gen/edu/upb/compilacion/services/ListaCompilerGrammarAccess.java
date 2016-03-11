@@ -146,13 +146,10 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Expression");
 		private final RuleCall cFirstLevelExpParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//Expression: //IntExpression //| BoolExpression | StringExpression |IntList
-		////args+=Term (operators+=Operator args+=Term)*
+		//Expression:
 		//	FirstLevelExp;
 		@Override public ParserRule getRule() { return rule; }
 
-		////IntExpression //| BoolExpression | StringExpression |IntList
-		////args+=Term (operators+=Operator args+=Term)*
 		//FirstLevelExp
 		public RuleCall getFirstLevelExpParserRuleCall() { return cFirstLevelExpParserRuleCall; }
 	}
@@ -172,7 +169,6 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSecondAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cSecondFirstLevelExpParserRuleCall_1_1_0 = (RuleCall)cSecondAssignment_1_1.eContents().get(0);
 		
-		////Term: DataType | FunctionCall | IfControlFlow;
 		//FirstLevelExp:
 		//	first=SecondLevelExp ((">" | "<" | "&" | "|" | "==") second=FirstLevelExp)?;
 		@Override public ParserRule getRule() { return rule; }
@@ -352,21 +348,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPosIntegerParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cNegIntegerParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		/// *IntExpression:
-		//	leftI=IntTerm (("+" | "-" | ">") rightI=IntExpression)? //| IntTerm
-		//;
-		//
-		//IntTerm:
-		//	leftI=IntFactor (("*" | "/") rightI=IntTerm)? //| IntFactor
-		//;
-		//
-		//IntFactor:
-		//	MyNumber //| "(" IntExpression ")"
-		//;
-		//
-		//MyNumber:
-		//	MyInteger | MyVariable | FunctionCall | IfControlFlow
-		//;* / MyInteger:
+		//MyInteger:
 		//	PosInteger | NegInteger;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -444,17 +426,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMyBoolParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
 		private final RuleCall cMyBoolParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		/// *BoolExpression:
-		//	leftB=BoolTerm ("&" | "|") rightB=BoolExpression | BoolTerm
-		//;
-		//
 		//BoolTerm:
-		//	"!" BoolFactor | BoolFactor
-		//;
-		//
-		//BoolFactor:
-		//	MyBool | MyVariable// | FunctionCall | IfControlFlow
-		//;* / BoolTerm:
 		//	"!" MyBool | MyBool;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -495,13 +467,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValSTRINGTerminalRuleCall_0 = (RuleCall)cValAssignment.eContents().get(0);
 		
-		/// *StringExpression:
-		//	leftS=StringFactor "++" rightS=StringExpression | StringFactor
-		//;
-		//
-		//StringFactor:
-		//	MyString | MyVariable //| FunctionCall | IfControlFlow
-		//;* / MyString:
+		//MyString:
 		//	val=STRING;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -590,7 +556,6 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgsExpressionParserRuleCall_2_1_1_0 = (RuleCall)cArgsAssignment_2_1_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		////FunctionCall: function=[FunctionDefinition|IDFUNCVAR] "(" (args+=Term ("," args+=Term)*)? ")";
 		//FunctionCall:
 		//	function=(PreDefFunction | [FunctionDefinition|IDFUNCVAR]) "(" (args+=Expression ("," args+=Expression)*)? ")";
 		@Override public ParserRule getRule() { return rule; }
@@ -655,7 +620,6 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cElemsMyIntegerParserRuleCall_2_1_1_0 = (RuleCall)cElemsAssignment_2_1_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		////DataType: val=INTEGER | val=BOOL | val=STRING | var=IDFUNCVAR | IntList;
 		//IntList:
 		//	"[" {IntList} (elems+=MyInteger+ ("," elems+=MyInteger)*)? "]";
 		@Override public ParserRule getRule() { return rule; }
@@ -826,8 +790,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionDefinitionAccess().getRule();
 	}
 
-	//Expression: //IntExpression //| BoolExpression | StringExpression |IntList
-	////args+=Term (operators+=Operator args+=Term)*
+	//Expression:
 	//	FirstLevelExp;
 	public ExpressionElements getExpressionAccess() {
 		return pExpression;
@@ -837,7 +800,6 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpressionAccess().getRule();
 	}
 
-	////Term: DataType | FunctionCall | IfControlFlow;
 	//FirstLevelExp:
 	//	first=SecondLevelExp ((">" | "<" | "&" | "|" | "==") second=FirstLevelExp)?;
 	public FirstLevelExpElements getFirstLevelExpAccess() {
@@ -878,21 +840,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		return getTermAccess().getRule();
 	}
 
-	/// *IntExpression:
-	//	leftI=IntTerm (("+" | "-" | ">") rightI=IntExpression)? //| IntTerm
-	//;
-	//
-	//IntTerm:
-	//	leftI=IntFactor (("*" | "/") rightI=IntTerm)? //| IntFactor
-	//;
-	//
-	//IntFactor:
-	//	MyNumber //| "(" IntExpression ")"
-	//;
-	//
-	//MyNumber:
-	//	MyInteger | MyVariable | FunctionCall | IfControlFlow
-	//;* / MyInteger:
+	//MyInteger:
 	//	PosInteger | NegInteger;
 	public MyIntegerElements getMyIntegerAccess() {
 		return pMyInteger;
@@ -932,17 +880,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		return getMyVariableAccess().getRule();
 	}
 
-	/// *BoolExpression:
-	//	leftB=BoolTerm ("&" | "|") rightB=BoolExpression | BoolTerm
-	//;
-	//
 	//BoolTerm:
-	//	"!" BoolFactor | BoolFactor
-	//;
-	//
-	//BoolFactor:
-	//	MyBool | MyVariable// | FunctionCall | IfControlFlow
-	//;* / BoolTerm:
 	//	"!" MyBool | MyBool;
 	public BoolTermElements getBoolTermAccess() {
 		return pBoolTerm;
@@ -962,13 +900,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		return getMyBoolAccess().getRule();
 	}
 
-	/// *StringExpression:
-	//	leftS=StringFactor "++" rightS=StringExpression | StringFactor
-	//;
-	//
-	//StringFactor:
-	//	MyString | MyVariable //| FunctionCall | IfControlFlow
-	//;* / MyString:
+	//MyString:
 	//	val=STRING;
 	public MyStringElements getMyStringAccess() {
 		return pMyString;
@@ -988,7 +920,6 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		return getIfControlFlowAccess().getRule();
 	}
 
-	////FunctionCall: function=[FunctionDefinition|IDFUNCVAR] "(" (args+=Term ("," args+=Term)*)? ")";
 	//FunctionCall:
 	//	function=(PreDefFunction | [FunctionDefinition|IDFUNCVAR]) "(" (args+=Expression ("," args+=Expression)*)? ")";
 	public FunctionCallElements getFunctionCallAccess() {
@@ -999,7 +930,6 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionCallAccess().getRule();
 	}
 
-	////DataType: val=INTEGER | val=BOOL | val=STRING | var=IDFUNCVAR | IntList;
 	//IntList:
 	//	"[" {IntList} (elems+=MyInteger+ ("," elems+=MyInteger)*)? "]";
 	public IntListElements getIntListAccess() {
@@ -1020,7 +950,6 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		return getPreDefFunctionAccess().getRule();
 	}
 
-	////Operator: type=IDOPINT | type=IDOPBOOL | type=IDOPSTR | type=IDOPGLOBAL;
 	//terminal IFCFLOW:
 	//	"if";
 	public TerminalRule getIFCFLOWRule() {
@@ -1033,17 +962,13 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		return tPDFUNCTION;
 	} 
 
-	////terminal INTEGER: '-'? ('0'..'9')+;
 	//terminal BOOL:
 	//	"true" | "false";
 	public TerminalRule getBOOLRule() {
 		return tBOOL;
 	} 
 
-	////terminal IDOPINT: '+' | '-' | '*' | '/' | '<' | '>';
-	////terminal IDOPBOOL: '&' | '|' | '!';
-	////terminal IDOPSTR: '++';
-	////terminal IDOPGLOBAL: '=='; terminal IDFUNCVAR:
+	//terminal IDFUNCVAR:
 	//	"a".."z" ("A".."Z" | "a".."z" | "0".."9")*;
 	public TerminalRule getIDFUNCVARRule() {
 		return tIDFUNCVAR;
