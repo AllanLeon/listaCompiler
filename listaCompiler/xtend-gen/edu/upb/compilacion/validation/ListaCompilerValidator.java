@@ -4,12 +4,13 @@
 package edu.upb.compilacion.validation;
 
 import edu.upb.compilacion.listaCompiler.Expression;
-import edu.upb.compilacion.listaCompiler.FunctionCall;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
+import edu.upb.compilacion.listaCompiler.PDFunction;
+import edu.upb.compilacion.listaCompiler.PreDefFunctionCall;
+import edu.upb.compilacion.listaCompiler.UserDefFunctionCall;
 import edu.upb.compilacion.validation.AbstractListaCompilerValidator;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Conversions;
 
@@ -21,27 +22,50 @@ import org.eclipse.xtext.xbase.lib.Conversions;
 @SuppressWarnings("all")
 public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   @Check
-  public Object checkParametersNumber(final FunctionCall fcall) {
-    Object _xblockexpression = null;
-    {
-      final EObject function = fcall.getFunction();
-      Object _xifexpression = null;
-      if ((function instanceof FunctionDefinition)) {
-        EList<String> _params = ((FunctionDefinition) function).getParams();
-        final int paramsize = ((Object[])Conversions.unwrapArray(_params, Object.class)).length;
-        EList<Expression> _args = fcall.getArgs();
-        int _length = ((Object[])Conversions.unwrapArray(_args, Object.class)).length;
-        boolean _notEquals = (_length != paramsize);
-        if (_notEquals) {
-          this.error(("Wrong number of parameters, should be " + Integer.valueOf(paramsize)), 
-            ListaCompilerPackage.Literals.FUNCTION_CALL__ARGS, 
-            "wrongParametersNumber");
-        }
-      } else {
-        _xifexpression = null;
-      }
-      _xblockexpression = _xifexpression;
+  public void checkUserDefParametersNumber(final UserDefFunctionCall fcall) {
+    FunctionDefinition _function = fcall.getFunction();
+    EList<String> _params = _function.getParams();
+    final int params = ((Object[])Conversions.unwrapArray(_params, Object.class)).length;
+    EList<Expression> _args = fcall.getArgs();
+    int _length = ((Object[])Conversions.unwrapArray(_args, Object.class)).length;
+    boolean _notEquals = (_length != params);
+    if (_notEquals) {
+      this.error(("Wrong number of parameters, should be " + Integer.valueOf(params)), 
+        ListaCompilerPackage.Literals.FUNCTION_CALL__ARGS, 
+        "wrongParametersNumber");
     }
-    return _xblockexpression;
+  }
+  
+  @Check
+  public void checkPreDefParametersNumber(final PreDefFunctionCall fcall) {
+    final PDFunction function = fcall.getFunction();
+    int params = 0;
+    if (function != null) {
+      switch (function) {
+        case SHOW:
+        case LENGTH:
+        case CAR:
+        case CDR:
+        case IS_EMPTY:
+          params = 1;
+          break;
+        case CONS:
+          params = 2;
+          break;
+        default:
+          params = 0;
+          break;
+      }
+    } else {
+      params = 0;
+    }
+    EList<Expression> _args = fcall.getArgs();
+    int _length = ((Object[])Conversions.unwrapArray(_args, Object.class)).length;
+    boolean _notEquals = (_length != params);
+    if (_notEquals) {
+      this.error(("Wrong number of parameters, should be " + Integer.valueOf(1)), 
+        ListaCompilerPackage.Literals.FUNCTION_CALL__ARGS, 
+        "wrongParametersNumber");
+    }
   }
 }

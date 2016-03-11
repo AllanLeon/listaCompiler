@@ -3,8 +3,8 @@
 package edu.upb.compilacion.listaCompiler.impl;
 
 import edu.upb.compilacion.listaCompiler.IntList;
+import edu.upb.compilacion.listaCompiler.ListElem;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
-import edu.upb.compilacion.listaCompiler.MyInteger;
 
 import java.util.Collection;
 
@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class IntListImpl extends TermImpl implements IntList
+public class IntListImpl extends ListImpl implements IntList
 {
   /**
    * The cached value of the '{@link #getElems() <em>Elems</em>}' containment reference list.
@@ -41,7 +41,7 @@ public class IntListImpl extends TermImpl implements IntList
    * @generated
    * @ordered
    */
-  protected EList<MyInteger> elems;
+  protected EList<ListElem> elems;
 
   /**
    * <!-- begin-user-doc -->
@@ -69,11 +69,11 @@ public class IntListImpl extends TermImpl implements IntList
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<MyInteger> getElems()
+  public EList<ListElem> getElems()
   {
     if (elems == null)
     {
-      elems = new EObjectContainmentEList<MyInteger>(MyInteger.class, this, ListaCompilerPackage.INT_LIST__ELEMS);
+      elems = new EObjectContainmentEList<ListElem>(ListElem.class, this, ListaCompilerPackage.INT_LIST__ELEMS);
     }
     return elems;
   }
@@ -123,7 +123,7 @@ public class IntListImpl extends TermImpl implements IntList
     {
       case ListaCompilerPackage.INT_LIST__ELEMS:
         getElems().clear();
-        getElems().addAll((Collection<? extends MyInteger>)newValue);
+        getElems().addAll((Collection<? extends ListElem>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

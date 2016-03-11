@@ -122,6 +122,13 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ListaCompilerPackage.FOURTH_LEVEL_EXP:
+      {
+        FourthLevelExp fourthLevelExp = (FourthLevelExp)theEObject;
+        T result = caseFourthLevelExp(fourthLevelExp);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ListaCompilerPackage.TERM:
       {
         Term term = (Term)theEObject;
@@ -134,6 +141,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         MyInteger myInteger = (MyInteger)theEObject;
         T result = caseMyInteger(myInteger);
         if (result == null) result = caseTerm(myInteger);
+        if (result == null) result = caseListElem(myInteger);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -143,6 +151,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         T result = casePosInteger(posInteger);
         if (result == null) result = caseMyInteger(posInteger);
         if (result == null) result = caseTerm(posInteger);
+        if (result == null) result = caseListElem(posInteger);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -152,6 +161,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         T result = caseNegInteger(negInteger);
         if (result == null) result = caseMyInteger(negInteger);
         if (result == null) result = caseTerm(negInteger);
+        if (result == null) result = caseListElem(negInteger);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -160,14 +170,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         MyVariable myVariable = (MyVariable)theEObject;
         T result = caseMyVariable(myVariable);
         if (result == null) result = caseTerm(myVariable);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ListaCompilerPackage.BOOL_TERM:
-      {
-        BoolTerm boolTerm = (BoolTerm)theEObject;
-        T result = caseBoolTerm(boolTerm);
-        if (result == null) result = caseTerm(boolTerm);
+        if (result == null) result = caseListElem(myVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -175,8 +178,25 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         MyBool myBool = (MyBool)theEObject;
         T result = caseMyBool(myBool);
-        if (result == null) result = caseBoolTerm(myBool);
         if (result == null) result = caseTerm(myBool);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.POS_BOOL:
+      {
+        PosBool posBool = (PosBool)theEObject;
+        T result = casePosBool(posBool);
+        if (result == null) result = caseMyBool(posBool);
+        if (result == null) result = caseTerm(posBool);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.NEG_BOOL:
+      {
+        NegBool negBool = (NegBool)theEObject;
+        T result = caseNegBool(negBool);
+        if (result == null) result = caseMyBool(negBool);
+        if (result == null) result = caseTerm(negBool);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -204,11 +224,36 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ListaCompilerPackage.INT_LIST:
+      case ListaCompilerPackage.PRE_DEF_FUNCTION_CALL:
       {
-        IntList intList = (IntList)theEObject;
-        T result = caseIntList(intList);
-        if (result == null) result = caseTerm(intList);
+        PreDefFunctionCall preDefFunctionCall = (PreDefFunctionCall)theEObject;
+        T result = casePreDefFunctionCall(preDefFunctionCall);
+        if (result == null) result = caseFunctionCall(preDefFunctionCall);
+        if (result == null) result = caseTerm(preDefFunctionCall);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.USER_DEF_FUNCTION_CALL:
+      {
+        UserDefFunctionCall userDefFunctionCall = (UserDefFunctionCall)theEObject;
+        T result = caseUserDefFunctionCall(userDefFunctionCall);
+        if (result == null) result = caseFunctionCall(userDefFunctionCall);
+        if (result == null) result = caseTerm(userDefFunctionCall);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.LIST:
+      {
+        List list = (List)theEObject;
+        T result = caseList(list);
+        if (result == null) result = caseTerm(list);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.LIST_ELEM:
+      {
+        ListElem listElem = (ListElem)theEObject;
+        T result = caseListElem(listElem);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -216,6 +261,15 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         PreDefFunction preDefFunction = (PreDefFunction)theEObject;
         T result = casePreDefFunction(preDefFunction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.INT_LIST:
+      {
+        IntList intList = (IntList)theEObject;
+        T result = caseIntList(intList);
+        if (result == null) result = caseList(intList);
+        if (result == null) result = caseTerm(intList);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -336,6 +390,22 @@ public class ListaCompilerSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Fourth Level Exp</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Fourth Level Exp</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFourthLevelExp(FourthLevelExp object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Term</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -416,22 +486,6 @@ public class ListaCompilerSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Bool Term</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Bool Term</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBoolTerm(BoolTerm object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>My Bool</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -443,6 +497,38 @@ public class ListaCompilerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseMyBool(MyBool object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pos Bool</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pos Bool</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePosBool(PosBool object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Neg Bool</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Neg Bool</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNegBool(NegBool object)
   {
     return null;
   }
@@ -496,17 +582,65 @@ public class ListaCompilerSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Int List</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Pre Def Function Call</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Int List</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Pre Def Function Call</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseIntList(IntList object)
+  public T casePreDefFunctionCall(PreDefFunctionCall object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>User Def Function Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>User Def Function Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseUserDefFunctionCall(UserDefFunctionCall object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>List</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>List</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseList(List object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>List Elem</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>List Elem</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseListElem(ListElem object)
   {
     return null;
   }
@@ -523,6 +657,22 @@ public class ListaCompilerSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePreDefFunction(PreDefFunction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Int List</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Int List</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIntList(IntList object)
   {
     return null;
   }

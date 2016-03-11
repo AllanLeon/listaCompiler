@@ -26,6 +26,7 @@ public interface IfControlFlow extends Term
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * The literals are from the enumeration {@link edu.upb.compilacion.listaCompiler.CFlow}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -33,22 +34,24 @@ public interface IfControlFlow extends Term
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
+   * @see edu.upb.compilacion.listaCompiler.CFlow
+   * @see #setName(CFlow)
    * @see edu.upb.compilacion.listaCompiler.ListaCompilerPackage#getIfControlFlow_Name()
    * @model
    * @generated
    */
-  String getName();
+  CFlow getName();
 
   /**
    * Sets the value of the '{@link edu.upb.compilacion.listaCompiler.IfControlFlow#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
+   * @see edu.upb.compilacion.listaCompiler.CFlow
    * @see #getName()
    * @generated
    */
-  void setName(String value);
+  void setName(CFlow value);
 
   /**
    * Returns the value of the '<em><b>Cond</b></em>' containment reference.

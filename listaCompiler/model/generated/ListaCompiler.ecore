@@ -31,29 +31,36 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ThirdLevelExp">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="first" eType="#//Term"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="first" eType="#//FourthLevelExp"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="second" eType="#//ThirdLevelExp"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FourthLevelExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="first" eType="#//Term"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="second" eType="#//FourthLevelExp"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Term"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MyInteger" eSuperTypes="#//Term">
+  <eClassifiers xsi:type="ecore:EClass" name="MyInteger" eSuperTypes="#//Term #//ListElem">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PosInteger" eSuperTypes="#//MyInteger"/>
   <eClassifiers xsi:type="ecore:EClass" name="NegInteger" eSuperTypes="#//MyInteger"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MyVariable" eSuperTypes="#//Term">
+  <eClassifiers xsi:type="ecore:EClass" name="MyVariable" eSuperTypes="#//Term #//ListElem">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="var" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BoolTerm" eSuperTypes="#//Term"/>
-  <eClassifiers xsi:type="ecore:EClass" name="MyBool" eSuperTypes="#//BoolTerm">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MyBool" eSuperTypes="#//Term">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="#//Bool"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PosBool" eSuperTypes="#//MyBool"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NegBool" eSuperTypes="#//MyBool"/>
   <eClassifiers xsi:type="ecore:EClass" name="MyString" eSuperTypes="#//Term">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfControlFlow" eSuperTypes="#//Term">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//CFlow"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cond" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="iftrue" eType="#//Expression"
@@ -62,16 +69,37 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionCall" eSuperTypes="#//Term">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntList" eSuperTypes="#//Term">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elems" upperBound="-1"
-        eType="#//MyInteger" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PreDefFunctionCall" eSuperTypes="#//FunctionCall">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="function" eType="#//PDFunction"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UserDefFunctionCall" eSuperTypes="#//FunctionCall">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//FunctionDefinition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="List" eSuperTypes="#//Term"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ListElem"/>
   <eClassifiers xsi:type="ecore:EClass" name="PreDefFunction">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//PDFunction"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Bool">
+    <eLiterals name="true" literal="true"/>
+    <eLiterals name="false" value="1" literal="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PDFunction">
+    <eLiterals name="length" literal="length"/>
+    <eLiterals name="cons" value="1" literal="cons"/>
+    <eLiterals name="car" value="2" literal="car"/>
+    <eLiterals name="cdr" value="3" literal="cdr"/>
+    <eLiterals name="isEmpty" value="4" literal="isEmpty"/>
+    <eLiterals name="show" value="5" literal="show"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CFlow">
+    <eLiterals name="if" literal="if"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntList" eSuperTypes="#//List">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elems" upperBound="-1"
+        eType="#//ListElem" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

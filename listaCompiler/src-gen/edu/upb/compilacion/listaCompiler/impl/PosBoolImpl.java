@@ -2,26 +2,26 @@
  */
 package edu.upb.compilacion.listaCompiler.impl;
 
-import edu.upb.compilacion.listaCompiler.BoolTerm;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
+import edu.upb.compilacion.listaCompiler.PosBool;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Bool Term</b></em>'.
+ * An implementation of the model object '<em><b>Pos Bool</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class BoolTermImpl extends TermImpl implements BoolTerm
+public class PosBoolImpl extends MyBoolImpl implements PosBool
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected BoolTermImpl()
+  protected PosBoolImpl()
   {
     super();
   }
@@ -34,7 +34,7 @@ public class BoolTermImpl extends TermImpl implements BoolTerm
   @Override
   protected EClass eStaticClass()
   {
-    return ListaCompilerPackage.Literals.BOOL_TERM;
+    return ListaCompilerPackage.Literals.POS_BOOL;
   }
 
-} //BoolTermImpl
+} //PosBoolImpl

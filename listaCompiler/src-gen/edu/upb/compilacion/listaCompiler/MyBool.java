@@ -19,10 +19,11 @@ package edu.upb.compilacion.listaCompiler;
  * @model
  * @generated
  */
-public interface MyBool extends BoolTerm
+public interface MyBool extends Term
 {
   /**
    * Returns the value of the '<em><b>Val</b></em>' attribute.
+   * The literals are from the enumeration {@link edu.upb.compilacion.listaCompiler.Bool}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Val</em>' attribute isn't clear,
@@ -30,21 +31,23 @@ public interface MyBool extends BoolTerm
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Val</em>' attribute.
-   * @see #setVal(String)
+   * @see edu.upb.compilacion.listaCompiler.Bool
+   * @see #setVal(Bool)
    * @see edu.upb.compilacion.listaCompiler.ListaCompilerPackage#getMyBool_Val()
    * @model
    * @generated
    */
-  String getVal();
+  Bool getVal();
 
   /**
    * Sets the value of the '{@link edu.upb.compilacion.listaCompiler.MyBool#getVal <em>Val</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Val</em>' attribute.
+   * @see edu.upb.compilacion.listaCompiler.Bool
    * @see #getVal()
    * @generated
    */
-  void setVal(String value);
+  void setVal(Bool value);
 
 } // MyBool

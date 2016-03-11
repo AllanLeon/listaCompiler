@@ -24,6 +24,7 @@ public interface PreDefFunction extends EObject
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * The literals are from the enumeration {@link edu.upb.compilacion.listaCompiler.PDFunction}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -31,21 +32,23 @@ public interface PreDefFunction extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
+   * @see edu.upb.compilacion.listaCompiler.PDFunction
+   * @see #setName(PDFunction)
    * @see edu.upb.compilacion.listaCompiler.ListaCompilerPackage#getPreDefFunction_Name()
    * @model
    * @generated
    */
-  String getName();
+  PDFunction getName();
 
   /**
    * Sets the value of the '{@link edu.upb.compilacion.listaCompiler.PreDefFunction#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
+   * @see edu.upb.compilacion.listaCompiler.PDFunction
    * @see #getName()
    * @generated
    */
-  void setName(String value);
+  void setName(PDFunction value);
 
 } // PreDefFunction

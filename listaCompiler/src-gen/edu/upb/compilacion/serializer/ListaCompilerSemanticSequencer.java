@@ -7,20 +7,23 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
-import edu.upb.compilacion.listaCompiler.FunctionCall;
+import edu.upb.compilacion.listaCompiler.FourthLevelExp;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.IfControlFlow;
 import edu.upb.compilacion.listaCompiler.IntList;
 import edu.upb.compilacion.listaCompiler.Lista;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
-import edu.upb.compilacion.listaCompiler.MyBool;
 import edu.upb.compilacion.listaCompiler.MyString;
 import edu.upb.compilacion.listaCompiler.MyVariable;
+import edu.upb.compilacion.listaCompiler.NegBool;
 import edu.upb.compilacion.listaCompiler.NegInteger;
+import edu.upb.compilacion.listaCompiler.PosBool;
 import edu.upb.compilacion.listaCompiler.PosInteger;
 import edu.upb.compilacion.listaCompiler.PreDefFunction;
+import edu.upb.compilacion.listaCompiler.PreDefFunctionCall;
 import edu.upb.compilacion.listaCompiler.SecondLevelExp;
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
+import edu.upb.compilacion.listaCompiler.UserDefFunctionCall;
 import edu.upb.compilacion.services.ListaCompilerGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
@@ -49,8 +52,8 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ListaCompilerPackage.FIRST_LEVEL_EXP:
 				sequence_FirstLevelExp(context, (FirstLevelExp) semanticObject); 
 				return; 
-			case ListaCompilerPackage.FUNCTION_CALL:
-				sequence_FunctionCall(context, (FunctionCall) semanticObject); 
+			case ListaCompilerPackage.FOURTH_LEVEL_EXP:
+				sequence_FourthLevelExp(context, (FourthLevelExp) semanticObject); 
 				return; 
 			case ListaCompilerPackage.FUNCTION_DEFINITION:
 				sequence_FunctionDefinition(context, (FunctionDefinition) semanticObject); 
@@ -59,13 +62,10 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 				sequence_IfControlFlow(context, (IfControlFlow) semanticObject); 
 				return; 
 			case ListaCompilerPackage.INT_LIST:
-				sequence_IntList(context, (IntList) semanticObject); 
+				sequence_List(context, (IntList) semanticObject); 
 				return; 
 			case ListaCompilerPackage.LISTA:
 				sequence_Lista(context, (Lista) semanticObject); 
-				return; 
-			case ListaCompilerPackage.MY_BOOL:
-				sequence_MyBool(context, (MyBool) semanticObject); 
 				return; 
 			case ListaCompilerPackage.MY_STRING:
 				sequence_MyString(context, (MyString) semanticObject); 
@@ -73,8 +73,14 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ListaCompilerPackage.MY_VARIABLE:
 				sequence_MyVariable(context, (MyVariable) semanticObject); 
 				return; 
+			case ListaCompilerPackage.NEG_BOOL:
+				sequence_NegBool(context, (NegBool) semanticObject); 
+				return; 
 			case ListaCompilerPackage.NEG_INTEGER:
 				sequence_NegInteger(context, (NegInteger) semanticObject); 
+				return; 
+			case ListaCompilerPackage.POS_BOOL:
+				sequence_PosBool(context, (PosBool) semanticObject); 
 				return; 
 			case ListaCompilerPackage.POS_INTEGER:
 				sequence_PosInteger(context, (PosInteger) semanticObject); 
@@ -82,11 +88,17 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ListaCompilerPackage.PRE_DEF_FUNCTION:
 				sequence_PreDefFunction(context, (PreDefFunction) semanticObject); 
 				return; 
+			case ListaCompilerPackage.PRE_DEF_FUNCTION_CALL:
+				sequence_PreDefFunctionCall(context, (PreDefFunctionCall) semanticObject); 
+				return; 
 			case ListaCompilerPackage.SECOND_LEVEL_EXP:
 				sequence_SecondLevelExp(context, (SecondLevelExp) semanticObject); 
 				return; 
 			case ListaCompilerPackage.THIRD_LEVEL_EXP:
 				sequence_ThirdLevelExp(context, (ThirdLevelExp) semanticObject); 
+				return; 
+			case ListaCompilerPackage.USER_DEF_FUNCTION_CALL:
+				sequence_UserDefFunctionCall(context, (UserDefFunctionCall) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -119,9 +131,9 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     ((function=PreDefFunction | function=[FunctionDefinition|IDFUNCVAR]) (args+=Expression args+=Expression*)?)
+	 *     (first=Term second=FourthLevelExp?)
 	 */
-	protected void sequence_FunctionCall(EObject context, FunctionCall semanticObject) {
+	protected void sequence_FourthLevelExp(EObject context, FourthLevelExp semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -137,7 +149,7 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (name=IFCFLOW cond=Expression iftrue=Expression iffalse=Expression)
+	 *     (name=CFlow cond=Expression iftrue=Expression iffalse=Expression)
 	 */
 	protected void sequence_IfControlFlow(EObject context, IfControlFlow semanticObject) {
 		if(errorAcceptor != null) {
@@ -152,7 +164,7 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getIfControlFlowAccess().getNameIFCFLOWTerminalRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getIfControlFlowAccess().getNameCFlowEnumRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getIfControlFlowAccess().getCondExpressionParserRuleCall_2_0(), semanticObject.getCond());
 		feeder.accept(grammarAccess.getIfControlFlowAccess().getIftrueExpressionParserRuleCall_4_0(), semanticObject.getIftrue());
 		feeder.accept(grammarAccess.getIfControlFlowAccess().getIffalseExpressionParserRuleCall_6_0(), semanticObject.getIffalse());
@@ -162,9 +174,9 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     ((elems+=MyInteger+ elems+=MyInteger*)?)
+	 *     ((elems+=ListElem+ elems+=ListElem*)?)
 	 */
-	protected void sequence_IntList(EObject context, IntList semanticObject) {
+	protected void sequence_List(EObject context, IntList semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -175,22 +187,6 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	 */
 	protected void sequence_Lista(EObject context, Lista semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     val=BOOL
-	 */
-	protected void sequence_MyBool(EObject context, MyBool semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.MY_BOOL__VAL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.MY_BOOL__VAL));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getMyBoolAccess().getValBOOLTerminalRuleCall_0(), semanticObject.getVal());
-		feeder.finish();
 	}
 	
 	
@@ -228,6 +224,22 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
+	 *     val=Bool
+	 */
+	protected void sequence_NegBool(EObject context, NegBool semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.MY_BOOL__VAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.MY_BOOL__VAL));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getNegBoolAccess().getValBoolEnumRuleCall_1_0(), semanticObject.getVal());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     val=INT
 	 */
 	protected void sequence_NegInteger(EObject context, NegInteger semanticObject) {
@@ -238,6 +250,22 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getNegIntegerAccess().getValINTTerminalRuleCall_1_0(), semanticObject.getVal());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     val=Bool
+	 */
+	protected void sequence_PosBool(EObject context, PosBool semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.MY_BOOL__VAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.MY_BOOL__VAL));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getPosBoolAccess().getValBoolEnumRuleCall_0(), semanticObject.getVal());
 		feeder.finish();
 	}
 	
@@ -260,7 +288,16 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     name=PDFUNCTION
+	 *     (function=PDFunction (args+=Expression args+=Expression*)?)
+	 */
+	protected void sequence_PreDefFunctionCall(EObject context, PreDefFunctionCall semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     name=PDFunction
 	 */
 	protected void sequence_PreDefFunction(EObject context, PreDefFunction semanticObject) {
 		if(errorAcceptor != null) {
@@ -269,7 +306,7 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPreDefFunctionAccess().getNamePDFUNCTIONTerminalRuleCall_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getPreDefFunctionAccess().getNamePDFunctionEnumRuleCall_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	
@@ -285,9 +322,18 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (first=Term second=ThirdLevelExp?)
+	 *     (first=FourthLevelExp second=ThirdLevelExp?)
 	 */
 	protected void sequence_ThirdLevelExp(EObject context, ThirdLevelExp semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (function=[FunctionDefinition|IDFUNCVAR] (args+=Expression args+=Expression*)?)
+	 */
+	protected void sequence_UserDefFunctionCall(EObject context, UserDefFunctionCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 }

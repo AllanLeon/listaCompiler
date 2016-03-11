@@ -86,6 +86,15 @@ public interface ListaCompilerFactory extends EFactory
   ThirdLevelExp createThirdLevelExp();
 
   /**
+   * Returns a new object of class '<em>Fourth Level Exp</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Fourth Level Exp</em>'.
+   * @generated
+   */
+  FourthLevelExp createFourthLevelExp();
+
+  /**
    * Returns a new object of class '<em>Term</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -131,15 +140,6 @@ public interface ListaCompilerFactory extends EFactory
   MyVariable createMyVariable();
 
   /**
-   * Returns a new object of class '<em>Bool Term</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Bool Term</em>'.
-   * @generated
-   */
-  BoolTerm createBoolTerm();
-
-  /**
    * Returns a new object of class '<em>My Bool</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -147,6 +147,24 @@ public interface ListaCompilerFactory extends EFactory
    * @generated
    */
   MyBool createMyBool();
+
+  /**
+   * Returns a new object of class '<em>Pos Bool</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pos Bool</em>'.
+   * @generated
+   */
+  PosBool createPosBool();
+
+  /**
+   * Returns a new object of class '<em>Neg Bool</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Neg Bool</em>'.
+   * @generated
+   */
+  NegBool createNegBool();
 
   /**
    * Returns a new object of class '<em>My String</em>'.
@@ -176,13 +194,40 @@ public interface ListaCompilerFactory extends EFactory
   FunctionCall createFunctionCall();
 
   /**
-   * Returns a new object of class '<em>Int List</em>'.
+   * Returns a new object of class '<em>Pre Def Function Call</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Int List</em>'.
+   * @return a new object of class '<em>Pre Def Function Call</em>'.
    * @generated
    */
-  IntList createIntList();
+  PreDefFunctionCall createPreDefFunctionCall();
+
+  /**
+   * Returns a new object of class '<em>User Def Function Call</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>User Def Function Call</em>'.
+   * @generated
+   */
+  UserDefFunctionCall createUserDefFunctionCall();
+
+  /**
+   * Returns a new object of class '<em>List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>List</em>'.
+   * @generated
+   */
+  List createList();
+
+  /**
+   * Returns a new object of class '<em>List Elem</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>List Elem</em>'.
+   * @generated
+   */
+  ListElem createListElem();
 
   /**
    * Returns a new object of class '<em>Pre Def Function</em>'.
@@ -192,6 +237,15 @@ public interface ListaCompilerFactory extends EFactory
    * @generated
    */
   PreDefFunction createPreDefFunction();
+
+  /**
+   * Returns a new object of class '<em>Int List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Int List</em>'.
+   * @generated
+   */
+  IntList createIntList();
 
   /**
    * Returns the package supported by this factory.

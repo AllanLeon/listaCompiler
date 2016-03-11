@@ -3,6 +3,7 @@
 package edu.upb.compilacion.listaCompiler.impl;
 
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
+import edu.upb.compilacion.listaCompiler.PDFunction;
 import edu.upb.compilacion.listaCompiler.PreDefFunction;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -35,7 +36,7 @@ public class PreDefFunctionImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final PDFunction NAME_EDEFAULT = PDFunction.LENGTH;
 
   /**
    * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -45,7 +46,7 @@ public class PreDefFunctionImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected PDFunction name = NAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,7 +74,7 @@ public class PreDefFunctionImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public PDFunction getName()
   {
     return name;
   }
@@ -83,10 +84,10 @@ public class PreDefFunctionImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public void setName(PDFunction newName)
   {
-    String oldName = name;
-    name = newName;
+    PDFunction oldName = name;
+    name = newName == null ? NAME_EDEFAULT : newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.PRE_DEF_FUNCTION__NAME, oldName, name));
   }
@@ -118,7 +119,7 @@ public class PreDefFunctionImpl extends MinimalEObjectImpl.Container implements 
     switch (featureID)
     {
       case ListaCompilerPackage.PRE_DEF_FUNCTION__NAME:
-        setName((String)newValue);
+        setName((PDFunction)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -152,7 +153,7 @@ public class PreDefFunctionImpl extends MinimalEObjectImpl.Container implements 
     switch (featureID)
     {
       case ListaCompilerPackage.PRE_DEF_FUNCTION__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+        return name != NAME_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }

@@ -4,6 +4,7 @@ package edu.upb.compilacion.listaCompiler;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -289,6 +290,43 @@ public interface ListaCompilerPackage extends EPackage
   int THIRD_LEVEL_EXP_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.FourthLevelExpImpl <em>Fourth Level Exp</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.impl.FourthLevelExpImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFourthLevelExp()
+   * @generated
+   */
+  int FOURTH_LEVEL_EXP = 7;
+
+  /**
+   * The feature id for the '<em><b>First</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FOURTH_LEVEL_EXP__FIRST = 0;
+
+  /**
+   * The feature id for the '<em><b>Second</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FOURTH_LEVEL_EXP__SECOND = 1;
+
+  /**
+   * The number of structural features of the '<em>Fourth Level Exp</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FOURTH_LEVEL_EXP_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.TermImpl <em>Term</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -296,7 +334,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getTerm()
    * @generated
    */
-  int TERM = 7;
+  int TERM = 8;
 
   /**
    * The number of structural features of the '<em>Term</em>' class.
@@ -315,7 +353,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getMyInteger()
    * @generated
    */
-  int MY_INTEGER = 8;
+  int MY_INTEGER = 9;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -343,7 +381,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPosInteger()
    * @generated
    */
-  int POS_INTEGER = 9;
+  int POS_INTEGER = 10;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -371,7 +409,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getNegInteger()
    * @generated
    */
-  int NEG_INTEGER = 10;
+  int NEG_INTEGER = 11;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -399,7 +437,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getMyVariable()
    * @generated
    */
-  int MY_VARIABLE = 11;
+  int MY_VARIABLE = 12;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -420,25 +458,6 @@ public interface ListaCompilerPackage extends EPackage
   int MY_VARIABLE_FEATURE_COUNT = TERM_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.BoolTermImpl <em>Bool Term</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.upb.compilacion.listaCompiler.impl.BoolTermImpl
-   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getBoolTerm()
-   * @generated
-   */
-  int BOOL_TERM = 12;
-
-  /**
-   * The number of structural features of the '<em>Bool Term</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BOOL_TERM_FEATURE_COUNT = TERM_FEATURE_COUNT + 0;
-
-  /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.MyBoolImpl <em>My Bool</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -455,7 +474,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MY_BOOL__VAL = BOOL_TERM_FEATURE_COUNT + 0;
+  int MY_BOOL__VAL = TERM_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>My Bool</em>' class.
@@ -464,7 +483,63 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MY_BOOL_FEATURE_COUNT = BOOL_TERM_FEATURE_COUNT + 1;
+  int MY_BOOL_FEATURE_COUNT = TERM_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.PosBoolImpl <em>Pos Bool</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.impl.PosBoolImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPosBool()
+   * @generated
+   */
+  int POS_BOOL = 14;
+
+  /**
+   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POS_BOOL__VAL = MY_BOOL__VAL;
+
+  /**
+   * The number of structural features of the '<em>Pos Bool</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POS_BOOL_FEATURE_COUNT = MY_BOOL_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.NegBoolImpl <em>Neg Bool</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.impl.NegBoolImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getNegBool()
+   * @generated
+   */
+  int NEG_BOOL = 15;
+
+  /**
+   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEG_BOOL__VAL = MY_BOOL__VAL;
+
+  /**
+   * The number of structural features of the '<em>Neg Bool</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEG_BOOL_FEATURE_COUNT = MY_BOOL_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.MyStringImpl <em>My String</em>}' class.
@@ -474,7 +549,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getMyString()
    * @generated
    */
-  int MY_STRING = 14;
+  int MY_STRING = 16;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -502,7 +577,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getIfControlFlow()
    * @generated
    */
-  int IF_CONTROL_FLOW = 15;
+  int IF_CONTROL_FLOW = 17;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -557,16 +632,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFunctionCall()
    * @generated
    */
-  int FUNCTION_CALL = 16;
-
-  /**
-   * The feature id for the '<em><b>Function</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FUNCTION_CALL__FUNCTION = TERM_FEATURE_COUNT + 0;
+  int FUNCTION_CALL = 18;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -575,7 +641,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION_CALL__ARGS = TERM_FEATURE_COUNT + 1;
+  int FUNCTION_CALL__ARGS = TERM_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Function Call</em>' class.
@@ -584,35 +650,119 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FUNCTION_CALL_FEATURE_COUNT = TERM_FEATURE_COUNT + 2;
+  int FUNCTION_CALL_FEATURE_COUNT = TERM_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.IntListImpl <em>Int List</em>}' class.
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.PreDefFunctionCallImpl <em>Pre Def Function Call</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.upb.compilacion.listaCompiler.impl.IntListImpl
-   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getIntList()
+   * @see edu.upb.compilacion.listaCompiler.impl.PreDefFunctionCallImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPreDefFunctionCall()
    * @generated
    */
-  int INT_LIST = 17;
+  int PRE_DEF_FUNCTION_CALL = 19;
 
   /**
-   * The feature id for the '<em><b>Elems</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_LIST__ELEMS = TERM_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Int List</em>' class.
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INT_LIST_FEATURE_COUNT = TERM_FEATURE_COUNT + 1;
+  int PRE_DEF_FUNCTION_CALL__ARGS = FUNCTION_CALL__ARGS;
+
+  /**
+   * The feature id for the '<em><b>Function</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRE_DEF_FUNCTION_CALL__FUNCTION = FUNCTION_CALL_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Pre Def Function Call</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRE_DEF_FUNCTION_CALL_FEATURE_COUNT = FUNCTION_CALL_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.UserDefFunctionCallImpl <em>User Def Function Call</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.impl.UserDefFunctionCallImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getUserDefFunctionCall()
+   * @generated
+   */
+  int USER_DEF_FUNCTION_CALL = 20;
+
+  /**
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int USER_DEF_FUNCTION_CALL__ARGS = FUNCTION_CALL__ARGS;
+
+  /**
+   * The feature id for the '<em><b>Function</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int USER_DEF_FUNCTION_CALL__FUNCTION = FUNCTION_CALL_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>User Def Function Call</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int USER_DEF_FUNCTION_CALL_FEATURE_COUNT = FUNCTION_CALL_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.ListImpl <em>List</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.impl.ListImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getList()
+   * @generated
+   */
+  int LIST = 21;
+
+  /**
+   * The number of structural features of the '<em>List</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_FEATURE_COUNT = TERM_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.ListElemImpl <em>List Elem</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.impl.ListElemImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getListElem()
+   * @generated
+   */
+  int LIST_ELEM = 22;
+
+  /**
+   * The number of structural features of the '<em>List Elem</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_ELEM_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.PreDefFunctionImpl <em>Pre Def Function</em>}' class.
@@ -622,7 +772,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPreDefFunction()
    * @generated
    */
-  int PRE_DEF_FUNCTION = 18;
+  int PRE_DEF_FUNCTION = 23;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -641,6 +791,64 @@ public interface ListaCompilerPackage extends EPackage
    * @ordered
    */
   int PRE_DEF_FUNCTION_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.IntListImpl <em>Int List</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.impl.IntListImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getIntList()
+   * @generated
+   */
+  int INT_LIST = 24;
+
+  /**
+   * The feature id for the '<em><b>Elems</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_LIST__ELEMS = LIST_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Int List</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_LIST_FEATURE_COUNT = LIST_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.Bool <em>Bool</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.Bool
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getBool()
+   * @generated
+   */
+  int BOOL = 25;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.PDFunction <em>PD Function</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.PDFunction
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPDFunction()
+   * @generated
+   */
+  int PD_FUNCTION = 26;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.CFlow <em>CFlow</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.CFlow
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getCFlow()
+   * @generated
+   */
+  int CFLOW = 27;
 
 
   /**
@@ -835,6 +1043,38 @@ public interface ListaCompilerPackage extends EPackage
   EReference getThirdLevelExp_Second();
 
   /**
+   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.FourthLevelExp <em>Fourth Level Exp</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Fourth Level Exp</em>'.
+   * @see edu.upb.compilacion.listaCompiler.FourthLevelExp
+   * @generated
+   */
+  EClass getFourthLevelExp();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.FourthLevelExp#getFirst <em>First</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>First</em>'.
+   * @see edu.upb.compilacion.listaCompiler.FourthLevelExp#getFirst()
+   * @see #getFourthLevelExp()
+   * @generated
+   */
+  EReference getFourthLevelExp_First();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.FourthLevelExp#getSecond <em>Second</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Second</em>'.
+   * @see edu.upb.compilacion.listaCompiler.FourthLevelExp#getSecond()
+   * @see #getFourthLevelExp()
+   * @generated
+   */
+  EReference getFourthLevelExp_Second();
+
+  /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.Term <em>Term</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -907,16 +1147,6 @@ public interface ListaCompilerPackage extends EPackage
   EAttribute getMyVariable_Var();
 
   /**
-   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.BoolTerm <em>Bool Term</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Bool Term</em>'.
-   * @see edu.upb.compilacion.listaCompiler.BoolTerm
-   * @generated
-   */
-  EClass getBoolTerm();
-
-  /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.MyBool <em>My Bool</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -936,6 +1166,26 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    */
   EAttribute getMyBool_Val();
+
+  /**
+   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.PosBool <em>Pos Bool</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pos Bool</em>'.
+   * @see edu.upb.compilacion.listaCompiler.PosBool
+   * @generated
+   */
+  EClass getPosBool();
+
+  /**
+   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.NegBool <em>Neg Bool</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Neg Bool</em>'.
+   * @see edu.upb.compilacion.listaCompiler.NegBool
+   * @generated
+   */
+  EClass getNegBool();
 
   /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.MyString <em>My String</em>}'.
@@ -1023,17 +1273,6 @@ public interface ListaCompilerPackage extends EPackage
   EClass getFunctionCall();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.FunctionCall#getFunction <em>Function</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Function</em>'.
-   * @see edu.upb.compilacion.listaCompiler.FunctionCall#getFunction()
-   * @see #getFunctionCall()
-   * @generated
-   */
-  EReference getFunctionCall_Function();
-
-  /**
    * Returns the meta object for the containment reference list '{@link edu.upb.compilacion.listaCompiler.FunctionCall#getArgs <em>Args</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1043,6 +1282,89 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    */
   EReference getFunctionCall_Args();
+
+  /**
+   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.PreDefFunctionCall <em>Pre Def Function Call</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pre Def Function Call</em>'.
+   * @see edu.upb.compilacion.listaCompiler.PreDefFunctionCall
+   * @generated
+   */
+  EClass getPreDefFunctionCall();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.upb.compilacion.listaCompiler.PreDefFunctionCall#getFunction <em>Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Function</em>'.
+   * @see edu.upb.compilacion.listaCompiler.PreDefFunctionCall#getFunction()
+   * @see #getPreDefFunctionCall()
+   * @generated
+   */
+  EAttribute getPreDefFunctionCall_Function();
+
+  /**
+   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.UserDefFunctionCall <em>User Def Function Call</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>User Def Function Call</em>'.
+   * @see edu.upb.compilacion.listaCompiler.UserDefFunctionCall
+   * @generated
+   */
+  EClass getUserDefFunctionCall();
+
+  /**
+   * Returns the meta object for the reference '{@link edu.upb.compilacion.listaCompiler.UserDefFunctionCall#getFunction <em>Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Function</em>'.
+   * @see edu.upb.compilacion.listaCompiler.UserDefFunctionCall#getFunction()
+   * @see #getUserDefFunctionCall()
+   * @generated
+   */
+  EReference getUserDefFunctionCall_Function();
+
+  /**
+   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.List <em>List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>List</em>'.
+   * @see edu.upb.compilacion.listaCompiler.List
+   * @generated
+   */
+  EClass getList();
+
+  /**
+   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.ListElem <em>List Elem</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>List Elem</em>'.
+   * @see edu.upb.compilacion.listaCompiler.ListElem
+   * @generated
+   */
+  EClass getListElem();
+
+  /**
+   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.PreDefFunction <em>Pre Def Function</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pre Def Function</em>'.
+   * @see edu.upb.compilacion.listaCompiler.PreDefFunction
+   * @generated
+   */
+  EClass getPreDefFunction();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.upb.compilacion.listaCompiler.PreDefFunction#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see edu.upb.compilacion.listaCompiler.PreDefFunction#getName()
+   * @see #getPreDefFunction()
+   * @generated
+   */
+  EAttribute getPreDefFunction_Name();
 
   /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.IntList <em>Int List</em>}'.
@@ -1066,25 +1388,34 @@ public interface ListaCompilerPackage extends EPackage
   EReference getIntList_Elems();
 
   /**
-   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.PreDefFunction <em>Pre Def Function</em>}'.
+   * Returns the meta object for enum '{@link edu.upb.compilacion.listaCompiler.Bool <em>Bool</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Pre Def Function</em>'.
-   * @see edu.upb.compilacion.listaCompiler.PreDefFunction
+   * @return the meta object for enum '<em>Bool</em>'.
+   * @see edu.upb.compilacion.listaCompiler.Bool
    * @generated
    */
-  EClass getPreDefFunction();
+  EEnum getBool();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.upb.compilacion.listaCompiler.PreDefFunction#getName <em>Name</em>}'.
+   * Returns the meta object for enum '{@link edu.upb.compilacion.listaCompiler.PDFunction <em>PD Function</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see edu.upb.compilacion.listaCompiler.PreDefFunction#getName()
-   * @see #getPreDefFunction()
+   * @return the meta object for enum '<em>PD Function</em>'.
+   * @see edu.upb.compilacion.listaCompiler.PDFunction
    * @generated
    */
-  EAttribute getPreDefFunction_Name();
+  EEnum getPDFunction();
+
+  /**
+   * Returns the meta object for enum '{@link edu.upb.compilacion.listaCompiler.CFlow <em>CFlow</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>CFlow</em>'.
+   * @see edu.upb.compilacion.listaCompiler.CFlow
+   * @generated
+   */
+  EEnum getCFlow();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1268,6 +1599,32 @@ public interface ListaCompilerPackage extends EPackage
     EReference THIRD_LEVEL_EXP__SECOND = eINSTANCE.getThirdLevelExp_Second();
 
     /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.FourthLevelExpImpl <em>Fourth Level Exp</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.impl.FourthLevelExpImpl
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFourthLevelExp()
+     * @generated
+     */
+    EClass FOURTH_LEVEL_EXP = eINSTANCE.getFourthLevelExp();
+
+    /**
+     * The meta object literal for the '<em><b>First</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FOURTH_LEVEL_EXP__FIRST = eINSTANCE.getFourthLevelExp_First();
+
+    /**
+     * The meta object literal for the '<em><b>Second</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FOURTH_LEVEL_EXP__SECOND = eINSTANCE.getFourthLevelExp_Second();
+
+    /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.TermImpl <em>Term</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1334,16 +1691,6 @@ public interface ListaCompilerPackage extends EPackage
     EAttribute MY_VARIABLE__VAR = eINSTANCE.getMyVariable_Var();
 
     /**
-     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.BoolTermImpl <em>Bool Term</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.upb.compilacion.listaCompiler.impl.BoolTermImpl
-     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getBoolTerm()
-     * @generated
-     */
-    EClass BOOL_TERM = eINSTANCE.getBoolTerm();
-
-    /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.MyBoolImpl <em>My Bool</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1360,6 +1707,26 @@ public interface ListaCompilerPackage extends EPackage
      * @generated
      */
     EAttribute MY_BOOL__VAL = eINSTANCE.getMyBool_Val();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.PosBoolImpl <em>Pos Bool</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.impl.PosBoolImpl
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPosBool()
+     * @generated
+     */
+    EClass POS_BOOL = eINSTANCE.getPosBool();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.NegBoolImpl <em>Neg Bool</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.impl.NegBoolImpl
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getNegBool()
+     * @generated
+     */
+    EClass NEG_BOOL = eINSTANCE.getNegBool();
 
     /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.MyStringImpl <em>My String</em>}' class.
@@ -1432,20 +1799,86 @@ public interface ListaCompilerPackage extends EPackage
     EClass FUNCTION_CALL = eINSTANCE.getFunctionCall();
 
     /**
-     * The meta object literal for the '<em><b>Function</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FUNCTION_CALL__FUNCTION = eINSTANCE.getFunctionCall_Function();
-
-    /**
      * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference FUNCTION_CALL__ARGS = eINSTANCE.getFunctionCall_Args();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.PreDefFunctionCallImpl <em>Pre Def Function Call</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.impl.PreDefFunctionCallImpl
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPreDefFunctionCall()
+     * @generated
+     */
+    EClass PRE_DEF_FUNCTION_CALL = eINSTANCE.getPreDefFunctionCall();
+
+    /**
+     * The meta object literal for the '<em><b>Function</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRE_DEF_FUNCTION_CALL__FUNCTION = eINSTANCE.getPreDefFunctionCall_Function();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.UserDefFunctionCallImpl <em>User Def Function Call</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.impl.UserDefFunctionCallImpl
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getUserDefFunctionCall()
+     * @generated
+     */
+    EClass USER_DEF_FUNCTION_CALL = eINSTANCE.getUserDefFunctionCall();
+
+    /**
+     * The meta object literal for the '<em><b>Function</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference USER_DEF_FUNCTION_CALL__FUNCTION = eINSTANCE.getUserDefFunctionCall_Function();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.ListImpl <em>List</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.impl.ListImpl
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getList()
+     * @generated
+     */
+    EClass LIST = eINSTANCE.getList();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.ListElemImpl <em>List Elem</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.impl.ListElemImpl
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getListElem()
+     * @generated
+     */
+    EClass LIST_ELEM = eINSTANCE.getListElem();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.PreDefFunctionImpl <em>Pre Def Function</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.impl.PreDefFunctionImpl
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPreDefFunction()
+     * @generated
+     */
+    EClass PRE_DEF_FUNCTION = eINSTANCE.getPreDefFunction();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRE_DEF_FUNCTION__NAME = eINSTANCE.getPreDefFunction_Name();
 
     /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.IntListImpl <em>Int List</em>}' class.
@@ -1466,22 +1899,34 @@ public interface ListaCompilerPackage extends EPackage
     EReference INT_LIST__ELEMS = eINSTANCE.getIntList_Elems();
 
     /**
-     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.PreDefFunctionImpl <em>Pre Def Function</em>}' class.
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.Bool <em>Bool</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.upb.compilacion.listaCompiler.impl.PreDefFunctionImpl
-     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPreDefFunction()
+     * @see edu.upb.compilacion.listaCompiler.Bool
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getBool()
      * @generated
      */
-    EClass PRE_DEF_FUNCTION = eINSTANCE.getPreDefFunction();
+    EEnum BOOL = eINSTANCE.getBool();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.PDFunction <em>PD Function</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.PDFunction
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPDFunction()
      * @generated
      */
-    EAttribute PRE_DEF_FUNCTION__NAME = eINSTANCE.getPreDefFunction_Name();
+    EEnum PD_FUNCTION = eINSTANCE.getPDFunction();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.CFlow <em>CFlow</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.CFlow
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getCFlow()
+     * @generated
+     */
+    EEnum CFLOW = eINSTANCE.getCFlow();
 
   }
 

@@ -110,6 +110,11 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
         return createThirdLevelExpAdapter();
       }
       @Override
+      public Adapter caseFourthLevelExp(FourthLevelExp object)
+      {
+        return createFourthLevelExpAdapter();
+      }
+      @Override
       public Adapter caseTerm(Term object)
       {
         return createTermAdapter();
@@ -135,14 +140,19 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
         return createMyVariableAdapter();
       }
       @Override
-      public Adapter caseBoolTerm(BoolTerm object)
-      {
-        return createBoolTermAdapter();
-      }
-      @Override
       public Adapter caseMyBool(MyBool object)
       {
         return createMyBoolAdapter();
+      }
+      @Override
+      public Adapter casePosBool(PosBool object)
+      {
+        return createPosBoolAdapter();
+      }
+      @Override
+      public Adapter caseNegBool(NegBool object)
+      {
+        return createNegBoolAdapter();
       }
       @Override
       public Adapter caseMyString(MyString object)
@@ -160,14 +170,34 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
         return createFunctionCallAdapter();
       }
       @Override
-      public Adapter caseIntList(IntList object)
+      public Adapter casePreDefFunctionCall(PreDefFunctionCall object)
       {
-        return createIntListAdapter();
+        return createPreDefFunctionCallAdapter();
+      }
+      @Override
+      public Adapter caseUserDefFunctionCall(UserDefFunctionCall object)
+      {
+        return createUserDefFunctionCallAdapter();
+      }
+      @Override
+      public Adapter caseList(List object)
+      {
+        return createListAdapter();
+      }
+      @Override
+      public Adapter caseListElem(ListElem object)
+      {
+        return createListElemAdapter();
       }
       @Override
       public Adapter casePreDefFunction(PreDefFunction object)
       {
         return createPreDefFunctionAdapter();
+      }
+      @Override
+      public Adapter caseIntList(IntList object)
+      {
+        return createIntListAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -297,6 +327,21 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.FourthLevelExp <em>Fourth Level Exp</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.FourthLevelExp
+   * @generated
+   */
+  public Adapter createFourthLevelExpAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.Term <em>Term</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -372,21 +417,6 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.BoolTerm <em>Bool Term</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.upb.compilacion.listaCompiler.BoolTerm
-   * @generated
-   */
-  public Adapter createBoolTermAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.MyBool <em>My Bool</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -397,6 +427,36 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createMyBoolAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.PosBool <em>Pos Bool</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.PosBool
+   * @generated
+   */
+  public Adapter createPosBoolAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.NegBool <em>Neg Bool</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.NegBool
+   * @generated
+   */
+  public Adapter createNegBoolAdapter()
   {
     return null;
   }
@@ -447,16 +507,61 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.IntList <em>Int List</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.PreDefFunctionCall <em>Pre Def Function Call</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.upb.compilacion.listaCompiler.IntList
+   * @see edu.upb.compilacion.listaCompiler.PreDefFunctionCall
    * @generated
    */
-  public Adapter createIntListAdapter()
+  public Adapter createPreDefFunctionCallAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.UserDefFunctionCall <em>User Def Function Call</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.UserDefFunctionCall
+   * @generated
+   */
+  public Adapter createUserDefFunctionCallAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.List <em>List</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.List
+   * @generated
+   */
+  public Adapter createListAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.ListElem <em>List Elem</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.ListElem
+   * @generated
+   */
+  public Adapter createListElemAdapter()
   {
     return null;
   }
@@ -472,6 +577,21 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPreDefFunctionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.IntList <em>Int List</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.IntList
+   * @generated
+   */
+  public Adapter createIntListAdapter()
   {
     return null;
   }

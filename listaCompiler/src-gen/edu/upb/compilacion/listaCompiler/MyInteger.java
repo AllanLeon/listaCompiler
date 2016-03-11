@@ -19,7 +19,7 @@ package edu.upb.compilacion.listaCompiler;
  * @model
  * @generated
  */
-public interface MyInteger extends Term
+public interface MyInteger extends Term, ListElem
 {
   /**
    * Returns the value of the '<em><b>Val</b></em>' attribute.
