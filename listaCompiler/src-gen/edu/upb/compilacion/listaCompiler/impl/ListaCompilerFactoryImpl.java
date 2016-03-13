@@ -111,6 +111,14 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
         return createPDFunctionFromString(eDataType, initialValue);
       case ListaCompilerPackage.CFLOW:
         return createCFlowFromString(eDataType, initialValue);
+      case ListaCompilerPackage.FIRST_LEVEL_OP:
+        return createFirstLevelOpFromString(eDataType, initialValue);
+      case ListaCompilerPackage.SECOND_LEVEL_OP:
+        return createSecondLevelOpFromString(eDataType, initialValue);
+      case ListaCompilerPackage.THIRD_LEVEL_OP:
+        return createThirdLevelOpFromString(eDataType, initialValue);
+      case ListaCompilerPackage.FOURTH_LEVEL_OP:
+        return createFourthLevelOpFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -132,6 +140,14 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
         return convertPDFunctionToString(eDataType, instanceValue);
       case ListaCompilerPackage.CFLOW:
         return convertCFlowToString(eDataType, instanceValue);
+      case ListaCompilerPackage.FIRST_LEVEL_OP:
+        return convertFirstLevelOpToString(eDataType, instanceValue);
+      case ListaCompilerPackage.SECOND_LEVEL_OP:
+        return convertSecondLevelOpToString(eDataType, instanceValue);
+      case ListaCompilerPackage.THIRD_LEVEL_OP:
+        return convertThirdLevelOpToString(eDataType, instanceValue);
+      case ListaCompilerPackage.FOURTH_LEVEL_OP:
+        return convertFourthLevelOpToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -474,6 +490,94 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
    * @generated
    */
   public String convertCFlowToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FirstLevelOp createFirstLevelOpFromString(EDataType eDataType, String initialValue)
+  {
+    FirstLevelOp result = FirstLevelOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertFirstLevelOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SecondLevelOp createSecondLevelOpFromString(EDataType eDataType, String initialValue)
+  {
+    SecondLevelOp result = SecondLevelOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertSecondLevelOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ThirdLevelOp createThirdLevelOpFromString(EDataType eDataType, String initialValue)
+  {
+    ThirdLevelOp result = ThirdLevelOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertThirdLevelOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FourthLevelOp createFourthLevelOpFromString(EDataType eDataType, String initialValue)
+  {
+    FourthLevelOp result = FourthLevelOp.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertFourthLevelOpToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

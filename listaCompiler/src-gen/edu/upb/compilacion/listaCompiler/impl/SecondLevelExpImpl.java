@@ -4,16 +4,24 @@ package edu.upb.compilacion.listaCompiler.impl;
 
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
 import edu.upb.compilacion.listaCompiler.SecondLevelExp;
-import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
+import edu.upb.compilacion.listaCompiler.SecondLevelOp;
+
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,8 +31,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.upb.compilacion.listaCompiler.impl.SecondLevelExpImpl#getFirst <em>First</em>}</li>
- *   <li>{@link edu.upb.compilacion.listaCompiler.impl.SecondLevelExpImpl#getSecond <em>Second</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.impl.SecondLevelExpImpl#getArgs <em>Args</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.impl.SecondLevelExpImpl#getOp <em>Op</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,24 +40,34 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class SecondLevelExpImpl extends MinimalEObjectImpl.Container implements SecondLevelExp
 {
   /**
-   * The cached value of the '{@link #getFirst() <em>First</em>}' containment reference.
+   * The cached value of the '{@link #getArgs() <em>Args</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getFirst()
+   * @see #getArgs()
    * @generated
    * @ordered
    */
-  protected ThirdLevelExp first;
+  protected EList<EObject> args;
 
   /**
-   * The cached value of the '{@link #getSecond() <em>Second</em>}' containment reference.
+   * The default value of the '{@link #getOp() <em>Op</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSecond()
+   * @see #getOp()
    * @generated
    * @ordered
    */
-  protected SecondLevelExp second;
+  protected static final SecondLevelOp OP_EDEFAULT = SecondLevelOp.GT;
+
+  /**
+   * The cached value of the '{@link #getOp() <em>Op</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOp()
+   * @generated
+   * @ordered
+   */
+  protected SecondLevelOp op = OP_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -77,9 +95,13 @@ public class SecondLevelExpImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public ThirdLevelExp getFirst()
+  public EList<EObject> getArgs()
   {
-    return first;
+    if (args == null)
+    {
+      args = new EObjectContainmentEList<EObject>(EObject.class, this, ListaCompilerPackage.SECOND_LEVEL_EXP__ARGS);
+    }
+    return args;
   }
 
   /**
@@ -87,85 +109,22 @@ public class SecondLevelExpImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetFirst(ThirdLevelExp newFirst, NotificationChain msgs)
+  public SecondLevelOp getOp()
   {
-    ThirdLevelExp oldFirst = first;
-    first = newFirst;
+    return op;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setOp(SecondLevelOp newOp)
+  {
+    SecondLevelOp oldOp = op;
+    op = newOp == null ? OP_EDEFAULT : newOp;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.SECOND_LEVEL_EXP__FIRST, oldFirst, newFirst);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setFirst(ThirdLevelExp newFirst)
-  {
-    if (newFirst != first)
-    {
-      NotificationChain msgs = null;
-      if (first != null)
-        msgs = ((InternalEObject)first).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.SECOND_LEVEL_EXP__FIRST, null, msgs);
-      if (newFirst != null)
-        msgs = ((InternalEObject)newFirst).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.SECOND_LEVEL_EXP__FIRST, null, msgs);
-      msgs = basicSetFirst(newFirst, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.SECOND_LEVEL_EXP__FIRST, newFirst, newFirst));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public SecondLevelExp getSecond()
-  {
-    return second;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetSecond(SecondLevelExp newSecond, NotificationChain msgs)
-  {
-    SecondLevelExp oldSecond = second;
-    second = newSecond;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.SECOND_LEVEL_EXP__SECOND, oldSecond, newSecond);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setSecond(SecondLevelExp newSecond)
-  {
-    if (newSecond != second)
-    {
-      NotificationChain msgs = null;
-      if (second != null)
-        msgs = ((InternalEObject)second).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.SECOND_LEVEL_EXP__SECOND, null, msgs);
-      if (newSecond != null)
-        msgs = ((InternalEObject)newSecond).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.SECOND_LEVEL_EXP__SECOND, null, msgs);
-      msgs = basicSetSecond(newSecond, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.SECOND_LEVEL_EXP__SECOND, newSecond, newSecond));
+      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.SECOND_LEVEL_EXP__OP, oldOp, op));
   }
 
   /**
@@ -178,10 +137,8 @@ public class SecondLevelExpImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.SECOND_LEVEL_EXP__FIRST:
-        return basicSetFirst(null, msgs);
-      case ListaCompilerPackage.SECOND_LEVEL_EXP__SECOND:
-        return basicSetSecond(null, msgs);
+      case ListaCompilerPackage.SECOND_LEVEL_EXP__ARGS:
+        return ((InternalEList<?>)getArgs()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -196,10 +153,10 @@ public class SecondLevelExpImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.SECOND_LEVEL_EXP__FIRST:
-        return getFirst();
-      case ListaCompilerPackage.SECOND_LEVEL_EXP__SECOND:
-        return getSecond();
+      case ListaCompilerPackage.SECOND_LEVEL_EXP__ARGS:
+        return getArgs();
+      case ListaCompilerPackage.SECOND_LEVEL_EXP__OP:
+        return getOp();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -209,16 +166,18 @@ public class SecondLevelExpImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.SECOND_LEVEL_EXP__FIRST:
-        setFirst((ThirdLevelExp)newValue);
+      case ListaCompilerPackage.SECOND_LEVEL_EXP__ARGS:
+        getArgs().clear();
+        getArgs().addAll((Collection<? extends EObject>)newValue);
         return;
-      case ListaCompilerPackage.SECOND_LEVEL_EXP__SECOND:
-        setSecond((SecondLevelExp)newValue);
+      case ListaCompilerPackage.SECOND_LEVEL_EXP__OP:
+        setOp((SecondLevelOp)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -234,11 +193,11 @@ public class SecondLevelExpImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.SECOND_LEVEL_EXP__FIRST:
-        setFirst((ThirdLevelExp)null);
+      case ListaCompilerPackage.SECOND_LEVEL_EXP__ARGS:
+        getArgs().clear();
         return;
-      case ListaCompilerPackage.SECOND_LEVEL_EXP__SECOND:
-        setSecond((SecondLevelExp)null);
+      case ListaCompilerPackage.SECOND_LEVEL_EXP__OP:
+        setOp(OP_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -254,12 +213,29 @@ public class SecondLevelExpImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.SECOND_LEVEL_EXP__FIRST:
-        return first != null;
-      case ListaCompilerPackage.SECOND_LEVEL_EXP__SECOND:
-        return second != null;
+      case ListaCompilerPackage.SECOND_LEVEL_EXP__ARGS:
+        return args != null && !args.isEmpty();
+      case ListaCompilerPackage.SECOND_LEVEL_EXP__OP:
+        return op != OP_EDEFAULT;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (op: ");
+    result.append(op);
+    result.append(')');
+    return result.toString();
   }
 
 } //SecondLevelExpImpl

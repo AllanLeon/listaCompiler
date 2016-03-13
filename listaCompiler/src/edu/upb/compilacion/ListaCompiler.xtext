@@ -14,23 +14,23 @@ FunctionDefinition: name=IDFUNCVAR "(" (params+=IDFUNCVAR (',' params+=IDFUNCVAR
 ;
 
 Expression: 
-	FirstLevelExp
+	exp=FirstLevelExp
 ;
 
 FirstLevelExp:
-	first=SecondLevelExp (("&" | "|") second=FirstLevelExp)?
+	args+=SecondLevelExp (op=FirstLevelOp args+=FirstLevelExp)?
 ;
 
 SecondLevelExp:
-	first=ThirdLevelExp ((">" | "<" | "==") second=SecondLevelExp)?
+	args+=ThirdLevelExp (op=SecondLevelOp args+=SecondLevelExp)?
 ;
 
 ThirdLevelExp:
-	first=FourthLevelExp (("+" | "-" | "++") second=ThirdLevelExp)?
+	args+=FourthLevelExp (op=ThirdLevelOp args+=ThirdLevelExp)?
 ;
 
 FourthLevelExp:
-	first=Term (("*" | "/") second=FourthLevelExp)?
+	args+=Term (op=FourthLevelOp args+=FourthLevelExp)?
 ;
 
 Term:
@@ -113,6 +113,28 @@ enum PDFunction:
 
 enum CFlow:
 	if = "if"
+;
+
+enum FirstLevelOp:
+	and = "&" |
+	or = "|"
+;
+
+enum SecondLevelOp:
+	gt = ">" |
+	lt = "<" |
+	eq = "=="
+;
+
+enum ThirdLevelOp:
+	plus = "+" |
+	minus = "-" |
+	concat = "++"
+;
+
+enum FourthLevelOp:
+	mult = "*" |
+	div = "/"
 ;
 
 terminal IDFUNCVAR: ('a'..'z')('A'..'Z'|'a'..'z'|'0'..'9')*;

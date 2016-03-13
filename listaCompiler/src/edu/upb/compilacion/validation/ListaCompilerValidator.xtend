@@ -3,11 +3,28 @@
  */
 package edu.upb.compilacion.validation
 
+import edu.upb.compilacion.MismatchedTypeException
+import edu.upb.compilacion.listaCompiler.Expression
+import edu.upb.compilacion.listaCompiler.FirstLevelExp
+import edu.upb.compilacion.listaCompiler.FirstLevelOp
+import edu.upb.compilacion.listaCompiler.FourthLevelExp
+import edu.upb.compilacion.listaCompiler.FunctionCall
+import edu.upb.compilacion.listaCompiler.IfControlFlow
+import edu.upb.compilacion.listaCompiler.List
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage
+import edu.upb.compilacion.listaCompiler.MyBool
+import edu.upb.compilacion.listaCompiler.MyInteger
+import edu.upb.compilacion.listaCompiler.MyString
+import edu.upb.compilacion.listaCompiler.MyVariable
+import edu.upb.compilacion.listaCompiler.PDFunction
 import edu.upb.compilacion.listaCompiler.PreDefFunctionCall
+import edu.upb.compilacion.listaCompiler.SecondLevelExp
+import edu.upb.compilacion.listaCompiler.SecondLevelOp
+import edu.upb.compilacion.listaCompiler.Term
+import edu.upb.compilacion.listaCompiler.ThirdLevelExp
+import edu.upb.compilacion.listaCompiler.ThirdLevelOp
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall
 import org.eclipse.xtext.validation.Check
-import edu.upb.compilacion.listaCompiler.PDFunction
 
 //import org.eclipse.xtext.validation.Check
 
@@ -17,6 +34,10 @@ import edu.upb.compilacion.listaCompiler.PDFunction
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class ListaCompilerValidator extends AbstractListaCompilerValidator {
+	
+	enum DataType {
+		INT, STRING, BOOL, LIST, VAR, GLOBAL
+	}
 
 //  public static val INVALID_NAME = 'invalidName'
 //
@@ -63,5 +84,165 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 			ListaCompilerPackage.Literals.FUNCTION_CALL__ARGS,
 			'wrongParametersNumber');
 		}
+	}
+	
+	@Check
+	def checkExpressionType(Expression exp) {
+		try {
+			exp.getDataType;
+		} catch (MismatchedTypeException ex) {
+			error(ex.message,
+			ListaCompilerPackage.Literals.EXPRESSION__EXP,
+			'wrongExpressionType');
+		}
+	}
+	
+	def getDataType(Expression exp) {
+		return exp.exp.getDataType;
+	}
+	
+	def getDataType(FirstLevelExp exp) {
+		val first = (exp.args.get(0) as SecondLevelExp).getDataType;
+		val op = exp.op;
+		if (exp.args.length > 1) {
+			var expected = DataType.GLOBAL;
+			switch (op) {
+				case FirstLevelOp.AND,
+				case FirstLevelOp.OR:
+					expected = DataType.BOOL
+				default:
+					expected = DataType.GLOBAL				
+			}
+			if (first.equals(expected) &&
+				(exp.args.get(1) as FirstLevelExp).getDataType.equals(expected)) {
+				return expected;
+			} else {
+				throw new MismatchedTypeException("Mismatched data types for operator " +
+					 op.getName() + ", arguments should be " + expected.toString() + ".");
+			}
+		} else {
+			return first;
+		}
+	}
+	
+	def getDataType(SecondLevelExp exp) {
+		val first = (exp.args.get(0) as ThirdLevelExp).getDataType;
+		val op = exp.op;
+		if (exp.args.length > 1) {
+			var expected = DataType.GLOBAL;
+			switch (op) {
+				case SecondLevelOp.GT,
+				case SecondLevelOp.LT:
+					expected = DataType.INT
+				case SecondLevelOp.EQ:
+					return exp.compareEquals
+				default:
+					expected = DataType.GLOBAL				
+			}
+			if (first.equals(expected) &&
+				(exp.args.get(1) as SecondLevelExp).getDataType.equals(expected)) {
+				return expected;
+			} else {
+				throw new MismatchedTypeException("Mismatched data types for operator " +
+					 op.getName() + ", arguments should be " + expected.toString() + ".");
+			}
+		} else {
+			return first;
+		}
+	}
+	
+	def getDataType(ThirdLevelExp exp) {
+		val first = (exp.args.get(0) as FourthLevelExp).getDataType;
+		val op = exp.op;
+		if (exp.args.length > 1) {
+			var expected = DataType.GLOBAL;
+			switch (op) {
+				case ThirdLevelOp.PLUS,
+				case ThirdLevelOp.MINUS:
+					expected = DataType.INT
+				case ThirdLevelOp.CONCAT:
+					expected = DataType.STRING
+				default:
+					expected = DataType.GLOBAL				
+			}
+			if (first.equals(expected) &&
+				(exp.args.get(1) as ThirdLevelExp).getDataType.equals(expected)) {
+				return expected;					
+			} else {
+				throw new MismatchedTypeException("Mismatched data types for operator " +
+					 op.getName() + ", arguments should be " + expected.toString() + ".");
+			}
+		} else {
+			return first;
+		}
+	}
+	
+	def getDataType(FourthLevelExp exp) {
+		val first = (exp.args.get(0) as Term).getDataType;
+		if (exp.args.length > 1) {
+			if (first.equals(DataType.INT) &&
+				(exp.args.get(1) as FourthLevelExp).getDataType.equals(DataType.INT)) {
+				return DataType.INT;					
+			} else {
+				throw new MismatchedTypeException("Mismatched data types for operator " + exp.op.getName() + ", arguments should be INT.");
+			}
+		} else {
+			return first;
+		}
+	}
+	
+	def getDataType(Term term) {
+		if (term instanceof MyInteger) {
+			return DataType.INT;
+		} else if (term instanceof MyString) {
+			return DataType.STRING;
+		} else if (term instanceof MyBool) {
+			return DataType.BOOL;
+		} else if (term instanceof List) {
+			return DataType.LIST;
+		} else if (term instanceof MyVariable) {
+			return DataType.VAR;
+		} else if (term instanceof FunctionCall) {
+			return (term as FunctionCall).getDataType;
+		} else if (term instanceof IfControlFlow) {
+			return (term as IfControlFlow).getDataType;
+		}
+	}
+	
+	def getDataType(FunctionCall fcall) {
+		if (fcall instanceof PreDefFunctionCall) {
+			return (fcall as PreDefFunctionCall).getDataType;
+		} else if (fcall instanceof UserDefFunctionCall) {
+			return (fcall as UserDefFunctionCall).getDataType;
+		}
+	}
+	
+	def getDataType(PreDefFunctionCall fcall) {
+		switch (fcall.function) {
+			case PDFunction.SHOW:
+				return DataType.STRING
+			case PDFunction.LENGTH,
+			case PDFunction.CAR:
+				return DataType.INT
+			case PDFunction.CDR,
+			case PDFunction.CONS:
+				return DataType.LIST
+			case PDFunction.IS_EMPTY:
+				return DataType.BOOL
+			default:
+				return DataType.STRING
+		}
+	}
+	
+	def getDataType(UserDefFunctionCall fcall) {
+		return fcall.function.^return.getDataType;
+	}
+	
+	def getDataType(IfControlFlow ifCF) {
+		return ifCF.iftrue.getDataType;
+	}
+	
+	def compareEquals(SecondLevelExp exp) {
+		
 	}
 }
