@@ -22,6 +22,24 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="ListaCompiler.ecore#//CFlow">
       <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//CFlow/if"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ListaCompiler.ecore#//FirstLevelOp">
+      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//FirstLevelOp/and"/>
+      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//FirstLevelOp/or"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ListaCompiler.ecore#//SecondLevelOp">
+      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//SecondLevelOp/gt"/>
+      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//SecondLevelOp/lt"/>
+      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//SecondLevelOp/eq"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ListaCompiler.ecore#//ThirdLevelOp">
+      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//ThirdLevelOp/plus"/>
+      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//ThirdLevelOp/minus"/>
+      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//ThirdLevelOp/concat"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ListaCompiler.ecore#//FourthLevelOp">
+      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//FourthLevelOp/mult"/>
+      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//FourthLevelOp/div"/>
+    </genEnums>
     <genClasses ecoreClass="ListaCompiler.ecore#//Lista">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//Lista/lines"/>
     </genClasses>
@@ -33,22 +51,24 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//FunctionDefinition/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//FunctionDefinition/return"/>
     </genClasses>
-    <genClasses ecoreClass="ListaCompiler.ecore#//Expression"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//Expression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//Expression/exp"/>
+    </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//FirstLevelExp">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//FirstLevelExp/first"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//FirstLevelExp/second"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//FirstLevelExp/args"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//FirstLevelExp/op"/>
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//SecondLevelExp">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//SecondLevelExp/first"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//SecondLevelExp/second"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//SecondLevelExp/args"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//SecondLevelExp/op"/>
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//ThirdLevelExp">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//ThirdLevelExp/first"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//ThirdLevelExp/second"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//ThirdLevelExp/args"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//ThirdLevelExp/op"/>
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//FourthLevelExp">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//FourthLevelExp/first"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//FourthLevelExp/second"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//FourthLevelExp/args"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//FourthLevelExp/op"/>
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//Term"/>
     <genClasses ecoreClass="ListaCompiler.ecore#//MyInteger">

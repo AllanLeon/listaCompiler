@@ -170,13 +170,22 @@ public interface ListaCompilerPackage extends EPackage
   int EXPRESSION = 3;
 
   /**
+   * The feature id for the '<em><b>Exp</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION__EXP = 0;
+
+  /**
    * The number of structural features of the '<em>Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPRESSION_FEATURE_COUNT = 0;
+  int EXPRESSION_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.FirstLevelExpImpl <em>First Level Exp</em>}' class.
@@ -189,22 +198,22 @@ public interface ListaCompilerPackage extends EPackage
   int FIRST_LEVEL_EXP = 4;
 
   /**
-   * The feature id for the '<em><b>First</b></em>' containment reference.
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FIRST_LEVEL_EXP__FIRST = EXPRESSION_FEATURE_COUNT + 0;
+  int FIRST_LEVEL_EXP__ARGS = 0;
 
   /**
-   * The feature id for the '<em><b>Second</b></em>' containment reference.
+   * The feature id for the '<em><b>Op</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FIRST_LEVEL_EXP__SECOND = EXPRESSION_FEATURE_COUNT + 1;
+  int FIRST_LEVEL_EXP__OP = 1;
 
   /**
    * The number of structural features of the '<em>First Level Exp</em>' class.
@@ -213,7 +222,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FIRST_LEVEL_EXP_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+  int FIRST_LEVEL_EXP_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.SecondLevelExpImpl <em>Second Level Exp</em>}' class.
@@ -226,22 +235,22 @@ public interface ListaCompilerPackage extends EPackage
   int SECOND_LEVEL_EXP = 5;
 
   /**
-   * The feature id for the '<em><b>First</b></em>' containment reference.
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SECOND_LEVEL_EXP__FIRST = 0;
+  int SECOND_LEVEL_EXP__ARGS = 0;
 
   /**
-   * The feature id for the '<em><b>Second</b></em>' containment reference.
+   * The feature id for the '<em><b>Op</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SECOND_LEVEL_EXP__SECOND = 1;
+  int SECOND_LEVEL_EXP__OP = 1;
 
   /**
    * The number of structural features of the '<em>Second Level Exp</em>' class.
@@ -263,22 +272,22 @@ public interface ListaCompilerPackage extends EPackage
   int THIRD_LEVEL_EXP = 6;
 
   /**
-   * The feature id for the '<em><b>First</b></em>' containment reference.
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int THIRD_LEVEL_EXP__FIRST = 0;
+  int THIRD_LEVEL_EXP__ARGS = 0;
 
   /**
-   * The feature id for the '<em><b>Second</b></em>' containment reference.
+   * The feature id for the '<em><b>Op</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int THIRD_LEVEL_EXP__SECOND = 1;
+  int THIRD_LEVEL_EXP__OP = 1;
 
   /**
    * The number of structural features of the '<em>Third Level Exp</em>' class.
@@ -300,22 +309,22 @@ public interface ListaCompilerPackage extends EPackage
   int FOURTH_LEVEL_EXP = 7;
 
   /**
-   * The feature id for the '<em><b>First</b></em>' containment reference.
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FOURTH_LEVEL_EXP__FIRST = 0;
+  int FOURTH_LEVEL_EXP__ARGS = 0;
 
   /**
-   * The feature id for the '<em><b>Second</b></em>' containment reference.
+   * The feature id for the '<em><b>Op</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FOURTH_LEVEL_EXP__SECOND = 1;
+  int FOURTH_LEVEL_EXP__OP = 1;
 
   /**
    * The number of structural features of the '<em>Fourth Level Exp</em>' class.
@@ -850,6 +859,46 @@ public interface ListaCompilerPackage extends EPackage
    */
   int CFLOW = 27;
 
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.FirstLevelOp <em>First Level Op</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.FirstLevelOp
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFirstLevelOp()
+   * @generated
+   */
+  int FIRST_LEVEL_OP = 28;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.SecondLevelOp <em>Second Level Op</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.SecondLevelOp
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getSecondLevelOp()
+   * @generated
+   */
+  int SECOND_LEVEL_OP = 29;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.ThirdLevelOp <em>Third Level Op</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.ThirdLevelOp
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getThirdLevelOp()
+   * @generated
+   */
+  int THIRD_LEVEL_OP = 30;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.FourthLevelOp <em>Fourth Level Op</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.FourthLevelOp
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFourthLevelOp()
+   * @generated
+   */
+  int FOURTH_LEVEL_OP = 31;
+
 
   /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.Lista <em>Lista</em>}'.
@@ -947,6 +996,17 @@ public interface ListaCompilerPackage extends EPackage
   EClass getExpression();
 
   /**
+   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.Expression#getExp <em>Exp</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Exp</em>'.
+   * @see edu.upb.compilacion.listaCompiler.Expression#getExp()
+   * @see #getExpression()
+   * @generated
+   */
+  EReference getExpression_Exp();
+
+  /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.FirstLevelExp <em>First Level Exp</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -957,26 +1017,26 @@ public interface ListaCompilerPackage extends EPackage
   EClass getFirstLevelExp();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.FirstLevelExp#getFirst <em>First</em>}'.
+   * Returns the meta object for the containment reference list '{@link edu.upb.compilacion.listaCompiler.FirstLevelExp#getArgs <em>Args</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>First</em>'.
-   * @see edu.upb.compilacion.listaCompiler.FirstLevelExp#getFirst()
+   * @return the meta object for the containment reference list '<em>Args</em>'.
+   * @see edu.upb.compilacion.listaCompiler.FirstLevelExp#getArgs()
    * @see #getFirstLevelExp()
    * @generated
    */
-  EReference getFirstLevelExp_First();
+  EReference getFirstLevelExp_Args();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.FirstLevelExp#getSecond <em>Second</em>}'.
+   * Returns the meta object for the attribute '{@link edu.upb.compilacion.listaCompiler.FirstLevelExp#getOp <em>Op</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Second</em>'.
-   * @see edu.upb.compilacion.listaCompiler.FirstLevelExp#getSecond()
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see edu.upb.compilacion.listaCompiler.FirstLevelExp#getOp()
    * @see #getFirstLevelExp()
    * @generated
    */
-  EReference getFirstLevelExp_Second();
+  EAttribute getFirstLevelExp_Op();
 
   /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.SecondLevelExp <em>Second Level Exp</em>}'.
@@ -989,26 +1049,26 @@ public interface ListaCompilerPackage extends EPackage
   EClass getSecondLevelExp();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.SecondLevelExp#getFirst <em>First</em>}'.
+   * Returns the meta object for the containment reference list '{@link edu.upb.compilacion.listaCompiler.SecondLevelExp#getArgs <em>Args</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>First</em>'.
-   * @see edu.upb.compilacion.listaCompiler.SecondLevelExp#getFirst()
+   * @return the meta object for the containment reference list '<em>Args</em>'.
+   * @see edu.upb.compilacion.listaCompiler.SecondLevelExp#getArgs()
    * @see #getSecondLevelExp()
    * @generated
    */
-  EReference getSecondLevelExp_First();
+  EReference getSecondLevelExp_Args();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.SecondLevelExp#getSecond <em>Second</em>}'.
+   * Returns the meta object for the attribute '{@link edu.upb.compilacion.listaCompiler.SecondLevelExp#getOp <em>Op</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Second</em>'.
-   * @see edu.upb.compilacion.listaCompiler.SecondLevelExp#getSecond()
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see edu.upb.compilacion.listaCompiler.SecondLevelExp#getOp()
    * @see #getSecondLevelExp()
    * @generated
    */
-  EReference getSecondLevelExp_Second();
+  EAttribute getSecondLevelExp_Op();
 
   /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.ThirdLevelExp <em>Third Level Exp</em>}'.
@@ -1021,26 +1081,26 @@ public interface ListaCompilerPackage extends EPackage
   EClass getThirdLevelExp();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.ThirdLevelExp#getFirst <em>First</em>}'.
+   * Returns the meta object for the containment reference list '{@link edu.upb.compilacion.listaCompiler.ThirdLevelExp#getArgs <em>Args</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>First</em>'.
-   * @see edu.upb.compilacion.listaCompiler.ThirdLevelExp#getFirst()
+   * @return the meta object for the containment reference list '<em>Args</em>'.
+   * @see edu.upb.compilacion.listaCompiler.ThirdLevelExp#getArgs()
    * @see #getThirdLevelExp()
    * @generated
    */
-  EReference getThirdLevelExp_First();
+  EReference getThirdLevelExp_Args();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.ThirdLevelExp#getSecond <em>Second</em>}'.
+   * Returns the meta object for the attribute '{@link edu.upb.compilacion.listaCompiler.ThirdLevelExp#getOp <em>Op</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Second</em>'.
-   * @see edu.upb.compilacion.listaCompiler.ThirdLevelExp#getSecond()
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see edu.upb.compilacion.listaCompiler.ThirdLevelExp#getOp()
    * @see #getThirdLevelExp()
    * @generated
    */
-  EReference getThirdLevelExp_Second();
+  EAttribute getThirdLevelExp_Op();
 
   /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.FourthLevelExp <em>Fourth Level Exp</em>}'.
@@ -1053,26 +1113,26 @@ public interface ListaCompilerPackage extends EPackage
   EClass getFourthLevelExp();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.FourthLevelExp#getFirst <em>First</em>}'.
+   * Returns the meta object for the containment reference list '{@link edu.upb.compilacion.listaCompiler.FourthLevelExp#getArgs <em>Args</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>First</em>'.
-   * @see edu.upb.compilacion.listaCompiler.FourthLevelExp#getFirst()
+   * @return the meta object for the containment reference list '<em>Args</em>'.
+   * @see edu.upb.compilacion.listaCompiler.FourthLevelExp#getArgs()
    * @see #getFourthLevelExp()
    * @generated
    */
-  EReference getFourthLevelExp_First();
+  EReference getFourthLevelExp_Args();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.FourthLevelExp#getSecond <em>Second</em>}'.
+   * Returns the meta object for the attribute '{@link edu.upb.compilacion.listaCompiler.FourthLevelExp#getOp <em>Op</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Second</em>'.
-   * @see edu.upb.compilacion.listaCompiler.FourthLevelExp#getSecond()
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see edu.upb.compilacion.listaCompiler.FourthLevelExp#getOp()
    * @see #getFourthLevelExp()
    * @generated
    */
-  EReference getFourthLevelExp_Second();
+  EAttribute getFourthLevelExp_Op();
 
   /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.Term <em>Term</em>}'.
@@ -1418,6 +1478,46 @@ public interface ListaCompilerPackage extends EPackage
   EEnum getCFlow();
 
   /**
+   * Returns the meta object for enum '{@link edu.upb.compilacion.listaCompiler.FirstLevelOp <em>First Level Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>First Level Op</em>'.
+   * @see edu.upb.compilacion.listaCompiler.FirstLevelOp
+   * @generated
+   */
+  EEnum getFirstLevelOp();
+
+  /**
+   * Returns the meta object for enum '{@link edu.upb.compilacion.listaCompiler.SecondLevelOp <em>Second Level Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Second Level Op</em>'.
+   * @see edu.upb.compilacion.listaCompiler.SecondLevelOp
+   * @generated
+   */
+  EEnum getSecondLevelOp();
+
+  /**
+   * Returns the meta object for enum '{@link edu.upb.compilacion.listaCompiler.ThirdLevelOp <em>Third Level Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Third Level Op</em>'.
+   * @see edu.upb.compilacion.listaCompiler.ThirdLevelOp
+   * @generated
+   */
+  EEnum getThirdLevelOp();
+
+  /**
+   * Returns the meta object for enum '{@link edu.upb.compilacion.listaCompiler.FourthLevelOp <em>Fourth Level Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Fourth Level Op</em>'.
+   * @see edu.upb.compilacion.listaCompiler.FourthLevelOp
+   * @generated
+   */
+  EEnum getFourthLevelOp();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1521,6 +1621,14 @@ public interface ListaCompilerPackage extends EPackage
     EClass EXPRESSION = eINSTANCE.getExpression();
 
     /**
+     * The meta object literal for the '<em><b>Exp</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPRESSION__EXP = eINSTANCE.getExpression_Exp();
+
+    /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.FirstLevelExpImpl <em>First Level Exp</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1531,20 +1639,20 @@ public interface ListaCompilerPackage extends EPackage
     EClass FIRST_LEVEL_EXP = eINSTANCE.getFirstLevelExp();
 
     /**
-     * The meta object literal for the '<em><b>First</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FIRST_LEVEL_EXP__FIRST = eINSTANCE.getFirstLevelExp_First();
+    EReference FIRST_LEVEL_EXP__ARGS = eINSTANCE.getFirstLevelExp_Args();
 
     /**
-     * The meta object literal for the '<em><b>Second</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FIRST_LEVEL_EXP__SECOND = eINSTANCE.getFirstLevelExp_Second();
+    EAttribute FIRST_LEVEL_EXP__OP = eINSTANCE.getFirstLevelExp_Op();
 
     /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.SecondLevelExpImpl <em>Second Level Exp</em>}' class.
@@ -1557,20 +1665,20 @@ public interface ListaCompilerPackage extends EPackage
     EClass SECOND_LEVEL_EXP = eINSTANCE.getSecondLevelExp();
 
     /**
-     * The meta object literal for the '<em><b>First</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SECOND_LEVEL_EXP__FIRST = eINSTANCE.getSecondLevelExp_First();
+    EReference SECOND_LEVEL_EXP__ARGS = eINSTANCE.getSecondLevelExp_Args();
 
     /**
-     * The meta object literal for the '<em><b>Second</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SECOND_LEVEL_EXP__SECOND = eINSTANCE.getSecondLevelExp_Second();
+    EAttribute SECOND_LEVEL_EXP__OP = eINSTANCE.getSecondLevelExp_Op();
 
     /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.ThirdLevelExpImpl <em>Third Level Exp</em>}' class.
@@ -1583,20 +1691,20 @@ public interface ListaCompilerPackage extends EPackage
     EClass THIRD_LEVEL_EXP = eINSTANCE.getThirdLevelExp();
 
     /**
-     * The meta object literal for the '<em><b>First</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference THIRD_LEVEL_EXP__FIRST = eINSTANCE.getThirdLevelExp_First();
+    EReference THIRD_LEVEL_EXP__ARGS = eINSTANCE.getThirdLevelExp_Args();
 
     /**
-     * The meta object literal for the '<em><b>Second</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference THIRD_LEVEL_EXP__SECOND = eINSTANCE.getThirdLevelExp_Second();
+    EAttribute THIRD_LEVEL_EXP__OP = eINSTANCE.getThirdLevelExp_Op();
 
     /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.FourthLevelExpImpl <em>Fourth Level Exp</em>}' class.
@@ -1609,20 +1717,20 @@ public interface ListaCompilerPackage extends EPackage
     EClass FOURTH_LEVEL_EXP = eINSTANCE.getFourthLevelExp();
 
     /**
-     * The meta object literal for the '<em><b>First</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FOURTH_LEVEL_EXP__FIRST = eINSTANCE.getFourthLevelExp_First();
+    EReference FOURTH_LEVEL_EXP__ARGS = eINSTANCE.getFourthLevelExp_Args();
 
     /**
-     * The meta object literal for the '<em><b>Second</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FOURTH_LEVEL_EXP__SECOND = eINSTANCE.getFourthLevelExp_Second();
+    EAttribute FOURTH_LEVEL_EXP__OP = eINSTANCE.getFourthLevelExp_Op();
 
     /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.TermImpl <em>Term</em>}' class.
@@ -1927,6 +2035,46 @@ public interface ListaCompilerPackage extends EPackage
      * @generated
      */
     EEnum CFLOW = eINSTANCE.getCFlow();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.FirstLevelOp <em>First Level Op</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.FirstLevelOp
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFirstLevelOp()
+     * @generated
+     */
+    EEnum FIRST_LEVEL_OP = eINSTANCE.getFirstLevelOp();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.SecondLevelOp <em>Second Level Op</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.SecondLevelOp
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getSecondLevelOp()
+     * @generated
+     */
+    EEnum SECOND_LEVEL_OP = eINSTANCE.getSecondLevelOp();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.ThirdLevelOp <em>Third Level Op</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.ThirdLevelOp
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getThirdLevelOp()
+     * @generated
+     */
+    EEnum THIRD_LEVEL_OP = eINSTANCE.getThirdLevelOp();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.FourthLevelOp <em>Fourth Level Op</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.FourthLevelOp
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFourthLevelOp()
+     * @generated
+     */
+    EEnum FOURTH_LEVEL_OP = eINSTANCE.getFourthLevelOp();
 
   }
 

@@ -2,6 +2,8 @@
  */
 package edu.upb.compilacion.listaCompiler;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -13,8 +15,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.upb.compilacion.listaCompiler.SecondLevelExp#getFirst <em>First</em>}</li>
- *   <li>{@link edu.upb.compilacion.listaCompiler.SecondLevelExp#getSecond <em>Second</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.SecondLevelExp#getArgs <em>Args</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.SecondLevelExp#getOp <em>Op</em>}</li>
  * </ul>
  *
  * @see edu.upb.compilacion.listaCompiler.ListaCompilerPackage#getSecondLevelExp()
@@ -24,55 +26,48 @@ import org.eclipse.emf.ecore.EObject;
 public interface SecondLevelExp extends EObject
 {
   /**
-   * Returns the value of the '<em><b>First</b></em>' containment reference.
+   * Returns the value of the '<em><b>Args</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>First</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Args</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>First</em>' containment reference.
-   * @see #setFirst(ThirdLevelExp)
-   * @see edu.upb.compilacion.listaCompiler.ListaCompilerPackage#getSecondLevelExp_First()
+   * @return the value of the '<em>Args</em>' containment reference list.
+   * @see edu.upb.compilacion.listaCompiler.ListaCompilerPackage#getSecondLevelExp_Args()
    * @model containment="true"
    * @generated
    */
-  ThirdLevelExp getFirst();
+  EList<EObject> getArgs();
 
   /**
-   * Sets the value of the '{@link edu.upb.compilacion.listaCompiler.SecondLevelExp#getFirst <em>First</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>First</em>' containment reference.
-   * @see #getFirst()
-   * @generated
-   */
-  void setFirst(ThirdLevelExp value);
-
-  /**
-   * Returns the value of the '<em><b>Second</b></em>' containment reference.
+   * Returns the value of the '<em><b>Op</b></em>' attribute.
+   * The literals are from the enumeration {@link edu.upb.compilacion.listaCompiler.SecondLevelOp}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Second</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Op</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Second</em>' containment reference.
-   * @see #setSecond(SecondLevelExp)
-   * @see edu.upb.compilacion.listaCompiler.ListaCompilerPackage#getSecondLevelExp_Second()
-   * @model containment="true"
+   * @return the value of the '<em>Op</em>' attribute.
+   * @see edu.upb.compilacion.listaCompiler.SecondLevelOp
+   * @see #setOp(SecondLevelOp)
+   * @see edu.upb.compilacion.listaCompiler.ListaCompilerPackage#getSecondLevelExp_Op()
+   * @model
    * @generated
    */
-  SecondLevelExp getSecond();
+  SecondLevelOp getOp();
 
   /**
-   * Sets the value of the '{@link edu.upb.compilacion.listaCompiler.SecondLevelExp#getSecond <em>Second</em>}' containment reference.
+   * Sets the value of the '{@link edu.upb.compilacion.listaCompiler.SecondLevelExp#getOp <em>Op</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Second</em>' containment reference.
-   * @see #getSecond()
+   * @param value the new value of the '<em>Op</em>' attribute.
+   * @see edu.upb.compilacion.listaCompiler.SecondLevelOp
+   * @see #getOp()
    * @generated
    */
-  void setSecond(SecondLevelExp value);
+  void setOp(SecondLevelOp value);
 
 } // SecondLevelExp

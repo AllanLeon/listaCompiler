@@ -144,198 +144,178 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Expression");
-		private final RuleCall cFirstLevelExpParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Assignment cExpAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cExpFirstLevelExpParserRuleCall_0 = (RuleCall)cExpAssignment.eContents().get(0);
 		
 		//Expression:
-		//	FirstLevelExp;
+		//	exp=FirstLevelExp;
 		@Override public ParserRule getRule() { return rule; }
 
+		//exp=FirstLevelExp
+		public Assignment getExpAssignment() { return cExpAssignment; }
+
 		//FirstLevelExp
-		public RuleCall getFirstLevelExpParserRuleCall() { return cFirstLevelExpParserRuleCall; }
+		public RuleCall getExpFirstLevelExpParserRuleCall_0() { return cExpFirstLevelExpParserRuleCall_0; }
 	}
 
 	public class FirstLevelExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FirstLevelExp");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cFirstAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cFirstSecondLevelExpParserRuleCall_0_0 = (RuleCall)cFirstAssignment_0.eContents().get(0);
+		private final Assignment cArgsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cArgsSecondLevelExpParserRuleCall_0_0 = (RuleCall)cArgsAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final Keyword cAmpersandKeyword_1_0_0 = (Keyword)cAlternatives_1_0.eContents().get(0);
-		private final Keyword cVerticalLineKeyword_1_0_1 = (Keyword)cAlternatives_1_0.eContents().get(1);
-		private final Assignment cSecondAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cSecondFirstLevelExpParserRuleCall_1_1_0 = (RuleCall)cSecondAssignment_1_1.eContents().get(0);
+		private final Assignment cOpAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cOpFirstLevelOpEnumRuleCall_1_0_0 = (RuleCall)cOpAssignment_1_0.eContents().get(0);
+		private final Assignment cArgsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cArgsFirstLevelExpParserRuleCall_1_1_0 = (RuleCall)cArgsAssignment_1_1.eContents().get(0);
 		
 		//FirstLevelExp:
-		//	first=SecondLevelExp (("&" | "|") second=FirstLevelExp)?;
+		//	args+=SecondLevelExp (op=FirstLevelOp args+=FirstLevelExp)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//first=SecondLevelExp (("&" | "|") second=FirstLevelExp)?
+		//args+=SecondLevelExp (op=FirstLevelOp args+=FirstLevelExp)?
 		public Group getGroup() { return cGroup; }
 
-		//first=SecondLevelExp
-		public Assignment getFirstAssignment_0() { return cFirstAssignment_0; }
+		//args+=SecondLevelExp
+		public Assignment getArgsAssignment_0() { return cArgsAssignment_0; }
 
 		//SecondLevelExp
-		public RuleCall getFirstSecondLevelExpParserRuleCall_0_0() { return cFirstSecondLevelExpParserRuleCall_0_0; }
+		public RuleCall getArgsSecondLevelExpParserRuleCall_0_0() { return cArgsSecondLevelExpParserRuleCall_0_0; }
 
-		//(("&" | "|") second=FirstLevelExp)?
+		//(op=FirstLevelOp args+=FirstLevelExp)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//"&" | "|"
-		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
+		//op=FirstLevelOp
+		public Assignment getOpAssignment_1_0() { return cOpAssignment_1_0; }
 
-		//"&"
-		public Keyword getAmpersandKeyword_1_0_0() { return cAmpersandKeyword_1_0_0; }
+		//FirstLevelOp
+		public RuleCall getOpFirstLevelOpEnumRuleCall_1_0_0() { return cOpFirstLevelOpEnumRuleCall_1_0_0; }
 
-		//"|"
-		public Keyword getVerticalLineKeyword_1_0_1() { return cVerticalLineKeyword_1_0_1; }
-
-		//second=FirstLevelExp
-		public Assignment getSecondAssignment_1_1() { return cSecondAssignment_1_1; }
+		//args+=FirstLevelExp
+		public Assignment getArgsAssignment_1_1() { return cArgsAssignment_1_1; }
 
 		//FirstLevelExp
-		public RuleCall getSecondFirstLevelExpParserRuleCall_1_1_0() { return cSecondFirstLevelExpParserRuleCall_1_1_0; }
+		public RuleCall getArgsFirstLevelExpParserRuleCall_1_1_0() { return cArgsFirstLevelExpParserRuleCall_1_1_0; }
 	}
 
 	public class SecondLevelExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SecondLevelExp");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cFirstAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cFirstThirdLevelExpParserRuleCall_0_0 = (RuleCall)cFirstAssignment_0.eContents().get(0);
+		private final Assignment cArgsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cArgsThirdLevelExpParserRuleCall_0_0 = (RuleCall)cArgsAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_1_0_0 = (Keyword)cAlternatives_1_0.eContents().get(0);
-		private final Keyword cLessThanSignKeyword_1_0_1 = (Keyword)cAlternatives_1_0.eContents().get(1);
-		private final Keyword cEqualsSignEqualsSignKeyword_1_0_2 = (Keyword)cAlternatives_1_0.eContents().get(2);
-		private final Assignment cSecondAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cSecondSecondLevelExpParserRuleCall_1_1_0 = (RuleCall)cSecondAssignment_1_1.eContents().get(0);
+		private final Assignment cOpAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cOpSecondLevelOpEnumRuleCall_1_0_0 = (RuleCall)cOpAssignment_1_0.eContents().get(0);
+		private final Assignment cArgsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cArgsSecondLevelExpParserRuleCall_1_1_0 = (RuleCall)cArgsAssignment_1_1.eContents().get(0);
 		
 		//SecondLevelExp:
-		//	first=ThirdLevelExp ((">" | "<" | "==") second=SecondLevelExp)?;
+		//	args+=ThirdLevelExp (op=SecondLevelOp args+=SecondLevelExp)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//first=ThirdLevelExp ((">" | "<" | "==") second=SecondLevelExp)?
+		//args+=ThirdLevelExp (op=SecondLevelOp args+=SecondLevelExp)?
 		public Group getGroup() { return cGroup; }
 
-		//first=ThirdLevelExp
-		public Assignment getFirstAssignment_0() { return cFirstAssignment_0; }
+		//args+=ThirdLevelExp
+		public Assignment getArgsAssignment_0() { return cArgsAssignment_0; }
 
 		//ThirdLevelExp
-		public RuleCall getFirstThirdLevelExpParserRuleCall_0_0() { return cFirstThirdLevelExpParserRuleCall_0_0; }
+		public RuleCall getArgsThirdLevelExpParserRuleCall_0_0() { return cArgsThirdLevelExpParserRuleCall_0_0; }
 
-		//((">" | "<" | "==") second=SecondLevelExp)?
+		//(op=SecondLevelOp args+=SecondLevelExp)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//">" | "<" | "=="
-		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
+		//op=SecondLevelOp
+		public Assignment getOpAssignment_1_0() { return cOpAssignment_1_0; }
 
-		//">"
-		public Keyword getGreaterThanSignKeyword_1_0_0() { return cGreaterThanSignKeyword_1_0_0; }
+		//SecondLevelOp
+		public RuleCall getOpSecondLevelOpEnumRuleCall_1_0_0() { return cOpSecondLevelOpEnumRuleCall_1_0_0; }
 
-		//"<"
-		public Keyword getLessThanSignKeyword_1_0_1() { return cLessThanSignKeyword_1_0_1; }
-
-		//"=="
-		public Keyword getEqualsSignEqualsSignKeyword_1_0_2() { return cEqualsSignEqualsSignKeyword_1_0_2; }
-
-		//second=SecondLevelExp
-		public Assignment getSecondAssignment_1_1() { return cSecondAssignment_1_1; }
+		//args+=SecondLevelExp
+		public Assignment getArgsAssignment_1_1() { return cArgsAssignment_1_1; }
 
 		//SecondLevelExp
-		public RuleCall getSecondSecondLevelExpParserRuleCall_1_1_0() { return cSecondSecondLevelExpParserRuleCall_1_1_0; }
+		public RuleCall getArgsSecondLevelExpParserRuleCall_1_1_0() { return cArgsSecondLevelExpParserRuleCall_1_1_0; }
 	}
 
 	public class ThirdLevelExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ThirdLevelExp");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cFirstAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cFirstFourthLevelExpParserRuleCall_0_0 = (RuleCall)cFirstAssignment_0.eContents().get(0);
+		private final Assignment cArgsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cArgsFourthLevelExpParserRuleCall_0_0 = (RuleCall)cArgsAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final Keyword cPlusSignKeyword_1_0_0 = (Keyword)cAlternatives_1_0.eContents().get(0);
-		private final Keyword cHyphenMinusKeyword_1_0_1 = (Keyword)cAlternatives_1_0.eContents().get(1);
-		private final Keyword cPlusSignPlusSignKeyword_1_0_2 = (Keyword)cAlternatives_1_0.eContents().get(2);
-		private final Assignment cSecondAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cSecondThirdLevelExpParserRuleCall_1_1_0 = (RuleCall)cSecondAssignment_1_1.eContents().get(0);
+		private final Assignment cOpAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cOpThirdLevelOpEnumRuleCall_1_0_0 = (RuleCall)cOpAssignment_1_0.eContents().get(0);
+		private final Assignment cArgsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cArgsThirdLevelExpParserRuleCall_1_1_0 = (RuleCall)cArgsAssignment_1_1.eContents().get(0);
 		
 		//ThirdLevelExp:
-		//	first=FourthLevelExp (("+" | "-" | "++") second=ThirdLevelExp)?;
+		//	args+=FourthLevelExp (op=ThirdLevelOp args+=ThirdLevelExp)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//first=FourthLevelExp (("+" | "-" | "++") second=ThirdLevelExp)?
+		//args+=FourthLevelExp (op=ThirdLevelOp args+=ThirdLevelExp)?
 		public Group getGroup() { return cGroup; }
 
-		//first=FourthLevelExp
-		public Assignment getFirstAssignment_0() { return cFirstAssignment_0; }
+		//args+=FourthLevelExp
+		public Assignment getArgsAssignment_0() { return cArgsAssignment_0; }
 
 		//FourthLevelExp
-		public RuleCall getFirstFourthLevelExpParserRuleCall_0_0() { return cFirstFourthLevelExpParserRuleCall_0_0; }
+		public RuleCall getArgsFourthLevelExpParserRuleCall_0_0() { return cArgsFourthLevelExpParserRuleCall_0_0; }
 
-		//(("+" | "-" | "++") second=ThirdLevelExp)?
+		//(op=ThirdLevelOp args+=ThirdLevelExp)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//"+" | "-" | "++"
-		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
+		//op=ThirdLevelOp
+		public Assignment getOpAssignment_1_0() { return cOpAssignment_1_0; }
 
-		//"+"
-		public Keyword getPlusSignKeyword_1_0_0() { return cPlusSignKeyword_1_0_0; }
+		//ThirdLevelOp
+		public RuleCall getOpThirdLevelOpEnumRuleCall_1_0_0() { return cOpThirdLevelOpEnumRuleCall_1_0_0; }
 
-		//"-"
-		public Keyword getHyphenMinusKeyword_1_0_1() { return cHyphenMinusKeyword_1_0_1; }
-
-		//"++"
-		public Keyword getPlusSignPlusSignKeyword_1_0_2() { return cPlusSignPlusSignKeyword_1_0_2; }
-
-		//second=ThirdLevelExp
-		public Assignment getSecondAssignment_1_1() { return cSecondAssignment_1_1; }
+		//args+=ThirdLevelExp
+		public Assignment getArgsAssignment_1_1() { return cArgsAssignment_1_1; }
 
 		//ThirdLevelExp
-		public RuleCall getSecondThirdLevelExpParserRuleCall_1_1_0() { return cSecondThirdLevelExpParserRuleCall_1_1_0; }
+		public RuleCall getArgsThirdLevelExpParserRuleCall_1_1_0() { return cArgsThirdLevelExpParserRuleCall_1_1_0; }
 	}
 
 	public class FourthLevelExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FourthLevelExp");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cFirstAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cFirstTermParserRuleCall_0_0 = (RuleCall)cFirstAssignment_0.eContents().get(0);
+		private final Assignment cArgsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cArgsTermParserRuleCall_0_0 = (RuleCall)cArgsAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final Keyword cAsteriskKeyword_1_0_0 = (Keyword)cAlternatives_1_0.eContents().get(0);
-		private final Keyword cSolidusKeyword_1_0_1 = (Keyword)cAlternatives_1_0.eContents().get(1);
-		private final Assignment cSecondAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cSecondFourthLevelExpParserRuleCall_1_1_0 = (RuleCall)cSecondAssignment_1_1.eContents().get(0);
+		private final Assignment cOpAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cOpFourthLevelOpEnumRuleCall_1_0_0 = (RuleCall)cOpAssignment_1_0.eContents().get(0);
+		private final Assignment cArgsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cArgsFourthLevelExpParserRuleCall_1_1_0 = (RuleCall)cArgsAssignment_1_1.eContents().get(0);
 		
 		//FourthLevelExp:
-		//	first=Term (("*" | "/") second=FourthLevelExp)?;
+		//	args+=Term (op=FourthLevelOp args+=FourthLevelExp)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//first=Term (("*" | "/") second=FourthLevelExp)?
+		//args+=Term (op=FourthLevelOp args+=FourthLevelExp)?
 		public Group getGroup() { return cGroup; }
 
-		//first=Term
-		public Assignment getFirstAssignment_0() { return cFirstAssignment_0; }
+		//args+=Term
+		public Assignment getArgsAssignment_0() { return cArgsAssignment_0; }
 
 		//Term
-		public RuleCall getFirstTermParserRuleCall_0_0() { return cFirstTermParserRuleCall_0_0; }
+		public RuleCall getArgsTermParserRuleCall_0_0() { return cArgsTermParserRuleCall_0_0; }
 
-		//(("*" | "/") second=FourthLevelExp)?
+		//(op=FourthLevelOp args+=FourthLevelExp)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//"*" | "/"
-		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
+		//op=FourthLevelOp
+		public Assignment getOpAssignment_1_0() { return cOpAssignment_1_0; }
 
-		//"*"
-		public Keyword getAsteriskKeyword_1_0_0() { return cAsteriskKeyword_1_0_0; }
+		//FourthLevelOp
+		public RuleCall getOpFourthLevelOpEnumRuleCall_1_0_0() { return cOpFourthLevelOpEnumRuleCall_1_0_0; }
 
-		//"/"
-		public Keyword getSolidusKeyword_1_0_1() { return cSolidusKeyword_1_0_1; }
-
-		//second=FourthLevelExp
-		public Assignment getSecondAssignment_1_1() { return cSecondAssignment_1_1; }
+		//args+=FourthLevelExp
+		public Assignment getArgsAssignment_1_1() { return cArgsAssignment_1_1; }
 
 		//FourthLevelExp
-		public RuleCall getSecondFourthLevelExpParserRuleCall_1_1_0() { return cSecondFourthLevelExpParserRuleCall_1_1_0; }
+		public RuleCall getArgsFourthLevelExpParserRuleCall_1_1_0() { return cArgsFourthLevelExpParserRuleCall_1_1_0; }
 	}
 
 	public class TermElements extends AbstractParserRuleElementFinder {
@@ -918,6 +898,134 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		//"if"
 		public Keyword getIfIfKeyword_0() { return cIfIfKeyword_0; }
 	}
+
+	public class FirstLevelOpElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "FirstLevelOp");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cAndEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cAndAmpersandKeyword_0_0 = (Keyword)cAndEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cOrEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cOrVerticalLineKeyword_1_0 = (Keyword)cOrEnumLiteralDeclaration_1.eContents().get(0);
+		
+		//enum FirstLevelOp:
+		//	and="&" | or="|";
+		public EnumRule getRule() { return rule; }
+
+		//and="&" | or="|"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//and="&"
+		public EnumLiteralDeclaration getAndEnumLiteralDeclaration_0() { return cAndEnumLiteralDeclaration_0; }
+
+		//"&"
+		public Keyword getAndAmpersandKeyword_0_0() { return cAndAmpersandKeyword_0_0; }
+
+		//or="|"
+		public EnumLiteralDeclaration getOrEnumLiteralDeclaration_1() { return cOrEnumLiteralDeclaration_1; }
+
+		//"|"
+		public Keyword getOrVerticalLineKeyword_1_0() { return cOrVerticalLineKeyword_1_0; }
+	}
+
+	public class SecondLevelOpElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "SecondLevelOp");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cGtEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cGtGreaterThanSignKeyword_0_0 = (Keyword)cGtEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cLtEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cLtLessThanSignKeyword_1_0 = (Keyword)cLtEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cEqEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cEqEqualsSignEqualsSignKeyword_2_0 = (Keyword)cEqEnumLiteralDeclaration_2.eContents().get(0);
+		
+		//enum SecondLevelOp:
+		//	gt=">" | lt="<" | eq="==";
+		public EnumRule getRule() { return rule; }
+
+		//gt=">" | lt="<" | eq="=="
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//gt=">"
+		public EnumLiteralDeclaration getGtEnumLiteralDeclaration_0() { return cGtEnumLiteralDeclaration_0; }
+
+		//">"
+		public Keyword getGtGreaterThanSignKeyword_0_0() { return cGtGreaterThanSignKeyword_0_0; }
+
+		//lt="<"
+		public EnumLiteralDeclaration getLtEnumLiteralDeclaration_1() { return cLtEnumLiteralDeclaration_1; }
+
+		//"<"
+		public Keyword getLtLessThanSignKeyword_1_0() { return cLtLessThanSignKeyword_1_0; }
+
+		//eq="=="
+		public EnumLiteralDeclaration getEqEnumLiteralDeclaration_2() { return cEqEnumLiteralDeclaration_2; }
+
+		//"=="
+		public Keyword getEqEqualsSignEqualsSignKeyword_2_0() { return cEqEqualsSignEqualsSignKeyword_2_0; }
+	}
+
+	public class ThirdLevelOpElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "ThirdLevelOp");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cPlusEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cPlusPlusSignKeyword_0_0 = (Keyword)cPlusEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cMinusEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cMinusHyphenMinusKeyword_1_0 = (Keyword)cMinusEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cConcatEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cConcatPlusSignPlusSignKeyword_2_0 = (Keyword)cConcatEnumLiteralDeclaration_2.eContents().get(0);
+		
+		//enum ThirdLevelOp:
+		//	plus="+" | minus="-" | concat="++";
+		public EnumRule getRule() { return rule; }
+
+		//plus="+" | minus="-" | concat="++"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//plus="+"
+		public EnumLiteralDeclaration getPlusEnumLiteralDeclaration_0() { return cPlusEnumLiteralDeclaration_0; }
+
+		//"+"
+		public Keyword getPlusPlusSignKeyword_0_0() { return cPlusPlusSignKeyword_0_0; }
+
+		//minus="-"
+		public EnumLiteralDeclaration getMinusEnumLiteralDeclaration_1() { return cMinusEnumLiteralDeclaration_1; }
+
+		//"-"
+		public Keyword getMinusHyphenMinusKeyword_1_0() { return cMinusHyphenMinusKeyword_1_0; }
+
+		//concat="++"
+		public EnumLiteralDeclaration getConcatEnumLiteralDeclaration_2() { return cConcatEnumLiteralDeclaration_2; }
+
+		//"++"
+		public Keyword getConcatPlusSignPlusSignKeyword_2_0() { return cConcatPlusSignPlusSignKeyword_2_0; }
+	}
+
+	public class FourthLevelOpElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "FourthLevelOp");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cMultEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cMultAsteriskKeyword_0_0 = (Keyword)cMultEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cDivEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cDivSolidusKeyword_1_0 = (Keyword)cDivEnumLiteralDeclaration_1.eContents().get(0);
+		
+		//enum FourthLevelOp:
+		//	mult="*" | div="/";
+		public EnumRule getRule() { return rule; }
+
+		//mult="*" | div="/"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//mult="*"
+		public EnumLiteralDeclaration getMultEnumLiteralDeclaration_0() { return cMultEnumLiteralDeclaration_0; }
+
+		//"*"
+		public Keyword getMultAsteriskKeyword_0_0() { return cMultAsteriskKeyword_0_0; }
+
+		//div="/"
+		public EnumLiteralDeclaration getDivEnumLiteralDeclaration_1() { return cDivEnumLiteralDeclaration_1; }
+
+		//"/"
+		public Keyword getDivSolidusKeyword_1_0() { return cDivSolidusKeyword_1_0; }
+	}
 	
 	private final ListaElements pLista;
 	private final EvaluationElements pEvaluation;
@@ -946,6 +1054,10 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	private final BoolElements unknownRuleBool;
 	private final PDFunctionElements unknownRulePDFunction;
 	private final CFlowElements unknownRuleCFlow;
+	private final FirstLevelOpElements unknownRuleFirstLevelOp;
+	private final SecondLevelOpElements unknownRuleSecondLevelOp;
+	private final ThirdLevelOpElements unknownRuleThirdLevelOp;
+	private final FourthLevelOpElements unknownRuleFourthLevelOp;
 	private final TerminalRule tIDFUNCVAR;
 	
 	private final Grammar grammar;
@@ -984,6 +1096,10 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		this.unknownRuleBool = new BoolElements();
 		this.unknownRulePDFunction = new PDFunctionElements();
 		this.unknownRuleCFlow = new CFlowElements();
+		this.unknownRuleFirstLevelOp = new FirstLevelOpElements();
+		this.unknownRuleSecondLevelOp = new SecondLevelOpElements();
+		this.unknownRuleThirdLevelOp = new ThirdLevelOpElements();
+		this.unknownRuleFourthLevelOp = new FourthLevelOpElements();
 		this.tIDFUNCVAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDFUNCVAR");
 	}
 	
@@ -1045,7 +1161,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Expression:
-	//	FirstLevelExp;
+	//	exp=FirstLevelExp;
 	public ExpressionElements getExpressionAccess() {
 		return pExpression;
 	}
@@ -1055,7 +1171,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FirstLevelExp:
-	//	first=SecondLevelExp (("&" | "|") second=FirstLevelExp)?;
+	//	args+=SecondLevelExp (op=FirstLevelOp args+=FirstLevelExp)?;
 	public FirstLevelExpElements getFirstLevelExpAccess() {
 		return pFirstLevelExp;
 	}
@@ -1065,7 +1181,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SecondLevelExp:
-	//	first=ThirdLevelExp ((">" | "<" | "==") second=SecondLevelExp)?;
+	//	args+=ThirdLevelExp (op=SecondLevelOp args+=SecondLevelExp)?;
 	public SecondLevelExpElements getSecondLevelExpAccess() {
 		return pSecondLevelExp;
 	}
@@ -1075,7 +1191,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ThirdLevelExp:
-	//	first=FourthLevelExp (("+" | "-" | "++") second=ThirdLevelExp)?;
+	//	args+=FourthLevelExp (op=ThirdLevelOp args+=ThirdLevelExp)?;
 	public ThirdLevelExpElements getThirdLevelExpAccess() {
 		return pThirdLevelExp;
 	}
@@ -1085,7 +1201,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FourthLevelExp:
-	//	first=Term (("*" | "/") second=FourthLevelExp)?;
+	//	args+=Term (op=FourthLevelOp args+=FourthLevelExp)?;
 	public FourthLevelExpElements getFourthLevelExpAccess() {
 		return pFourthLevelExp;
 	}
@@ -1282,6 +1398,46 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public EnumRule getCFlowRule() {
 		return getCFlowAccess().getRule();
+	}
+
+	//enum FirstLevelOp:
+	//	and="&" | or="|";
+	public FirstLevelOpElements getFirstLevelOpAccess() {
+		return unknownRuleFirstLevelOp;
+	}
+	
+	public EnumRule getFirstLevelOpRule() {
+		return getFirstLevelOpAccess().getRule();
+	}
+
+	//enum SecondLevelOp:
+	//	gt=">" | lt="<" | eq="==";
+	public SecondLevelOpElements getSecondLevelOpAccess() {
+		return unknownRuleSecondLevelOp;
+	}
+	
+	public EnumRule getSecondLevelOpRule() {
+		return getSecondLevelOpAccess().getRule();
+	}
+
+	//enum ThirdLevelOp:
+	//	plus="+" | minus="-" | concat="++";
+	public ThirdLevelOpElements getThirdLevelOpAccess() {
+		return unknownRuleThirdLevelOp;
+	}
+	
+	public EnumRule getThirdLevelOpRule() {
+		return getThirdLevelOpAccess().getRule();
+	}
+
+	//enum FourthLevelOp:
+	//	mult="*" | div="/";
+	public FourthLevelOpElements getFourthLevelOpAccess() {
+		return unknownRuleFourthLevelOp;
+	}
+	
+	public EnumRule getFourthLevelOpRule() {
+		return getFourthLevelOpAccess().getRule();
 	}
 
 	//terminal IDFUNCVAR:

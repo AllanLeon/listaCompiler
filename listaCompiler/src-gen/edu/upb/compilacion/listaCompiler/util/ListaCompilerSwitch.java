@@ -104,7 +104,6 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         FirstLevelExp firstLevelExp = (FirstLevelExp)theEObject;
         T result = caseFirstLevelExp(firstLevelExp);
-        if (result == null) result = caseExpression(firstLevelExp);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

@@ -6,6 +6,7 @@ package edu.upb.compilacion.serializer;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import edu.upb.compilacion.listaCompiler.Evaluation;
+import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
 import edu.upb.compilacion.listaCompiler.FourthLevelExp;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
@@ -48,6 +49,9 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 		if(semanticObject.eClass().getEPackage() == ListaCompilerPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
 			case ListaCompilerPackage.EVALUATION:
 				sequence_Evaluation(context, (Evaluation) semanticObject); 
+				return; 
+			case ListaCompilerPackage.EXPRESSION:
+				sequence_Expression(context, (Expression) semanticObject); 
 				return; 
 			case ListaCompilerPackage.FIRST_LEVEL_EXP:
 				sequence_FirstLevelExp(context, (FirstLevelExp) semanticObject); 
@@ -122,7 +126,23 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (first=SecondLevelExp second=FirstLevelExp?)
+	 *     exp=FirstLevelExp
+	 */
+	protected void sequence_Expression(EObject context, Expression semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.EXPRESSION__EXP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.EXPRESSION__EXP));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getExpressionAccess().getExpFirstLevelExpParserRuleCall_0(), semanticObject.getExp());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (args+=SecondLevelExp (op=FirstLevelOp args+=FirstLevelExp)?)
 	 */
 	protected void sequence_FirstLevelExp(EObject context, FirstLevelExp semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -131,7 +151,7 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (first=Term second=FourthLevelExp?)
+	 *     (args+=Term (op=FourthLevelOp args+=FourthLevelExp)?)
 	 */
 	protected void sequence_FourthLevelExp(EObject context, FourthLevelExp semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -313,7 +333,7 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (first=ThirdLevelExp second=SecondLevelExp?)
+	 *     (args+=ThirdLevelExp (op=SecondLevelOp args+=SecondLevelExp)?)
 	 */
 	protected void sequence_SecondLevelExp(EObject context, SecondLevelExp semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -322,7 +342,7 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (first=FourthLevelExp second=ThirdLevelExp?)
+	 *     (args+=FourthLevelExp (op=ThirdLevelOp args+=ThirdLevelExp)?)
 	 */
 	protected void sequence_ThirdLevelExp(EObject context, ThirdLevelExp semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

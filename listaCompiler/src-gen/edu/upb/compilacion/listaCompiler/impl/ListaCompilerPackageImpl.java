@@ -7,7 +7,9 @@ import edu.upb.compilacion.listaCompiler.CFlow;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
+import edu.upb.compilacion.listaCompiler.FirstLevelOp;
 import edu.upb.compilacion.listaCompiler.FourthLevelExp;
+import edu.upb.compilacion.listaCompiler.FourthLevelOp;
 import edu.upb.compilacion.listaCompiler.FunctionCall;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.IfControlFlow;
@@ -29,8 +31,10 @@ import edu.upb.compilacion.listaCompiler.PosInteger;
 import edu.upb.compilacion.listaCompiler.PreDefFunction;
 import edu.upb.compilacion.listaCompiler.PreDefFunctionCall;
 import edu.upb.compilacion.listaCompiler.SecondLevelExp;
+import edu.upb.compilacion.listaCompiler.SecondLevelOp;
 import edu.upb.compilacion.listaCompiler.Term;
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
+import edu.upb.compilacion.listaCompiler.ThirdLevelOp;
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -246,6 +250,34 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
   private EEnum cFlowEEnum = null;
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum firstLevelOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum secondLevelOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum thirdLevelOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum fourthLevelOpEEnum = null;
+
+  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -403,6 +435,16 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getExpression_Exp()
+  {
+    return (EReference)expressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getFirstLevelExp()
   {
     return firstLevelExpEClass;
@@ -413,7 +455,7 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFirstLevelExp_First()
+  public EReference getFirstLevelExp_Args()
   {
     return (EReference)firstLevelExpEClass.getEStructuralFeatures().get(0);
   }
@@ -423,9 +465,9 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFirstLevelExp_Second()
+  public EAttribute getFirstLevelExp_Op()
   {
-    return (EReference)firstLevelExpEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)firstLevelExpEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -443,7 +485,7 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSecondLevelExp_First()
+  public EReference getSecondLevelExp_Args()
   {
     return (EReference)secondLevelExpEClass.getEStructuralFeatures().get(0);
   }
@@ -453,9 +495,9 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSecondLevelExp_Second()
+  public EAttribute getSecondLevelExp_Op()
   {
-    return (EReference)secondLevelExpEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)secondLevelExpEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -473,7 +515,7 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getThirdLevelExp_First()
+  public EReference getThirdLevelExp_Args()
   {
     return (EReference)thirdLevelExpEClass.getEStructuralFeatures().get(0);
   }
@@ -483,9 +525,9 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getThirdLevelExp_Second()
+  public EAttribute getThirdLevelExp_Op()
   {
-    return (EReference)thirdLevelExpEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)thirdLevelExpEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -503,7 +545,7 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFourthLevelExp_First()
+  public EReference getFourthLevelExp_Args()
   {
     return (EReference)fourthLevelExpEClass.getEStructuralFeatures().get(0);
   }
@@ -513,9 +555,9 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFourthLevelExp_Second()
+  public EAttribute getFourthLevelExp_Op()
   {
-    return (EReference)fourthLevelExpEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)fourthLevelExpEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -853,6 +895,46 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
+  public EEnum getFirstLevelOp()
+  {
+    return firstLevelOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getSecondLevelOp()
+  {
+    return secondLevelOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getThirdLevelOp()
+  {
+    return thirdLevelOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getFourthLevelOp()
+  {
+    return fourthLevelOpEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ListaCompilerFactory getListaCompilerFactory()
   {
     return (ListaCompilerFactory)getEFactoryInstance();
@@ -890,22 +972,23 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__RETURN);
 
     expressionEClass = createEClass(EXPRESSION);
+    createEReference(expressionEClass, EXPRESSION__EXP);
 
     firstLevelExpEClass = createEClass(FIRST_LEVEL_EXP);
-    createEReference(firstLevelExpEClass, FIRST_LEVEL_EXP__FIRST);
-    createEReference(firstLevelExpEClass, FIRST_LEVEL_EXP__SECOND);
+    createEReference(firstLevelExpEClass, FIRST_LEVEL_EXP__ARGS);
+    createEAttribute(firstLevelExpEClass, FIRST_LEVEL_EXP__OP);
 
     secondLevelExpEClass = createEClass(SECOND_LEVEL_EXP);
-    createEReference(secondLevelExpEClass, SECOND_LEVEL_EXP__FIRST);
-    createEReference(secondLevelExpEClass, SECOND_LEVEL_EXP__SECOND);
+    createEReference(secondLevelExpEClass, SECOND_LEVEL_EXP__ARGS);
+    createEAttribute(secondLevelExpEClass, SECOND_LEVEL_EXP__OP);
 
     thirdLevelExpEClass = createEClass(THIRD_LEVEL_EXP);
-    createEReference(thirdLevelExpEClass, THIRD_LEVEL_EXP__FIRST);
-    createEReference(thirdLevelExpEClass, THIRD_LEVEL_EXP__SECOND);
+    createEReference(thirdLevelExpEClass, THIRD_LEVEL_EXP__ARGS);
+    createEAttribute(thirdLevelExpEClass, THIRD_LEVEL_EXP__OP);
 
     fourthLevelExpEClass = createEClass(FOURTH_LEVEL_EXP);
-    createEReference(fourthLevelExpEClass, FOURTH_LEVEL_EXP__FIRST);
-    createEReference(fourthLevelExpEClass, FOURTH_LEVEL_EXP__SECOND);
+    createEReference(fourthLevelExpEClass, FOURTH_LEVEL_EXP__ARGS);
+    createEAttribute(fourthLevelExpEClass, FOURTH_LEVEL_EXP__OP);
 
     termEClass = createEClass(TERM);
 
@@ -958,6 +1041,10 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     boolEEnum = createEEnum(BOOL);
     pdFunctionEEnum = createEEnum(PD_FUNCTION);
     cFlowEEnum = createEEnum(CFLOW);
+    firstLevelOpEEnum = createEEnum(FIRST_LEVEL_OP);
+    secondLevelOpEEnum = createEEnum(SECOND_LEVEL_OP);
+    thirdLevelOpEEnum = createEEnum(THIRD_LEVEL_OP);
+    fourthLevelOpEEnum = createEEnum(FOURTH_LEVEL_OP);
   }
 
   /**
@@ -989,7 +1076,6 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    firstLevelExpEClass.getESuperTypes().add(this.getExpression());
     myIntegerEClass.getESuperTypes().add(this.getTerm());
     myIntegerEClass.getESuperTypes().add(this.getListElem());
     posIntegerEClass.getESuperTypes().add(this.getMyInteger());
@@ -1020,22 +1106,23 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     initEReference(getFunctionDefinition_Return(), this.getExpression(), null, "return", null, 0, 1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExpression_Exp(), this.getFirstLevelExp(), null, "exp", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(firstLevelExpEClass, FirstLevelExp.class, "FirstLevelExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFirstLevelExp_First(), this.getSecondLevelExp(), null, "first", null, 0, 1, FirstLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getFirstLevelExp_Second(), this.getFirstLevelExp(), null, "second", null, 0, 1, FirstLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFirstLevelExp_Args(), ecorePackage.getEObject(), null, "args", null, 0, -1, FirstLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFirstLevelExp_Op(), this.getFirstLevelOp(), "op", null, 0, 1, FirstLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(secondLevelExpEClass, SecondLevelExp.class, "SecondLevelExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSecondLevelExp_First(), this.getThirdLevelExp(), null, "first", null, 0, 1, SecondLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSecondLevelExp_Second(), this.getSecondLevelExp(), null, "second", null, 0, 1, SecondLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSecondLevelExp_Args(), ecorePackage.getEObject(), null, "args", null, 0, -1, SecondLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSecondLevelExp_Op(), this.getSecondLevelOp(), "op", null, 0, 1, SecondLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(thirdLevelExpEClass, ThirdLevelExp.class, "ThirdLevelExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getThirdLevelExp_First(), this.getFourthLevelExp(), null, "first", null, 0, 1, ThirdLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getThirdLevelExp_Second(), this.getThirdLevelExp(), null, "second", null, 0, 1, ThirdLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getThirdLevelExp_Args(), ecorePackage.getEObject(), null, "args", null, 0, -1, ThirdLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getThirdLevelExp_Op(), this.getThirdLevelOp(), "op", null, 0, 1, ThirdLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(fourthLevelExpEClass, FourthLevelExp.class, "FourthLevelExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFourthLevelExp_First(), this.getTerm(), null, "first", null, 0, 1, FourthLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getFourthLevelExp_Second(), this.getFourthLevelExp(), null, "second", null, 0, 1, FourthLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFourthLevelExp_Args(), ecorePackage.getEObject(), null, "args", null, 0, -1, FourthLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFourthLevelExp_Op(), this.getFourthLevelOp(), "op", null, 0, 1, FourthLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(termEClass, Term.class, "Term", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1099,6 +1186,24 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
 
     initEEnum(cFlowEEnum, CFlow.class, "CFlow");
     addEEnumLiteral(cFlowEEnum, CFlow.IF);
+
+    initEEnum(firstLevelOpEEnum, FirstLevelOp.class, "FirstLevelOp");
+    addEEnumLiteral(firstLevelOpEEnum, FirstLevelOp.AND);
+    addEEnumLiteral(firstLevelOpEEnum, FirstLevelOp.OR);
+
+    initEEnum(secondLevelOpEEnum, SecondLevelOp.class, "SecondLevelOp");
+    addEEnumLiteral(secondLevelOpEEnum, SecondLevelOp.GT);
+    addEEnumLiteral(secondLevelOpEEnum, SecondLevelOp.LT);
+    addEEnumLiteral(secondLevelOpEEnum, SecondLevelOp.EQ);
+
+    initEEnum(thirdLevelOpEEnum, ThirdLevelOp.class, "ThirdLevelOp");
+    addEEnumLiteral(thirdLevelOpEEnum, ThirdLevelOp.PLUS);
+    addEEnumLiteral(thirdLevelOpEEnum, ThirdLevelOp.MINUS);
+    addEEnumLiteral(thirdLevelOpEEnum, ThirdLevelOp.CONCAT);
+
+    initEEnum(fourthLevelOpEEnum, FourthLevelOp.class, "FourthLevelOp");
+    addEEnumLiteral(fourthLevelOpEEnum, FourthLevelOp.MULT);
+    addEEnumLiteral(fourthLevelOpEEnum, FourthLevelOp.DIV);
 
     // Create resource
     createResource(eNS_URI);
