@@ -38,17 +38,9 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 	enum DataType {
 		INT, STRING, BOOL, LIST, VAR, GLOBAL
 	}
-
-//  public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					MyDslPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+	
+	public static val WRONG_PARAMETERS_NUMBER = "wrongParametersNumber";
+	public static val WRONG_EXPRESSION_TYPE = "wrongExpressionType";
 
 	@Check
 	def checkUserDefParametersNumber(UserDefFunctionCall fcall) {
@@ -56,7 +48,7 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		if (fcall.args.length != params) {
 			error('Wrong number of parameters, should be ' + params,
 				ListaCompilerPackage.Literals.FUNCTION_CALL__ARGS,
-				'wrongParametersNumber'
+				WRONG_PARAMETERS_NUMBER
 			)
 		}
 	}
@@ -82,7 +74,7 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		if (fcall.args.length != params) {
 			error('Wrong number of parameters, should be ' + 1,
 			ListaCompilerPackage.Literals.FUNCTION_CALL__ARGS,
-			'wrongParametersNumber');
+			WRONG_PARAMETERS_NUMBER);
 		}
 	}
 	
@@ -93,7 +85,30 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		} catch (MismatchedTypeException ex) {
 			error(ex.message,
 			ListaCompilerPackage.Literals.EXPRESSION__EXP,
-			'wrongExpressionType');
+			WRONG_EXPRESSION_TYPE);
+		}
+	}
+	
+	@Check
+	def checkIfControlFlowType(IfControlFlow ifCF) {
+		try {
+			val cond = ifCF.cond.getDataType;
+			val iftrue = ifCF.iftrue.getDataType;
+			val iffalse = ifCF.iffalse.getDataType;
+			if (!cond.equals(DataType.BOOL)) {
+				error("Condition should be type BOOL.",
+				ListaCompilerPackage.Literals.IF_CONTROL_FLOW__COND,
+				WRONG_EXPRESSION_TYPE);
+			}
+			if (!iftrue.equals(iffalse)) {
+				error("Condition should be type BOOL.",
+				ListaCompilerPackage.Literals.IF_CONTROL_FLOW__IFTRUE,
+				WRONG_EXPRESSION_TYPE);
+			}
+		} catch (MismatchedTypeException ex) {
+			error(ex.message,
+			ListaCompilerPackage.Literals.EXPRESSION__EXP,
+			WRONG_EXPRESSION_TYPE);
 		}
 	}
 	
@@ -243,6 +258,11 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 	}
 	
 	def compareEquals(SecondLevelExp exp) {
-		
+		val first = (exp.args.get(0) as ThirdLevelExp).getDataType;
+		val second = (exp.args.get(1) as SecondLevelExp).getDataType;
+		if (first.equals(second)) {
+			return first;
+		}
+		throw new MismatchedTypeException("The two arguments being compared with " + SecondLevelOp.EQ.getName() + " should have the same type.");
 	}
 }

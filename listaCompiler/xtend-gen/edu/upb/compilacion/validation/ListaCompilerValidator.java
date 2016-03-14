@@ -54,6 +54,10 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     GLOBAL;
   }
   
+  public final static String WRONG_PARAMETERS_NUMBER = "wrongParametersNumber";
+  
+  public final static String WRONG_EXPRESSION_TYPE = "wrongExpressionType";
+  
   @Check
   public void checkUserDefParametersNumber(final UserDefFunctionCall fcall) {
     FunctionDefinition _function = fcall.getFunction();
@@ -65,7 +69,7 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     if (_notEquals) {
       this.error(("Wrong number of parameters, should be " + Integer.valueOf(params)), 
         ListaCompilerPackage.Literals.FUNCTION_CALL__ARGS, 
-        "wrongParametersNumber");
+        ListaCompilerValidator.WRONG_PARAMETERS_NUMBER);
     }
   }
   
@@ -98,7 +102,7 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     if (_notEquals) {
       this.error(("Wrong number of parameters, should be " + Integer.valueOf(1)), 
         ListaCompilerPackage.Literals.FUNCTION_CALL__ARGS, 
-        "wrongParametersNumber");
+        ListaCompilerValidator.WRONG_PARAMETERS_NUMBER);
     }
   }
   
@@ -113,12 +117,48 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
         String _message = ex.getMessage();
         this.error(_message, 
           ListaCompilerPackage.Literals.EXPRESSION__EXP, 
-          "wrongExpressionType");
+          ListaCompilerValidator.WRONG_EXPRESSION_TYPE);
       } else {
         throw Exceptions.sneakyThrow(_t);
       }
     }
     return _xtrycatchfinallyexpression;
+  }
+  
+  @Check
+  public void checkIfControlFlowType(final IfControlFlow ifCF) {
+    try {
+      Expression _cond = ifCF.getCond();
+      final Object cond = this.getDataType(_cond);
+      Expression _iftrue = ifCF.getIftrue();
+      final Object iftrue = this.getDataType(_iftrue);
+      Expression _iffalse = ifCF.getIffalse();
+      final Object iffalse = this.getDataType(_iffalse);
+      boolean _equals = cond.equals(ListaCompilerValidator.DataType.BOOL);
+      boolean _not = (!_equals);
+      if (_not) {
+        this.error("Condition should be type BOOL.", 
+          ListaCompilerPackage.Literals.IF_CONTROL_FLOW__COND, 
+          ListaCompilerValidator.WRONG_EXPRESSION_TYPE);
+      }
+      boolean _equals_1 = iftrue.equals(iffalse);
+      boolean _not_1 = (!_equals_1);
+      if (_not_1) {
+        this.error("Condition should be type BOOL.", 
+          ListaCompilerPackage.Literals.IF_CONTROL_FLOW__IFTRUE, 
+          ListaCompilerValidator.WRONG_EXPRESSION_TYPE);
+      }
+    } catch (final Throwable _t) {
+      if (_t instanceof MismatchedTypeException) {
+        final MismatchedTypeException ex = (MismatchedTypeException)_t;
+        String _message = ex.getMessage();
+        this.error(_message, 
+          ListaCompilerPackage.Literals.EXPRESSION__EXP, 
+          ListaCompilerValidator.WRONG_EXPRESSION_TYPE);
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
   }
   
   public Object getDataType(final Expression exp) {
@@ -406,6 +446,23 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   }
   
   public Object compareEquals(final SecondLevelExp exp) {
-    return null;
+    try {
+      EList<EObject> _args = exp.getArgs();
+      EObject _get = _args.get(0);
+      final Object first = this.getDataType(((ThirdLevelExp) _get));
+      EList<EObject> _args_1 = exp.getArgs();
+      EObject _get_1 = _args_1.get(1);
+      final Object second = this.getDataType(((SecondLevelExp) _get_1));
+      boolean _equals = first.equals(second);
+      if (_equals) {
+        return first;
+      }
+      String _name = SecondLevelOp.EQ.getName();
+      String _plus = ("The two arguments being compared with " + _name);
+      String _plus_1 = (_plus + " should have the same type.");
+      throw new MismatchedTypeException(_plus_1);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }
