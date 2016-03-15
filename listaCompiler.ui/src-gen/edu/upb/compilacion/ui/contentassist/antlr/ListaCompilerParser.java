@@ -61,6 +61,7 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getThirdLevelExpAccess().getGroup_1(), "rule__ThirdLevelExp__Group_1__0");
 					put(grammarAccess.getFourthLevelExpAccess().getGroup(), "rule__FourthLevelExp__Group__0");
 					put(grammarAccess.getFourthLevelExpAccess().getGroup_1(), "rule__FourthLevelExp__Group_1__0");
+					put(grammarAccess.getTermAccess().getGroup_7(), "rule__Term__Group_7__0");
 					put(grammarAccess.getNegIntegerAccess().getGroup(), "rule__NegInteger__Group__0");
 					put(grammarAccess.getNegBoolAccess().getGroup(), "rule__NegBool__Group__0");
 					put(grammarAccess.getIfControlFlowAccess().getGroup(), "rule__IfControlFlow__Group__0");
@@ -99,7 +100,6 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPosBoolAccess().getValAssignment(), "rule__PosBool__ValAssignment");
 					put(grammarAccess.getNegBoolAccess().getValAssignment_1(), "rule__NegBool__ValAssignment_1");
 					put(grammarAccess.getMyStringAccess().getValAssignment(), "rule__MyString__ValAssignment");
-					put(grammarAccess.getIfControlFlowAccess().getNameAssignment_0(), "rule__IfControlFlow__NameAssignment_0");
 					put(grammarAccess.getIfControlFlowAccess().getCondAssignment_2(), "rule__IfControlFlow__CondAssignment_2");
 					put(grammarAccess.getIfControlFlowAccess().getIftrueAssignment_4(), "rule__IfControlFlow__IftrueAssignment_4");
 					put(grammarAccess.getIfControlFlowAccess().getIffalseAssignment_6(), "rule__IfControlFlow__IffalseAssignment_6");
@@ -111,7 +111,6 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUserDefFunctionCallAccess().getArgsAssignment_2_1_1(), "rule__UserDefFunctionCall__ArgsAssignment_2_1_1");
 					put(grammarAccess.getListAccess().getElemsAssignment_2_0(), "rule__List__ElemsAssignment_2_0");
 					put(grammarAccess.getListAccess().getElemsAssignment_2_1_1(), "rule__List__ElemsAssignment_2_1_1");
-					put(grammarAccess.getPreDefFunctionAccess().getNameAssignment(), "rule__PreDefFunction__NameAssignment");
 				}
 			};
 		}

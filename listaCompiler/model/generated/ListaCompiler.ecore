@@ -19,7 +19,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="return" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression">
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Term">
     <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//FirstLevelExp"
         containment="true"/>
   </eClassifiers>
@@ -61,7 +61,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfControlFlow" eSuperTypes="#//Term">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//CFlow"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cond" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="iftrue" eType="#//Expression"
@@ -81,9 +80,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="List" eSuperTypes="#//Term"/>
   <eClassifiers xsi:type="ecore:EClass" name="ListElem"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PreDefFunction">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//PDFunction"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Bool">
     <eLiterals name="true" literal="true"/>
     <eLiterals name="false" value="1" literal="false"/>
@@ -95,9 +91,6 @@
     <eLiterals name="cdr" value="3" literal="cdr"/>
     <eLiterals name="isEmpty" value="4" literal="isEmpty"/>
     <eLiterals name="show" value="5" literal="show"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="CFlow">
-    <eLiterals name="if" literal="if"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FirstLevelOp">
     <eLiterals name="and" literal="&amp;"/>

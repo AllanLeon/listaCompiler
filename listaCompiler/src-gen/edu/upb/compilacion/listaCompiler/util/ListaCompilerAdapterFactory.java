@@ -190,11 +190,6 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
         return createListElemAdapter();
       }
       @Override
-      public Adapter casePreDefFunction(PreDefFunction object)
-      {
-        return createPreDefFunctionAdapter();
-      }
-      @Override
       public Adapter caseIntList(IntList object)
       {
         return createIntListAdapter();
@@ -562,21 +557,6 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createListElemAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.PreDefFunction <em>Pre Def Function</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.upb.compilacion.listaCompiler.PreDefFunction
-   * @generated
-   */
-  public Adapter createPreDefFunctionAdapter()
   {
     return null;
   }

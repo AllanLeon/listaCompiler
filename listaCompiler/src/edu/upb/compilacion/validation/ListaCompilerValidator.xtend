@@ -3,6 +3,7 @@
  */
 package edu.upb.compilacion.validation
 
+import edu.upb.compilacion.HugeException
 import edu.upb.compilacion.MismatchedTypeException
 import edu.upb.compilacion.listaCompiler.Expression
 import edu.upb.compilacion.listaCompiler.FirstLevelExp
@@ -55,7 +56,7 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 				if (PDFunction.get(i).getName.equals(fd.name)) {
 					error("The method '" + fd.name + "' is a predefined Lista method.",
 						ListaCompilerPackage.Literals.LISTA__DEFINITIONS,
-						edu.upb.compilacion.validation.ListaCompilerValidator.INVALID_FUNCTION_DECLARATION
+						ListaCompilerValidator.INVALID_FUNCTION_DECLARATION
 						)
 				}
 			}
@@ -65,17 +66,15 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 	@Check
 	def checkFunctionDefinitionsNames(Lista lista) {
 		val definitions = lista.definitions; 
-		if (definitions.length > 1) {
-			var curName = ""
-			for (cur : 1 ..< definitions.length) {
-				curName = definitions.get(cur).name;
-				for (i : 0 ..< cur) {
-					if (definitions.get(i).name.equals(curName)) {
-						error("The method named '" + curName + "' can only be declared once.",
-						ListaCompilerPackage.Literals.LISTA__DEFINITIONS,
-						edu.upb.compilacion.validation.ListaCompilerValidator.INVALID_FUNCTION_DECLARATION
-						)
-					}
+		var curName = ""
+		for (cur : 1 ..< definitions.length) {
+			curName = definitions.get(cur).name;
+			for (i : 0 ..< cur) {
+				if (definitions.get(i).name.equals(curName)) {
+					error("The method named '" + curName + "' can only be declared once.",
+					ListaCompilerPackage.Literals.LISTA__DEFINITIONS,
+					ListaCompilerValidator.INVALID_FUNCTION_DECLARATION
+					)
 				}
 			}
 		}
@@ -83,17 +82,15 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 	
 	@Check
 	def checkFunctionDefinitionsParameters(FunctionDefinition fd) {
-		if (fd.params.length > 1) {
-			var curName = ""
-			for (cur : 1 ..< fd.params.length) {
-				curName = fd.params.get(cur);
-				for (i : 0 ..< cur) {
-					if (fd.params.get(i).equals(curName)) {
-						error("The parameter '" + curName + "' can only be declared once.",
-						ListaCompilerPackage.Literals.FUNCTION_DEFINITION__PARAMS,
-						edu.upb.compilacion.validation.ListaCompilerValidator.INVALID_FUNCTION_DECLARATION
-						)
-					}
+		var curName = ""
+		for (cur : 1 ..< fd.params.length) {
+			curName = fd.params.get(cur);
+			for (i : 0 ..< cur) {
+				if (fd.params.get(i).equals(curName)) {
+					error("The parameter '" + curName + "' can only be declared once.",
+					ListaCompilerPackage.Literals.FUNCTION_DEFINITION__PARAMS,
+					ListaCompilerValidator.INVALID_FUNCTION_DECLARATION
+					)
 				}
 			}
 		}
@@ -368,7 +365,7 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 				WRONG_EXPRESSION_TYPE);
 			}
 			if (!iftrue.equals(iffalse)) {
-				error("Condition should be type BOOL.",
+				error("Both statements should return the same type.",
 				ListaCompilerPackage.Literals.IF_CONTROL_FLOW__IFTRUE,
 				WRONG_EXPRESSION_TYPE);
 			}
@@ -512,7 +509,7 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 			case PDFunction.IS_EMPTY:
 				return DataType.BOOL
 			default:
-				return DataType.STRING
+				throw new HugeException(fcall.function + " method is not predefined.")
 		}
 	}
 	

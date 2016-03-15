@@ -169,6 +169,25 @@ public interface ListaCompilerPackage extends EPackage
   int FUNCTION_DEFINITION_FEATURE_COUNT = 3;
 
   /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.TermImpl <em>Term</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.impl.TermImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getTerm()
+   * @generated
+   */
+  int TERM = 8;
+
+  /**
+   * The number of structural features of the '<em>Term</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TERM_FEATURE_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.ExpressionImpl <em>Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -185,7 +204,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION__EXP = 0;
+  int EXPRESSION__EXP = TERM_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -194,7 +213,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION_FEATURE_COUNT = 1;
+  int EXPRESSION_FEATURE_COUNT = TERM_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.FirstLevelExpImpl <em>First Level Exp</em>}' class.
@@ -343,25 +362,6 @@ public interface ListaCompilerPackage extends EPackage
    * @ordered
    */
   int FOURTH_LEVEL_EXP_FEATURE_COUNT = 2;
-
-  /**
-   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.TermImpl <em>Term</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.upb.compilacion.listaCompiler.impl.TermImpl
-   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getTerm()
-   * @generated
-   */
-  int TERM = 8;
-
-  /**
-   * The number of structural features of the '<em>Term</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TERM_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.MyIntegerImpl <em>My Integer</em>}' class.
@@ -598,22 +598,13 @@ public interface ListaCompilerPackage extends EPackage
   int IF_CONTROL_FLOW = 17;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int IF_CONTROL_FLOW__NAME = TERM_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Cond</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IF_CONTROL_FLOW__COND = TERM_FEATURE_COUNT + 1;
+  int IF_CONTROL_FLOW__COND = TERM_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Iftrue</b></em>' containment reference.
@@ -622,7 +613,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IF_CONTROL_FLOW__IFTRUE = TERM_FEATURE_COUNT + 2;
+  int IF_CONTROL_FLOW__IFTRUE = TERM_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Iffalse</b></em>' containment reference.
@@ -631,7 +622,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IF_CONTROL_FLOW__IFFALSE = TERM_FEATURE_COUNT + 3;
+  int IF_CONTROL_FLOW__IFFALSE = TERM_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>If Control Flow</em>' class.
@@ -640,7 +631,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IF_CONTROL_FLOW_FEATURE_COUNT = TERM_FEATURE_COUNT + 4;
+  int IF_CONTROL_FLOW_FEATURE_COUNT = TERM_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.FunctionCallImpl <em>Function Call</em>}' class.
@@ -783,34 +774,6 @@ public interface ListaCompilerPackage extends EPackage
   int LIST_ELEM_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.PreDefFunctionImpl <em>Pre Def Function</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.upb.compilacion.listaCompiler.impl.PreDefFunctionImpl
-   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPreDefFunction()
-   * @generated
-   */
-  int PRE_DEF_FUNCTION = 23;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRE_DEF_FUNCTION__NAME = 0;
-
-  /**
-   * The number of structural features of the '<em>Pre Def Function</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRE_DEF_FUNCTION_FEATURE_COUNT = 1;
-
-  /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.IntListImpl <em>Int List</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -818,7 +781,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getIntList()
    * @generated
    */
-  int INT_LIST = 24;
+  int INT_LIST = 23;
 
   /**
    * The feature id for the '<em><b>Elems</b></em>' containment reference list.
@@ -846,7 +809,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getBool()
    * @generated
    */
-  int BOOL = 25;
+  int BOOL = 24;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.PDFunction <em>PD Function</em>}' enum.
@@ -856,17 +819,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPDFunction()
    * @generated
    */
-  int PD_FUNCTION = 26;
-
-  /**
-   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.CFlow <em>CFlow</em>}' enum.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.upb.compilacion.listaCompiler.CFlow
-   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getCFlow()
-   * @generated
-   */
-  int CFLOW = 27;
+  int PD_FUNCTION = 25;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.FirstLevelOp <em>First Level Op</em>}' enum.
@@ -876,7 +829,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFirstLevelOp()
    * @generated
    */
-  int FIRST_LEVEL_OP = 28;
+  int FIRST_LEVEL_OP = 26;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.SecondLevelOp <em>Second Level Op</em>}' enum.
@@ -886,7 +839,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getSecondLevelOp()
    * @generated
    */
-  int SECOND_LEVEL_OP = 29;
+  int SECOND_LEVEL_OP = 27;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.ThirdLevelOp <em>Third Level Op</em>}' enum.
@@ -896,7 +849,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getThirdLevelOp()
    * @generated
    */
-  int THIRD_LEVEL_OP = 30;
+  int THIRD_LEVEL_OP = 28;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.FourthLevelOp <em>Fourth Level Op</em>}' enum.
@@ -906,7 +859,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFourthLevelOp()
    * @generated
    */
-  int FOURTH_LEVEL_OP = 31;
+  int FOURTH_LEVEL_OP = 29;
 
 
   /**
@@ -1299,17 +1252,6 @@ public interface ListaCompilerPackage extends EPackage
   EClass getIfControlFlow();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.upb.compilacion.listaCompiler.IfControlFlow#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see edu.upb.compilacion.listaCompiler.IfControlFlow#getName()
-   * @see #getIfControlFlow()
-   * @generated
-   */
-  EAttribute getIfControlFlow_Name();
-
-  /**
    * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.IfControlFlow#getCond <em>Cond</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1426,27 +1368,6 @@ public interface ListaCompilerPackage extends EPackage
   EClass getListElem();
 
   /**
-   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.PreDefFunction <em>Pre Def Function</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Pre Def Function</em>'.
-   * @see edu.upb.compilacion.listaCompiler.PreDefFunction
-   * @generated
-   */
-  EClass getPreDefFunction();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.upb.compilacion.listaCompiler.PreDefFunction#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see edu.upb.compilacion.listaCompiler.PreDefFunction#getName()
-   * @see #getPreDefFunction()
-   * @generated
-   */
-  EAttribute getPreDefFunction_Name();
-
-  /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.IntList <em>Int List</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1486,16 +1407,6 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    */
   EEnum getPDFunction();
-
-  /**
-   * Returns the meta object for enum '{@link edu.upb.compilacion.listaCompiler.CFlow <em>CFlow</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>CFlow</em>'.
-   * @see edu.upb.compilacion.listaCompiler.CFlow
-   * @generated
-   */
-  EEnum getCFlow();
 
   /**
    * Returns the meta object for enum '{@link edu.upb.compilacion.listaCompiler.FirstLevelOp <em>First Level Op</em>}'.
@@ -1893,14 +1804,6 @@ public interface ListaCompilerPackage extends EPackage
     EClass IF_CONTROL_FLOW = eINSTANCE.getIfControlFlow();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IF_CONTROL_FLOW__NAME = eINSTANCE.getIfControlFlow_Name();
-
-    /**
      * The meta object literal for the '<em><b>Cond</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1999,24 +1902,6 @@ public interface ListaCompilerPackage extends EPackage
     EClass LIST_ELEM = eINSTANCE.getListElem();
 
     /**
-     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.PreDefFunctionImpl <em>Pre Def Function</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.upb.compilacion.listaCompiler.impl.PreDefFunctionImpl
-     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPreDefFunction()
-     * @generated
-     */
-    EClass PRE_DEF_FUNCTION = eINSTANCE.getPreDefFunction();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PRE_DEF_FUNCTION__NAME = eINSTANCE.getPreDefFunction_Name();
-
-    /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.IntListImpl <em>Int List</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2053,16 +1938,6 @@ public interface ListaCompilerPackage extends EPackage
      * @generated
      */
     EEnum PD_FUNCTION = eINSTANCE.getPDFunction();
-
-    /**
-     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.CFlow <em>CFlow</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.upb.compilacion.listaCompiler.CFlow
-     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getCFlow()
-     * @generated
-     */
-    EEnum CFLOW = eINSTANCE.getCFlow();
 
     /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.FirstLevelOp <em>First Level Op</em>}' enum.

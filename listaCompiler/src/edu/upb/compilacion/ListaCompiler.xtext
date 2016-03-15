@@ -34,7 +34,7 @@ FourthLevelExp:
 ;
 
 Term:
-	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow
+	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | "(" Expression ")"
 ;
 
 MyInteger:
@@ -70,7 +70,7 @@ MyString:
 ;
 
 IfControlFlow:
-	name=CFlow "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")"
+	"if" "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")"
 ;
 
 FunctionCall:
@@ -94,10 +94,6 @@ ListElem:
 	MyInteger | MyVariable
 ;
 
-PreDefFunction: 
-	name=PDFunction
-;
-
 enum Bool:
 	true = "true" | false="false"
 ;
@@ -109,10 +105,6 @@ enum PDFunction:
 	cdr = "cdr" |
 	isEmpty = "isEmpty" |
 	show = "show"
-;
-
-enum CFlow:
-	if = "if"
 ;
 
 enum FirstLevelOp:

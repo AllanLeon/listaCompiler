@@ -3,7 +3,6 @@
 package edu.upb.compilacion.listaCompiler.impl;
 
 import edu.upb.compilacion.listaCompiler.Bool;
-import edu.upb.compilacion.listaCompiler.CFlow;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
@@ -28,7 +27,6 @@ import edu.upb.compilacion.listaCompiler.NegInteger;
 import edu.upb.compilacion.listaCompiler.PDFunction;
 import edu.upb.compilacion.listaCompiler.PosBool;
 import edu.upb.compilacion.listaCompiler.PosInteger;
-import edu.upb.compilacion.listaCompiler.PreDefFunction;
 import edu.upb.compilacion.listaCompiler.PreDefFunctionCall;
 import edu.upb.compilacion.listaCompiler.SecondLevelExp;
 import edu.upb.compilacion.listaCompiler.SecondLevelOp;
@@ -219,13 +217,6 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass preDefFunctionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass intListEClass = null;
 
   /**
@@ -241,13 +232,6 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * @generated
    */
   private EEnum pdFunctionEEnum = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EEnum cFlowEEnum = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -715,19 +699,9 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getIfControlFlow_Name()
-  {
-    return (EAttribute)ifControlFlowEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getIfControlFlow_Cond()
   {
-    return (EReference)ifControlFlowEClass.getEStructuralFeatures().get(1);
+    return (EReference)ifControlFlowEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -737,7 +711,7 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    */
   public EReference getIfControlFlow_Iftrue()
   {
-    return (EReference)ifControlFlowEClass.getEStructuralFeatures().get(2);
+    return (EReference)ifControlFlowEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -747,7 +721,7 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    */
   public EReference getIfControlFlow_Iffalse()
   {
-    return (EReference)ifControlFlowEClass.getEStructuralFeatures().get(3);
+    return (EReference)ifControlFlowEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -835,26 +809,6 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getPreDefFunction()
-  {
-    return preDefFunctionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPreDefFunction_Name()
-  {
-    return (EAttribute)preDefFunctionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getIntList()
   {
     return intListEClass;
@@ -888,16 +842,6 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
   public EEnum getPDFunction()
   {
     return pdFunctionEEnum;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EEnum getCFlow()
-  {
-    return cFlowEEnum;
   }
 
   /**
@@ -1024,7 +968,6 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     createEAttribute(myStringEClass, MY_STRING__VAL);
 
     ifControlFlowEClass = createEClass(IF_CONTROL_FLOW);
-    createEAttribute(ifControlFlowEClass, IF_CONTROL_FLOW__NAME);
     createEReference(ifControlFlowEClass, IF_CONTROL_FLOW__COND);
     createEReference(ifControlFlowEClass, IF_CONTROL_FLOW__IFTRUE);
     createEReference(ifControlFlowEClass, IF_CONTROL_FLOW__IFFALSE);
@@ -1042,16 +985,12 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
 
     listElemEClass = createEClass(LIST_ELEM);
 
-    preDefFunctionEClass = createEClass(PRE_DEF_FUNCTION);
-    createEAttribute(preDefFunctionEClass, PRE_DEF_FUNCTION__NAME);
-
     intListEClass = createEClass(INT_LIST);
     createEReference(intListEClass, INT_LIST__ELEMS);
 
     // Create enums
     boolEEnum = createEEnum(BOOL);
     pdFunctionEEnum = createEEnum(PD_FUNCTION);
-    cFlowEEnum = createEEnum(CFLOW);
     firstLevelOpEEnum = createEEnum(FIRST_LEVEL_OP);
     secondLevelOpEEnum = createEEnum(SECOND_LEVEL_OP);
     thirdLevelOpEEnum = createEEnum(THIRD_LEVEL_OP);
@@ -1087,6 +1026,7 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    expressionEClass.getESuperTypes().add(this.getTerm());
     myIntegerEClass.getESuperTypes().add(this.getTerm());
     myIntegerEClass.getESuperTypes().add(this.getListElem());
     posIntegerEClass.getESuperTypes().add(this.getMyInteger());
@@ -1159,7 +1099,6 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     initEAttribute(getMyString_Val(), ecorePackage.getEString(), "val", null, 0, 1, MyString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ifControlFlowEClass, IfControlFlow.class, "IfControlFlow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getIfControlFlow_Name(), this.getCFlow(), "name", null, 0, 1, IfControlFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfControlFlow_Cond(), this.getExpression(), null, "cond", null, 0, 1, IfControlFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfControlFlow_Iftrue(), this.getExpression(), null, "iftrue", null, 0, 1, IfControlFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfControlFlow_Iffalse(), this.getExpression(), null, "iffalse", null, 0, 1, IfControlFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1177,9 +1116,6 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
 
     initEClass(listElemEClass, ListElem.class, "ListElem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(preDefFunctionEClass, PreDefFunction.class, "PreDefFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPreDefFunction_Name(), this.getPDFunction(), "name", null, 0, 1, PreDefFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(intListEClass, IntList.class, "IntList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getIntList_Elems(), this.getListElem(), null, "elems", null, 0, -1, IntList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1195,9 +1131,6 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     addEEnumLiteral(pdFunctionEEnum, PDFunction.CDR);
     addEEnumLiteral(pdFunctionEEnum, PDFunction.IS_EMPTY);
     addEEnumLiteral(pdFunctionEEnum, PDFunction.SHOW);
-
-    initEEnum(cFlowEEnum, CFlow.class, "CFlow");
-    addEEnumLiteral(cFlowEEnum, CFlow.IF);
 
     initEEnum(firstLevelOpEEnum, FirstLevelOp.class, "FirstLevelOp");
     addEEnumLiteral(firstLevelOpEEnum, FirstLevelOp.AND);

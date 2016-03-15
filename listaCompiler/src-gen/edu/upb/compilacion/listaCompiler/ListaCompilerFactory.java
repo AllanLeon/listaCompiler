@@ -230,15 +230,6 @@ public interface ListaCompilerFactory extends EFactory
   ListElem createListElem();
 
   /**
-   * Returns a new object of class '<em>Pre Def Function</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pre Def Function</em>'.
-   * @generated
-   */
-  PreDefFunction createPreDefFunction();
-
-  /**
    * Returns a new object of class '<em>Int List</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

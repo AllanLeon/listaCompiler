@@ -20,7 +20,6 @@ import edu.upb.compilacion.listaCompiler.NegBool;
 import edu.upb.compilacion.listaCompiler.NegInteger;
 import edu.upb.compilacion.listaCompiler.PosBool;
 import edu.upb.compilacion.listaCompiler.PosInteger;
-import edu.upb.compilacion.listaCompiler.PreDefFunction;
 import edu.upb.compilacion.listaCompiler.PreDefFunctionCall;
 import edu.upb.compilacion.listaCompiler.SecondLevelExp;
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
@@ -88,9 +87,6 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 				return; 
 			case ListaCompilerPackage.POS_INTEGER:
 				sequence_PosInteger(context, (PosInteger) semanticObject); 
-				return; 
-			case ListaCompilerPackage.PRE_DEF_FUNCTION:
-				sequence_PreDefFunction(context, (PreDefFunction) semanticObject); 
 				return; 
 			case ListaCompilerPackage.PRE_DEF_FUNCTION_CALL:
 				sequence_PreDefFunctionCall(context, (PreDefFunctionCall) semanticObject); 
@@ -169,12 +165,10 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (name=CFlow cond=Expression iftrue=Expression iffalse=Expression)
+	 *     (cond=Expression iftrue=Expression iffalse=Expression)
 	 */
 	protected void sequence_IfControlFlow(EObject context, IfControlFlow semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.IF_CONTROL_FLOW__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.IF_CONTROL_FLOW__NAME));
 			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.IF_CONTROL_FLOW__COND) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.IF_CONTROL_FLOW__COND));
 			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.IF_CONTROL_FLOW__IFTRUE) == ValueTransient.YES)
@@ -184,7 +178,6 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getIfControlFlowAccess().getNameCFlowEnumRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getIfControlFlowAccess().getCondExpressionParserRuleCall_2_0(), semanticObject.getCond());
 		feeder.accept(grammarAccess.getIfControlFlowAccess().getIftrueExpressionParserRuleCall_4_0(), semanticObject.getIftrue());
 		feeder.accept(grammarAccess.getIfControlFlowAccess().getIffalseExpressionParserRuleCall_6_0(), semanticObject.getIffalse());
@@ -312,22 +305,6 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	 */
 	protected void sequence_PreDefFunctionCall(EObject context, PreDefFunctionCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     name=PDFunction
-	 */
-	protected void sequence_PreDefFunction(EObject context, PreDefFunction semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.PRE_DEF_FUNCTION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.PRE_DEF_FUNCTION__NAME));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPreDefFunctionAccess().getNamePDFunctionEnumRuleCall_0(), semanticObject.getName());
-		feeder.finish();
 	}
 	
 	
