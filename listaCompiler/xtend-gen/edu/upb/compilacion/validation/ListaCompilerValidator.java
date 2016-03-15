@@ -3,6 +3,7 @@
  */
 package edu.upb.compilacion.validation;
 
+import edu.upb.compilacion.HugeException;
 import edu.upb.compilacion.MismatchedTypeException;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
@@ -496,24 +497,33 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   }
   
   public ListaCompilerValidator.DataType getDataType(final PreDefFunctionCall fcall) {
-    PDFunction _function = fcall.getFunction();
-    if (_function != null) {
-      switch (_function) {
-        case SHOW:
-          return ListaCompilerValidator.DataType.STRING;
-        case LENGTH:
-        case CAR:
-          return ListaCompilerValidator.DataType.INT;
-        case CDR:
-        case CONS:
-          return ListaCompilerValidator.DataType.LIST;
-        case IS_EMPTY:
-          return ListaCompilerValidator.DataType.BOOL;
-        default:
-          break;
+    try {
+      PDFunction _function = fcall.getFunction();
+      if (_function != null) {
+        switch (_function) {
+          case SHOW:
+            return ListaCompilerValidator.DataType.STRING;
+          case LENGTH:
+          case CAR:
+            return ListaCompilerValidator.DataType.INT;
+          case CDR:
+          case CONS:
+            return ListaCompilerValidator.DataType.LIST;
+          case IS_EMPTY:
+            return ListaCompilerValidator.DataType.BOOL;
+          default:
+            PDFunction _function_1 = fcall.getFunction();
+            String _plus = (_function_1 + " method is not predefined.");
+            throw new HugeException(_plus);
+        }
+      } else {
+        PDFunction _function_1 = fcall.getFunction();
+        String _plus = (_function_1 + " method is not predefined.");
+        throw new HugeException(_plus);
       }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
     }
-    return null;
   }
   
   public Object getDataType(final UserDefFunctionCall fcall) {
