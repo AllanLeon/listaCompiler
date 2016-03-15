@@ -68,13 +68,22 @@ public interface ListaCompilerPackage extends EPackage
   int LISTA = 0;
 
   /**
-   * The feature id for the '<em><b>Lines</b></em>' containment reference list.
+   * The feature id for the '<em><b>Definitions</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LISTA__LINES = 0;
+  int LISTA__DEFINITIONS = 0;
+
+  /**
+   * The feature id for the '<em><b>Evaluations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LISTA__EVALUATIONS = 1;
 
   /**
    * The number of structural features of the '<em>Lista</em>' class.
@@ -83,7 +92,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LISTA_FEATURE_COUNT = 1;
+  int LISTA_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.EvaluationImpl <em>Evaluation</em>}' class.
@@ -911,15 +920,26 @@ public interface ListaCompilerPackage extends EPackage
   EClass getLista();
 
   /**
-   * Returns the meta object for the containment reference list '{@link edu.upb.compilacion.listaCompiler.Lista#getLines <em>Lines</em>}'.
+   * Returns the meta object for the containment reference list '{@link edu.upb.compilacion.listaCompiler.Lista#getDefinitions <em>Definitions</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Lines</em>'.
-   * @see edu.upb.compilacion.listaCompiler.Lista#getLines()
+   * @return the meta object for the containment reference list '<em>Definitions</em>'.
+   * @see edu.upb.compilacion.listaCompiler.Lista#getDefinitions()
    * @see #getLista()
    * @generated
    */
-  EReference getLista_Lines();
+  EReference getLista_Definitions();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link edu.upb.compilacion.listaCompiler.Lista#getEvaluations <em>Evaluations</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Evaluations</em>'.
+   * @see edu.upb.compilacion.listaCompiler.Lista#getEvaluations()
+   * @see #getLista()
+   * @generated
+   */
+  EReference getLista_Evaluations();
 
   /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.Evaluation <em>Evaluation</em>}'.
@@ -1551,12 +1571,20 @@ public interface ListaCompilerPackage extends EPackage
     EClass LISTA = eINSTANCE.getLista();
 
     /**
-     * The meta object literal for the '<em><b>Lines</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Definitions</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference LISTA__LINES = eINSTANCE.getLista_Lines();
+    EReference LISTA__DEFINITIONS = eINSTANCE.getLista_Definitions();
+
+    /**
+     * The meta object literal for the '<em><b>Evaluations</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LISTA__EVALUATIONS = eINSTANCE.getLista_Evaluations();
 
     /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.EvaluationImpl <em>Evaluation</em>}' class.

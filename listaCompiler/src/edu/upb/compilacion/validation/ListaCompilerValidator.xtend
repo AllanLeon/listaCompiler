@@ -9,8 +9,10 @@ import edu.upb.compilacion.listaCompiler.FirstLevelExp
 import edu.upb.compilacion.listaCompiler.FirstLevelOp
 import edu.upb.compilacion.listaCompiler.FourthLevelExp
 import edu.upb.compilacion.listaCompiler.FunctionCall
+import edu.upb.compilacion.listaCompiler.FunctionDefinition
 import edu.upb.compilacion.listaCompiler.IfControlFlow
 import edu.upb.compilacion.listaCompiler.List
+import edu.upb.compilacion.listaCompiler.Lista
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage
 import edu.upb.compilacion.listaCompiler.MyBool
 import edu.upb.compilacion.listaCompiler.MyInteger
@@ -24,6 +26,7 @@ import edu.upb.compilacion.listaCompiler.Term
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp
 import edu.upb.compilacion.listaCompiler.ThirdLevelOp
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall
+import java.util.HashMap
 import org.eclipse.xtext.validation.Check
 
 //import org.eclipse.xtext.validation.Check
@@ -41,6 +44,60 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 	
 	public static val WRONG_PARAMETERS_NUMBER = "wrongParametersNumber";
 	public static val WRONG_EXPRESSION_TYPE = "wrongExpressionType";
+	public static val INVALID_FUNCTION_DECLARATION = "invalidFunctionDeclaration"
+	
+	private var functionDefs = new HashMap();
+	
+	@Check
+	def checkFunctionDefinitionsPreDefNames(Lista lista) {
+		for (fd : lista.definitions) {
+			for (i : 0 ..< PDFunction.values.length) {
+				if (PDFunction.get(i).getName.equals(fd.name)) {
+					error("The method '" + fd.name + "' is a predefined Lista method.",
+						ListaCompilerPackage.Literals.LISTA__DEFINITIONS,
+						edu.upb.compilacion.validation.ListaCompilerValidator.INVALID_FUNCTION_DECLARATION
+						)
+				}
+			}
+		}
+	}
+	
+	@Check
+	def checkFunctionDefinitionsNames(Lista lista) {
+		val definitions = lista.definitions; 
+		if (definitions.length > 1) {
+			var curName = ""
+			for (cur : 1 ..< definitions.length) {
+				curName = definitions.get(cur).name;
+				for (i : 0 ..< cur) {
+					if (definitions.get(i).name.equals(curName)) {
+						error("The method named '" + curName + "' can only be declared once.",
+						ListaCompilerPackage.Literals.LISTA__DEFINITIONS,
+						edu.upb.compilacion.validation.ListaCompilerValidator.INVALID_FUNCTION_DECLARATION
+						)
+					}
+				}
+			}
+		}
+	}
+	
+	@Check
+	def checkFunctionDefinitionsParameters(FunctionDefinition fd) {
+		if (fd.params.length > 1) {
+			var curName = ""
+			for (cur : 1 ..< fd.params.length) {
+				curName = fd.params.get(cur);
+				for (i : 0 ..< cur) {
+					if (fd.params.get(i).equals(curName)) {
+						error("The parameter '" + curName + "' can only be declared once.",
+						ListaCompilerPackage.Literals.FUNCTION_DEFINITION__PARAMS,
+						edu.upb.compilacion.validation.ListaCompilerValidator.INVALID_FUNCTION_DECLARATION
+						)
+					}
+				}
+			}
+		}
+	}
 
 	@Check
 	def checkUserDefParametersNumber(UserDefFunctionCall fcall) {
@@ -265,4 +322,46 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		}
 		throw new MismatchedTypeException("The two arguments being compared with " + SecondLevelOp.EQ.getName() + " should have the same type.");
 	}
+	
+	/*def inferVariablesTypes(ThirdLevelExp exp) {
+		var vars = new HashMap();
+		val first = exp.args.get(0) as FourthLevelExp;
+		val firstType = first.getDataType;
+		if (exp.args.length > 1) {
+			val second = exp.args.get(1) as ThirdLevelExp;
+			val secondType = second.getDataType;
+			if (firstType.equals(DataType.VAR)) {
+				vars.put((first as MyVariable).^var, DataType.INT);
+			}
+			if (secondType.equals(DataType.VAR)) {
+				vars.put((second as MyVariable).^var, DataType.INT);
+			}
+		} else {
+			if (firstType.equals(DataType.VAR)) {
+				vars.put((first as MyVariable).^var, DataType.VAR);
+			}
+		}
+		return vars;
+	}*/
+	
+	/*def inferVariablesTypes(FourthLevelExp exp) {
+		var vars = new HashMap();
+		val first = exp.args.get(0) as Term;
+		val firstType = first.getDataType;
+		if (exp.args.length > 1) {
+			val second = exp.args.get(1) as FourthLevelExp;
+			val secondType = second.getDataType;
+			if (firstType.equals(DataType.VAR)) {
+				vars.put((first as MyVariable).^var, DataType.INT);
+			}
+			if (secondType.equals(DataType.VAR)) {
+				vars.put((second as MyVariable).^var, DataType.INT);
+			}
+		} else {
+			if (firstType.equals(DataType.VAR)) {
+				vars.put((first as MyVariable).^var, DataType.VAR);
+			}
+		}
+		return vars;
+	}*/
 }

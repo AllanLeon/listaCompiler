@@ -73,14 +73,14 @@ ruleLista
 	:
 (
 (
-{ before(grammarAccess.getListaAccess().getLinesAssignment()); }
-(rule__Lista__LinesAssignment)
-{ after(grammarAccess.getListaAccess().getLinesAssignment()); }
+{ before(grammarAccess.getListaAccess().getAlternatives()); }
+(rule__Lista__Alternatives)
+{ after(grammarAccess.getListaAccess().getAlternatives()); }
 )
 (
-{ before(grammarAccess.getListaAccess().getLinesAssignment()); }
-(rule__Lista__LinesAssignment)*
-{ after(grammarAccess.getListaAccess().getLinesAssignment()); }
+{ before(grammarAccess.getListaAccess().getAlternatives()); }
+(rule__Lista__Alternatives)*
+{ after(grammarAccess.getListaAccess().getAlternatives()); }
 )
 )
 
@@ -844,21 +844,21 @@ finally {
 
 
 
-rule__Lista__LinesAlternatives_0
+rule__Lista__Alternatives
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getListaAccess().getLinesEvaluationParserRuleCall_0_0()); }
-	ruleEvaluation
-{ after(grammarAccess.getListaAccess().getLinesEvaluationParserRuleCall_0_0()); }
+{ before(grammarAccess.getListaAccess().getDefinitionsAssignment_0()); }
+(rule__Lista__DefinitionsAssignment_0)
+{ after(grammarAccess.getListaAccess().getDefinitionsAssignment_0()); }
 )
 
     |(
-{ before(grammarAccess.getListaAccess().getLinesFunctionDefinitionParserRuleCall_0_1()); }
-	ruleFunctionDefinition
-{ after(grammarAccess.getListaAccess().getLinesFunctionDefinitionParserRuleCall_0_1()); }
+{ before(grammarAccess.getListaAccess().getEvaluationsAssignment_1()); }
+(rule__Lista__EvaluationsAssignment_1)
+{ after(grammarAccess.getListaAccess().getEvaluationsAssignment_1()); }
 )
 
 ;
@@ -3270,15 +3270,29 @@ finally {
 
 
 
-rule__Lista__LinesAssignment
+rule__Lista__DefinitionsAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getListaAccess().getLinesAlternatives_0()); }
-(rule__Lista__LinesAlternatives_0)
-{ after(grammarAccess.getListaAccess().getLinesAlternatives_0()); }
+{ before(grammarAccess.getListaAccess().getDefinitionsFunctionDefinitionParserRuleCall_0_0()); }
+	ruleFunctionDefinition{ after(grammarAccess.getListaAccess().getDefinitionsFunctionDefinitionParserRuleCall_0_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Lista__EvaluationsAssignment_1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getListaAccess().getEvaluationsEvaluationParserRuleCall_1_0()); }
+	ruleEvaluation{ after(grammarAccess.getListaAccess().getEvaluationsEvaluationParserRuleCall_1_0()); }
 )
 
 ;

@@ -3,7 +3,7 @@ grammar edu.upb.compilacion.ListaCompiler with org.eclipse.xtext.common.Terminal
 generate listaCompiler "http://www.upb.edu/compilacion/ListaCompiler"
 
 Lista:
-	lines+=(Evaluation | FunctionDefinition)+;
+	(definitions+=FunctionDefinition | evaluations+=Evaluation)+;
 
 Evaluation:
 	"?" return=Expression ";"

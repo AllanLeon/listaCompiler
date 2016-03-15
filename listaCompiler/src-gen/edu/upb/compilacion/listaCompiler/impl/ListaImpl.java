@@ -2,6 +2,8 @@
  */
 package edu.upb.compilacion.listaCompiler.impl;
 
+import edu.upb.compilacion.listaCompiler.Evaluation;
+import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.Lista;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
 
@@ -12,7 +14,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -28,7 +29,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.upb.compilacion.listaCompiler.impl.ListaImpl#getLines <em>Lines</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.impl.ListaImpl#getDefinitions <em>Definitions</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.impl.ListaImpl#getEvaluations <em>Evaluations</em>}</li>
  * </ul>
  *
  * @generated
@@ -36,14 +38,24 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class ListaImpl extends MinimalEObjectImpl.Container implements Lista
 {
   /**
-   * The cached value of the '{@link #getLines() <em>Lines</em>}' containment reference list.
+   * The cached value of the '{@link #getDefinitions() <em>Definitions</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLines()
+   * @see #getDefinitions()
    * @generated
    * @ordered
    */
-  protected EList<EObject> lines;
+  protected EList<FunctionDefinition> definitions;
+
+  /**
+   * The cached value of the '{@link #getEvaluations() <em>Evaluations</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEvaluations()
+   * @generated
+   * @ordered
+   */
+  protected EList<Evaluation> evaluations;
 
   /**
    * <!-- begin-user-doc -->
@@ -71,13 +83,27 @@ public class ListaImpl extends MinimalEObjectImpl.Container implements Lista
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EObject> getLines()
+  public EList<FunctionDefinition> getDefinitions()
   {
-    if (lines == null)
+    if (definitions == null)
     {
-      lines = new EObjectContainmentEList<EObject>(EObject.class, this, ListaCompilerPackage.LISTA__LINES);
+      definitions = new EObjectContainmentEList<FunctionDefinition>(FunctionDefinition.class, this, ListaCompilerPackage.LISTA__DEFINITIONS);
     }
-    return lines;
+    return definitions;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<Evaluation> getEvaluations()
+  {
+    if (evaluations == null)
+    {
+      evaluations = new EObjectContainmentEList<Evaluation>(Evaluation.class, this, ListaCompilerPackage.LISTA__EVALUATIONS);
+    }
+    return evaluations;
   }
 
   /**
@@ -90,8 +116,10 @@ public class ListaImpl extends MinimalEObjectImpl.Container implements Lista
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.LISTA__LINES:
-        return ((InternalEList<?>)getLines()).basicRemove(otherEnd, msgs);
+      case ListaCompilerPackage.LISTA__DEFINITIONS:
+        return ((InternalEList<?>)getDefinitions()).basicRemove(otherEnd, msgs);
+      case ListaCompilerPackage.LISTA__EVALUATIONS:
+        return ((InternalEList<?>)getEvaluations()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -106,8 +134,10 @@ public class ListaImpl extends MinimalEObjectImpl.Container implements Lista
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.LISTA__LINES:
-        return getLines();
+      case ListaCompilerPackage.LISTA__DEFINITIONS:
+        return getDefinitions();
+      case ListaCompilerPackage.LISTA__EVALUATIONS:
+        return getEvaluations();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -123,9 +153,13 @@ public class ListaImpl extends MinimalEObjectImpl.Container implements Lista
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.LISTA__LINES:
-        getLines().clear();
-        getLines().addAll((Collection<? extends EObject>)newValue);
+      case ListaCompilerPackage.LISTA__DEFINITIONS:
+        getDefinitions().clear();
+        getDefinitions().addAll((Collection<? extends FunctionDefinition>)newValue);
+        return;
+      case ListaCompilerPackage.LISTA__EVALUATIONS:
+        getEvaluations().clear();
+        getEvaluations().addAll((Collection<? extends Evaluation>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -141,8 +175,11 @@ public class ListaImpl extends MinimalEObjectImpl.Container implements Lista
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.LISTA__LINES:
-        getLines().clear();
+      case ListaCompilerPackage.LISTA__DEFINITIONS:
+        getDefinitions().clear();
+        return;
+      case ListaCompilerPackage.LISTA__EVALUATIONS:
+        getEvaluations().clear();
         return;
     }
     super.eUnset(featureID);
@@ -158,8 +195,10 @@ public class ListaImpl extends MinimalEObjectImpl.Container implements Lista
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.LISTA__LINES:
-        return lines != null && !lines.isEmpty();
+      case ListaCompilerPackage.LISTA__DEFINITIONS:
+        return definitions != null && !definitions.isEmpty();
+      case ListaCompilerPackage.LISTA__EVALUATIONS:
+        return evaluations != null && !evaluations.isEmpty();
     }
     return super.eIsSet(featureID);
   }

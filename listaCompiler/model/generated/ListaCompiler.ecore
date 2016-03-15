@@ -3,8 +3,10 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="listaCompiler" nsURI="http://www.upb.edu/compilacion/ListaCompiler"
     nsPrefix="listaCompiler">
   <eClassifiers xsi:type="ecore:EClass" name="Lista">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lines" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" upperBound="-1"
+        eType="#//FunctionDefinition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="evaluations" upperBound="-1"
+        eType="#//Evaluation" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Evaluation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="return" eType="#//Expression"

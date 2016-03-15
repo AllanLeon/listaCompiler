@@ -13,6 +13,7 @@ import edu.upb.compilacion.listaCompiler.FunctionCall;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.IfControlFlow;
 import edu.upb.compilacion.listaCompiler.List;
+import edu.upb.compilacion.listaCompiler.Lista;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
 import edu.upb.compilacion.listaCompiler.MyBool;
 import edu.upb.compilacion.listaCompiler.MyInteger;
@@ -27,11 +28,13 @@ import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
 import edu.upb.compilacion.listaCompiler.ThirdLevelOp;
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall;
 import edu.upb.compilacion.validation.AbstractListaCompilerValidator;
+import java.util.HashMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 
 /**
  * This class contains custom validation rules.
@@ -57,6 +60,95 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   public final static String WRONG_PARAMETERS_NUMBER = "wrongParametersNumber";
   
   public final static String WRONG_EXPRESSION_TYPE = "wrongExpressionType";
+  
+  public final static String INVALID_FUNCTION_DECLARATION = "invalidFunctionDeclaration";
+  
+  private HashMap<Object, Object> functionDefs = new HashMap<Object, Object>();
+  
+  @Check
+  public void checkFunctionDefinitionsPreDefNames(final Lista lista) {
+    EList<FunctionDefinition> _definitions = lista.getDefinitions();
+    for (final FunctionDefinition fd : _definitions) {
+      PDFunction[] _values = PDFunction.values();
+      int _length = _values.length;
+      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _length, true);
+      for (final Integer i : _doubleDotLessThan) {
+        PDFunction _get = PDFunction.get((i).intValue());
+        String _name = _get.getName();
+        String _name_1 = fd.getName();
+        boolean _equals = _name.equals(_name_1);
+        if (_equals) {
+          String _name_2 = fd.getName();
+          String _plus = ("The method \'" + _name_2);
+          String _plus_1 = (_plus + "\' is a predefined Lista method.");
+          this.error(_plus_1, 
+            ListaCompilerPackage.Literals.LISTA__DEFINITIONS, 
+            ListaCompilerValidator.INVALID_FUNCTION_DECLARATION);
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkFunctionDefinitionsNames(final Lista lista) {
+    final EList<FunctionDefinition> definitions = lista.getDefinitions();
+    int _length = ((Object[])Conversions.unwrapArray(definitions, Object.class)).length;
+    boolean _greaterThan = (_length > 1);
+    if (_greaterThan) {
+      String curName = "";
+      int _length_1 = ((Object[])Conversions.unwrapArray(definitions, Object.class)).length;
+      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(1, _length_1, true);
+      for (final Integer cur : _doubleDotLessThan) {
+        {
+          FunctionDefinition _get = definitions.get((cur).intValue());
+          String _name = _get.getName();
+          curName = _name;
+          ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, (cur).intValue(), true);
+          for (final Integer i : _doubleDotLessThan_1) {
+            FunctionDefinition _get_1 = definitions.get((i).intValue());
+            String _name_1 = _get_1.getName();
+            boolean _equals = _name_1.equals(curName);
+            if (_equals) {
+              this.error((("The method named \'" + curName) + "\' can only be declared once."), 
+                ListaCompilerPackage.Literals.LISTA__DEFINITIONS, 
+                ListaCompilerValidator.INVALID_FUNCTION_DECLARATION);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkFunctionDefinitionsParameters(final FunctionDefinition fd) {
+    EList<String> _params = fd.getParams();
+    int _length = ((Object[])Conversions.unwrapArray(_params, Object.class)).length;
+    boolean _greaterThan = (_length > 1);
+    if (_greaterThan) {
+      String curName = "";
+      EList<String> _params_1 = fd.getParams();
+      int _length_1 = ((Object[])Conversions.unwrapArray(_params_1, Object.class)).length;
+      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(1, _length_1, true);
+      for (final Integer cur : _doubleDotLessThan) {
+        {
+          EList<String> _params_2 = fd.getParams();
+          String _get = _params_2.get((cur).intValue());
+          curName = _get;
+          ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, (cur).intValue(), true);
+          for (final Integer i : _doubleDotLessThan_1) {
+            EList<String> _params_3 = fd.getParams();
+            String _get_1 = _params_3.get((i).intValue());
+            boolean _equals = _get_1.equals(curName);
+            if (_equals) {
+              this.error((("The parameter \'" + curName) + "\' can only be declared once."), 
+                ListaCompilerPackage.Literals.FUNCTION_DEFINITION__PARAMS, 
+                ListaCompilerValidator.INVALID_FUNCTION_DECLARATION);
+            }
+          }
+        }
+      }
+    }
+  }
   
   @Check
   public void checkUserDefParametersNumber(final UserDefFunctionCall fcall) {
