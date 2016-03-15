@@ -2,7 +2,6 @@
  */
 package edu.upb.compilacion.listaCompiler;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Expression extends EObject
+public interface Expression extends Term
 {
   /**
    * Returns the value of the '<em><b>Exp</b></em>' containment reference.

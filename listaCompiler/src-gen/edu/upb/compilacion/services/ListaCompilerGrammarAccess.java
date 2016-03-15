@@ -332,12 +332,16 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cListParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cFunctionCallParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cIfControlFlowParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
+		private final Keyword cLeftParenthesisKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final RuleCall cExpressionParserRuleCall_7_1 = (RuleCall)cGroup_7.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_7_2 = (Keyword)cGroup_7.eContents().get(2);
 		
 		//Term:
-		//	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow;
+		//	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | "(" Expression ")";
 		@Override public ParserRule getRule() { return rule; }
 
-		//MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow
+		//MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | "(" Expression ")"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//MyInteger
@@ -360,6 +364,18 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 
 		//IfControlFlow
 		public RuleCall getIfControlFlowParserRuleCall_6() { return cIfControlFlowParserRuleCall_6; }
+
+		//"(" Expression ")"
+		public Group getGroup_7() { return cGroup_7; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_7_0() { return cLeftParenthesisKeyword_7_0; }
+
+		//Expression
+		public RuleCall getExpressionParserRuleCall_7_1() { return cExpressionParserRuleCall_7_1; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_7_2() { return cRightParenthesisKeyword_7_2; }
 	}
 
 	public class MyIntegerElements extends AbstractParserRuleElementFinder {
@@ -1215,7 +1231,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Term:
-	//	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow;
+	//	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | "(" Expression ")";
 	public TermElements getTermAccess() {
 		return pTerm;
 	}

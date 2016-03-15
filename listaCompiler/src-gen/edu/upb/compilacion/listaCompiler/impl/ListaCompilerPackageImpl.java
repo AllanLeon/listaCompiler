@@ -1087,6 +1087,7 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    expressionEClass.getESuperTypes().add(this.getTerm());
     myIntegerEClass.getESuperTypes().add(this.getTerm());
     myIntegerEClass.getESuperTypes().add(this.getListElem());
     posIntegerEClass.getESuperTypes().add(this.getMyInteger());

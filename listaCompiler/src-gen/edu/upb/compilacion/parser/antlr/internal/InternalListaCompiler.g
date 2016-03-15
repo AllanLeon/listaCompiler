@@ -704,7 +704,25 @@ ruleTerm returns [EObject current=null]
         $current = $this_IfControlFlow_6.current; 
         afterParserOrEnumRuleCall();
     }
-)
+
+    |(	otherlv_7='(' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getTermAccess().getLeftParenthesisKeyword_7_0());
+    }
+
+    { 
+        newCompositeNode(grammarAccess.getTermAccess().getExpressionParserRuleCall_7_1()); 
+    }
+    this_Expression_8=ruleExpression
+    { 
+        $current = $this_Expression_8.current; 
+        afterParserOrEnumRuleCall();
+    }
+	otherlv_9=')' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getTermAccess().getRightParenthesisKeyword_7_2());
+    }
+))
 ;
 
 

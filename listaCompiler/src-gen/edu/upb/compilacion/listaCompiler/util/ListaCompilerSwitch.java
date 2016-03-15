@@ -97,6 +97,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         Expression expression = (Expression)theEObject;
         T result = caseExpression(expression);
+        if (result == null) result = caseTerm(expression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

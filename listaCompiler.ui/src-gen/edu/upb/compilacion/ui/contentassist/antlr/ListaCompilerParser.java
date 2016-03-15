@@ -61,6 +61,7 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getThirdLevelExpAccess().getGroup_1(), "rule__ThirdLevelExp__Group_1__0");
 					put(grammarAccess.getFourthLevelExpAccess().getGroup(), "rule__FourthLevelExp__Group__0");
 					put(grammarAccess.getFourthLevelExpAccess().getGroup_1(), "rule__FourthLevelExp__Group_1__0");
+					put(grammarAccess.getTermAccess().getGroup_7(), "rule__Term__Group_7__0");
 					put(grammarAccess.getNegIntegerAccess().getGroup(), "rule__NegInteger__Group__0");
 					put(grammarAccess.getNegBoolAccess().getGroup(), "rule__NegBool__Group__0");
 					put(grammarAccess.getIfControlFlowAccess().getGroup(), "rule__IfControlFlow__Group__0");

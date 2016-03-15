@@ -169,6 +169,25 @@ public interface ListaCompilerPackage extends EPackage
   int FUNCTION_DEFINITION_FEATURE_COUNT = 3;
 
   /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.TermImpl <em>Term</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.impl.TermImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getTerm()
+   * @generated
+   */
+  int TERM = 8;
+
+  /**
+   * The number of structural features of the '<em>Term</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TERM_FEATURE_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.ExpressionImpl <em>Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -185,7 +204,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION__EXP = 0;
+  int EXPRESSION__EXP = TERM_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -194,7 +213,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION_FEATURE_COUNT = 1;
+  int EXPRESSION_FEATURE_COUNT = TERM_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.FirstLevelExpImpl <em>First Level Exp</em>}' class.
@@ -343,25 +362,6 @@ public interface ListaCompilerPackage extends EPackage
    * @ordered
    */
   int FOURTH_LEVEL_EXP_FEATURE_COUNT = 2;
-
-  /**
-   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.TermImpl <em>Term</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.upb.compilacion.listaCompiler.impl.TermImpl
-   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getTerm()
-   * @generated
-   */
-  int TERM = 8;
-
-  /**
-   * The number of structural features of the '<em>Term</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TERM_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.MyIntegerImpl <em>My Integer</em>}' class.
