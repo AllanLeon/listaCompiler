@@ -94,10 +94,6 @@ ListElem:
 	MyInteger | MyVariable
 ;
 
-PreDefFunction: 
-	name=PDFunction
-;
-
 enum Bool:
 	true = "true" | false="false"
 ;
