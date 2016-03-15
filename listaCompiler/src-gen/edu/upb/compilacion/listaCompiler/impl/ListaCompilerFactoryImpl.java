@@ -88,7 +88,6 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
       case ListaCompilerPackage.USER_DEF_FUNCTION_CALL: return createUserDefFunctionCall();
       case ListaCompilerPackage.LIST: return createList();
       case ListaCompilerPackage.LIST_ELEM: return createListElem();
-      case ListaCompilerPackage.PRE_DEF_FUNCTION: return createPreDefFunction();
       case ListaCompilerPackage.INT_LIST: return createIntList();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -109,8 +108,6 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
         return createBoolFromString(eDataType, initialValue);
       case ListaCompilerPackage.PD_FUNCTION:
         return createPDFunctionFromString(eDataType, initialValue);
-      case ListaCompilerPackage.CFLOW:
-        return createCFlowFromString(eDataType, initialValue);
       case ListaCompilerPackage.FIRST_LEVEL_OP:
         return createFirstLevelOpFromString(eDataType, initialValue);
       case ListaCompilerPackage.SECOND_LEVEL_OP:
@@ -138,8 +135,6 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
         return convertBoolToString(eDataType, instanceValue);
       case ListaCompilerPackage.PD_FUNCTION:
         return convertPDFunctionToString(eDataType, instanceValue);
-      case ListaCompilerPackage.CFLOW:
-        return convertCFlowToString(eDataType, instanceValue);
       case ListaCompilerPackage.FIRST_LEVEL_OP:
         return convertFirstLevelOpToString(eDataType, instanceValue);
       case ListaCompilerPackage.SECOND_LEVEL_OP:
@@ -411,17 +406,6 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public PreDefFunction createPreDefFunction()
-  {
-    PreDefFunctionImpl preDefFunction = new PreDefFunctionImpl();
-    return preDefFunction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public IntList createIntList()
   {
     IntListImpl intList = new IntListImpl();
@@ -468,28 +452,6 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
    * @generated
    */
   public String convertPDFunctionToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public CFlow createCFlowFromString(EDataType eDataType, String initialValue)
-  {
-    CFlow result = CFlow.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertCFlowToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

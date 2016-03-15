@@ -100,7 +100,6 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPosBoolAccess().getValAssignment(), "rule__PosBool__ValAssignment");
 					put(grammarAccess.getNegBoolAccess().getValAssignment_1(), "rule__NegBool__ValAssignment_1");
 					put(grammarAccess.getMyStringAccess().getValAssignment(), "rule__MyString__ValAssignment");
-					put(grammarAccess.getIfControlFlowAccess().getNameAssignment_0(), "rule__IfControlFlow__NameAssignment_0");
 					put(grammarAccess.getIfControlFlowAccess().getCondAssignment_2(), "rule__IfControlFlow__CondAssignment_2");
 					put(grammarAccess.getIfControlFlowAccess().getIftrueAssignment_4(), "rule__IfControlFlow__IftrueAssignment_4");
 					put(grammarAccess.getIfControlFlowAccess().getIffalseAssignment_6(), "rule__IfControlFlow__IffalseAssignment_6");
@@ -112,7 +111,6 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUserDefFunctionCallAccess().getArgsAssignment_2_1_1(), "rule__UserDefFunctionCall__ArgsAssignment_2_1_1");
 					put(grammarAccess.getListAccess().getElemsAssignment_2_0(), "rule__List__ElemsAssignment_2_0");
 					put(grammarAccess.getListAccess().getElemsAssignment_2_1_1(), "rule__List__ElemsAssignment_2_1_1");
-					put(grammarAccess.getPreDefFunctionAccess().getNameAssignment(), "rule__PreDefFunction__NameAssignment");
 				}
 			};
 		}

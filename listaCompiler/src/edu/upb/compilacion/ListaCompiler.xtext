@@ -70,7 +70,7 @@ MyString:
 ;
 
 IfControlFlow:
-	name=CFlow "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")"
+	"if" "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")"
 ;
 
 FunctionCall:
@@ -105,10 +105,6 @@ enum PDFunction:
 	cdr = "cdr" |
 	isEmpty = "isEmpty" |
 	show = "show"
-;
-
-enum CFlow:
-	if = "if"
 ;
 
 enum FirstLevelOp:

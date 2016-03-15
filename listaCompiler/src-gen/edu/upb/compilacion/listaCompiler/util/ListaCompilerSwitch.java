@@ -257,13 +257,6 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ListaCompilerPackage.PRE_DEF_FUNCTION:
-      {
-        PreDefFunction preDefFunction = (PreDefFunction)theEObject;
-        T result = casePreDefFunction(preDefFunction);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case ListaCompilerPackage.INT_LIST:
       {
         IntList intList = (IntList)theEObject;
@@ -641,22 +634,6 @@ public class ListaCompilerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseListElem(ListElem object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Pre Def Function</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Pre Def Function</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePreDefFunction(PreDefFunction object)
   {
     return null;
   }

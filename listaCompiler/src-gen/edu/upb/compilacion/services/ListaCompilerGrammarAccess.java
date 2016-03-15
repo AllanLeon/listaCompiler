@@ -533,8 +533,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	public class IfControlFlowElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IfControlFlow");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameCFlowEnumRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cIfKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cCondAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cCondExpressionParserRuleCall_2_0 = (RuleCall)cCondAssignment_2.eContents().get(0);
@@ -547,17 +546,14 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//IfControlFlow:
-		//	name=CFlow "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")";
+		//	"if" "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")";
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=CFlow "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")"
+		//"if" "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")"
 		public Group getGroup() { return cGroup; }
 
-		//name=CFlow
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-
-		//CFlow
-		public RuleCall getNameCFlowEnumRuleCall_0_0() { return cNameCFlowEnumRuleCall_0_0; }
+		//"if"
+		public Keyword getIfKeyword_0() { return cIfKeyword_0; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
@@ -797,22 +793,6 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		//MyVariable
 		public RuleCall getMyVariableParserRuleCall_1() { return cMyVariableParserRuleCall_1; }
 	}
-
-	public class PreDefFunctionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PreDefFunction");
-		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNamePDFunctionEnumRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
-		
-		//PreDefFunction:
-		//	name=PDFunction;
-		@Override public ParserRule getRule() { return rule; }
-
-		//name=PDFunction
-		public Assignment getNameAssignment() { return cNameAssignment; }
-
-		//PDFunction
-		public RuleCall getNamePDFunctionEnumRuleCall_0() { return cNamePDFunctionEnumRuleCall_0; }
-	}
 	
 	
 	public class BoolElements extends AbstractEnumRuleElementFinder {
@@ -901,22 +881,6 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"show"
 		public Keyword getShowShowKeyword_5_0() { return cShowShowKeyword_5_0; }
-	}
-
-	public class CFlowElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "CFlow");
-		private final EnumLiteralDeclaration cIfEnumLiteralDeclaration = (EnumLiteralDeclaration)rule.eContents().get(1);
-		private final Keyword cIfIfKeyword_0 = (Keyword)cIfEnumLiteralDeclaration.eContents().get(0);
-		
-		//enum CFlow:
-		//	if;
-		public EnumRule getRule() { return rule; }
-
-		//if
-		public EnumLiteralDeclaration getIfEnumLiteralDeclaration() { return cIfEnumLiteralDeclaration; }
-
-		//"if"
-		public Keyword getIfIfKeyword_0() { return cIfIfKeyword_0; }
 	}
 
 	public class FirstLevelOpElements extends AbstractEnumRuleElementFinder {
@@ -1070,10 +1034,8 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	private final UserDefFunctionCallElements pUserDefFunctionCall;
 	private final ListElements pList;
 	private final ListElemElements pListElem;
-	private final PreDefFunctionElements pPreDefFunction;
 	private final BoolElements unknownRuleBool;
 	private final PDFunctionElements unknownRulePDFunction;
-	private final CFlowElements unknownRuleCFlow;
 	private final FirstLevelOpElements unknownRuleFirstLevelOp;
 	private final SecondLevelOpElements unknownRuleSecondLevelOp;
 	private final ThirdLevelOpElements unknownRuleThirdLevelOp;
@@ -1112,10 +1074,8 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		this.pUserDefFunctionCall = new UserDefFunctionCallElements();
 		this.pList = new ListElements();
 		this.pListElem = new ListElemElements();
-		this.pPreDefFunction = new PreDefFunctionElements();
 		this.unknownRuleBool = new BoolElements();
 		this.unknownRulePDFunction = new PDFunctionElements();
-		this.unknownRuleCFlow = new CFlowElements();
 		this.unknownRuleFirstLevelOp = new FirstLevelOpElements();
 		this.unknownRuleSecondLevelOp = new SecondLevelOpElements();
 		this.unknownRuleThirdLevelOp = new ThirdLevelOpElements();
@@ -1321,7 +1281,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IfControlFlow:
-	//	name=CFlow "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")";
+	//	"if" "(" cond=Expression "," iftrue=Expression "," iffalse=Expression ")";
 	public IfControlFlowElements getIfControlFlowAccess() {
 		return pIfControlFlow;
 	}
@@ -1380,16 +1340,6 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		return getListElemAccess().getRule();
 	}
 
-	//PreDefFunction:
-	//	name=PDFunction;
-	public PreDefFunctionElements getPreDefFunctionAccess() {
-		return pPreDefFunction;
-	}
-	
-	public ParserRule getPreDefFunctionRule() {
-		return getPreDefFunctionAccess().getRule();
-	}
-
 	//enum Bool:
 	//	true | false;
 	public BoolElements getBoolAccess() {
@@ -1408,16 +1358,6 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public EnumRule getPDFunctionRule() {
 		return getPDFunctionAccess().getRule();
-	}
-
-	//enum CFlow:
-	//	if;
-	public CFlowElements getCFlowAccess() {
-		return unknownRuleCFlow;
-	}
-	
-	public EnumRule getCFlowRule() {
-		return getCFlowAccess().getRule();
 	}
 
 	//enum FirstLevelOp:

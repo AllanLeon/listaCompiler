@@ -19,9 +19,6 @@
       <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//PDFunction/isEmpty"/>
       <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//PDFunction/show"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ListaCompiler.ecore#//CFlow">
-      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//CFlow/if"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="ListaCompiler.ecore#//FirstLevelOp">
       <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//FirstLevelOp/and"/>
       <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//FirstLevelOp/or"/>
@@ -89,7 +86,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//MyString/val"/>
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//IfControlFlow">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//IfControlFlow/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//IfControlFlow/cond"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//IfControlFlow/iftrue"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//IfControlFlow/iffalse"/>
@@ -105,9 +101,6 @@
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//List"/>
     <genClasses ecoreClass="ListaCompiler.ecore#//ListElem"/>
-    <genClasses ecoreClass="ListaCompiler.ecore#//PreDefFunction">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//PreDefFunction/name"/>
-    </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//IntList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//IntList/elems"/>
     </genClasses>

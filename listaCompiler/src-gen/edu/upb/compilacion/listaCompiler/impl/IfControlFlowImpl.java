@@ -2,7 +2,6 @@
  */
 package edu.upb.compilacion.listaCompiler.impl;
 
-import edu.upb.compilacion.listaCompiler.CFlow;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.IfControlFlow;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
@@ -23,7 +22,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.upb.compilacion.listaCompiler.impl.IfControlFlowImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.upb.compilacion.listaCompiler.impl.IfControlFlowImpl#getCond <em>Cond</em>}</li>
  *   <li>{@link edu.upb.compilacion.listaCompiler.impl.IfControlFlowImpl#getIftrue <em>Iftrue</em>}</li>
  *   <li>{@link edu.upb.compilacion.listaCompiler.impl.IfControlFlowImpl#getIffalse <em>Iffalse</em>}</li>
@@ -33,26 +31,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class IfControlFlowImpl extends TermImpl implements IfControlFlow
 {
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final CFlow NAME_EDEFAULT = CFlow.IF;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected CFlow name = NAME_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getCond() <em>Cond</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -102,29 +80,6 @@ public class IfControlFlowImpl extends TermImpl implements IfControlFlow
   protected EClass eStaticClass()
   {
     return ListaCompilerPackage.Literals.IF_CONTROL_FLOW;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public CFlow getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(CFlow newName)
-  {
-    CFlow oldName = name;
-    name = newName == null ? NAME_EDEFAULT : newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.IF_CONTROL_FLOW__NAME, oldName, name));
   }
 
   /**
@@ -301,8 +256,6 @@ public class IfControlFlowImpl extends TermImpl implements IfControlFlow
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.IF_CONTROL_FLOW__NAME:
-        return getName();
       case ListaCompilerPackage.IF_CONTROL_FLOW__COND:
         return getCond();
       case ListaCompilerPackage.IF_CONTROL_FLOW__IFTRUE:
@@ -323,9 +276,6 @@ public class IfControlFlowImpl extends TermImpl implements IfControlFlow
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.IF_CONTROL_FLOW__NAME:
-        setName((CFlow)newValue);
-        return;
       case ListaCompilerPackage.IF_CONTROL_FLOW__COND:
         setCond((Expression)newValue);
         return;
@@ -349,9 +299,6 @@ public class IfControlFlowImpl extends TermImpl implements IfControlFlow
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.IF_CONTROL_FLOW__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case ListaCompilerPackage.IF_CONTROL_FLOW__COND:
         setCond((Expression)null);
         return;
@@ -375,8 +322,6 @@ public class IfControlFlowImpl extends TermImpl implements IfControlFlow
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.IF_CONTROL_FLOW__NAME:
-        return name != NAME_EDEFAULT;
       case ListaCompilerPackage.IF_CONTROL_FLOW__COND:
         return cond != null;
       case ListaCompilerPackage.IF_CONTROL_FLOW__IFTRUE:
@@ -385,23 +330,6 @@ public class IfControlFlowImpl extends TermImpl implements IfControlFlow
         return iffalse != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //IfControlFlowImpl

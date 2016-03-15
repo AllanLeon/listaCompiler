@@ -1065,25 +1065,11 @@ ruleIfControlFlow returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getIfControlFlowAccess().getNameCFlowEnumRuleCall_0_0()); 
-	    }
-		lv_name_0_0=ruleCFlow		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getIfControlFlowRule());
-	        }
-       		set(
-       			$current, 
-       			"name",
-        		lv_name_0_0, 
-        		"CFlow");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)	otherlv_1='(' 
+(	otherlv_0='if' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getIfControlFlowAccess().getIfKeyword_0());
+    }
+	otherlv_1='(' 
     {
     	newLeafNode(otherlv_1, grammarAccess.getIfControlFlowAccess().getLeftParenthesisKeyword_1());
     }
@@ -1484,8 +1470,6 @@ ruleListElem returns [EObject current=null]
 
 
 
-
-
 // Rule Bool
 ruleBool returns [Enumerator current=null] 
     @init { enterRule(); }
@@ -1545,19 +1529,6 @@ rulePDFunction returns [Enumerator current=null]
         newLeafNode(enumLiteral_5, grammarAccess.getPDFunctionAccess().getShowEnumLiteralDeclaration_5()); 
     }
 ));
-
-
-
-// Rule CFlow
-ruleCFlow returns [Enumerator current=null] 
-    @init { enterRule(); }
-    @after { leaveRule(); }:
-(	enumLiteral_0='if' 
-	{
-        $current = grammarAccess.getCFlowAccess().getIfEnumLiteralDeclaration().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_0, grammarAccess.getCFlowAccess().getIfEnumLiteralDeclaration()); 
-    }
-);
 
 
 
