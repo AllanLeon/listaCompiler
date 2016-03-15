@@ -92,27 +92,23 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   @Check
   public void checkFunctionDefinitionsNames(final Lista lista) {
     final EList<FunctionDefinition> definitions = lista.getDefinitions();
+    String curName = "";
     int _length = ((Object[])Conversions.unwrapArray(definitions, Object.class)).length;
-    boolean _greaterThan = (_length > 1);
-    if (_greaterThan) {
-      String curName = "";
-      int _length_1 = ((Object[])Conversions.unwrapArray(definitions, Object.class)).length;
-      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(1, _length_1, true);
-      for (final Integer cur : _doubleDotLessThan) {
-        {
-          FunctionDefinition _get = definitions.get((cur).intValue());
-          String _name = _get.getName();
-          curName = _name;
-          ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, (cur).intValue(), true);
-          for (final Integer i : _doubleDotLessThan_1) {
-            FunctionDefinition _get_1 = definitions.get((i).intValue());
-            String _name_1 = _get_1.getName();
-            boolean _equals = _name_1.equals(curName);
-            if (_equals) {
-              this.error((("The method named \'" + curName) + "\' can only be declared once."), 
-                ListaCompilerPackage.Literals.LISTA__DEFINITIONS, 
-                ListaCompilerValidator.INVALID_FUNCTION_DECLARATION);
-            }
+    ExclusiveRange _doubleDotLessThan = new ExclusiveRange(1, _length, true);
+    for (final Integer cur : _doubleDotLessThan) {
+      {
+        FunctionDefinition _get = definitions.get((cur).intValue());
+        String _name = _get.getName();
+        curName = _name;
+        ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, (cur).intValue(), true);
+        for (final Integer i : _doubleDotLessThan_1) {
+          FunctionDefinition _get_1 = definitions.get((i).intValue());
+          String _name_1 = _get_1.getName();
+          boolean _equals = _name_1.equals(curName);
+          if (_equals) {
+            this.error((("The method named \'" + curName) + "\' can only be declared once."), 
+              ListaCompilerPackage.Literals.LISTA__DEFINITIONS, 
+              ListaCompilerValidator.INVALID_FUNCTION_DECLARATION);
           }
         }
       }
@@ -121,29 +117,24 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   
   @Check
   public void checkFunctionDefinitionsParameters(final FunctionDefinition fd) {
+    String curName = "";
     EList<String> _params = fd.getParams();
     int _length = ((Object[])Conversions.unwrapArray(_params, Object.class)).length;
-    boolean _greaterThan = (_length > 1);
-    if (_greaterThan) {
-      String curName = "";
-      EList<String> _params_1 = fd.getParams();
-      int _length_1 = ((Object[])Conversions.unwrapArray(_params_1, Object.class)).length;
-      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(1, _length_1, true);
-      for (final Integer cur : _doubleDotLessThan) {
-        {
+    ExclusiveRange _doubleDotLessThan = new ExclusiveRange(1, _length, true);
+    for (final Integer cur : _doubleDotLessThan) {
+      {
+        EList<String> _params_1 = fd.getParams();
+        String _get = _params_1.get((cur).intValue());
+        curName = _get;
+        ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, (cur).intValue(), true);
+        for (final Integer i : _doubleDotLessThan_1) {
           EList<String> _params_2 = fd.getParams();
-          String _get = _params_2.get((cur).intValue());
-          curName = _get;
-          ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, (cur).intValue(), true);
-          for (final Integer i : _doubleDotLessThan_1) {
-            EList<String> _params_3 = fd.getParams();
-            String _get_1 = _params_3.get((i).intValue());
-            boolean _equals = _get_1.equals(curName);
-            if (_equals) {
-              this.error((("The parameter \'" + curName) + "\' can only be declared once."), 
-                ListaCompilerPackage.Literals.FUNCTION_DEFINITION__PARAMS, 
-                ListaCompilerValidator.INVALID_FUNCTION_DECLARATION);
-            }
+          String _get_1 = _params_2.get((i).intValue());
+          boolean _equals = _get_1.equals(curName);
+          if (_equals) {
+            this.error((("The parameter \'" + curName) + "\' can only be declared once."), 
+              ListaCompilerPackage.Literals.FUNCTION_DEFINITION__PARAMS, 
+              ListaCompilerValidator.INVALID_FUNCTION_DECLARATION);
           }
         }
       }
@@ -236,7 +227,7 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
       boolean _equals_1 = iftrue.equals(iffalse);
       boolean _not_1 = (!_equals_1);
       if (_not_1) {
-        this.error("Condition should be type BOOL.", 
+        this.error("Both statements should return the same type.", 
           ListaCompilerPackage.Literals.IF_CONTROL_FLOW__IFTRUE, 
           ListaCompilerValidator.WRONG_EXPRESSION_TYPE);
       }
@@ -519,11 +510,10 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
         case IS_EMPTY:
           return ListaCompilerValidator.DataType.BOOL;
         default:
-          return ListaCompilerValidator.DataType.STRING;
+          break;
       }
-    } else {
-      return ListaCompilerValidator.DataType.STRING;
     }
+    return null;
   }
   
   public Object getDataType(final UserDefFunctionCall fcall) {
