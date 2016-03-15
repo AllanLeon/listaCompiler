@@ -8,7 +8,6 @@ import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
 import edu.upb.compilacion.listaCompiler.FirstLevelOp;
 import edu.upb.compilacion.listaCompiler.FourthLevelExp;
-import edu.upb.compilacion.listaCompiler.FourthLevelOp;
 import edu.upb.compilacion.listaCompiler.FunctionCall;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.IfControlFlow;
@@ -22,10 +21,8 @@ import edu.upb.compilacion.listaCompiler.MyVariable;
 import edu.upb.compilacion.listaCompiler.PDFunction;
 import edu.upb.compilacion.listaCompiler.PreDefFunctionCall;
 import edu.upb.compilacion.listaCompiler.SecondLevelExp;
-import edu.upb.compilacion.listaCompiler.SecondLevelOp;
 import edu.upb.compilacion.listaCompiler.Term;
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
-import edu.upb.compilacion.listaCompiler.ThirdLevelOp;
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall;
 import edu.upb.compilacion.validation.AbstractListaCompilerValidator;
 import java.util.HashMap;
@@ -199,10 +196,22 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   }
   
   @Check
-  public Object checkExpressionType(final Expression exp) {
-    Object _xtrycatchfinallyexpression = null;
+  public Object checkFunctionDefinitionType(final FunctionDefinition fd) {
+    Object _xblockexpression = null;
+    {
+      HashMap<String, ListaCompilerValidator.DataType> types = new HashMap<String, ListaCompilerValidator.DataType>();
+      Expression _return = fd.getReturn();
+      this.checkExpressionType(_return, types);
+      String _name = fd.getName();
+      _xblockexpression = this.functionDefs.put(_name, types);
+    }
+    return _xblockexpression;
+  }
+  
+  public ListaCompilerValidator.DataType checkExpressionType(final Expression exp, final HashMap<String, ListaCompilerValidator.DataType> types) {
+    ListaCompilerValidator.DataType _xtrycatchfinallyexpression = null;
     try {
-      _xtrycatchfinallyexpression = this.getDataType(exp);
+      _xtrycatchfinallyexpression = this.getDataType(exp, types);
     } catch (final Throwable _t) {
       if (_t instanceof MismatchedTypeException) {
         final MismatchedTypeException ex = (MismatchedTypeException)_t;
@@ -218,14 +227,14 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   }
   
   @Check
-  public void checkIfControlFlowType(final IfControlFlow ifCF) {
+  public void checkIfControlFlowType(final IfControlFlow ifCF, final HashMap<String, ListaCompilerValidator.DataType> types) {
     try {
       Expression _cond = ifCF.getCond();
-      final Object cond = this.getDataType(_cond);
+      final ListaCompilerValidator.DataType cond = this.getDataType(_cond, types);
       Expression _iftrue = ifCF.getIftrue();
-      final Object iftrue = this.getDataType(_iftrue);
+      final ListaCompilerValidator.DataType iftrue = this.getDataType(_iftrue, types);
       Expression _iffalse = ifCF.getIffalse();
-      final Object iffalse = this.getDataType(_iffalse);
+      final ListaCompilerValidator.DataType iffalse = this.getDataType(_iffalse, types);
       boolean _equals = cond.equals(ListaCompilerValidator.DataType.BOOL);
       boolean _not = (!_equals);
       if (_not) {
@@ -253,216 +262,139 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     }
   }
   
-  public Object getDataType(final Expression exp) {
+  public ListaCompilerValidator.DataType getDataType(final Expression exp, final HashMap<String, ListaCompilerValidator.DataType> types) {
     FirstLevelExp _exp = exp.getExp();
-    return this.getDataType(_exp);
+    return this.getDataType(_exp, types);
   }
   
-  public Object getDataType(final FirstLevelExp exp) {
+  public ListaCompilerValidator.DataType getDataType(final FirstLevelExp exp, final HashMap<String, ListaCompilerValidator.DataType> types) {
     try {
-      EList<EObject> _args = exp.getArgs();
-      EObject _get = _args.get(0);
-      final Object first = this.getDataType(((SecondLevelExp) _get));
-      final FirstLevelOp op = exp.getOp();
-      EList<EObject> _args_1 = exp.getArgs();
-      int _length = ((Object[])Conversions.unwrapArray(_args_1, Object.class)).length;
-      boolean _greaterThan = (_length > 1);
-      if (_greaterThan) {
-        ListaCompilerValidator.DataType expected = ListaCompilerValidator.DataType.GLOBAL;
-        if (op != null) {
-          switch (op) {
-            case AND:
-            case OR:
-              expected = ListaCompilerValidator.DataType.BOOL;
-              break;
-            default:
+      ListaCompilerValidator.DataType _xblockexpression = null;
+      {
+        EList<EObject> _args = exp.getArgs();
+        EObject _get = _args.get(0);
+        final ListaCompilerValidator.DataType first = this.getDataType(((SecondLevelExp) _get), types);
+        final FirstLevelOp op = exp.getOp();
+        ListaCompilerValidator.DataType _xifexpression = null;
+        EList<EObject> _args_1 = exp.getArgs();
+        int _length = ((Object[])Conversions.unwrapArray(_args_1, Object.class)).length;
+        boolean _greaterThan = (_length > 1);
+        if (_greaterThan) {
+          ListaCompilerValidator.DataType _xblockexpression_1 = null;
+          {
+            ListaCompilerValidator.DataType expected = ListaCompilerValidator.DataType.GLOBAL;
+            if (op != null) {
+              switch (op) {
+                case AND:
+                case OR:
+                  expected = ListaCompilerValidator.DataType.BOOL;
+                  break;
+                default:
+                  expected = ListaCompilerValidator.DataType.GLOBAL;
+                  break;
+              }
+            } else {
               expected = ListaCompilerValidator.DataType.GLOBAL;
-              break;
+            }
+            EList<EObject> _args_2 = exp.getArgs();
+            EObject _get_1 = _args_2.get(1);
+            final Object second = this.getDataType(((FirstLevelExp) _get_1), types);
+            ListaCompilerValidator.DataType _xifexpression_1 = null;
+            boolean _equals = first.equals(ListaCompilerValidator.DataType.VAR);
+            if (_equals) {
+              EList<EObject> _args_3 = exp.getArgs();
+              EObject _get_2 = _args_3.get(0);
+              final MyVariable var1 = this.getVariable(((SecondLevelExp) _get_2));
+              boolean _equals_1 = second.equals(ListaCompilerValidator.DataType.VAR);
+              if (_equals_1) {
+                EList<EObject> _args_4 = exp.getArgs();
+                EObject _get_3 = _args_4.get(1);
+                final MyVariable var2 = this.getVariable(((FirstLevelExp) _get_3));
+                String _var = var2.getVar();
+                types.put(_var, expected);
+              }
+              String _var_1 = var1.getVar();
+              types.put(_var_1, expected);
+              boolean _equals_2 = second.equals(expected);
+              if (_equals_2) {
+                return expected;
+              } else {
+                String _name = op.getName();
+                String _plus = ("Mismatched data types for operator " + _name);
+                String _plus_1 = (_plus + ", arguments should be ");
+                String _string = expected.toString();
+                String _plus_2 = (_plus_1 + _string);
+                String _plus_3 = (_plus_2 + ".");
+                throw new MismatchedTypeException(_plus_3);
+              }
+            } else {
+              ListaCompilerValidator.DataType _xifexpression_2 = null;
+              boolean _equals_3 = second.equals(ListaCompilerValidator.DataType.VAR);
+              if (_equals_3) {
+                ListaCompilerValidator.DataType _xblockexpression_2 = null;
+                {
+                  EList<EObject> _args_5 = exp.getArgs();
+                  EObject _get_4 = _args_5.get(1);
+                  final MyVariable var2_1 = this.getVariable(((FirstLevelExp) _get_4));
+                  String _var_2 = var2_1.getVar();
+                  _xblockexpression_2 = types.put(_var_2, expected);
+                }
+                _xifexpression_2 = _xblockexpression_2;
+              } else {
+                boolean _and = false;
+                boolean _equals_4 = first.equals(expected);
+                if (!_equals_4) {
+                  _and = false;
+                } else {
+                  boolean _equals_5 = second.equals(expected);
+                  _and = _equals_5;
+                }
+                if (_and) {
+                  return expected;
+                } else {
+                  String _name_1 = op.getName();
+                  String _plus_4 = ("Mismatched data types for operator " + _name_1);
+                  String _plus_5 = (_plus_4 + ", arguments should be ");
+                  String _string_1 = expected.toString();
+                  String _plus_6 = (_plus_5 + _string_1);
+                  String _plus_7 = (_plus_6 + ".");
+                  throw new MismatchedTypeException(_plus_7);
+                }
+              }
+              _xifexpression_1 = _xifexpression_2;
+            }
+            _xblockexpression_1 = _xifexpression_1;
           }
+          _xifexpression = _xblockexpression_1;
         } else {
-          expected = ListaCompilerValidator.DataType.GLOBAL;
+          return first;
         }
-        boolean _and = false;
-        boolean _equals = first.equals(expected);
-        if (!_equals) {
-          _and = false;
-        } else {
-          EList<EObject> _args_2 = exp.getArgs();
-          EObject _get_1 = _args_2.get(1);
-          Object _dataType = this.getDataType(((FirstLevelExp) _get_1));
-          boolean _equals_1 = _dataType.equals(expected);
-          _and = _equals_1;
-        }
-        if (_and) {
-          return expected;
-        } else {
-          String _name = op.getName();
-          String _plus = ("Mismatched data types for operator " + _name);
-          String _plus_1 = (_plus + ", arguments should be ");
-          String _string = expected.toString();
-          String _plus_2 = (_plus_1 + _string);
-          String _plus_3 = (_plus_2 + ".");
-          throw new MismatchedTypeException(_plus_3);
-        }
-      } else {
-        return first;
+        _xblockexpression = _xifexpression;
       }
+      return _xblockexpression;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
-  public Object getDataType(final SecondLevelExp exp) {
-    try {
-      EList<EObject> _args = exp.getArgs();
-      EObject _get = _args.get(0);
-      final Object first = this.getDataType(((ThirdLevelExp) _get));
-      final SecondLevelOp op = exp.getOp();
-      EList<EObject> _args_1 = exp.getArgs();
-      int _length = ((Object[])Conversions.unwrapArray(_args_1, Object.class)).length;
-      boolean _greaterThan = (_length > 1);
-      if (_greaterThan) {
-        ListaCompilerValidator.DataType expected = ListaCompilerValidator.DataType.GLOBAL;
-        if (op != null) {
-          switch (op) {
-            case GT:
-            case LT:
-              expected = ListaCompilerValidator.DataType.INT;
-              break;
-            case EQ:
-              return this.compareEquals(exp);
-            default:
-              expected = ListaCompilerValidator.DataType.GLOBAL;
-              break;
-          }
-        } else {
-          expected = ListaCompilerValidator.DataType.GLOBAL;
-        }
-        boolean _and = false;
-        boolean _equals = first.equals(expected);
-        if (!_equals) {
-          _and = false;
-        } else {
-          EList<EObject> _args_2 = exp.getArgs();
-          EObject _get_1 = _args_2.get(1);
-          Object _dataType = this.getDataType(((SecondLevelExp) _get_1));
-          boolean _equals_1 = _dataType.equals(expected);
-          _and = _equals_1;
-        }
-        if (_and) {
-          return expected;
-        } else {
-          String _name = op.getName();
-          String _plus = ("Mismatched data types for operator " + _name);
-          String _plus_1 = (_plus + ", arguments should be ");
-          String _string = expected.toString();
-          String _plus_2 = (_plus_1 + _string);
-          String _plus_3 = (_plus_2 + ".");
-          throw new MismatchedTypeException(_plus_3);
-        }
-      } else {
-        return first;
-      }
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+  public ListaCompilerValidator.DataType getDataType(final SecondLevelExp exp, final HashMap<String, ListaCompilerValidator.DataType> types) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from ThirdLevelExp to PreDefFunctionCall"
+      + "\nType mismatch: cannot convert from SecondLevelExp to PreDefFunctionCall");
   }
   
-  public Object getDataType(final ThirdLevelExp exp) {
-    try {
-      EList<EObject> _args = exp.getArgs();
-      EObject _get = _args.get(0);
-      final Object first = this.getDataType(((FourthLevelExp) _get));
-      final ThirdLevelOp op = exp.getOp();
-      EList<EObject> _args_1 = exp.getArgs();
-      int _length = ((Object[])Conversions.unwrapArray(_args_1, Object.class)).length;
-      boolean _greaterThan = (_length > 1);
-      if (_greaterThan) {
-        ListaCompilerValidator.DataType expected = ListaCompilerValidator.DataType.GLOBAL;
-        if (op != null) {
-          switch (op) {
-            case PLUS:
-            case MINUS:
-              expected = ListaCompilerValidator.DataType.INT;
-              break;
-            case CONCAT:
-              expected = ListaCompilerValidator.DataType.STRING;
-              break;
-            default:
-              expected = ListaCompilerValidator.DataType.GLOBAL;
-              break;
-          }
-        } else {
-          expected = ListaCompilerValidator.DataType.GLOBAL;
-        }
-        boolean _and = false;
-        boolean _equals = first.equals(expected);
-        if (!_equals) {
-          _and = false;
-        } else {
-          EList<EObject> _args_2 = exp.getArgs();
-          EObject _get_1 = _args_2.get(1);
-          Object _dataType = this.getDataType(((ThirdLevelExp) _get_1));
-          boolean _equals_1 = _dataType.equals(expected);
-          _and = _equals_1;
-        }
-        if (_and) {
-          return expected;
-        } else {
-          String _name = op.getName();
-          String _plus = ("Mismatched data types for operator " + _name);
-          String _plus_1 = (_plus + ", arguments should be ");
-          String _string = expected.toString();
-          String _plus_2 = (_plus_1 + _string);
-          String _plus_3 = (_plus_2 + ".");
-          throw new MismatchedTypeException(_plus_3);
-        }
-      } else {
-        return first;
-      }
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+  public ListaCompilerValidator.DataType getDataType(final ThirdLevelExp exp, final HashMap<String, ListaCompilerValidator.DataType> types) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from FourthLevelExp to PreDefFunctionCall"
+      + "\nType mismatch: cannot convert from ThirdLevelExp to PreDefFunctionCall");
   }
   
-  public Object getDataType(final FourthLevelExp exp) {
-    try {
-      EList<EObject> _args = exp.getArgs();
-      EObject _get = _args.get(0);
-      final Object first = this.getDataType(((Term) _get));
-      EList<EObject> _args_1 = exp.getArgs();
-      int _length = ((Object[])Conversions.unwrapArray(_args_1, Object.class)).length;
-      boolean _greaterThan = (_length > 1);
-      if (_greaterThan) {
-        boolean _and = false;
-        boolean _equals = first.equals(ListaCompilerValidator.DataType.INT);
-        if (!_equals) {
-          _and = false;
-        } else {
-          EList<EObject> _args_2 = exp.getArgs();
-          EObject _get_1 = _args_2.get(1);
-          Object _dataType = this.getDataType(((FourthLevelExp) _get_1));
-          boolean _equals_1 = _dataType.equals(ListaCompilerValidator.DataType.INT);
-          _and = _equals_1;
-        }
-        if (_and) {
-          return ListaCompilerValidator.DataType.INT;
-        } else {
-          FourthLevelOp _op = exp.getOp();
-          String _name = _op.getName();
-          String _plus = ("Mismatched data types for operator " + _name);
-          String _plus_1 = (_plus + ", arguments should be INT.");
-          throw new MismatchedTypeException(_plus_1);
-        }
-      } else {
-        return first;
-      }
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+  public ListaCompilerValidator.DataType getDataType(final FourthLevelExp exp, final HashMap<String, ListaCompilerValidator.DataType> types) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from FourthLevelExp to PreDefFunctionCall");
   }
   
-  public Object getDataType(final Term term) {
+  public ListaCompilerValidator.DataType getDataType(final Term term) {
     if ((term instanceof MyInteger)) {
       return ListaCompilerValidator.DataType.INT;
     } else {
@@ -493,7 +425,7 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     return null;
   }
   
-  public Object getDataType(final FunctionCall fcall) {
+  public ListaCompilerValidator.DataType getDataType(final FunctionCall fcall) {
     if ((fcall instanceof PreDefFunctionCall)) {
       return this.getDataType(((PreDefFunctionCall) fcall));
     } else {
@@ -526,35 +458,77 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     }
   }
   
-  public Object getDataType(final UserDefFunctionCall fcall) {
-    FunctionDefinition _function = fcall.getFunction();
-    Expression _return = _function.getReturn();
-    return this.getDataType(_return);
+  public ListaCompilerValidator.DataType getDataType(final UserDefFunctionCall fcall) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from Expression to PreDefFunctionCall");
   }
   
-  public Object getDataType(final IfControlFlow ifCF) {
-    Expression _iftrue = ifCF.getIftrue();
-    return this.getDataType(_iftrue);
+  public ListaCompilerValidator.DataType getDataType(final IfControlFlow ifCF) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from Expression to PreDefFunctionCall");
   }
   
-  public Object compareEquals(final SecondLevelExp exp) {
-    try {
-      EList<EObject> _args = exp.getArgs();
-      EObject _get = _args.get(0);
-      final Object first = this.getDataType(((ThirdLevelExp) _get));
-      EList<EObject> _args_1 = exp.getArgs();
-      EObject _get_1 = _args_1.get(1);
-      final Object second = this.getDataType(((SecondLevelExp) _get_1));
-      boolean _equals = first.equals(second);
-      if (_equals) {
-        return first;
-      }
-      String _name = SecondLevelOp.EQ.getName();
-      String _plus = ("The two arguments being compared with " + _name);
-      String _plus_1 = (_plus + " should have the same type.");
-      throw new MismatchedTypeException(_plus_1);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+  public ListaCompilerValidator.DataType compareEquals(final SecondLevelExp exp) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from ThirdLevelExp to PreDefFunctionCall"
+      + "\nType mismatch: cannot convert from SecondLevelExp to PreDefFunctionCall");
+  }
+  
+  /**
+   * def inferVariablesTypes(FourthLevelExp exp) {
+   * var vars = new HashMap();
+   * val first = exp.args.get(0) as Term;
+   * val firstType = first.getDataType;
+   * if (exp.args.length > 1) {
+   * val second = exp.args.get(1) as FourthLevelExp;
+   * val secondType = second.getDataType;
+   * if (firstType.equals(DataType.VAR)) {
+   * vars.put((first as MyVariable).^var, DataType.INT);
+   * }
+   * if (secondType.equals(DataType.VAR)) {
+   * vars.put((second as MyVariable).^var, DataType.INT);
+   * }
+   * } else {
+   * if (firstType.equals(DataType.VAR)) {
+   * vars.put((first as MyVariable).^var, DataType.VAR);
+   * }
+   * }
+   * return vars;
+   * }
+   */
+  public MyVariable getVariable(final FirstLevelExp exp) {
+    EList<EObject> _args = exp.getArgs();
+    EObject _get = _args.get(0);
+    EList<EObject> _args_1 = ((SecondLevelExp) _get).getArgs();
+    EObject _get_1 = _args_1.get(0);
+    EList<EObject> _args_2 = ((ThirdLevelExp) _get_1).getArgs();
+    EObject _get_2 = _args_2.get(0);
+    EList<EObject> _args_3 = ((FourthLevelExp) _get_2).getArgs();
+    EObject _get_3 = _args_3.get(0);
+    return ((MyVariable) _get_3);
+  }
+  
+  public MyVariable getVariable(final SecondLevelExp exp) {
+    EList<EObject> _args = exp.getArgs();
+    EObject _get = _args.get(0);
+    EList<EObject> _args_1 = ((ThirdLevelExp) _get).getArgs();
+    EObject _get_1 = _args_1.get(0);
+    EList<EObject> _args_2 = ((FourthLevelExp) _get_1).getArgs();
+    EObject _get_2 = _args_2.get(0);
+    return ((MyVariable) _get_2);
+  }
+  
+  public MyVariable getVariable(final ThirdLevelExp exp) {
+    EList<EObject> _args = exp.getArgs();
+    EObject _get = _args.get(0);
+    EList<EObject> _args_1 = ((FourthLevelExp) _get).getArgs();
+    EObject _get_1 = _args_1.get(0);
+    return ((MyVariable) _get_1);
+  }
+  
+  public MyVariable getVariable(final FourthLevelExp exp) {
+    EList<EObject> _args = exp.getArgs();
+    EObject _get = _args.get(0);
+    return ((MyVariable) _get);
   }
 }

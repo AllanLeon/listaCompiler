@@ -136,6 +136,216 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 	}
 	
 	@Check
+	def checkFunctionDefinitionType(FunctionDefinition fd) {
+		var types = new HashMap<String, DataType>();
+		checkExpressionType(fd.^return, types);
+		functionDefs.put(fd.name, types);
+	}
+	
+	def checkExpressionType(Expression exp, HashMap<String, DataType> types) {
+		try {
+			getDataType(exp, types);
+		} catch (MismatchedTypeException ex) {
+			error(ex.message,
+			ListaCompilerPackage.Literals.EXPRESSION__EXP,
+			WRONG_EXPRESSION_TYPE);
+		}
+	}
+	
+	@Check
+	def checkIfControlFlowType(IfControlFlow ifCF, HashMap<String, DataType> types) {
+		try {
+			val cond = getDataType(ifCF.cond, types);
+			val iftrue = getDataType(ifCF.iftrue, types);
+			val iffalse = getDataType(ifCF.iffalse, types);
+			if (!cond.equals(DataType.BOOL)) {
+				error("Condition should be type BOOL.",
+				ListaCompilerPackage.Literals.IF_CONTROL_FLOW__COND,
+				WRONG_EXPRESSION_TYPE);
+			}
+			if (!iftrue.equals(iffalse)) {
+				error("Condition should be type BOOL.",
+				ListaCompilerPackage.Literals.IF_CONTROL_FLOW__IFTRUE,
+				WRONG_EXPRESSION_TYPE);
+			}
+		} catch (MismatchedTypeException ex) {
+			error(ex.message,
+			ListaCompilerPackage.Literals.EXPRESSION__EXP,
+			WRONG_EXPRESSION_TYPE);
+		}
+	}
+	
+	def getDataType(Expression exp, HashMap<String, DataType> types) {
+		return getDataType(exp.exp, types);
+	}
+	
+	def getDataType(FirstLevelExp exp, HashMap<String, DataType> types) {
+		val first = getDataType(exp.args.get(0) as SecondLevelExp, types);
+		val op = exp.op;
+		if (exp.args.length > 1) {
+			var expected = DataType.GLOBAL;
+			switch (op) {
+				case FirstLevelOp.AND,
+				case FirstLevelOp.OR:
+					expected = DataType.BOOL
+				default:
+					expected = DataType.GLOBAL				
+			}
+			val second = getDataType(exp.args.get(1) as FirstLevelExp, types); 
+			if (first.equals(DataType.VAR)) {
+				val var1 = (exp.args.get(0) as SecondLevelExp).getVariable;
+				if (second.equals(DataType.VAR)) {
+					val var2 = (exp.args.get(1) as FirstLevelExp).getVariable;
+					types.put(var2.^var, expected);
+				}
+				types.put(var1.^var, expected);
+				if (second.equals(expected)) {
+				 	return expected;
+				} else {
+					throw new MismatchedTypeException("Mismatched data types for operator " +
+						 op.getName() + ", arguments should be " + expected.toString() + ".");
+				}
+			} else if (second.equals(DataType.VAR)) {
+				val var2 = (exp.args.get(1) as FirstLevelExp).getVariable;
+				types.put(var2.^var, expected);
+			} else if (first.equals(expected) && second.equals(expected)) {
+			 	return expected;
+			} else {
+				throw new MismatchedTypeException("Mismatched data types for operator " +
+					 op.getName() + ", arguments should be " + expected.toString() + ".");
+			}
+		} else {
+			return first;
+		}
+	}
+	
+	def getDataType(SecondLevelExp exp, HashMap<String, DataType> types) {
+		val first = (exp.args.get(0) as ThirdLevelExp).getDataType;
+		val op = exp.op;
+		if (exp.args.length > 1) {
+			var expected = DataType.GLOBAL;
+			switch (op) {
+				case SecondLevelOp.GT,
+				case SecondLevelOp.LT:
+					expected = DataType.INT
+				case SecondLevelOp.EQ:
+					return exp.compareEquals
+				default:
+					expected = DataType.GLOBAL				
+			}
+			if (first.equals(expected) &&
+				(exp.args.get(1) as SecondLevelExp).getDataType.equals(expected)) {
+				return expected;
+			} else {
+				throw new MismatchedTypeException("Mismatched data types for operator " +
+					 op.getName() + ", arguments should be " + expected.toString() + ".");
+			}
+		} else {
+			return first;
+		}
+	}
+	
+	def getDataType(ThirdLevelExp exp, HashMap<String, DataType> types) {
+		val first = (exp.args.get(0) as FourthLevelExp).getDataType;
+		val op = exp.op;
+		if (exp.args.length > 1) {
+			var expected = DataType.GLOBAL;
+			switch (op) {
+				case ThirdLevelOp.PLUS,
+				case ThirdLevelOp.MINUS:
+					expected = DataType.INT
+				case ThirdLevelOp.CONCAT:
+					expected = DataType.STRING
+				default:
+					expected = DataType.GLOBAL				
+			}
+			if (first.equals(expected) &&
+				(exp.args.get(1) as ThirdLevelExp).getDataType.equals(expected)) {
+				return expected;					
+			} else {
+				throw new MismatchedTypeException("Mismatched data types for operator " +
+					 op.getName() + ", arguments should be " + expected.toString() + ".");
+			}
+		} else {
+			return first;
+		}
+	}
+	
+	def getDataType(FourthLevelExp exp, HashMap<String, DataType> types) {
+		val first = (exp.args.get(0) as Term).getDataType;
+		if (exp.args.length > 1) {
+			if (first.equals(DataType.INT) &&
+				(exp.args.get(1) as FourthLevelExp).getDataType.equals(DataType.INT)) {
+				return DataType.INT;					
+			} else {
+				throw new MismatchedTypeException("Mismatched data types for operator " + exp.op.getName() + ", arguments should be INT.");
+			}
+		} else {
+			return first;
+		}
+	}
+	
+	def getDataType(Term term) {
+		if (term instanceof MyInteger) {
+			return DataType.INT;
+		} else if (term instanceof MyString) {
+			return DataType.STRING;
+		} else if (term instanceof MyBool) {
+			return DataType.BOOL;
+		} else if (term instanceof List) {
+			return DataType.LIST;
+		} else if (term instanceof MyVariable) {
+			return DataType.VAR;
+		} else if (term instanceof FunctionCall) {
+			return (term as FunctionCall).getDataType;
+		} else if (term instanceof IfControlFlow) {
+			return (term as IfControlFlow).getDataType;
+		}
+	}
+	
+	def getDataType(FunctionCall fcall) {
+		if (fcall instanceof PreDefFunctionCall) {
+			return (fcall as PreDefFunctionCall).getDataType;
+		} else if (fcall instanceof UserDefFunctionCall) {
+			return (fcall as UserDefFunctionCall).getDataType;
+		}
+	}
+	
+	def getDataType(PreDefFunctionCall fcall) {
+		switch (fcall.function) {
+			case PDFunction.SHOW:
+				return DataType.STRING
+			case PDFunction.LENGTH,
+			case PDFunction.CAR:
+				return DataType.INT
+			case PDFunction.CDR,
+			case PDFunction.CONS:
+				return DataType.LIST
+			case PDFunction.IS_EMPTY:
+				return DataType.BOOL
+			default:
+				return DataType.STRING
+		}
+	}
+	
+	def getDataType(UserDefFunctionCall fcall) {
+		return fcall.function.^return.getDataType;
+	}
+	
+	def getDataType(IfControlFlow ifCF) {
+		return ifCF.iftrue.getDataType;
+	}
+	
+	def compareEquals(SecondLevelExp exp) {
+		val first = (exp.args.get(0) as ThirdLevelExp).getDataType;
+		val second = (exp.args.get(1) as SecondLevelExp).getDataType;
+		if (first.equals(second)) {
+			return first;
+		}
+		throw new MismatchedTypeException("The two arguments being compared with " + SecondLevelOp.EQ.getName() + " should have the same type.");
+	}
+	
+	/*@Check
 	def checkExpressionType(Expression exp) {
 		try {
 			exp.getDataType;
@@ -321,7 +531,7 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 			return first;
 		}
 		throw new MismatchedTypeException("The two arguments being compared with " + SecondLevelOp.EQ.getName() + " should have the same type.");
-	}
+	}*/
 	
 	/*def inferVariablesTypes(ThirdLevelExp exp) {
 		var vars = new HashMap();
@@ -364,4 +574,20 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		}
 		return vars;
 	}*/
+	
+	def getVariable(FirstLevelExp exp) {
+		return (((exp.args.get(0) as SecondLevelExp).args.get(0) as ThirdLevelExp).args.get(0) as FourthLevelExp).args.get(0) as MyVariable;
+	}
+	
+	def getVariable(SecondLevelExp exp) {
+		return ((exp.args.get(0) as ThirdLevelExp).args.get(0) as FourthLevelExp).args.get(0) as MyVariable;
+	}
+	
+	def getVariable(ThirdLevelExp exp) {
+		return (exp.args.get(0) as FourthLevelExp).args.get(0) as MyVariable;
+	}
+	
+	def getVariable(FourthLevelExp exp) {
+		return exp.args.get(0) as MyVariable;
+	}
 }
