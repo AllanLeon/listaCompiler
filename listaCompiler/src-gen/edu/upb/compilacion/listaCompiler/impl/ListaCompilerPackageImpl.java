@@ -355,9 +355,19 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getLista_Lines()
+  public EReference getLista_Definitions()
   {
     return (EReference)listaEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLista_Evaluations()
+  {
+    return (EReference)listaEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -961,7 +971,8 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
 
     // Create classes and their features
     listaEClass = createEClass(LISTA);
-    createEReference(listaEClass, LISTA__LINES);
+    createEReference(listaEClass, LISTA__DEFINITIONS);
+    createEReference(listaEClass, LISTA__EVALUATIONS);
 
     evaluationEClass = createEClass(EVALUATION);
     createEReference(evaluationEClass, EVALUATION__RETURN);
@@ -1095,7 +1106,8 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
 
     // Initialize classes and features; add operations and parameters
     initEClass(listaEClass, Lista.class, "Lista", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getLista_Lines(), ecorePackage.getEObject(), null, "lines", null, 0, -1, Lista.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLista_Definitions(), this.getFunctionDefinition(), null, "definitions", null, 0, -1, Lista.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLista_Evaluations(), this.getEvaluation(), null, "evaluations", null, 0, -1, Lista.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(evaluationEClass, Evaluation.class, "Evaluation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEvaluation_Return(), this.getExpression(), null, "return", null, 0, 1, Evaluation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

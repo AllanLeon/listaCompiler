@@ -41,7 +41,8 @@
       <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//FourthLevelOp/div"/>
     </genEnums>
     <genClasses ecoreClass="ListaCompiler.ecore#//Lista">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//Lista/lines"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//Lista/definitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//Lista/evaluations"/>
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//Evaluation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//Evaluation/return"/>

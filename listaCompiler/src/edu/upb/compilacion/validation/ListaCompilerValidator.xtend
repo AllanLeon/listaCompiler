@@ -9,8 +9,10 @@ import edu.upb.compilacion.listaCompiler.FirstLevelExp
 import edu.upb.compilacion.listaCompiler.FirstLevelOp
 import edu.upb.compilacion.listaCompiler.FourthLevelExp
 import edu.upb.compilacion.listaCompiler.FunctionCall
+import edu.upb.compilacion.listaCompiler.FunctionDefinition
 import edu.upb.compilacion.listaCompiler.IfControlFlow
 import edu.upb.compilacion.listaCompiler.List
+import edu.upb.compilacion.listaCompiler.Lista
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage
 import edu.upb.compilacion.listaCompiler.MyBool
 import edu.upb.compilacion.listaCompiler.MyInteger
@@ -24,6 +26,7 @@ import edu.upb.compilacion.listaCompiler.Term
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp
 import edu.upb.compilacion.listaCompiler.ThirdLevelOp
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall
+import java.util.HashMap
 import org.eclipse.xtext.validation.Check
 
 //import org.eclipse.xtext.validation.Check
@@ -38,17 +41,63 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 	enum DataType {
 		INT, STRING, BOOL, LIST, VAR, GLOBAL
 	}
-
-//  public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					MyDslPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+	
+	public static val WRONG_PARAMETERS_NUMBER = "wrongParametersNumber";
+	public static val WRONG_EXPRESSION_TYPE = "wrongExpressionType";
+	public static val INVALID_FUNCTION_DECLARATION = "invalidFunctionDeclaration"
+	
+	private var functionDefs = new HashMap();
+	
+	@Check
+	def checkFunctionDefinitionsPreDefNames(Lista lista) {
+		for (fd : lista.definitions) {
+			for (i : 0 ..< PDFunction.values.length) {
+				if (PDFunction.get(i).getName.equals(fd.name)) {
+					error("The method '" + fd.name + "' is a predefined Lista method.",
+						ListaCompilerPackage.Literals.LISTA__DEFINITIONS,
+						edu.upb.compilacion.validation.ListaCompilerValidator.INVALID_FUNCTION_DECLARATION
+						)
+				}
+			}
+		}
+	}
+	
+	@Check
+	def checkFunctionDefinitionsNames(Lista lista) {
+		val definitions = lista.definitions; 
+		if (definitions.length > 1) {
+			var curName = ""
+			for (cur : 1 ..< definitions.length) {
+				curName = definitions.get(cur).name;
+				for (i : 0 ..< cur) {
+					if (definitions.get(i).name.equals(curName)) {
+						error("The method named '" + curName + "' can only be declared once.",
+						ListaCompilerPackage.Literals.LISTA__DEFINITIONS,
+						edu.upb.compilacion.validation.ListaCompilerValidator.INVALID_FUNCTION_DECLARATION
+						)
+					}
+				}
+			}
+		}
+	}
+	
+	@Check
+	def checkFunctionDefinitionsParameters(FunctionDefinition fd) {
+		if (fd.params.length > 1) {
+			var curName = ""
+			for (cur : 1 ..< fd.params.length) {
+				curName = fd.params.get(cur);
+				for (i : 0 ..< cur) {
+					if (fd.params.get(i).equals(curName)) {
+						error("The parameter '" + curName + "' can only be declared once.",
+						ListaCompilerPackage.Literals.FUNCTION_DEFINITION__PARAMS,
+						edu.upb.compilacion.validation.ListaCompilerValidator.INVALID_FUNCTION_DECLARATION
+						)
+					}
+				}
+			}
+		}
+	}
 
 	@Check
 	def checkUserDefParametersNumber(UserDefFunctionCall fcall) {
@@ -56,7 +105,7 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		if (fcall.args.length != params) {
 			error('Wrong number of parameters, should be ' + params,
 				ListaCompilerPackage.Literals.FUNCTION_CALL__ARGS,
-				'wrongParametersNumber'
+				WRONG_PARAMETERS_NUMBER
 			)
 		}
 	}
@@ -82,7 +131,7 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		if (fcall.args.length != params) {
 			error('Wrong number of parameters, should be ' + 1,
 			ListaCompilerPackage.Literals.FUNCTION_CALL__ARGS,
-			'wrongParametersNumber');
+			WRONG_PARAMETERS_NUMBER);
 		}
 	}
 	
@@ -93,7 +142,30 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		} catch (MismatchedTypeException ex) {
 			error(ex.message,
 			ListaCompilerPackage.Literals.EXPRESSION__EXP,
-			'wrongExpressionType');
+			WRONG_EXPRESSION_TYPE);
+		}
+	}
+	
+	@Check
+	def checkIfControlFlowType(IfControlFlow ifCF) {
+		try {
+			val cond = ifCF.cond.getDataType;
+			val iftrue = ifCF.iftrue.getDataType;
+			val iffalse = ifCF.iffalse.getDataType;
+			if (!cond.equals(DataType.BOOL)) {
+				error("Condition should be type BOOL.",
+				ListaCompilerPackage.Literals.IF_CONTROL_FLOW__COND,
+				WRONG_EXPRESSION_TYPE);
+			}
+			if (!iftrue.equals(iffalse)) {
+				error("Condition should be type BOOL.",
+				ListaCompilerPackage.Literals.IF_CONTROL_FLOW__IFTRUE,
+				WRONG_EXPRESSION_TYPE);
+			}
+		} catch (MismatchedTypeException ex) {
+			error(ex.message,
+			ListaCompilerPackage.Literals.EXPRESSION__EXP,
+			WRONG_EXPRESSION_TYPE);
 		}
 	}
 	
@@ -243,6 +315,53 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 	}
 	
 	def compareEquals(SecondLevelExp exp) {
-		
+		val first = (exp.args.get(0) as ThirdLevelExp).getDataType;
+		val second = (exp.args.get(1) as SecondLevelExp).getDataType;
+		if (first.equals(second)) {
+			return first;
+		}
+		throw new MismatchedTypeException("The two arguments being compared with " + SecondLevelOp.EQ.getName() + " should have the same type.");
 	}
+	
+	/*def inferVariablesTypes(ThirdLevelExp exp) {
+		var vars = new HashMap();
+		val first = exp.args.get(0) as FourthLevelExp;
+		val firstType = first.getDataType;
+		if (exp.args.length > 1) {
+			val second = exp.args.get(1) as ThirdLevelExp;
+			val secondType = second.getDataType;
+			if (firstType.equals(DataType.VAR)) {
+				vars.put((first as MyVariable).^var, DataType.INT);
+			}
+			if (secondType.equals(DataType.VAR)) {
+				vars.put((second as MyVariable).^var, DataType.INT);
+			}
+		} else {
+			if (firstType.equals(DataType.VAR)) {
+				vars.put((first as MyVariable).^var, DataType.VAR);
+			}
+		}
+		return vars;
+	}*/
+	
+	/*def inferVariablesTypes(FourthLevelExp exp) {
+		var vars = new HashMap();
+		val first = exp.args.get(0) as Term;
+		val firstType = first.getDataType;
+		if (exp.args.length > 1) {
+			val second = exp.args.get(1) as FourthLevelExp;
+			val secondType = second.getDataType;
+			if (firstType.equals(DataType.VAR)) {
+				vars.put((first as MyVariable).^var, DataType.INT);
+			}
+			if (secondType.equals(DataType.VAR)) {
+				vars.put((second as MyVariable).^var, DataType.INT);
+			}
+		} else {
+			if (firstType.equals(DataType.VAR)) {
+				vars.put((first as MyVariable).^var, DataType.VAR);
+			}
+		}
+		return vars;
+	}*/
 }

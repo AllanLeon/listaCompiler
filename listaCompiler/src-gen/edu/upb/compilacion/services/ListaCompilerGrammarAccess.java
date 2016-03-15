@@ -20,26 +20,30 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public class ListaElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Lista");
-		private final Assignment cLinesAssignment = (Assignment)rule.eContents().get(1);
-		private final Alternatives cLinesAlternatives_0 = (Alternatives)cLinesAssignment.eContents().get(0);
-		private final RuleCall cLinesEvaluationParserRuleCall_0_0 = (RuleCall)cLinesAlternatives_0.eContents().get(0);
-		private final RuleCall cLinesFunctionDefinitionParserRuleCall_0_1 = (RuleCall)cLinesAlternatives_0.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cDefinitionsAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cDefinitionsFunctionDefinitionParserRuleCall_0_0 = (RuleCall)cDefinitionsAssignment_0.eContents().get(0);
+		private final Assignment cEvaluationsAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cEvaluationsEvaluationParserRuleCall_1_0 = (RuleCall)cEvaluationsAssignment_1.eContents().get(0);
 		
 		//Lista:
-		//	lines+=(Evaluation | FunctionDefinition)+;
+		//	(definitions+=FunctionDefinition | evaluations+=Evaluation)+;
 		@Override public ParserRule getRule() { return rule; }
 
-		//lines+=(Evaluation | FunctionDefinition)+
-		public Assignment getLinesAssignment() { return cLinesAssignment; }
+		//(definitions+=FunctionDefinition | evaluations+=Evaluation)+
+		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//Evaluation | FunctionDefinition
-		public Alternatives getLinesAlternatives_0() { return cLinesAlternatives_0; }
-
-		//Evaluation
-		public RuleCall getLinesEvaluationParserRuleCall_0_0() { return cLinesEvaluationParserRuleCall_0_0; }
+		//definitions+=FunctionDefinition
+		public Assignment getDefinitionsAssignment_0() { return cDefinitionsAssignment_0; }
 
 		//FunctionDefinition
-		public RuleCall getLinesFunctionDefinitionParserRuleCall_0_1() { return cLinesFunctionDefinitionParserRuleCall_0_1; }
+		public RuleCall getDefinitionsFunctionDefinitionParserRuleCall_0_0() { return cDefinitionsFunctionDefinitionParserRuleCall_0_0; }
+
+		//evaluations+=Evaluation
+		public Assignment getEvaluationsAssignment_1() { return cEvaluationsAssignment_1; }
+
+		//Evaluation
+		public RuleCall getEvaluationsEvaluationParserRuleCall_1_0() { return cEvaluationsEvaluationParserRuleCall_1_0; }
 	}
 
 	public class EvaluationElements extends AbstractParserRuleElementFinder {
@@ -1131,7 +1135,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Lista:
-	//	lines+=(Evaluation | FunctionDefinition)+;
+	//	(definitions+=FunctionDefinition | evaluations+=Evaluation)+;
 	public ListaElements getListaAccess() {
 		return pLista;
 	}

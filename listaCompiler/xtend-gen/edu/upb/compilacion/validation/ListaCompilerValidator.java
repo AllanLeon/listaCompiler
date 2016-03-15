@@ -13,6 +13,7 @@ import edu.upb.compilacion.listaCompiler.FunctionCall;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.IfControlFlow;
 import edu.upb.compilacion.listaCompiler.List;
+import edu.upb.compilacion.listaCompiler.Lista;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
 import edu.upb.compilacion.listaCompiler.MyBool;
 import edu.upb.compilacion.listaCompiler.MyInteger;
@@ -27,11 +28,13 @@ import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
 import edu.upb.compilacion.listaCompiler.ThirdLevelOp;
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall;
 import edu.upb.compilacion.validation.AbstractListaCompilerValidator;
+import java.util.HashMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 
 /**
  * This class contains custom validation rules.
@@ -54,6 +57,99 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     GLOBAL;
   }
   
+  public final static String WRONG_PARAMETERS_NUMBER = "wrongParametersNumber";
+  
+  public final static String WRONG_EXPRESSION_TYPE = "wrongExpressionType";
+  
+  public final static String INVALID_FUNCTION_DECLARATION = "invalidFunctionDeclaration";
+  
+  private HashMap<Object, Object> functionDefs = new HashMap<Object, Object>();
+  
+  @Check
+  public void checkFunctionDefinitionsPreDefNames(final Lista lista) {
+    EList<FunctionDefinition> _definitions = lista.getDefinitions();
+    for (final FunctionDefinition fd : _definitions) {
+      PDFunction[] _values = PDFunction.values();
+      int _length = _values.length;
+      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _length, true);
+      for (final Integer i : _doubleDotLessThan) {
+        PDFunction _get = PDFunction.get((i).intValue());
+        String _name = _get.getName();
+        String _name_1 = fd.getName();
+        boolean _equals = _name.equals(_name_1);
+        if (_equals) {
+          String _name_2 = fd.getName();
+          String _plus = ("The method \'" + _name_2);
+          String _plus_1 = (_plus + "\' is a predefined Lista method.");
+          this.error(_plus_1, 
+            ListaCompilerPackage.Literals.LISTA__DEFINITIONS, 
+            ListaCompilerValidator.INVALID_FUNCTION_DECLARATION);
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkFunctionDefinitionsNames(final Lista lista) {
+    final EList<FunctionDefinition> definitions = lista.getDefinitions();
+    int _length = ((Object[])Conversions.unwrapArray(definitions, Object.class)).length;
+    boolean _greaterThan = (_length > 1);
+    if (_greaterThan) {
+      String curName = "";
+      int _length_1 = ((Object[])Conversions.unwrapArray(definitions, Object.class)).length;
+      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(1, _length_1, true);
+      for (final Integer cur : _doubleDotLessThan) {
+        {
+          FunctionDefinition _get = definitions.get((cur).intValue());
+          String _name = _get.getName();
+          curName = _name;
+          ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, (cur).intValue(), true);
+          for (final Integer i : _doubleDotLessThan_1) {
+            FunctionDefinition _get_1 = definitions.get((i).intValue());
+            String _name_1 = _get_1.getName();
+            boolean _equals = _name_1.equals(curName);
+            if (_equals) {
+              this.error((("The method named \'" + curName) + "\' can only be declared once."), 
+                ListaCompilerPackage.Literals.LISTA__DEFINITIONS, 
+                ListaCompilerValidator.INVALID_FUNCTION_DECLARATION);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkFunctionDefinitionsParameters(final FunctionDefinition fd) {
+    EList<String> _params = fd.getParams();
+    int _length = ((Object[])Conversions.unwrapArray(_params, Object.class)).length;
+    boolean _greaterThan = (_length > 1);
+    if (_greaterThan) {
+      String curName = "";
+      EList<String> _params_1 = fd.getParams();
+      int _length_1 = ((Object[])Conversions.unwrapArray(_params_1, Object.class)).length;
+      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(1, _length_1, true);
+      for (final Integer cur : _doubleDotLessThan) {
+        {
+          EList<String> _params_2 = fd.getParams();
+          String _get = _params_2.get((cur).intValue());
+          curName = _get;
+          ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, (cur).intValue(), true);
+          for (final Integer i : _doubleDotLessThan_1) {
+            EList<String> _params_3 = fd.getParams();
+            String _get_1 = _params_3.get((i).intValue());
+            boolean _equals = _get_1.equals(curName);
+            if (_equals) {
+              this.error((("The parameter \'" + curName) + "\' can only be declared once."), 
+                ListaCompilerPackage.Literals.FUNCTION_DEFINITION__PARAMS, 
+                ListaCompilerValidator.INVALID_FUNCTION_DECLARATION);
+            }
+          }
+        }
+      }
+    }
+  }
+  
   @Check
   public void checkUserDefParametersNumber(final UserDefFunctionCall fcall) {
     FunctionDefinition _function = fcall.getFunction();
@@ -65,7 +161,7 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     if (_notEquals) {
       this.error(("Wrong number of parameters, should be " + Integer.valueOf(params)), 
         ListaCompilerPackage.Literals.FUNCTION_CALL__ARGS, 
-        "wrongParametersNumber");
+        ListaCompilerValidator.WRONG_PARAMETERS_NUMBER);
     }
   }
   
@@ -98,7 +194,7 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     if (_notEquals) {
       this.error(("Wrong number of parameters, should be " + Integer.valueOf(1)), 
         ListaCompilerPackage.Literals.FUNCTION_CALL__ARGS, 
-        "wrongParametersNumber");
+        ListaCompilerValidator.WRONG_PARAMETERS_NUMBER);
     }
   }
   
@@ -113,12 +209,48 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
         String _message = ex.getMessage();
         this.error(_message, 
           ListaCompilerPackage.Literals.EXPRESSION__EXP, 
-          "wrongExpressionType");
+          ListaCompilerValidator.WRONG_EXPRESSION_TYPE);
       } else {
         throw Exceptions.sneakyThrow(_t);
       }
     }
     return _xtrycatchfinallyexpression;
+  }
+  
+  @Check
+  public void checkIfControlFlowType(final IfControlFlow ifCF) {
+    try {
+      Expression _cond = ifCF.getCond();
+      final Object cond = this.getDataType(_cond);
+      Expression _iftrue = ifCF.getIftrue();
+      final Object iftrue = this.getDataType(_iftrue);
+      Expression _iffalse = ifCF.getIffalse();
+      final Object iffalse = this.getDataType(_iffalse);
+      boolean _equals = cond.equals(ListaCompilerValidator.DataType.BOOL);
+      boolean _not = (!_equals);
+      if (_not) {
+        this.error("Condition should be type BOOL.", 
+          ListaCompilerPackage.Literals.IF_CONTROL_FLOW__COND, 
+          ListaCompilerValidator.WRONG_EXPRESSION_TYPE);
+      }
+      boolean _equals_1 = iftrue.equals(iffalse);
+      boolean _not_1 = (!_equals_1);
+      if (_not_1) {
+        this.error("Condition should be type BOOL.", 
+          ListaCompilerPackage.Literals.IF_CONTROL_FLOW__IFTRUE, 
+          ListaCompilerValidator.WRONG_EXPRESSION_TYPE);
+      }
+    } catch (final Throwable _t) {
+      if (_t instanceof MismatchedTypeException) {
+        final MismatchedTypeException ex = (MismatchedTypeException)_t;
+        String _message = ex.getMessage();
+        this.error(_message, 
+          ListaCompilerPackage.Literals.EXPRESSION__EXP, 
+          ListaCompilerValidator.WRONG_EXPRESSION_TYPE);
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
   }
   
   public Object getDataType(final Expression exp) {
@@ -406,6 +538,23 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   }
   
   public Object compareEquals(final SecondLevelExp exp) {
-    return null;
+    try {
+      EList<EObject> _args = exp.getArgs();
+      EObject _get = _args.get(0);
+      final Object first = this.getDataType(((ThirdLevelExp) _get));
+      EList<EObject> _args_1 = exp.getArgs();
+      EObject _get_1 = _args_1.get(1);
+      final Object second = this.getDataType(((SecondLevelExp) _get_1));
+      boolean _equals = first.equals(second);
+      if (_equals) {
+        return first;
+      }
+      String _name = SecondLevelOp.EQ.getName();
+      String _plus = ("The two arguments being compared with " + _name);
+      String _plus_1 = (_plus + " should have the same type.");
+      throw new MismatchedTypeException(_plus_1);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

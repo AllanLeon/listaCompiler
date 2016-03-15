@@ -37,7 +37,7 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getListaAccess().getLinesAlternatives_0(), "rule__Lista__LinesAlternatives_0");
+					put(grammarAccess.getListaAccess().getAlternatives(), "rule__Lista__Alternatives");
 					put(grammarAccess.getTermAccess().getAlternatives(), "rule__Term__Alternatives");
 					put(grammarAccess.getMyIntegerAccess().getAlternatives(), "rule__MyInteger__Alternatives");
 					put(grammarAccess.getMyBoolAccess().getAlternatives(), "rule__MyBool__Alternatives");
@@ -73,7 +73,8 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getListAccess().getGroup(), "rule__List__Group__0");
 					put(grammarAccess.getListAccess().getGroup_2(), "rule__List__Group_2__0");
 					put(grammarAccess.getListAccess().getGroup_2_1(), "rule__List__Group_2_1__0");
-					put(grammarAccess.getListaAccess().getLinesAssignment(), "rule__Lista__LinesAssignment");
+					put(grammarAccess.getListaAccess().getDefinitionsAssignment_0(), "rule__Lista__DefinitionsAssignment_0");
+					put(grammarAccess.getListaAccess().getEvaluationsAssignment_1(), "rule__Lista__EvaluationsAssignment_1");
 					put(grammarAccess.getEvaluationAccess().getReturnAssignment_1(), "rule__Evaluation__ReturnAssignment_1");
 					put(grammarAccess.getFunctionDefinitionAccess().getNameAssignment_0(), "rule__FunctionDefinition__NameAssignment_0");
 					put(grammarAccess.getFunctionDefinitionAccess().getParamsAssignment_2_0(), "rule__FunctionDefinition__ParamsAssignment_2_0");

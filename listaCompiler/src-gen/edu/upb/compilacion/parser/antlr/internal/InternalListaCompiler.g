@@ -78,43 +78,44 @@ ruleLista returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getListaAccess().getLinesEvaluationParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getListaAccess().getDefinitionsFunctionDefinitionParserRuleCall_0_0()); 
 	    }
-		lv_lines_0_1=ruleEvaluation		{
+		lv_definitions_0_0=ruleFunctionDefinition		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getListaRule());
 	        }
        		add(
        			$current, 
-       			"lines",
-        		lv_lines_0_1, 
-        		"Evaluation");
-	        afterParserOrEnumRuleCall();
-	    }
-
-    |		{ 
-	        newCompositeNode(grammarAccess.getListaAccess().getLinesFunctionDefinitionParserRuleCall_0_1()); 
-	    }
-		lv_lines_0_2=ruleFunctionDefinition		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getListaRule());
-	        }
-       		add(
-       			$current, 
-       			"lines",
-        		lv_lines_0_2, 
+       			"definitions",
+        		lv_definitions_0_0, 
         		"FunctionDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
+)
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getListaAccess().getEvaluationsEvaluationParserRuleCall_1_0()); 
+	    }
+		lv_evaluations_1_0=ruleEvaluation		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getListaRule());
+	        }
+       		add(
+       			$current, 
+       			"evaluations",
+        		lv_evaluations_1_0, 
+        		"Evaluation");
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
-)+
+))+
 ;
 
 

@@ -203,7 +203,7 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (lines+=Evaluation | lines+=FunctionDefinition)+
+	 *     (definitions+=FunctionDefinition | evaluations+=Evaluation)+
 	 */
 	protected void sequence_Lista(EObject context, Lista semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
