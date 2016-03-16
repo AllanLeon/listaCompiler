@@ -2,8 +2,8 @@
  */
 package edu.upb.compilacion.listaCompiler.impl;
 
+import edu.upb.compilacion.listaCompiler.BracketExpression;
 import edu.upb.compilacion.listaCompiler.Expression;
-import edu.upb.compilacion.listaCompiler.FirstLevelExp;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -13,22 +13,21 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expression</b></em>'.
+ * An implementation of the model object '<em><b>Bracket Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link edu.upb.compilacion.listaCompiler.impl.ExpressionImpl#getExp <em>Exp</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.impl.BracketExpressionImpl#getExp <em>Exp</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expression
+public class BracketExpressionImpl extends TermImpl implements BracketExpression
 {
   /**
    * The cached value of the '{@link #getExp() <em>Exp</em>}' containment reference.
@@ -38,14 +37,14 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * @generated
    * @ordered
    */
-  protected FirstLevelExp exp;
+  protected Expression exp;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExpressionImpl()
+  protected BracketExpressionImpl()
   {
     super();
   }
@@ -58,7 +57,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
   @Override
   protected EClass eStaticClass()
   {
-    return ListaCompilerPackage.Literals.EXPRESSION;
+    return ListaCompilerPackage.Literals.BRACKET_EXPRESSION;
   }
 
   /**
@@ -66,7 +65,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public FirstLevelExp getExp()
+  public Expression getExp()
   {
     return exp;
   }
@@ -76,13 +75,13 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExp(FirstLevelExp newExp, NotificationChain msgs)
+  public NotificationChain basicSetExp(Expression newExp, NotificationChain msgs)
   {
-    FirstLevelExp oldExp = exp;
+    Expression oldExp = exp;
     exp = newExp;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.EXPRESSION__EXP, oldExp, newExp);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.BRACKET_EXPRESSION__EXP, oldExp, newExp);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -93,20 +92,20 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExp(FirstLevelExp newExp)
+  public void setExp(Expression newExp)
   {
     if (newExp != exp)
     {
       NotificationChain msgs = null;
       if (exp != null)
-        msgs = ((InternalEObject)exp).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.EXPRESSION__EXP, null, msgs);
+        msgs = ((InternalEObject)exp).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.BRACKET_EXPRESSION__EXP, null, msgs);
       if (newExp != null)
-        msgs = ((InternalEObject)newExp).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.EXPRESSION__EXP, null, msgs);
+        msgs = ((InternalEObject)newExp).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ListaCompilerPackage.BRACKET_EXPRESSION__EXP, null, msgs);
       msgs = basicSetExp(newExp, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.EXPRESSION__EXP, newExp, newExp));
+      eNotify(new ENotificationImpl(this, Notification.SET, ListaCompilerPackage.BRACKET_EXPRESSION__EXP, newExp, newExp));
   }
 
   /**
@@ -119,7 +118,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.EXPRESSION__EXP:
+      case ListaCompilerPackage.BRACKET_EXPRESSION__EXP:
         return basicSetExp(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -135,7 +134,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.EXPRESSION__EXP:
+      case ListaCompilerPackage.BRACKET_EXPRESSION__EXP:
         return getExp();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -151,8 +150,8 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.EXPRESSION__EXP:
-        setExp((FirstLevelExp)newValue);
+      case ListaCompilerPackage.BRACKET_EXPRESSION__EXP:
+        setExp((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -168,8 +167,8 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.EXPRESSION__EXP:
-        setExp((FirstLevelExp)null);
+      case ListaCompilerPackage.BRACKET_EXPRESSION__EXP:
+        setExp((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -185,10 +184,10 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case ListaCompilerPackage.EXPRESSION__EXP:
+      case ListaCompilerPackage.BRACKET_EXPRESSION__EXP:
         return exp != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ExpressionImpl
+} //BracketExpressionImpl

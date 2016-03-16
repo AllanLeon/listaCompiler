@@ -61,7 +61,7 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getThirdLevelExpAccess().getGroup_1(), "rule__ThirdLevelExp__Group_1__0");
 					put(grammarAccess.getFourthLevelExpAccess().getGroup(), "rule__FourthLevelExp__Group__0");
 					put(grammarAccess.getFourthLevelExpAccess().getGroup_1(), "rule__FourthLevelExp__Group_1__0");
-					put(grammarAccess.getTermAccess().getGroup_7(), "rule__Term__Group_7__0");
+					put(grammarAccess.getBracketExpressionAccess().getGroup(), "rule__BracketExpression__Group__0");
 					put(grammarAccess.getNegIntegerAccess().getGroup(), "rule__NegInteger__Group__0");
 					put(grammarAccess.getNegBoolAccess().getGroup(), "rule__NegBool__Group__0");
 					put(grammarAccess.getIfControlFlowAccess().getGroup(), "rule__IfControlFlow__Group__0");
@@ -94,6 +94,7 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFourthLevelExpAccess().getArgsAssignment_0(), "rule__FourthLevelExp__ArgsAssignment_0");
 					put(grammarAccess.getFourthLevelExpAccess().getOpAssignment_1_0(), "rule__FourthLevelExp__OpAssignment_1_0");
 					put(grammarAccess.getFourthLevelExpAccess().getArgsAssignment_1_1(), "rule__FourthLevelExp__ArgsAssignment_1_1");
+					put(grammarAccess.getBracketExpressionAccess().getExpAssignment_1(), "rule__BracketExpression__ExpAssignment_1");
 					put(grammarAccess.getPosIntegerAccess().getValAssignment(), "rule__PosInteger__ValAssignment");
 					put(grammarAccess.getNegIntegerAccess().getValAssignment_1(), "rule__NegInteger__ValAssignment_1");
 					put(grammarAccess.getMyVariableAccess().getVarAssignment(), "rule__MyVariable__VarAssignment");

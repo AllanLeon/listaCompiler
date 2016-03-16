@@ -97,7 +97,6 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         Expression expression = (Expression)theEObject;
         T result = caseExpression(expression);
-        if (result == null) result = caseTerm(expression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -133,6 +132,14 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         Term term = (Term)theEObject;
         T result = caseTerm(term);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.BRACKET_EXPRESSION:
+      {
+        BracketExpression bracketExpression = (BracketExpression)theEObject;
+        T result = caseBracketExpression(bracketExpression);
+        if (result == null) result = caseTerm(bracketExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -410,6 +417,22 @@ public class ListaCompilerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseTerm(Term object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Bracket Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Bracket Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBracketExpression(BracketExpression object)
   {
     return null;
   }

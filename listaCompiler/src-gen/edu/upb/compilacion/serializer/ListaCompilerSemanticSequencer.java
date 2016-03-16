@@ -5,6 +5,7 @@ package edu.upb.compilacion.serializer;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import edu.upb.compilacion.listaCompiler.BracketExpression;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
@@ -46,6 +47,9 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	@Override
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == ListaCompilerPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+			case ListaCompilerPackage.BRACKET_EXPRESSION:
+				sequence_BracketExpression(context, (BracketExpression) semanticObject); 
+				return; 
 			case ListaCompilerPackage.EVALUATION:
 				sequence_Evaluation(context, (Evaluation) semanticObject); 
 				return; 
@@ -103,6 +107,22 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Constraint:
+	 *     exp=Expression
+	 */
+	protected void sequence_BracketExpression(EObject context, BracketExpression semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.BRACKET_EXPRESSION__EXP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.BRACKET_EXPRESSION__EXP));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getBracketExpressionAccess().getExpExpressionParserRuleCall_1_0(), semanticObject.getExp());
+		feeder.finish();
+	}
+	
 	
 	/**
 	 * Constraint:

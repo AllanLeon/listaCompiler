@@ -2,25 +2,24 @@
  */
 package edu.upb.compilacion.listaCompiler;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Expression</b></em>'.
+ * A representation of the model object '<em><b>Bracket Expression</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link edu.upb.compilacion.listaCompiler.Expression#getExp <em>Exp</em>}</li>
+ *   <li>{@link edu.upb.compilacion.listaCompiler.BracketExpression#getExp <em>Exp</em>}</li>
  * </ul>
  *
- * @see edu.upb.compilacion.listaCompiler.ListaCompilerPackage#getExpression()
+ * @see edu.upb.compilacion.listaCompiler.ListaCompilerPackage#getBracketExpression()
  * @model
  * @generated
  */
-public interface Expression extends EObject
+public interface BracketExpression extends Term
 {
   /**
    * Returns the value of the '<em><b>Exp</b></em>' containment reference.
@@ -31,21 +30,21 @@ public interface Expression extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Exp</em>' containment reference.
-   * @see #setExp(FirstLevelExp)
-   * @see edu.upb.compilacion.listaCompiler.ListaCompilerPackage#getExpression_Exp()
+   * @see #setExp(Expression)
+   * @see edu.upb.compilacion.listaCompiler.ListaCompilerPackage#getBracketExpression_Exp()
    * @model containment="true"
    * @generated
    */
-  FirstLevelExp getExp();
+  Expression getExp();
 
   /**
-   * Sets the value of the '{@link edu.upb.compilacion.listaCompiler.Expression#getExp <em>Exp</em>}' containment reference.
+   * Sets the value of the '{@link edu.upb.compilacion.listaCompiler.BracketExpression#getExp <em>Exp</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Exp</em>' containment reference.
    * @see #getExp()
    * @generated
    */
-  void setExp(FirstLevelExp value);
+  void setExp(Expression value);
 
-} // Expression
+} // BracketExpression

@@ -169,25 +169,6 @@ public interface ListaCompilerPackage extends EPackage
   int FUNCTION_DEFINITION_FEATURE_COUNT = 3;
 
   /**
-   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.TermImpl <em>Term</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.upb.compilacion.listaCompiler.impl.TermImpl
-   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getTerm()
-   * @generated
-   */
-  int TERM = 8;
-
-  /**
-   * The number of structural features of the '<em>Term</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TERM_FEATURE_COUNT = 0;
-
-  /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.ExpressionImpl <em>Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -204,7 +185,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION__EXP = TERM_FEATURE_COUNT + 0;
+  int EXPRESSION__EXP = 0;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -213,7 +194,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION_FEATURE_COUNT = TERM_FEATURE_COUNT + 1;
+  int EXPRESSION_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.FirstLevelExpImpl <em>First Level Exp</em>}' class.
@@ -364,6 +345,53 @@ public interface ListaCompilerPackage extends EPackage
   int FOURTH_LEVEL_EXP_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.TermImpl <em>Term</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.impl.TermImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getTerm()
+   * @generated
+   */
+  int TERM = 8;
+
+  /**
+   * The number of structural features of the '<em>Term</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TERM_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.BracketExpressionImpl <em>Bracket Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.impl.BracketExpressionImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getBracketExpression()
+   * @generated
+   */
+  int BRACKET_EXPRESSION = 9;
+
+  /**
+   * The feature id for the '<em><b>Exp</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BRACKET_EXPRESSION__EXP = TERM_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Bracket Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BRACKET_EXPRESSION_FEATURE_COUNT = TERM_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.MyIntegerImpl <em>My Integer</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -371,7 +399,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getMyInteger()
    * @generated
    */
-  int MY_INTEGER = 9;
+  int MY_INTEGER = 10;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -399,7 +427,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPosInteger()
    * @generated
    */
-  int POS_INTEGER = 10;
+  int POS_INTEGER = 11;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -427,7 +455,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getNegInteger()
    * @generated
    */
-  int NEG_INTEGER = 11;
+  int NEG_INTEGER = 12;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -455,7 +483,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getMyVariable()
    * @generated
    */
-  int MY_VARIABLE = 12;
+  int MY_VARIABLE = 13;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' attribute.
@@ -483,7 +511,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getMyBool()
    * @generated
    */
-  int MY_BOOL = 13;
+  int MY_BOOL = 14;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -511,7 +539,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPosBool()
    * @generated
    */
-  int POS_BOOL = 14;
+  int POS_BOOL = 15;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -539,7 +567,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getNegBool()
    * @generated
    */
-  int NEG_BOOL = 15;
+  int NEG_BOOL = 16;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -567,7 +595,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getMyString()
    * @generated
    */
-  int MY_STRING = 16;
+  int MY_STRING = 17;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -595,7 +623,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getIfControlFlow()
    * @generated
    */
-  int IF_CONTROL_FLOW = 17;
+  int IF_CONTROL_FLOW = 18;
 
   /**
    * The feature id for the '<em><b>Cond</b></em>' containment reference.
@@ -641,7 +669,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFunctionCall()
    * @generated
    */
-  int FUNCTION_CALL = 18;
+  int FUNCTION_CALL = 19;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -669,7 +697,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPreDefFunctionCall()
    * @generated
    */
-  int PRE_DEF_FUNCTION_CALL = 19;
+  int PRE_DEF_FUNCTION_CALL = 20;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -706,7 +734,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getUserDefFunctionCall()
    * @generated
    */
-  int USER_DEF_FUNCTION_CALL = 20;
+  int USER_DEF_FUNCTION_CALL = 21;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -743,7 +771,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getList()
    * @generated
    */
-  int LIST = 21;
+  int LIST = 22;
 
   /**
    * The number of structural features of the '<em>List</em>' class.
@@ -762,7 +790,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getListElem()
    * @generated
    */
-  int LIST_ELEM = 22;
+  int LIST_ELEM = 23;
 
   /**
    * The number of structural features of the '<em>List Elem</em>' class.
@@ -781,7 +809,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getIntList()
    * @generated
    */
-  int INT_LIST = 23;
+  int INT_LIST = 24;
 
   /**
    * The feature id for the '<em><b>Elems</b></em>' containment reference list.
@@ -809,7 +837,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getBool()
    * @generated
    */
-  int BOOL = 24;
+  int BOOL = 25;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.PDFunction <em>PD Function</em>}' enum.
@@ -819,7 +847,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPDFunction()
    * @generated
    */
-  int PD_FUNCTION = 25;
+  int PD_FUNCTION = 26;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.FirstLevelOp <em>First Level Op</em>}' enum.
@@ -829,7 +857,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFirstLevelOp()
    * @generated
    */
-  int FIRST_LEVEL_OP = 26;
+  int FIRST_LEVEL_OP = 27;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.SecondLevelOp <em>Second Level Op</em>}' enum.
@@ -839,7 +867,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getSecondLevelOp()
    * @generated
    */
-  int SECOND_LEVEL_OP = 27;
+  int SECOND_LEVEL_OP = 28;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.ThirdLevelOp <em>Third Level Op</em>}' enum.
@@ -849,7 +877,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getThirdLevelOp()
    * @generated
    */
-  int THIRD_LEVEL_OP = 28;
+  int THIRD_LEVEL_OP = 29;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.FourthLevelOp <em>Fourth Level Op</em>}' enum.
@@ -859,7 +887,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFourthLevelOp()
    * @generated
    */
-  int FOURTH_LEVEL_OP = 29;
+  int FOURTH_LEVEL_OP = 30;
 
 
   /**
@@ -1116,6 +1144,27 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    */
   EClass getTerm();
+
+  /**
+   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.BracketExpression <em>Bracket Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Bracket Expression</em>'.
+   * @see edu.upb.compilacion.listaCompiler.BracketExpression
+   * @generated
+   */
+  EClass getBracketExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.BracketExpression#getExp <em>Exp</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Exp</em>'.
+   * @see edu.upb.compilacion.listaCompiler.BracketExpression#getExp()
+   * @see #getBracketExpression()
+   * @generated
+   */
+  EReference getBracketExpression_Exp();
 
   /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.MyInteger <em>My Integer</em>}'.
@@ -1680,6 +1729,24 @@ public interface ListaCompilerPackage extends EPackage
      * @generated
      */
     EClass TERM = eINSTANCE.getTerm();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.BracketExpressionImpl <em>Bracket Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.impl.BracketExpressionImpl
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getBracketExpression()
+     * @generated
+     */
+    EClass BRACKET_EXPRESSION = eINSTANCE.getBracketExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Exp</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BRACKET_EXPRESSION__EXP = eINSTANCE.getBracketExpression_Exp();
 
     /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.MyIntegerImpl <em>My Integer</em>}' class.

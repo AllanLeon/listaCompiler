@@ -3,6 +3,7 @@
 package edu.upb.compilacion.listaCompiler.impl;
 
 import edu.upb.compilacion.listaCompiler.Bool;
+import edu.upb.compilacion.listaCompiler.BracketExpression;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
@@ -113,6 +114,13 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * @generated
    */
   private EClass termEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass bracketExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -569,6 +577,26 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getBracketExpression()
+  {
+    return bracketExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBracketExpression_Exp()
+  {
+    return (EReference)bracketExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getMyInteger()
   {
     return myIntegerEClass;
@@ -947,6 +975,9 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
 
     termEClass = createEClass(TERM);
 
+    bracketExpressionEClass = createEClass(BRACKET_EXPRESSION);
+    createEReference(bracketExpressionEClass, BRACKET_EXPRESSION__EXP);
+
     myIntegerEClass = createEClass(MY_INTEGER);
     createEAttribute(myIntegerEClass, MY_INTEGER__VAL);
 
@@ -1026,7 +1057,7 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    expressionEClass.getESuperTypes().add(this.getTerm());
+    bracketExpressionEClass.getESuperTypes().add(this.getTerm());
     myIntegerEClass.getESuperTypes().add(this.getTerm());
     myIntegerEClass.getESuperTypes().add(this.getListElem());
     posIntegerEClass.getESuperTypes().add(this.getMyInteger());
@@ -1077,6 +1108,9 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     initEAttribute(getFourthLevelExp_Op(), this.getFourthLevelOp(), "op", null, 0, 1, FourthLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(termEClass, Term.class, "Term", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(bracketExpressionEClass, BracketExpression.class, "BracketExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBracketExpression_Exp(), this.getExpression(), null, "exp", null, 0, 1, BracketExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(myIntegerEClass, MyInteger.class, "MyInteger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMyInteger_Val(), ecorePackage.getEInt(), "val", null, 0, 1, MyInteger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
