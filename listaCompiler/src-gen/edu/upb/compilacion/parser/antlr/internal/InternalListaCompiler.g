@@ -705,24 +705,63 @@ ruleTerm returns [EObject current=null]
         afterParserOrEnumRuleCall();
     }
 
-    |(	otherlv_7='(' 
-    {
-    	newLeafNode(otherlv_7, grammarAccess.getTermAccess().getLeftParenthesisKeyword_7_0());
-    }
-
+    |
     { 
-        newCompositeNode(grammarAccess.getTermAccess().getExpressionParserRuleCall_7_1()); 
+        newCompositeNode(grammarAccess.getTermAccess().getBracketExpressionParserRuleCall_7()); 
     }
-    this_Expression_8=ruleExpression
+    this_BracketExpression_7=ruleBracketExpression
     { 
-        $current = $this_Expression_8.current; 
+        $current = $this_BracketExpression_7.current; 
         afterParserOrEnumRuleCall();
     }
-	otherlv_9=')' 
-    {
-    	newLeafNode(otherlv_9, grammarAccess.getTermAccess().getRightParenthesisKeyword_7_2());
+)
+;
+
+
+
+
+
+// Entry rule entryRuleBracketExpression
+entryRuleBracketExpression returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getBracketExpressionRule()); }
+	 iv_ruleBracketExpression=ruleBracketExpression 
+	 { $current=$iv_ruleBracketExpression.current; } 
+	 EOF 
+;
+
+// Rule BracketExpression
+ruleBracketExpression returns [EObject current=null] 
+    @init { enterRule(); 
     }
-))
+    @after { leaveRule(); }:
+(	otherlv_0='(' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getBracketExpressionAccess().getLeftParenthesisKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getBracketExpressionAccess().getExpExpressionParserRuleCall_1_0()); 
+	    }
+		lv_exp_1_0=ruleExpression		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getBracketExpressionRule());
+	        }
+       		set(
+       			$current, 
+       			"exp",
+        		lv_exp_1_0, 
+        		"Expression");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_2=')' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getBracketExpressionAccess().getRightParenthesisKeyword_2());
+    }
+)
 ;
 
 

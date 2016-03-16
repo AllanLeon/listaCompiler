@@ -69,6 +69,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//FourthLevelExp/op"/>
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//Term"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//BracketExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//BracketExpression/exp"/>
+    </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//MyInteger">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//MyInteger/val"/>
     </genClasses>

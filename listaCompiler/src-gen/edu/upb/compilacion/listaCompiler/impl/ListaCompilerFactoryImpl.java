@@ -74,6 +74,7 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
       case ListaCompilerPackage.THIRD_LEVEL_EXP: return createThirdLevelExp();
       case ListaCompilerPackage.FOURTH_LEVEL_EXP: return createFourthLevelExp();
       case ListaCompilerPackage.TERM: return createTerm();
+      case ListaCompilerPackage.BRACKET_EXPRESSION: return createBracketExpression();
       case ListaCompilerPackage.MY_INTEGER: return createMyInteger();
       case ListaCompilerPackage.POS_INTEGER: return createPosInteger();
       case ListaCompilerPackage.NEG_INTEGER: return createNegInteger();
@@ -245,6 +246,17 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
   {
     TermImpl term = new TermImpl();
     return term;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BracketExpression createBracketExpression()
+  {
+    BracketExpressionImpl bracketExpression = new BracketExpressionImpl();
+    return bracketExpression;
   }
 
   /**

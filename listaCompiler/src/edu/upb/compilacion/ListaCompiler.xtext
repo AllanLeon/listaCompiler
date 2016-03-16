@@ -34,7 +34,11 @@ FourthLevelExp:
 ;
 
 Term:
-	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | "(" Expression ")"
+	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | BracketExpression
+;
+
+BracketExpression:
+	"(" exp=Expression ")"
 ;
 
 MyInteger:

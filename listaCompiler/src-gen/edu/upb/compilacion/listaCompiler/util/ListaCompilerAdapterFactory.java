@@ -120,6 +120,11 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
         return createTermAdapter();
       }
       @Override
+      public Adapter caseBracketExpression(BracketExpression object)
+      {
+        return createBracketExpressionAdapter();
+      }
+      @Override
       public Adapter caseMyInteger(MyInteger object)
       {
         return createMyIntegerAdapter();
@@ -347,6 +352,21 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTermAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.BracketExpression <em>Bracket Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.BracketExpression
+   * @generated
+   */
+  public Adapter createBracketExpressionAdapter()
   {
     return null;
   }
