@@ -104,6 +104,15 @@ public interface ListaCompilerFactory extends EFactory
   Term createTerm();
 
   /**
+   * Returns a new object of class '<em>Bracket Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Bracket Expression</em>'.
+   * @generated
+   */
+  BracketExpression createBracketExpression();
+
+  /**
    * Returns a new object of class '<em>My Integer</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

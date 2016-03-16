@@ -19,7 +19,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="return" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Term">
+  <eClassifiers xsi:type="ecore:EClass" name="Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//FirstLevelExp"
         containment="true"/>
   </eClassifiers>
@@ -44,6 +44,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="#//FourthLevelOp"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Term"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BracketExpression" eSuperTypes="#//Term">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MyInteger" eSuperTypes="#//Term #//ListElem">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>

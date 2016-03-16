@@ -332,16 +332,13 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cListParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cFunctionCallParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cIfControlFlowParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
-		private final Keyword cLeftParenthesisKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
-		private final RuleCall cExpressionParserRuleCall_7_1 = (RuleCall)cGroup_7.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_7_2 = (Keyword)cGroup_7.eContents().get(2);
+		private final RuleCall cBracketExpressionParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		
 		//Term:
-		//	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | "(" Expression ")";
+		//	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | BracketExpression;
 		@Override public ParserRule getRule() { return rule; }
 
-		//MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | "(" Expression ")"
+		//MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | BracketExpression
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//MyInteger
@@ -365,17 +362,36 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		//IfControlFlow
 		public RuleCall getIfControlFlowParserRuleCall_6() { return cIfControlFlowParserRuleCall_6; }
 
-		//"(" Expression ")"
-		public Group getGroup_7() { return cGroup_7; }
+		//BracketExpression
+		public RuleCall getBracketExpressionParserRuleCall_7() { return cBracketExpressionParserRuleCall_7; }
+	}
+
+	public class BracketExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BracketExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cExpAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExpExpressionParserRuleCall_1_0 = (RuleCall)cExpAssignment_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//BracketExpression:
+		//	"(" exp=Expression ")";
+		@Override public ParserRule getRule() { return rule; }
+
+		//"(" exp=Expression ")"
+		public Group getGroup() { return cGroup; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_7_0() { return cLeftParenthesisKeyword_7_0; }
+		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
+
+		//exp=Expression
+		public Assignment getExpAssignment_1() { return cExpAssignment_1; }
 
 		//Expression
-		public RuleCall getExpressionParserRuleCall_7_1() { return cExpressionParserRuleCall_7_1; }
+		public RuleCall getExpExpressionParserRuleCall_1_0() { return cExpExpressionParserRuleCall_1_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_7_2() { return cRightParenthesisKeyword_7_2; }
+		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
 	}
 
 	public class MyIntegerElements extends AbstractParserRuleElementFinder {
@@ -1020,6 +1036,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	private final ThirdLevelExpElements pThirdLevelExp;
 	private final FourthLevelExpElements pFourthLevelExp;
 	private final TermElements pTerm;
+	private final BracketExpressionElements pBracketExpression;
 	private final MyIntegerElements pMyInteger;
 	private final PosIntegerElements pPosInteger;
 	private final NegIntegerElements pNegInteger;
@@ -1060,6 +1077,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		this.pThirdLevelExp = new ThirdLevelExpElements();
 		this.pFourthLevelExp = new FourthLevelExpElements();
 		this.pTerm = new TermElements();
+		this.pBracketExpression = new BracketExpressionElements();
 		this.pMyInteger = new MyIntegerElements();
 		this.pPosInteger = new PosIntegerElements();
 		this.pNegInteger = new NegIntegerElements();
@@ -1191,13 +1209,23 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Term:
-	//	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | "(" Expression ")";
+	//	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | BracketExpression;
 	public TermElements getTermAccess() {
 		return pTerm;
 	}
 	
 	public ParserRule getTermRule() {
 		return getTermAccess().getRule();
+	}
+
+	//BracketExpression:
+	//	"(" exp=Expression ")";
+	public BracketExpressionElements getBracketExpressionAccess() {
+		return pBracketExpression;
+	}
+	
+	public ParserRule getBracketExpressionRule() {
+		return getBracketExpressionAccess().getRule();
 	}
 
 	//MyInteger:
