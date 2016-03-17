@@ -16,6 +16,8 @@ import edu.upb.compilacion.listaCompiler.MyBool;
 import edu.upb.compilacion.listaCompiler.MyInteger;
 import edu.upb.compilacion.listaCompiler.MyString;
 import edu.upb.compilacion.listaCompiler.MyVariable;
+import edu.upb.compilacion.listaCompiler.NegBool;
+import edu.upb.compilacion.listaCompiler.NegInteger;
 import edu.upb.compilacion.listaCompiler.PDFunction;
 import edu.upb.compilacion.listaCompiler.PreDefFunctionCall;
 import edu.upb.compilacion.listaCompiler.SecondLevelExp;
@@ -259,13 +261,13 @@ public class TypeInferrer {
   
   public static void inferDataType(final Term term, final String fdName) {
     if ((term instanceof MyInteger)) {
-      TypeInferrer.setFunctionType(fdName, ListaCompilerValidator.DataType.INT);
+      TypeInferrer.inferDataType(((MyInteger) term), fdName);
     } else {
       if ((term instanceof MyString)) {
         TypeInferrer.setFunctionType(fdName, ListaCompilerValidator.DataType.STRING);
       } else {
         if ((term instanceof MyBool)) {
-          TypeInferrer.setFunctionType(fdName, ListaCompilerValidator.DataType.BOOL);
+          TypeInferrer.inferDataType(((MyBool) term), fdName);
         } else {
           if ((term instanceof List)) {
             TypeInferrer.setFunctionType(fdName, ListaCompilerValidator.DataType.LIST);
@@ -297,6 +299,30 @@ public class TypeInferrer {
             }
           }
         }
+      }
+    }
+  }
+  
+  public static void inferDataType(final MyInteger myInt, final String fdName) {
+    TypeInferrer.setFunctionType(fdName, ListaCompilerValidator.DataType.INT);
+    if ((myInt instanceof NegInteger)) {
+      final Term exp = ((NegInteger) myInt).getVal();
+      if ((exp instanceof BracketExpression)) {
+        Expression _exp = ((BracketExpression) exp).getExp();
+        FirstLevelExp _exp_1 = _exp.getExp();
+        TypeInferrer.inferDataType(_exp_1, fdName);
+      }
+    }
+  }
+  
+  public static void inferDataType(final MyBool myBool, final String fdName) {
+    TypeInferrer.setFunctionType(fdName, ListaCompilerValidator.DataType.BOOL);
+    if ((myBool instanceof NegBool)) {
+      final Term exp = ((NegBool) myBool).getVal();
+      if ((exp instanceof BracketExpression)) {
+        Expression _exp = ((BracketExpression) exp).getExp();
+        FirstLevelExp _exp_1 = _exp.getExp();
+        TypeInferrer.inferDataType(_exp_1, fdName);
       }
     }
   }
@@ -775,13 +801,13 @@ public class TypeInferrer {
   
   public static ListaCompilerValidator.DataType checkDataType(final Term term) {
     if ((term instanceof MyInteger)) {
-      return ListaCompilerValidator.DataType.INT;
+      return TypeInferrer.checkDataType(((MyInteger) term));
     } else {
       if ((term instanceof MyString)) {
         return ListaCompilerValidator.DataType.STRING;
       } else {
         if ((term instanceof MyBool)) {
-          return ListaCompilerValidator.DataType.BOOL;
+          return TypeInferrer.checkDataType(((MyBool) term));
         } else {
           if ((term instanceof List)) {
             return ListaCompilerValidator.DataType.LIST;
@@ -807,6 +833,46 @@ public class TypeInferrer {
       }
     }
     return null;
+  }
+  
+  public static ListaCompilerValidator.DataType checkDataType(final MyInteger myInt) {
+    try {
+      if ((myInt instanceof NegInteger)) {
+        final Term exp = ((NegInteger) myInt).getVal();
+        if ((exp instanceof BracketExpression)) {
+          Expression _exp = ((BracketExpression) exp).getExp();
+          final ListaCompilerValidator.DataType expType = TypeInferrer.checkDataType(_exp);
+          boolean _equals = expType.equals(ListaCompilerValidator.DataType.INT);
+          boolean _not = (!_equals);
+          if (_not) {
+            throw new MismatchedTypeException("Argument type should be INT.");
+          }
+        }
+      }
+      return ListaCompilerValidator.DataType.INT;
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public static ListaCompilerValidator.DataType checkDataType(final MyBool myBool) {
+    try {
+      if ((myBool instanceof NegBool)) {
+        final Term exp = ((NegBool) myBool).getVal();
+        if ((exp instanceof BracketExpression)) {
+          Expression _exp = ((BracketExpression) exp).getExp();
+          final ListaCompilerValidator.DataType expType = TypeInferrer.checkDataType(_exp);
+          boolean _equals = expType.equals(ListaCompilerValidator.DataType.BOOL);
+          boolean _not = (!_equals);
+          if (_not) {
+            throw new MismatchedTypeException("Argument type should be BOOL.");
+          }
+        }
+      }
+      return ListaCompilerValidator.DataType.BOOL;
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   public static ListaCompilerValidator.DataType checkDataType(final FunctionCall fcall) {

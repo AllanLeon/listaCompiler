@@ -952,6 +952,28 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__NegInteger__ValAlternatives_1_0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getNegIntegerAccess().getValPosIntegerParserRuleCall_1_0_0()); }
+	rulePosInteger
+{ after(grammarAccess.getNegIntegerAccess().getValPosIntegerParserRuleCall_1_0_0()); }
+)
+
+    |(
+{ before(grammarAccess.getNegIntegerAccess().getValBracketExpressionParserRuleCall_1_0_1()); }
+	ruleBracketExpression
+{ after(grammarAccess.getNegIntegerAccess().getValBracketExpressionParserRuleCall_1_0_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__MyBool__Alternatives
     @init {
 		int stackSize = keepStackSize();
@@ -967,6 +989,28 @@ rule__MyBool__Alternatives
 { before(grammarAccess.getMyBoolAccess().getNegBoolParserRuleCall_1()); }
 	ruleNegBool
 { after(grammarAccess.getMyBoolAccess().getNegBoolParserRuleCall_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__NegBool__ValAlternatives_1_0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getNegBoolAccess().getValPosBoolParserRuleCall_1_0_0()); }
+	rulePosBool
+{ after(grammarAccess.getNegBoolAccess().getValPosBoolParserRuleCall_1_0_0()); }
+)
+
+    |(
+{ before(grammarAccess.getNegBoolAccess().getValBracketExpressionParserRuleCall_1_0_1()); }
+	ruleBracketExpression
+{ after(grammarAccess.getNegBoolAccess().getValBracketExpressionParserRuleCall_1_0_1()); }
 )
 
 ;
@@ -3716,8 +3760,9 @@ rule__NegInteger__ValAssignment_1
     }
 :
 (
-{ before(grammarAccess.getNegIntegerAccess().getValINTTerminalRuleCall_1_0()); }
-	RULE_INT{ after(grammarAccess.getNegIntegerAccess().getValINTTerminalRuleCall_1_0()); }
+{ before(grammarAccess.getNegIntegerAccess().getValAlternatives_1_0()); }
+(rule__NegInteger__ValAlternatives_1_0)
+{ after(grammarAccess.getNegIntegerAccess().getValAlternatives_1_0()); }
 )
 
 ;
@@ -3761,8 +3806,9 @@ rule__NegBool__ValAssignment_1
     }
 :
 (
-{ before(grammarAccess.getNegBoolAccess().getValBoolEnumRuleCall_1_0()); }
-	ruleBool{ after(grammarAccess.getNegBoolAccess().getValBoolEnumRuleCall_1_0()); }
+{ before(grammarAccess.getNegBoolAccess().getValAlternatives_1_0()); }
+(rule__NegBool__ValAlternatives_1_0)
+{ after(grammarAccess.getNegBoolAccess().getValAlternatives_1_0()); }
 )
 
 ;

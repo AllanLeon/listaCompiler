@@ -867,20 +867,38 @@ ruleNegInteger returns [EObject current=null]
     }
 (
 (
-		lv_val_1_0=RULE_INT
-		{
-			newLeafNode(lv_val_1_0, grammarAccess.getNegIntegerAccess().getValINTTerminalRuleCall_1_0()); 
-		}
-		{
+(
+		{ 
+	        newCompositeNode(grammarAccess.getNegIntegerAccess().getValPosIntegerParserRuleCall_1_0_0()); 
+	    }
+		lv_val_1_1=rulePosInteger		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getNegIntegerRule());
+	            $current = createModelElementForParent(grammarAccess.getNegIntegerRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
        			"val",
-        		lv_val_1_0, 
-        		"INT");
+        		lv_val_1_1, 
+        		"PosInteger");
+	        afterParserOrEnumRuleCall();
 	    }
+
+    |		{ 
+	        newCompositeNode(grammarAccess.getNegIntegerAccess().getValBracketExpressionParserRuleCall_1_0_1()); 
+	    }
+		lv_val_1_2=ruleBracketExpression		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getNegIntegerRule());
+	        }
+       		set(
+       			$current, 
+       			"val",
+        		lv_val_1_2, 
+        		"BracketExpression");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
 
 )
 ))
@@ -1028,20 +1046,38 @@ ruleNegBool returns [EObject current=null]
     }
 (
 (
+(
 		{ 
-	        newCompositeNode(grammarAccess.getNegBoolAccess().getValBoolEnumRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getNegBoolAccess().getValPosBoolParserRuleCall_1_0_0()); 
 	    }
-		lv_val_1_0=ruleBool		{
+		lv_val_1_1=rulePosBool		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getNegBoolRule());
 	        }
        		set(
        			$current, 
        			"val",
-        		lv_val_1_0, 
-        		"Bool");
+        		lv_val_1_1, 
+        		"PosBool");
 	        afterParserOrEnumRuleCall();
 	    }
+
+    |		{ 
+	        newCompositeNode(grammarAccess.getNegBoolAccess().getValBracketExpressionParserRuleCall_1_0_1()); 
+	    }
+		lv_val_1_2=ruleBracketExpression		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getNegBoolRule());
+	        }
+       		set(
+       			$current, 
+       			"val",
+        		lv_val_1_2, 
+        		"BracketExpression");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
 
 )
 ))

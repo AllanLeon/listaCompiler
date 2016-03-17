@@ -40,7 +40,9 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getListaAccess().getAlternatives(), "rule__Lista__Alternatives");
 					put(grammarAccess.getTermAccess().getAlternatives(), "rule__Term__Alternatives");
 					put(grammarAccess.getMyIntegerAccess().getAlternatives(), "rule__MyInteger__Alternatives");
+					put(grammarAccess.getNegIntegerAccess().getValAlternatives_1_0(), "rule__NegInteger__ValAlternatives_1_0");
 					put(grammarAccess.getMyBoolAccess().getAlternatives(), "rule__MyBool__Alternatives");
+					put(grammarAccess.getNegBoolAccess().getValAlternatives_1_0(), "rule__NegBool__ValAlternatives_1_0");
 					put(grammarAccess.getFunctionCallAccess().getAlternatives(), "rule__FunctionCall__Alternatives");
 					put(grammarAccess.getListElemAccess().getAlternatives(), "rule__ListElem__Alternatives");
 					put(grammarAccess.getBoolAccess().getAlternatives(), "rule__Bool__Alternatives");

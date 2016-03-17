@@ -402,22 +402,13 @@ public interface ListaCompilerPackage extends EPackage
   int MY_INTEGER = 10;
 
   /**
-   * The feature id for the '<em><b>Val</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MY_INTEGER__VAL = TERM_FEATURE_COUNT + 0;
-
-  /**
    * The number of structural features of the '<em>My Integer</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MY_INTEGER_FEATURE_COUNT = TERM_FEATURE_COUNT + 1;
+  int MY_INTEGER_FEATURE_COUNT = TERM_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.PosIntegerImpl <em>Pos Integer</em>}' class.
@@ -436,7 +427,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POS_INTEGER__VAL = MY_INTEGER__VAL;
+  int POS_INTEGER__VAL = MY_INTEGER_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Pos Integer</em>' class.
@@ -445,7 +436,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POS_INTEGER_FEATURE_COUNT = MY_INTEGER_FEATURE_COUNT + 0;
+  int POS_INTEGER_FEATURE_COUNT = MY_INTEGER_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.NegIntegerImpl <em>Neg Integer</em>}' class.
@@ -458,13 +449,13 @@ public interface ListaCompilerPackage extends EPackage
   int NEG_INTEGER = 12;
 
   /**
-   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * The feature id for the '<em><b>Val</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NEG_INTEGER__VAL = MY_INTEGER__VAL;
+  int NEG_INTEGER__VAL = MY_INTEGER_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Neg Integer</em>' class.
@@ -473,7 +464,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NEG_INTEGER_FEATURE_COUNT = MY_INTEGER_FEATURE_COUNT + 0;
+  int NEG_INTEGER_FEATURE_COUNT = MY_INTEGER_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.MyVariableImpl <em>My Variable</em>}' class.
@@ -514,22 +505,13 @@ public interface ListaCompilerPackage extends EPackage
   int MY_BOOL = 14;
 
   /**
-   * The feature id for the '<em><b>Val</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MY_BOOL__VAL = TERM_FEATURE_COUNT + 0;
-
-  /**
    * The number of structural features of the '<em>My Bool</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MY_BOOL_FEATURE_COUNT = TERM_FEATURE_COUNT + 1;
+  int MY_BOOL_FEATURE_COUNT = TERM_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.PosBoolImpl <em>Pos Bool</em>}' class.
@@ -548,7 +530,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POS_BOOL__VAL = MY_BOOL__VAL;
+  int POS_BOOL__VAL = MY_BOOL_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Pos Bool</em>' class.
@@ -557,7 +539,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int POS_BOOL_FEATURE_COUNT = MY_BOOL_FEATURE_COUNT + 0;
+  int POS_BOOL_FEATURE_COUNT = MY_BOOL_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.NegBoolImpl <em>Neg Bool</em>}' class.
@@ -570,13 +552,13 @@ public interface ListaCompilerPackage extends EPackage
   int NEG_BOOL = 16;
 
   /**
-   * The feature id for the '<em><b>Val</b></em>' attribute.
+   * The feature id for the '<em><b>Val</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NEG_BOOL__VAL = MY_BOOL__VAL;
+  int NEG_BOOL__VAL = MY_BOOL_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Neg Bool</em>' class.
@@ -585,7 +567,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NEG_BOOL_FEATURE_COUNT = MY_BOOL_FEATURE_COUNT + 0;
+  int NEG_BOOL_FEATURE_COUNT = MY_BOOL_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.MyStringImpl <em>My String</em>}' class.
@@ -1177,17 +1159,6 @@ public interface ListaCompilerPackage extends EPackage
   EClass getMyInteger();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.upb.compilacion.listaCompiler.MyInteger#getVal <em>Val</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Val</em>'.
-   * @see edu.upb.compilacion.listaCompiler.MyInteger#getVal()
-   * @see #getMyInteger()
-   * @generated
-   */
-  EAttribute getMyInteger_Val();
-
-  /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.PosInteger <em>Pos Integer</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1198,6 +1169,17 @@ public interface ListaCompilerPackage extends EPackage
   EClass getPosInteger();
 
   /**
+   * Returns the meta object for the attribute '{@link edu.upb.compilacion.listaCompiler.PosInteger#getVal <em>Val</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Val</em>'.
+   * @see edu.upb.compilacion.listaCompiler.PosInteger#getVal()
+   * @see #getPosInteger()
+   * @generated
+   */
+  EAttribute getPosInteger_Val();
+
+  /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.NegInteger <em>Neg Integer</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1206,6 +1188,17 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    */
   EClass getNegInteger();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.NegInteger#getVal <em>Val</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Val</em>'.
+   * @see edu.upb.compilacion.listaCompiler.NegInteger#getVal()
+   * @see #getNegInteger()
+   * @generated
+   */
+  EReference getNegInteger_Val();
 
   /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.MyVariable <em>My Variable</em>}'.
@@ -1239,17 +1232,6 @@ public interface ListaCompilerPackage extends EPackage
   EClass getMyBool();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.upb.compilacion.listaCompiler.MyBool#getVal <em>Val</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Val</em>'.
-   * @see edu.upb.compilacion.listaCompiler.MyBool#getVal()
-   * @see #getMyBool()
-   * @generated
-   */
-  EAttribute getMyBool_Val();
-
-  /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.PosBool <em>Pos Bool</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1260,6 +1242,17 @@ public interface ListaCompilerPackage extends EPackage
   EClass getPosBool();
 
   /**
+   * Returns the meta object for the attribute '{@link edu.upb.compilacion.listaCompiler.PosBool#getVal <em>Val</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Val</em>'.
+   * @see edu.upb.compilacion.listaCompiler.PosBool#getVal()
+   * @see #getPosBool()
+   * @generated
+   */
+  EAttribute getPosBool_Val();
+
+  /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.NegBool <em>Neg Bool</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1268,6 +1261,17 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    */
   EClass getNegBool();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.upb.compilacion.listaCompiler.NegBool#getVal <em>Val</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Val</em>'.
+   * @see edu.upb.compilacion.listaCompiler.NegBool#getVal()
+   * @see #getNegBool()
+   * @generated
+   */
+  EReference getNegBool_Val();
 
   /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.MyString <em>My String</em>}'.
@@ -1759,14 +1763,6 @@ public interface ListaCompilerPackage extends EPackage
     EClass MY_INTEGER = eINSTANCE.getMyInteger();
 
     /**
-     * The meta object literal for the '<em><b>Val</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MY_INTEGER__VAL = eINSTANCE.getMyInteger_Val();
-
-    /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.PosIntegerImpl <em>Pos Integer</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1777,6 +1773,14 @@ public interface ListaCompilerPackage extends EPackage
     EClass POS_INTEGER = eINSTANCE.getPosInteger();
 
     /**
+     * The meta object literal for the '<em><b>Val</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POS_INTEGER__VAL = eINSTANCE.getPosInteger_Val();
+
+    /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.NegIntegerImpl <em>Neg Integer</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1785,6 +1789,14 @@ public interface ListaCompilerPackage extends EPackage
      * @generated
      */
     EClass NEG_INTEGER = eINSTANCE.getNegInteger();
+
+    /**
+     * The meta object literal for the '<em><b>Val</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NEG_INTEGER__VAL = eINSTANCE.getNegInteger_Val();
 
     /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.MyVariableImpl <em>My Variable</em>}' class.
@@ -1815,14 +1827,6 @@ public interface ListaCompilerPackage extends EPackage
     EClass MY_BOOL = eINSTANCE.getMyBool();
 
     /**
-     * The meta object literal for the '<em><b>Val</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MY_BOOL__VAL = eINSTANCE.getMyBool_Val();
-
-    /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.PosBoolImpl <em>Pos Bool</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1833,6 +1837,14 @@ public interface ListaCompilerPackage extends EPackage
     EClass POS_BOOL = eINSTANCE.getPosBool();
 
     /**
+     * The meta object literal for the '<em><b>Val</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute POS_BOOL__VAL = eINSTANCE.getPosBool_Val();
+
+    /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.NegBoolImpl <em>Neg Bool</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1841,6 +1853,14 @@ public interface ListaCompilerPackage extends EPackage
      * @generated
      */
     EClass NEG_BOOL = eINSTANCE.getNegBool();
+
+    /**
+     * The meta object literal for the '<em><b>Val</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NEG_BOOL__VAL = eINSTANCE.getNegBool_Val();
 
     /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.MyStringImpl <em>My String</em>}' class.

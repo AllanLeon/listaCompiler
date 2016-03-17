@@ -120,11 +120,14 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 	
 	@Check
 	def checkFunctionDefinitionType(FunctionDefinition fd) {
+		//TypeInferrer.functionParams.clear();
+		//TypeInferrer.functionTypes.clear();
+		
 		TypeInferrer.inferDataType(fd);
 		TypeInferrer.inferDataType(fd);
 		
 		checkFunctionDefinitionParams(fd);
-		System.out.println(TypeInferrer.getFunctionString(fd));
+		//System.out.println(TypeInferrer.getFunctionString(fd));
 		try {
 			TypeInferrer.checkDataType(fd.^return);
 		} catch (MismatchedTypeException ex) {
