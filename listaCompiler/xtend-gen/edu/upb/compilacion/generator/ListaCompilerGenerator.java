@@ -102,8 +102,33 @@ public class ListaCompilerGenerator implements IGenerator {
   }
   
   public CharSequence generate(final FunctionDefinition funcd) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Expression to Iterable<?>"
-      + "\nType mismatch: cannot convert from Object to Lista");
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public TYPE! ");
+    String _name = funcd.getName();
+    _builder.append(_name, "");
+    _builder.append("(");
+    {
+      EList<String> _params = funcd.getParams();
+      boolean _hasElements = false;
+      for(final String fp : _params) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(",", "");
+        }
+        _builder.append(fp, "");
+      }
+    }
+    _builder.append(") {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    Expression _return = funcd.getReturn();
+    FirstLevelExp _exp = _return.getExp();
+    CharSequence _generate = this.generate(_exp);
+    _builder.append(_generate, "\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("}");
+    return _builder;
   }
 }

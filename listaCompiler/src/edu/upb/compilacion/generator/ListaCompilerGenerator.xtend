@@ -51,6 +51,6 @@ class ListaCompilerGenerator implements IGenerator {
 	def generate(FourthLevelExp exp) ''''''
 	
 	def generate(FunctionDefinition funcd) '''public TYPE! «»«funcd.name»(«FOR fp : funcd.params SEPARATOR ','»«fp»«ENDFOR») {
-	«FOR f : funcd.^return»«f.generate»«ENDFOR»;
+	«funcd.^return.exp.generate»;
 }'''
 }
