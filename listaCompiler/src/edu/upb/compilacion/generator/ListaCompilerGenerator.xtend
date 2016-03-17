@@ -17,6 +17,9 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 import edu.upb.compilacion.listaCompiler.Term
+import javax.xml.validation.TypeInfoProvider
+import edu.upb.compilacion.TypeInferrer
+import edu.upb.compilacion.validation.ListaCompilerValidator.DataType
 
 /**
  * Generates code from your model files on save.
@@ -50,7 +53,22 @@ class ListaCompilerGenerator implements IGenerator {
 	def generate(ThirdLevelExp exp) ''''''
 	def generate(FourthLevelExp exp) ''''''
 	
-	def generate(FunctionDefinition funcd) '''public TYPE! «»«funcd.name»(«FOR fp : funcd.params SEPARATOR ','»«fp»«ENDFOR») {
+	def generate(FunctionDefinition funcd) '''public «TypeInferrer.getFunctionTypes.get(funcd.name).convertDTtoString» «funcd.name»(«FOR fp : funcd.params SEPARATOR ','»«TypeInferrer.functionParams.get(funcd.name).get(fp).convertDTtoString + ' ' + fp»«ENDFOR») {
 	«funcd.^return.exp.generate»;
 }'''
+
+	def convertDTtoString(DataType dt) {
+		switch(dt) {
+			case DataType.BOOL:
+				return "boolean"
+			case DataType.INT:
+				return dt.name.toLowerCase
+			case DataType.STRING:
+				return dt.name.toLowerCase.toFirstUpper
+			case DataType.LIST:
+				return "int[]"
+			default:
+				return "void"
+		}
+	}
 }

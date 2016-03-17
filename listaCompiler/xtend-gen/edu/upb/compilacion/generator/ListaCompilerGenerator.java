@@ -3,6 +3,7 @@
  */
 package edu.upb.compilacion.generator;
 
+import edu.upb.compilacion.TypeInferrer;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
@@ -11,12 +12,15 @@ import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.Lista;
 import edu.upb.compilacion.listaCompiler.SecondLevelExp;
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
+import edu.upb.compilacion.validation.ListaCompilerValidator;
+import java.util.HashMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 /**
  * Generates code from your model files on save.
@@ -103,9 +107,15 @@ public class ListaCompilerGenerator implements IGenerator {
   
   public CharSequence generate(final FunctionDefinition funcd) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("public TYPE! ");
+    _builder.append("public ");
+    HashMap<String, ListaCompilerValidator.DataType> _functionTypes = TypeInferrer.getFunctionTypes();
     String _name = funcd.getName();
-    _builder.append(_name, "");
+    ListaCompilerValidator.DataType _get = _functionTypes.get(_name);
+    String _convertDTtoString = this.convertDTtoString(_get);
+    _builder.append(_convertDTtoString, "");
+    _builder.append(" ");
+    String _name_1 = funcd.getName();
+    _builder.append(_name_1, "");
     _builder.append("(");
     {
       EList<String> _params = funcd.getParams();
@@ -116,7 +126,14 @@ public class ListaCompilerGenerator implements IGenerator {
         } else {
           _builder.appendImmediate(",", "");
         }
-        _builder.append(fp, "");
+        HashMap<String, HashMap<String, ListaCompilerValidator.DataType>> _functionParams = TypeInferrer.getFunctionParams();
+        String _name_2 = funcd.getName();
+        HashMap<String, ListaCompilerValidator.DataType> _get_1 = _functionParams.get(_name_2);
+        ListaCompilerValidator.DataType _get_2 = _get_1.get(fp);
+        String _convertDTtoString_1 = this.convertDTtoString(_get_2);
+        String _plus = (_convertDTtoString_1 + " ");
+        String _plus_1 = (_plus + fp);
+        _builder.append(_plus_1, "");
       }
     }
     _builder.append(") {");
@@ -130,5 +147,27 @@ public class ListaCompilerGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("}");
     return _builder;
+  }
+  
+  public String convertDTtoString(final ListaCompilerValidator.DataType dt) {
+    if (dt != null) {
+      switch (dt) {
+        case BOOL:
+          return "boolean";
+        case INT:
+          String _name = dt.name();
+          return _name.toLowerCase();
+        case STRING:
+          String _name_1 = dt.name();
+          String _lowerCase = _name_1.toLowerCase();
+          return StringExtensions.toFirstUpper(_lowerCase);
+        case LIST:
+          return "int[]";
+        default:
+          return "void";
+      }
+    } else {
+      return "void";
+    }
   }
 }
