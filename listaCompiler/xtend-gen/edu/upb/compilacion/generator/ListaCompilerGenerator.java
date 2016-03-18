@@ -4,6 +4,7 @@
 package edu.upb.compilacion.generator;
 
 import edu.upb.compilacion.TypeInferrer;
+import edu.upb.compilacion.listaCompiler.Bool;
 import edu.upb.compilacion.listaCompiler.BracketExpression;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.Expression;
@@ -15,18 +16,24 @@ import edu.upb.compilacion.listaCompiler.FunctionCall;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.IfControlFlow;
 import edu.upb.compilacion.listaCompiler.List;
+import edu.upb.compilacion.listaCompiler.ListElem;
 import edu.upb.compilacion.listaCompiler.Lista;
 import edu.upb.compilacion.listaCompiler.MyBool;
 import edu.upb.compilacion.listaCompiler.MyInteger;
 import edu.upb.compilacion.listaCompiler.MyString;
 import edu.upb.compilacion.listaCompiler.MyVariable;
+import edu.upb.compilacion.listaCompiler.NegBool;
 import edu.upb.compilacion.listaCompiler.NegInteger;
+import edu.upb.compilacion.listaCompiler.PDFunction;
+import edu.upb.compilacion.listaCompiler.PosBool;
 import edu.upb.compilacion.listaCompiler.PosInteger;
+import edu.upb.compilacion.listaCompiler.PreDefFunctionCall;
 import edu.upb.compilacion.listaCompiler.SecondLevelExp;
 import edu.upb.compilacion.listaCompiler.SecondLevelOp;
 import edu.upb.compilacion.listaCompiler.Term;
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
 import edu.upb.compilacion.listaCompiler.ThirdLevelOp;
+import edu.upb.compilacion.listaCompiler.UserDefFunctionCall;
 import edu.upb.compilacion.validation.ListaCompilerValidator;
 import java.util.HashMap;
 import org.eclipse.emf.common.util.EList;
@@ -59,13 +66,23 @@ public class ListaCompilerGenerator implements IGenerator {
     EList<Evaluation> _evaluations = lista.getEvaluations();
     CharSequence _generateMain = this.generateMain(_evaluations);
     _builder.append(_generateMain, "");
+    _builder.append("\n\n", "");
     {
       EList<FunctionDefinition> _definitions = lista.getDefinitions();
+      boolean _hasElements = false;
       for(final FunctionDefinition fd : _definitions) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate("\n\n", "");
+        }
         CharSequence _generate = this.generate(fd);
         _builder.append(_generate, "");
       }
     }
+    _builder.append("\n\n", "");
+    CharSequence _generatePreDefFunctions = this.generatePreDefFunctions();
+    _builder.append(_generatePreDefFunctions, "");
     return _builder;
   }
   
@@ -78,6 +95,7 @@ public class ListaCompilerGenerator implements IGenerator {
       for(final Evaluation eval : evaluations) {
         CharSequence _generate = this.generate(eval);
         _builder.append(_generate, "\t\t");
+        _builder.append(";");
       }
     }
     _builder.newLineIfNotEmpty();
@@ -227,30 +245,168 @@ public class ListaCompilerGenerator implements IGenerator {
       return Integer.valueOf(_val).toString();
     } else {
       if ((mi instanceof NegInteger)) {
-        return ((MyString) mi).getVal();
+        final Term exp = ((NegInteger) mi).getVal();
+        if ((exp instanceof PosInteger)) {
+          int _val_1 = ((PosInteger) exp).getVal();
+          return Integer.valueOf(_val_1).toString();
+        } else {
+          if ((exp instanceof BracketExpression)) {
+            return this.generate(((BracketExpression) exp));
+          }
+        }
       }
     }
     return null;
   }
   
-  public Object generate(final MyBool mb) {
+  public String generate(final MyBool mb) {
+    if ((mb instanceof PosBool)) {
+      Bool _val = ((PosBool) mb).getVal();
+      return _val.toString();
+    } else {
+      if ((mb instanceof NegBool)) {
+        final Term exp = ((NegBool) mb).getVal();
+        if ((exp instanceof PosBool)) {
+          Bool _val_1 = ((PosBool) exp).getVal();
+          return _val_1.toString();
+        } else {
+          if ((exp instanceof BracketExpression)) {
+            return this.generate(((BracketExpression) exp));
+          }
+        }
+      }
+    }
     return null;
   }
   
-  public Object generate(final List li) {
+  public CharSequence generate(final List li) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("[");
+    {
+      EList<ListElem> _elems = li.getElems();
+      boolean _hasElements = false;
+      for(final ListElem elm : _elems) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(",", "");
+        }
+        String _generate = this.generate(elm);
+        _builder.append(_generate, "");
+      }
+    }
+    _builder.append("]");
+    return _builder;
+  }
+  
+  public String generate(final ListElem le) {
+    if ((le instanceof MyInteger)) {
+      return this.generate(((MyInteger) le));
+    } else {
+      if ((le instanceof MyVariable)) {
+        return ((MyVariable) le).getVar();
+      }
+    }
     return null;
   }
   
-  public Object generate(final FunctionCall fc) {
+  public CharSequence generate(final FunctionCall fc) {
+    if ((fc instanceof PreDefFunctionCall)) {
+      return this.generate(((PreDefFunctionCall) fc));
+    } else {
+      if ((fc instanceof UserDefFunctionCall)) {
+        return this.generate(((UserDefFunctionCall) fc));
+      }
+    }
     return null;
   }
   
-  public Object generate(final IfControlFlow icf) {
-    return null;
+  public CharSequence generate(final PreDefFunctionCall pdf) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      PDFunction _function = pdf.getFunction();
+      String _name = _function.getName();
+      boolean _equals = _name.equals("show");
+      if (_equals) {
+        _builder.append("System.out.println", "");
+      } else {
+        PDFunction _function_1 = pdf.getFunction();
+        String _name_1 = _function_1.getName();
+        _builder.append(_name_1, "");
+      }
+    }
+    _builder.append("(");
+    {
+      EList<Expression> _args = pdf.getArgs();
+      boolean _hasElements = false;
+      for(final Expression exp : _args) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(",", "");
+        }
+        Object _generate = this.generate(exp);
+        _builder.append(_generate, "");
+      }
+    }
+    _builder.append(")");
+    return _builder;
   }
   
-  public Object generate(final BracketExpression be) {
-    return null;
+  public CharSequence generate(final UserDefFunctionCall udf) {
+    StringConcatenation _builder = new StringConcatenation();
+    FunctionDefinition _function = udf.getFunction();
+    String _name = _function.getName();
+    _builder.append(_name, "");
+    _builder.append("(");
+    {
+      EList<Expression> _args = udf.getArgs();
+      boolean _hasElements = false;
+      for(final Expression exp : _args) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(",", "");
+        }
+        Object _generate = this.generate(exp);
+        _builder.append(_generate, "");
+      }
+    }
+    _builder.append(")");
+    return _builder;
+  }
+  
+  public CharSequence generate(final IfControlFlow icf) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("if (");
+    Expression _cond = icf.getCond();
+    Object _generate = this.generate(_cond);
+    _builder.append(_generate, "");
+    _builder.append(") {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    Expression _iftrue = icf.getIftrue();
+    Object _generate_1 = this.generate(_iftrue);
+    _builder.append(_generate_1, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("} else {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    Expression _iffalse = icf.getIffalse();
+    Object _generate_2 = this.generate(_iffalse);
+    _builder.append(_generate_2, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    return _builder;
+  }
+  
+  public String generate(final BracketExpression be) {
+    Expression _exp = be.getExp();
+    Object _generate = this.generate(_exp);
+    String _plus = ("(" + _generate);
+    return (_plus + ")");
   }
   
   public CharSequence generate(final FunctionDefinition funcd) {
@@ -317,5 +473,88 @@ public class ListaCompilerGenerator implements IGenerator {
     } else {
       return "void";
     }
+  }
+  
+  public CharSequence generatePreDefFunctions() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("int[] cons(int x, int[] l) {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("int[] res = new int[l.length + 1];");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("res[0] = x;");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("for (int i = 1; i < l.length + 1; i++) {");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("res[i] = l[i - 1];");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return res;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("int car(int[] l) {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return l[0];");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("int[] cdr(int[] l) {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("int[] res = new int[l.length - 1];");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("for (int i = 1; i < l.length ; i++) {");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("res[i - 1] = l[i];");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return res;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("boolean isEmpty(int[] l) {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return (l.length > 1) ? false : true;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("int length(String s) {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return s.length();");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    return _builder;
   }
 }

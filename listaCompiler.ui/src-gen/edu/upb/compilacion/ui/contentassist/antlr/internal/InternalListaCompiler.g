@@ -3212,11 +3212,11 @@ rule__List__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getListAccess().getIntListAction_1()); }
+{ before(grammarAccess.getListAccess().getListAction_1()); }
 (
 
 )
-{ after(grammarAccess.getListAccess().getIntListAction_1()); }
+{ after(grammarAccess.getListAccess().getListAction_1()); }
 )
 
 ;

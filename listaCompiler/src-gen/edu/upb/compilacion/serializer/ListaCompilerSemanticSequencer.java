@@ -12,7 +12,7 @@ import edu.upb.compilacion.listaCompiler.FirstLevelExp;
 import edu.upb.compilacion.listaCompiler.FourthLevelExp;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.IfControlFlow;
-import edu.upb.compilacion.listaCompiler.IntList;
+import edu.upb.compilacion.listaCompiler.List;
 import edu.upb.compilacion.listaCompiler.Lista;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
 import edu.upb.compilacion.listaCompiler.MyString;
@@ -68,8 +68,8 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ListaCompilerPackage.IF_CONTROL_FLOW:
 				sequence_IfControlFlow(context, (IfControlFlow) semanticObject); 
 				return; 
-			case ListaCompilerPackage.INT_LIST:
-				sequence_List(context, (IntList) semanticObject); 
+			case ListaCompilerPackage.LIST:
+				sequence_List(context, (List) semanticObject); 
 				return; 
 			case ListaCompilerPackage.LISTA:
 				sequence_Lista(context, (Lista) semanticObject); 
@@ -209,7 +209,7 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	 * Constraint:
 	 *     ((elems+=ListElem+ elems+=ListElem*)?)
 	 */
-	protected void sequence_List(EObject context, IntList semanticObject) {
+	protected void sequence_List(EObject context, List semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

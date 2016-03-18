@@ -91,7 +91,7 @@ UserDefFunctionCall:
 
 
 List: 
-	"["{IntList} (elems+=ListElem + ("," elems+=ListElem)*)?"]"
+	"["{List} (elems+=ListElem + ("," elems+=ListElem)*)?"]"
 ;
 
 ListElem:

@@ -106,10 +106,9 @@
     <genClasses ecoreClass="ListaCompiler.ecore#//UserDefFunctionCall">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//UserDefFunctionCall/function"/>
     </genClasses>
-    <genClasses ecoreClass="ListaCompiler.ecore#//List"/>
-    <genClasses ecoreClass="ListaCompiler.ecore#//ListElem"/>
-    <genClasses ecoreClass="ListaCompiler.ecore#//IntList">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//IntList/elems"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//List">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//List/elems"/>
     </genClasses>
+    <genClasses ecoreClass="ListaCompiler.ecore#//ListElem"/>
   </genPackages>
 </genmodel:GenModel>

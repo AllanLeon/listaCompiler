@@ -1451,7 +1451,7 @@ ruleList returns [EObject current=null]
 (
     {
         $current = forceCreateModelElement(
-            grammarAccess.getListAccess().getIntListAction_1(),
+            grammarAccess.getListAccess().getListAction_1(),
             $current);
     }
 )((

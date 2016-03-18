@@ -758,7 +758,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "List");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Action cIntListAction_1 = (Action)cGroup.eContents().get(1);
+		private final Action cListAction_1 = (Action)cGroup.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Assignment cElemsAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
 		private final RuleCall cElemsListElemParserRuleCall_2_0_0 = (RuleCall)cElemsAssignment_2_0.eContents().get(0);
@@ -769,17 +769,17 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//List:
-		//	"[" {IntList} (elems+=ListElem+ ("," elems+=ListElem)*)? "]";
+		//	"[" {List} (elems+=ListElem+ ("," elems+=ListElem)*)? "]";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"[" {IntList} (elems+=ListElem+ ("," elems+=ListElem)*)? "]"
+		//"[" {List} (elems+=ListElem+ ("," elems+=ListElem)*)? "]"
 		public Group getGroup() { return cGroup; }
 
 		//"["
 		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
 
-		//{IntList}
-		public Action getIntListAction_1() { return cIntListAction_1; }
+		//{List}
+		public Action getListAction_1() { return cListAction_1; }
 
 		//(elems+=ListElem+ ("," elems+=ListElem)*)?
 		public Group getGroup_2() { return cGroup_2; }
@@ -1365,7 +1365,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//List:
-	//	"[" {IntList} (elems+=ListElem+ ("," elems+=ListElem)*)? "]";
+	//	"[" {List} (elems+=ListElem+ ("," elems+=ListElem)*)? "]";
 	public ListElements getListAccess() {
 		return pList;
 	}

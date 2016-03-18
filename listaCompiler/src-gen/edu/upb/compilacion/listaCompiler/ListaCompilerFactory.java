@@ -239,15 +239,6 @@ public interface ListaCompilerFactory extends EFactory
   ListElem createListElem();
 
   /**
-   * Returns a new object of class '<em>Int List</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Int List</em>'.
-   * @generated
-   */
-  IntList createIntList();
-
-  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

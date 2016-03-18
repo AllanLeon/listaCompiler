@@ -13,7 +13,6 @@ import edu.upb.compilacion.listaCompiler.FourthLevelOp;
 import edu.upb.compilacion.listaCompiler.FunctionCall;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.IfControlFlow;
-import edu.upb.compilacion.listaCompiler.IntList;
 import edu.upb.compilacion.listaCompiler.List;
 import edu.upb.compilacion.listaCompiler.ListElem;
 import edu.upb.compilacion.listaCompiler.Lista;
@@ -219,13 +218,6 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * @generated
    */
   private EClass listElemEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass intListEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -847,29 +839,19 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getList_Elems()
+  {
+    return (EReference)listEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getListElem()
   {
     return listElemEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getIntList()
-  {
-    return intListEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getIntList_Elems()
-  {
-    return (EReference)intListEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1035,11 +1017,9 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     createEReference(userDefFunctionCallEClass, USER_DEF_FUNCTION_CALL__FUNCTION);
 
     listEClass = createEClass(LIST);
+    createEReference(listEClass, LIST__ELEMS);
 
     listElemEClass = createEClass(LIST_ELEM);
-
-    intListEClass = createEClass(INT_LIST);
-    createEReference(intListEClass, INT_LIST__ELEMS);
 
     // Create enums
     boolEEnum = createEEnum(BOOL);
@@ -1095,7 +1075,6 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     preDefFunctionCallEClass.getESuperTypes().add(this.getFunctionCall());
     userDefFunctionCallEClass.getESuperTypes().add(this.getFunctionCall());
     listEClass.getESuperTypes().add(this.getTerm());
-    intListEClass.getESuperTypes().add(this.getList());
 
     // Initialize classes and features; add operations and parameters
     initEClass(listaEClass, Lista.class, "Lista", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1171,11 +1150,9 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     initEReference(getUserDefFunctionCall_Function(), this.getFunctionDefinition(), null, "function", null, 0, 1, UserDefFunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(listEClass, List.class, "List", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getList_Elems(), this.getListElem(), null, "elems", null, 0, -1, List.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(listElemEClass, ListElem.class, "ListElem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(intListEClass, IntList.class, "IntList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getIntList_Elems(), this.getListElem(), null, "elems", null, 0, -1, IntList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(boolEEnum, Bool.class, "Bool");

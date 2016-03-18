@@ -86,7 +86,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="UserDefFunctionCall" eSuperTypes="#//FunctionCall">
     <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//FunctionDefinition"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="List" eSuperTypes="#//Term"/>
+  <eClassifiers xsi:type="ecore:EClass" name="List" eSuperTypes="#//Term">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elems" upperBound="-1"
+        eType="#//ListElem" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ListElem"/>
   <eClassifiers xsi:type="ecore:EEnum" name="Bool">
     <eLiterals name="true" literal="true"/>
@@ -117,9 +120,5 @@
   <eClassifiers xsi:type="ecore:EEnum" name="FourthLevelOp">
     <eLiterals name="mult" literal="*"/>
     <eLiterals name="div" value="1" literal="/"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntList" eSuperTypes="#//List">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elems" upperBound="-1"
-        eType="#//ListElem" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

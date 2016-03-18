@@ -756,13 +756,22 @@ public interface ListaCompilerPackage extends EPackage
   int LIST = 22;
 
   /**
+   * The feature id for the '<em><b>Elems</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST__ELEMS = TERM_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>List</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LIST_FEATURE_COUNT = TERM_FEATURE_COUNT + 0;
+  int LIST_FEATURE_COUNT = TERM_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.ListElemImpl <em>List Elem</em>}' class.
@@ -784,34 +793,6 @@ public interface ListaCompilerPackage extends EPackage
   int LIST_ELEM_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.IntListImpl <em>Int List</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.upb.compilacion.listaCompiler.impl.IntListImpl
-   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getIntList()
-   * @generated
-   */
-  int INT_LIST = 24;
-
-  /**
-   * The feature id for the '<em><b>Elems</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_LIST__ELEMS = LIST_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Int List</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_LIST_FEATURE_COUNT = LIST_FEATURE_COUNT + 1;
-
-  /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.Bool <em>Bool</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -819,7 +800,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getBool()
    * @generated
    */
-  int BOOL = 25;
+  int BOOL = 24;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.PDFunction <em>PD Function</em>}' enum.
@@ -829,7 +810,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPDFunction()
    * @generated
    */
-  int PD_FUNCTION = 26;
+  int PD_FUNCTION = 25;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.FirstLevelOp <em>First Level Op</em>}' enum.
@@ -839,7 +820,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFirstLevelOp()
    * @generated
    */
-  int FIRST_LEVEL_OP = 27;
+  int FIRST_LEVEL_OP = 26;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.SecondLevelOp <em>Second Level Op</em>}' enum.
@@ -849,7 +830,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getSecondLevelOp()
    * @generated
    */
-  int SECOND_LEVEL_OP = 28;
+  int SECOND_LEVEL_OP = 27;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.ThirdLevelOp <em>Third Level Op</em>}' enum.
@@ -859,7 +840,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getThirdLevelOp()
    * @generated
    */
-  int THIRD_LEVEL_OP = 29;
+  int THIRD_LEVEL_OP = 28;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.FourthLevelOp <em>Fourth Level Op</em>}' enum.
@@ -869,7 +850,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFourthLevelOp()
    * @generated
    */
-  int FOURTH_LEVEL_OP = 30;
+  int FOURTH_LEVEL_OP = 29;
 
 
   /**
@@ -1411,6 +1392,17 @@ public interface ListaCompilerPackage extends EPackage
   EClass getList();
 
   /**
+   * Returns the meta object for the containment reference list '{@link edu.upb.compilacion.listaCompiler.List#getElems <em>Elems</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Elems</em>'.
+   * @see edu.upb.compilacion.listaCompiler.List#getElems()
+   * @see #getList()
+   * @generated
+   */
+  EReference getList_Elems();
+
+  /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.ListElem <em>List Elem</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1419,27 +1411,6 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    */
   EClass getListElem();
-
-  /**
-   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.IntList <em>Int List</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Int List</em>'.
-   * @see edu.upb.compilacion.listaCompiler.IntList
-   * @generated
-   */
-  EClass getIntList();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link edu.upb.compilacion.listaCompiler.IntList#getElems <em>Elems</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Elems</em>'.
-   * @see edu.upb.compilacion.listaCompiler.IntList#getElems()
-   * @see #getIntList()
-   * @generated
-   */
-  EReference getIntList_Elems();
 
   /**
    * Returns the meta object for enum '{@link edu.upb.compilacion.listaCompiler.Bool <em>Bool</em>}'.
@@ -1979,6 +1950,14 @@ public interface ListaCompilerPackage extends EPackage
     EClass LIST = eINSTANCE.getList();
 
     /**
+     * The meta object literal for the '<em><b>Elems</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LIST__ELEMS = eINSTANCE.getList_Elems();
+
+    /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.ListElemImpl <em>List Elem</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1987,24 +1966,6 @@ public interface ListaCompilerPackage extends EPackage
      * @generated
      */
     EClass LIST_ELEM = eINSTANCE.getListElem();
-
-    /**
-     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.IntListImpl <em>Int List</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.upb.compilacion.listaCompiler.impl.IntListImpl
-     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getIntList()
-     * @generated
-     */
-    EClass INT_LIST = eINSTANCE.getIntList();
-
-    /**
-     * The meta object literal for the '<em><b>Elems</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference INT_LIST__ELEMS = eINSTANCE.getIntList_Elems();
 
     /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.Bool <em>Bool</em>}' enum.

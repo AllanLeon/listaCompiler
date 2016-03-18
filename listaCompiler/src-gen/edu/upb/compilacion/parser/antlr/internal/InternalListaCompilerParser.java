@@ -3602,7 +3602,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
             {
 
                     current = forceCreateModelElement(
-                        grammarAccess.getListAccess().getIntListAction_1(),
+                        grammarAccess.getListAccess().getListAction_1(),
                         current);
                 
 

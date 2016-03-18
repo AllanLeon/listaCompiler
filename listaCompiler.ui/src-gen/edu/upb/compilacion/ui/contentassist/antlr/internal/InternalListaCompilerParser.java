@@ -8795,13 +8795,13 @@ public class InternalListaCompilerParser extends AbstractInternalContentAssistPa
             // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:3214:1: ( () )
             // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:3215:1: ()
             {
-             before(grammarAccess.getListAccess().getIntListAction_1()); 
+             before(grammarAccess.getListAccess().getListAction_1()); 
             // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:3216:1: ()
             // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:3218:1: 
             {
             }
 
-             after(grammarAccess.getListAccess().getIntListAction_1()); 
+             after(grammarAccess.getListAccess().getListAction_1()); 
 
             }
 

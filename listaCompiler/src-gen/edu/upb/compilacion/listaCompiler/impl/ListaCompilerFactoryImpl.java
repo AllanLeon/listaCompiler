@@ -89,7 +89,6 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
       case ListaCompilerPackage.USER_DEF_FUNCTION_CALL: return createUserDefFunctionCall();
       case ListaCompilerPackage.LIST: return createList();
       case ListaCompilerPackage.LIST_ELEM: return createListElem();
-      case ListaCompilerPackage.INT_LIST: return createIntList();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -411,17 +410,6 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
   {
     ListElemImpl listElem = new ListElemImpl();
     return listElem;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public IntList createIntList()
-  {
-    IntListImpl intList = new IntListImpl();
-    return intList;
   }
 
   /**
