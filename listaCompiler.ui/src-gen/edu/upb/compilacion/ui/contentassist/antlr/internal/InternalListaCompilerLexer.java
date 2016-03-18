@@ -639,11 +639,19 @@ public class InternalListaCompilerLexer extends Lexer {
         try {
             int _type = RULE_IDFUNCVAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:4004:16: ( 'a' .. 'z' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )* )
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:4004:18: 'a' .. 'z' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )*
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:4004:16: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )* )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:4004:18: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )*
             {
-            matchRange('a','z'); 
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:4004:27: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )*
+            if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse = new MismatchedSetException(null,input);
+                recover(mse);
+                throw mse;}
+
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:4004:38: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' )*
             loop1:
             do {
                 int alt1=2;
@@ -1479,7 +1487,7 @@ public class InternalListaCompilerLexer extends Lexer {
     static final String[] DFA13_transitionS = {
             "\11\37\2\36\2\37\1\36\22\37\1\36\1\25\1\34\3\37\1\7\1\35\1"+
             "\22\1\23\1\16\1\14\1\24\1\15\1\37\1\17\12\33\1\37\1\21\1\12"+
-            "\1\13\1\11\1\20\1\37\32\32\1\26\1\37\1\27\1\31\1\32\1\37\2\30"+
+            "\1\13\1\11\1\20\1\37\32\30\1\26\1\37\1\27\1\31\1\32\1\37\2\30"+
             "\1\4\2\30\1\2\2\30\1\5\2\30\1\3\6\30\1\6\1\1\6\30\1\37\1\10"+
             "\uff83\37",
             "\12\42\7\uffff\32\42\4\uffff\1\43\1\uffff\21\42\1\40\10\42",
@@ -1688,11 +1696,11 @@ public class InternalListaCompilerLexer extends Lexer {
 
                         else if ( (LA13_0==']') ) {s = 23;}
 
-                        else if ( ((LA13_0>='a' && LA13_0<='b')||(LA13_0>='d' && LA13_0<='e')||(LA13_0>='g' && LA13_0<='h')||(LA13_0>='j' && LA13_0<='k')||(LA13_0>='m' && LA13_0<='r')||(LA13_0>='u' && LA13_0<='z')) ) {s = 24;}
+                        else if ( ((LA13_0>='A' && LA13_0<='Z')||(LA13_0>='a' && LA13_0<='b')||(LA13_0>='d' && LA13_0<='e')||(LA13_0>='g' && LA13_0<='h')||(LA13_0>='j' && LA13_0<='k')||(LA13_0>='m' && LA13_0<='r')||(LA13_0>='u' && LA13_0<='z')) ) {s = 24;}
 
                         else if ( (LA13_0=='^') ) {s = 25;}
 
-                        else if ( ((LA13_0>='A' && LA13_0<='Z')||LA13_0=='_') ) {s = 26;}
+                        else if ( (LA13_0=='_') ) {s = 26;}
 
                         else if ( ((LA13_0>='0' && LA13_0<='9')) ) {s = 27;}
 

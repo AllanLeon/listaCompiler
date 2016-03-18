@@ -1445,7 +1445,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal IDFUNCVAR:
-	//	"a".."z" ("A".."Z" | "a".."z" | "0".."9")*;
+	//	("a".."z" | "A".."Z") ("A".."Z" | "a".."z" | "0".."9")*;
 	public TerminalRule getIDFUNCVARRule() {
 		return tIDFUNCVAR;
 	} 

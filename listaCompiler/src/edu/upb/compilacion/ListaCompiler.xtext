@@ -133,4 +133,4 @@ enum FourthLevelOp:
 	div = "/"
 ;
 
-terminal IDFUNCVAR: ('a'..'z')('A'..'Z'|'a'..'z'|'0'..'9')*;
+terminal IDFUNCVAR: ('a'..'z'|'A'..'Z')('A'..'Z'|'a'..'z'|'0'..'9')*;
