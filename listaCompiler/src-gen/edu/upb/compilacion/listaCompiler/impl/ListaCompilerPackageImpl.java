@@ -607,16 +607,6 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMyInteger_Val()
-  {
-    return (EAttribute)myIntegerEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getPosInteger()
   {
     return posIntegerEClass;
@@ -627,9 +617,29 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getPosInteger_Val()
+  {
+    return (EAttribute)posIntegerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getNegInteger()
   {
     return negIntegerEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNegInteger_Val()
+  {
+    return (EReference)negIntegerEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -667,16 +677,6 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMyBool_Val()
-  {
-    return (EAttribute)myBoolEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getPosBool()
   {
     return posBoolEClass;
@@ -687,9 +687,29 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getPosBool_Val()
+  {
+    return (EAttribute)posBoolEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getNegBool()
   {
     return negBoolEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNegBool_Val()
+  {
+    return (EReference)negBoolEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -979,21 +999,23 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     createEReference(bracketExpressionEClass, BRACKET_EXPRESSION__EXP);
 
     myIntegerEClass = createEClass(MY_INTEGER);
-    createEAttribute(myIntegerEClass, MY_INTEGER__VAL);
 
     posIntegerEClass = createEClass(POS_INTEGER);
+    createEAttribute(posIntegerEClass, POS_INTEGER__VAL);
 
     negIntegerEClass = createEClass(NEG_INTEGER);
+    createEReference(negIntegerEClass, NEG_INTEGER__VAL);
 
     myVariableEClass = createEClass(MY_VARIABLE);
     createEAttribute(myVariableEClass, MY_VARIABLE__VAR);
 
     myBoolEClass = createEClass(MY_BOOL);
-    createEAttribute(myBoolEClass, MY_BOOL__VAL);
 
     posBoolEClass = createEClass(POS_BOOL);
+    createEAttribute(posBoolEClass, POS_BOOL__VAL);
 
     negBoolEClass = createEClass(NEG_BOOL);
+    createEReference(negBoolEClass, NEG_BOOL__VAL);
 
     myStringEClass = createEClass(MY_STRING);
     createEAttribute(myStringEClass, MY_STRING__VAL);
@@ -1113,21 +1135,23 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     initEReference(getBracketExpression_Exp(), this.getExpression(), null, "exp", null, 0, 1, BracketExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(myIntegerEClass, MyInteger.class, "MyInteger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getMyInteger_Val(), ecorePackage.getEInt(), "val", null, 0, 1, MyInteger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(posIntegerEClass, PosInteger.class, "PosInteger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPosInteger_Val(), ecorePackage.getEInt(), "val", null, 0, 1, PosInteger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(negIntegerEClass, NegInteger.class, "NegInteger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNegInteger_Val(), this.getTerm(), null, "val", null, 0, 1, NegInteger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(myVariableEClass, MyVariable.class, "MyVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMyVariable_Var(), ecorePackage.getEString(), "var", null, 0, 1, MyVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(myBoolEClass, MyBool.class, "MyBool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getMyBool_Val(), this.getBool(), "val", null, 0, 1, MyBool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(posBoolEClass, PosBool.class, "PosBool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPosBool_Val(), this.getBool(), "val", null, 0, 1, PosBool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(negBoolEClass, NegBool.class, "NegBool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNegBool_Val(), this.getTerm(), null, "val", null, 0, 1, NegBool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(myStringEClass, MyString.class, "MyString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMyString_Val(), ecorePackage.getEString(), "val", null, 0, 1, MyString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

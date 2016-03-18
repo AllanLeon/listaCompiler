@@ -257,33 +257,19 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     val=Bool
+	 *     (val=PosBool | val=BracketExpression)
 	 */
 	protected void sequence_NegBool(EObject context, NegBool semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.MY_BOOL__VAL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.MY_BOOL__VAL));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getNegBoolAccess().getValBoolEnumRuleCall_1_0(), semanticObject.getVal());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     val=INT
+	 *     (val=PosInteger | val=BracketExpression)
 	 */
 	protected void sequence_NegInteger(EObject context, NegInteger semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.MY_INTEGER__VAL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.MY_INTEGER__VAL));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getNegIntegerAccess().getValINTTerminalRuleCall_1_0(), semanticObject.getVal());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -293,8 +279,8 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	 */
 	protected void sequence_PosBool(EObject context, PosBool semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.MY_BOOL__VAL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.MY_BOOL__VAL));
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.POS_BOOL__VAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.POS_BOOL__VAL));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -309,8 +295,8 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	 */
 	protected void sequence_PosInteger(EObject context, PosInteger semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.MY_INTEGER__VAL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.MY_INTEGER__VAL));
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.POS_INTEGER__VAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.POS_INTEGER__VAL));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);

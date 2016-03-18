@@ -191,8 +191,6 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
       TypeInferrer.inferDataType(fd);
       TypeInferrer.inferDataType(fd);
       this.checkFunctionDefinitionParams(fd);
-      String _functionString = TypeInferrer.getFunctionString(fd);
-      System.out.println(_functionString);
       try {
         Expression _return = fd.getReturn();
         TypeInferrer.checkDataType(_return);

@@ -13,6 +13,8 @@ import edu.upb.compilacion.listaCompiler.MyBool
 import edu.upb.compilacion.listaCompiler.MyInteger
 import edu.upb.compilacion.listaCompiler.MyString
 import edu.upb.compilacion.listaCompiler.MyVariable
+import edu.upb.compilacion.listaCompiler.NegBool
+import edu.upb.compilacion.listaCompiler.NegInteger
 import edu.upb.compilacion.listaCompiler.PDFunction
 import edu.upb.compilacion.listaCompiler.PreDefFunctionCall
 import edu.upb.compilacion.listaCompiler.SecondLevelExp
@@ -195,11 +197,11 @@ class TypeInferrer {
 	
 	static def void inferDataType(Term term, String fdName) {
 		if (term instanceof MyInteger) {
-			setFunctionType(fdName, DataType.INT);
+			inferDataType((term as MyInteger), fdName);
 		} else if (term instanceof MyString) {
 			setFunctionType(fdName, DataType.STRING);
 		} else if (term instanceof MyBool) {
-			setFunctionType(fdName, DataType.BOOL);
+			inferDataType((term as MyBool), fdName);
 		} else if (term instanceof List) {
 			setFunctionType(fdName, DataType.LIST);
 		} else if (term instanceof MyVariable) {
@@ -212,6 +214,26 @@ class TypeInferrer {
 			inferDataType((term as IfControlFlow).cond.exp, fdName);
 		} else if (term instanceof BracketExpression) {
 			inferDataType((term as BracketExpression).exp.exp, fdName);
+		}
+	}
+	
+	static def void inferDataType(MyInteger myInt, String fdName) {
+		setFunctionType(fdName, DataType.INT);
+		if (myInt instanceof NegInteger) {
+			val exp = (myInt as NegInteger).^val;
+			if (exp instanceof BracketExpression) {
+				inferDataType((exp as BracketExpression).exp.exp, fdName);
+			}
+		}
+	}
+	
+	static def void inferDataType(MyBool myBool, String fdName) {
+		setFunctionType(fdName, DataType.BOOL);
+		if (myBool instanceof NegBool) {
+			val exp = (myBool as NegBool).^val;
+			if (exp instanceof BracketExpression) {
+				inferDataType((exp as BracketExpression).exp.exp, fdName);
+			}
 		}
 	}
 	
@@ -511,11 +533,11 @@ class TypeInferrer {
 	
 	static def DataType checkDataType(Term term) {
 		if (term instanceof MyInteger) {
-			return DataType.INT;
+			return (term as MyInteger).checkDataType;
 		} else if (term instanceof MyString) {
 			return DataType.STRING;
 		} else if (term instanceof MyBool) {
-			return DataType.BOOL;
+			return (term as MyBool).checkDataType;
 		} else if (term instanceof List) {
 			return DataType.LIST;
 		} else if (term instanceof MyVariable) {
@@ -527,6 +549,32 @@ class TypeInferrer {
 		} else if (term instanceof BracketExpression) {
 			return (term as BracketExpression).exp.checkDataType;
 		}
+	}
+	
+	static def DataType checkDataType(MyInteger myInt) {
+		if (myInt instanceof NegInteger) {
+			val exp = (myInt as NegInteger).^val;
+			if (exp instanceof BracketExpression) {
+				val expType = (exp as BracketExpression).exp.checkDataType;
+				if (!expType.equals(DataType.INT)) {
+					throw new MismatchedTypeException("Argument type should be INT.")
+				}
+			}
+		}
+		return DataType.INT;
+	}
+	
+	static def DataType checkDataType(MyBool myBool) {
+		if (myBool instanceof NegBool) {
+			val exp = (myBool as NegBool).^val;
+			if (exp instanceof BracketExpression) {
+				val expType = (exp as BracketExpression).exp.checkDataType;
+				if (!expType.equals(DataType.BOOL)) {
+					throw new MismatchedTypeException("Argument type should be BOOL.")
+				}
+			}
+		}
+		return DataType.BOOL;
 	}
 	
 	static def DataType checkDataType(FunctionCall fcall) {

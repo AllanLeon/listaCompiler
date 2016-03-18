@@ -72,19 +72,23 @@
     <genClasses ecoreClass="ListaCompiler.ecore#//BracketExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//BracketExpression/exp"/>
     </genClasses>
-    <genClasses ecoreClass="ListaCompiler.ecore#//MyInteger">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//MyInteger/val"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//MyInteger"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//PosInteger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//PosInteger/val"/>
     </genClasses>
-    <genClasses ecoreClass="ListaCompiler.ecore#//PosInteger"/>
-    <genClasses ecoreClass="ListaCompiler.ecore#//NegInteger"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//NegInteger">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//NegInteger/val"/>
+    </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//MyVariable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//MyVariable/var"/>
     </genClasses>
-    <genClasses ecoreClass="ListaCompiler.ecore#//MyBool">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//MyBool/val"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//MyBool"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//PosBool">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//PosBool/val"/>
     </genClasses>
-    <genClasses ecoreClass="ListaCompiler.ecore#//PosBool"/>
-    <genClasses ecoreClass="ListaCompiler.ecore#//NegBool"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//NegBool">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//NegBool/val"/>
+    </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//MyString">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//MyString/val"/>
     </genClasses>

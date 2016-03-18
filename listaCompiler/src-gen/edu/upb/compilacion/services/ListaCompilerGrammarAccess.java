@@ -435,23 +435,31 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cHyphenMinusKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cValAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cValINTTerminalRuleCall_1_0 = (RuleCall)cValAssignment_1.eContents().get(0);
+		private final Alternatives cValAlternatives_1_0 = (Alternatives)cValAssignment_1.eContents().get(0);
+		private final RuleCall cValPosIntegerParserRuleCall_1_0_0 = (RuleCall)cValAlternatives_1_0.eContents().get(0);
+		private final RuleCall cValBracketExpressionParserRuleCall_1_0_1 = (RuleCall)cValAlternatives_1_0.eContents().get(1);
 		
 		//NegInteger:
-		//	"-" val=INT;
+		//	"-" val=(PosInteger | BracketExpression);
 		@Override public ParserRule getRule() { return rule; }
 
-		//"-" val=INT
+		//"-" val=(PosInteger | BracketExpression)
 		public Group getGroup() { return cGroup; }
 
 		//"-"
 		public Keyword getHyphenMinusKeyword_0() { return cHyphenMinusKeyword_0; }
 
-		//val=INT
+		//val=(PosInteger | BracketExpression)
 		public Assignment getValAssignment_1() { return cValAssignment_1; }
 
-		//INT
-		public RuleCall getValINTTerminalRuleCall_1_0() { return cValINTTerminalRuleCall_1_0; }
+		//PosInteger | BracketExpression
+		public Alternatives getValAlternatives_1_0() { return cValAlternatives_1_0; }
+
+		//PosInteger
+		public RuleCall getValPosIntegerParserRuleCall_1_0_0() { return cValPosIntegerParserRuleCall_1_0_0; }
+
+		//BracketExpression
+		public RuleCall getValBracketExpressionParserRuleCall_1_0_1() { return cValBracketExpressionParserRuleCall_1_0_1; }
 	}
 
 	public class MyVariableElements extends AbstractParserRuleElementFinder {
@@ -511,23 +519,31 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cExclamationMarkKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cValAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cValBoolEnumRuleCall_1_0 = (RuleCall)cValAssignment_1.eContents().get(0);
+		private final Alternatives cValAlternatives_1_0 = (Alternatives)cValAssignment_1.eContents().get(0);
+		private final RuleCall cValPosBoolParserRuleCall_1_0_0 = (RuleCall)cValAlternatives_1_0.eContents().get(0);
+		private final RuleCall cValBracketExpressionParserRuleCall_1_0_1 = (RuleCall)cValAlternatives_1_0.eContents().get(1);
 		
 		//NegBool:
-		//	"!" val=Bool;
+		//	"!" val=(PosBool | BracketExpression);
 		@Override public ParserRule getRule() { return rule; }
 
-		//"!" val=Bool
+		//"!" val=(PosBool | BracketExpression)
 		public Group getGroup() { return cGroup; }
 
 		//"!"
 		public Keyword getExclamationMarkKeyword_0() { return cExclamationMarkKeyword_0; }
 
-		//val=Bool
+		//val=(PosBool | BracketExpression)
 		public Assignment getValAssignment_1() { return cValAssignment_1; }
 
-		//Bool
-		public RuleCall getValBoolEnumRuleCall_1_0() { return cValBoolEnumRuleCall_1_0; }
+		//PosBool | BracketExpression
+		public Alternatives getValAlternatives_1_0() { return cValAlternatives_1_0; }
+
+		//PosBool
+		public RuleCall getValPosBoolParserRuleCall_1_0_0() { return cValPosBoolParserRuleCall_1_0_0; }
+
+		//BracketExpression
+		public RuleCall getValBracketExpressionParserRuleCall_1_0_1() { return cValBracketExpressionParserRuleCall_1_0_1; }
 	}
 
 	public class MyStringElements extends AbstractParserRuleElementFinder {
@@ -1249,7 +1265,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NegInteger:
-	//	"-" val=INT;
+	//	"-" val=(PosInteger | BracketExpression);
 	public NegIntegerElements getNegIntegerAccess() {
 		return pNegInteger;
 	}
@@ -1289,7 +1305,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NegBool:
-	//	"!" val=Bool;
+	//	"!" val=(PosBool | BracketExpression);
 	public NegBoolElements getNegBoolAccess() {
 		return pNegBool;
 	}
@@ -1429,7 +1445,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal IDFUNCVAR:
-	//	"a".."z" ("A".."Z" | "a".."z" | "0".."9")*;
+	//	("a".."z" | "A".."Z") ("A".."Z" | "a".."z" | "0".."9")*;
 	public TerminalRule getIDFUNCVARRule() {
 		return tIDFUNCVAR;
 	} 

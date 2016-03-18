@@ -50,7 +50,7 @@ PosInteger:
 ;
 
 NegInteger:
-	"-" val=INT
+	"-" val=(PosInteger | BracketExpression)
 ;
 
 MyVariable:
@@ -66,7 +66,7 @@ PosBool:
 ;
 
 NegBool:
-	"!" val=Bool
+	"!" val=(PosBool | BracketExpression)
 ;
 
 MyString:
@@ -133,4 +133,4 @@ enum FourthLevelOp:
 	div = "/"
 ;
 
-terminal IDFUNCVAR: ('a'..'z')('A'..'Z'|'a'..'z'|'0'..'9')*;
+terminal IDFUNCVAR: ('a'..'z'|'A'..'Z')('A'..'Z'|'a'..'z'|'0'..'9')*;
