@@ -4,14 +4,29 @@
 package edu.upb.compilacion.generator;
 
 import edu.upb.compilacion.TypeInferrer;
+import edu.upb.compilacion.listaCompiler.BracketExpression;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
+import edu.upb.compilacion.listaCompiler.FirstLevelOp;
 import edu.upb.compilacion.listaCompiler.FourthLevelExp;
+import edu.upb.compilacion.listaCompiler.FourthLevelOp;
+import edu.upb.compilacion.listaCompiler.FunctionCall;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
+import edu.upb.compilacion.listaCompiler.IfControlFlow;
+import edu.upb.compilacion.listaCompiler.List;
 import edu.upb.compilacion.listaCompiler.Lista;
+import edu.upb.compilacion.listaCompiler.MyBool;
+import edu.upb.compilacion.listaCompiler.MyInteger;
+import edu.upb.compilacion.listaCompiler.MyString;
+import edu.upb.compilacion.listaCompiler.MyVariable;
+import edu.upb.compilacion.listaCompiler.NegInteger;
+import edu.upb.compilacion.listaCompiler.PosInteger;
 import edu.upb.compilacion.listaCompiler.SecondLevelExp;
+import edu.upb.compilacion.listaCompiler.SecondLevelOp;
+import edu.upb.compilacion.listaCompiler.Term;
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
+import edu.upb.compilacion.listaCompiler.ThirdLevelOp;
 import edu.upb.compilacion.validation.ListaCompilerValidator;
 import java.util.HashMap;
 import org.eclipse.emf.common.util.EList;
@@ -20,6 +35,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 /**
@@ -80,29 +96,161 @@ public class ListaCompilerGenerator implements IGenerator {
   public CharSequence generate(final Expression exp) {
     StringConcatenation _builder = new StringConcatenation();
     FirstLevelExp _exp = exp.getExp();
-    CharSequence _generate = this.generate(_exp);
+    Object _generate = this.generate(_exp);
     _builder.append(_generate, "");
     return _builder;
   }
   
-  public CharSequence generate(final FirstLevelExp exp) {
-    StringConcatenation _builder = new StringConcatenation();
-    return _builder;
+  public Object generate(final FirstLevelExp exp) {
+    EList<EObject> _args = exp.getArgs();
+    EObject _get = _args.get(0);
+    final SecondLevelExp first = ((SecondLevelExp) _get);
+    Object res = this.generate(first);
+    EList<EObject> _args_1 = exp.getArgs();
+    int _length = ((Object[])Conversions.unwrapArray(_args_1, Object.class)).length;
+    boolean _greaterThan = (_length > 1);
+    if (_greaterThan) {
+      FirstLevelOp _op = exp.getOp();
+      String _literal = _op.getLiteral();
+      String _plus = (res + _literal);
+      EList<EObject> _args_2 = exp.getArgs();
+      EObject _get_1 = _args_2.get(1);
+      Object _generate = this.generate(((FirstLevelExp) _get_1));
+      String _plus_1 = (_plus + _generate);
+      res = _plus_1;
+    }
+    return res;
   }
   
-  public CharSequence generate(final SecondLevelExp exp) {
-    StringConcatenation _builder = new StringConcatenation();
-    return _builder;
+  public Object generate(final SecondLevelExp exp) {
+    EList<EObject> _args = exp.getArgs();
+    EObject _get = _args.get(0);
+    final ThirdLevelExp first = ((ThirdLevelExp) _get);
+    Object res = this.generate(first);
+    EList<EObject> _args_1 = exp.getArgs();
+    int _length = ((Object[])Conversions.unwrapArray(_args_1, Object.class)).length;
+    boolean _greaterThan = (_length > 1);
+    if (_greaterThan) {
+      SecondLevelOp _op = exp.getOp();
+      String _literal = _op.getLiteral();
+      String _plus = (res + _literal);
+      EList<EObject> _args_2 = exp.getArgs();
+      EObject _get_1 = _args_2.get(1);
+      Object _generate = this.generate(((SecondLevelExp) _get_1));
+      String _plus_1 = (_plus + _generate);
+      res = _plus_1;
+    }
+    return res;
   }
   
-  public CharSequence generate(final ThirdLevelExp exp) {
-    StringConcatenation _builder = new StringConcatenation();
-    return _builder;
+  public Object generate(final ThirdLevelExp exp) {
+    EList<EObject> _args = exp.getArgs();
+    EObject _get = _args.get(0);
+    final FourthLevelExp first = ((FourthLevelExp) _get);
+    Object res = this.generate(first);
+    EList<EObject> _args_1 = exp.getArgs();
+    int _length = ((Object[])Conversions.unwrapArray(_args_1, Object.class)).length;
+    boolean _greaterThan = (_length > 1);
+    if (_greaterThan) {
+      ThirdLevelOp _op = exp.getOp();
+      String _literal = _op.getLiteral();
+      String _plus = (res + _literal);
+      EList<EObject> _args_2 = exp.getArgs();
+      EObject _get_1 = _args_2.get(1);
+      Object _generate = this.generate(((ThirdLevelExp) _get_1));
+      String _plus_1 = (_plus + _generate);
+      res = _plus_1;
+    }
+    return res;
   }
   
-  public CharSequence generate(final FourthLevelExp exp) {
-    StringConcatenation _builder = new StringConcatenation();
-    return _builder;
+  public Object generate(final FourthLevelExp exp) {
+    EList<EObject> _args = exp.getArgs();
+    EObject _get = _args.get(0);
+    final Term first = ((Term) _get);
+    Object res = this.generate(first);
+    EList<EObject> _args_1 = exp.getArgs();
+    int _length = ((Object[])Conversions.unwrapArray(_args_1, Object.class)).length;
+    boolean _greaterThan = (_length > 1);
+    if (_greaterThan) {
+      FourthLevelOp _op = exp.getOp();
+      String _literal = _op.getLiteral();
+      String _plus = (res + _literal);
+      EList<EObject> _args_2 = exp.getArgs();
+      EObject _get_1 = _args_2.get(1);
+      Object _generate = this.generate(((FourthLevelExp) _get_1));
+      String _plus_1 = (_plus + _generate);
+      res = _plus_1;
+    }
+    return res;
+  }
+  
+  public Object generate(final Term term) {
+    if ((term instanceof MyInteger)) {
+      return this.generate(((MyInteger) term));
+    } else {
+      if ((term instanceof MyString)) {
+        return ((MyString) term).getVal();
+      } else {
+        if ((term instanceof MyBool)) {
+          return this.generate(((MyBool) term));
+        } else {
+          if ((term instanceof List)) {
+            return this.generate(((List) term));
+          } else {
+            if ((term instanceof MyVariable)) {
+              return ((MyVariable) term).getVar();
+            } else {
+              if ((term instanceof FunctionCall)) {
+                return this.generate(((FunctionCall) term));
+              } else {
+                if ((term instanceof IfControlFlow)) {
+                  return this.generate(((IfControlFlow) term));
+                } else {
+                  if ((term instanceof BracketExpression)) {
+                    Expression _exp = ((BracketExpression) term).getExp();
+                    return this.generate(_exp);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return null;
+  }
+  
+  public String generate(final MyInteger mi) {
+    if ((mi instanceof PosInteger)) {
+      int _val = ((PosInteger) mi).getVal();
+      return Integer.valueOf(_val).toString();
+    } else {
+      if ((mi instanceof NegInteger)) {
+        return ((MyString) mi).getVal();
+      }
+    }
+    return null;
+  }
+  
+  public Object generate(final MyBool mb) {
+    return null;
+  }
+  
+  public Object generate(final List li) {
+    return null;
+  }
+  
+  public Object generate(final FunctionCall fc) {
+    return null;
+  }
+  
+  public Object generate(final IfControlFlow icf) {
+    return null;
+  }
+  
+  public Object generate(final BracketExpression be) {
+    return null;
   }
   
   public CharSequence generate(final FunctionDefinition funcd) {
@@ -141,7 +289,7 @@ public class ListaCompilerGenerator implements IGenerator {
     _builder.append("\t");
     Expression _return = funcd.getReturn();
     FirstLevelExp _exp = _return.getExp();
-    CharSequence _generate = this.generate(_exp);
+    Object _generate = this.generate(_exp);
     _builder.append(_generate, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
