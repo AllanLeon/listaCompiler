@@ -145,6 +145,16 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
         return createMyVariableAdapter();
       }
       @Override
+      public Adapter caseVariable(Variable object)
+      {
+        return createVariableAdapter();
+      }
+      @Override
+      public Adapter caseCastedVariable(CastedVariable object)
+      {
+        return createCastedVariableAdapter();
+      }
+      @Override
       public Adapter caseMyBool(MyBool object)
       {
         return createMyBoolAdapter();
@@ -422,6 +432,36 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createMyVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.Variable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.Variable
+   * @generated
+   */
+  public Adapter createVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.CastedVariable <em>Casted Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.CastedVariable
+   * @generated
+   */
+  public Adapter createCastedVariableAdapter()
   {
     return null;
   }

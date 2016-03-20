@@ -464,10 +464,30 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class MyVariableElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MyVariable");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cVariableParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cCastedVariableParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//MyVariable:
+		//	Variable | CastedVariable;
+		@Override public ParserRule getRule() { return rule; }
+
+		//Variable | CastedVariable
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//Variable
+		public RuleCall getVariableParserRuleCall_0() { return cVariableParserRuleCall_0; }
+
+		//CastedVariable
+		public RuleCall getCastedVariableParserRuleCall_1() { return cCastedVariableParserRuleCall_1; }
+	}
+
+	public class VariableElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Variable");
 		private final Assignment cVarAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cVarIDFUNCVARTerminalRuleCall_0 = (RuleCall)cVarAssignment.eContents().get(0);
 		
-		//MyVariable:
+		//Variable:
 		//	var=IDFUNCVAR;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -476,6 +496,38 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 
 		//IDFUNCVAR
 		public RuleCall getVarIDFUNCVARTerminalRuleCall_0() { return cVarIDFUNCVARTerminalRuleCall_0; }
+	}
+
+	public class CastedVariableElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CastedVariable");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cVarAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cVarIDFUNCVARTerminalRuleCall_0_0 = (RuleCall)cVarAssignment_0.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypeCastedTypeEnumRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
+		
+		//CastedVariable:
+		//	var=IDFUNCVAR ":" type=CastedType;
+		@Override public ParserRule getRule() { return rule; }
+
+		//var=IDFUNCVAR ":" type=CastedType
+		public Group getGroup() { return cGroup; }
+
+		//var=IDFUNCVAR
+		public Assignment getVarAssignment_0() { return cVarAssignment_0; }
+
+		//IDFUNCVAR
+		public RuleCall getVarIDFUNCVARTerminalRuleCall_0_0() { return cVarIDFUNCVARTerminalRuleCall_0_0; }
+
+		//":"
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+
+		//type=CastedType
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+
+		//CastedType
+		public RuleCall getTypeCastedTypeEnumRuleCall_2_0() { return cTypeCastedTypeEnumRuleCall_2_0; }
 	}
 
 	public class MyBoolElements extends AbstractParserRuleElementFinder {
@@ -1042,6 +1094,42 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		//"/"
 		public Keyword getDivSolidusKeyword_1_0() { return cDivSolidusKeyword_1_0; }
 	}
+
+	public class CastedTypeElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "CastedType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cIntEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cIntIntKeyword_0_0 = (Keyword)cIntEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cBoolEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cBoolBoolKeyword_1_0 = (Keyword)cBoolEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cStringEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cStringStringKeyword_2_0 = (Keyword)cStringEnumLiteralDeclaration_2.eContents().get(0);
+		
+		//enum CastedType:
+		//	int | bool | string;
+		public EnumRule getRule() { return rule; }
+
+		//int | bool | string
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//int
+		public EnumLiteralDeclaration getIntEnumLiteralDeclaration_0() { return cIntEnumLiteralDeclaration_0; }
+
+		//"int"
+		public Keyword getIntIntKeyword_0_0() { return cIntIntKeyword_0_0; }
+
+		//bool
+		public EnumLiteralDeclaration getBoolEnumLiteralDeclaration_1() { return cBoolEnumLiteralDeclaration_1; }
+
+		//"bool"
+		public Keyword getBoolBoolKeyword_1_0() { return cBoolBoolKeyword_1_0; }
+
+		//string
+		public EnumLiteralDeclaration getStringEnumLiteralDeclaration_2() { return cStringEnumLiteralDeclaration_2; }
+
+		//"string"
+		public Keyword getStringStringKeyword_2_0() { return cStringStringKeyword_2_0; }
+	}
 	
 	private final ListaElements pLista;
 	private final EvaluationElements pEvaluation;
@@ -1057,6 +1145,8 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	private final PosIntegerElements pPosInteger;
 	private final NegIntegerElements pNegInteger;
 	private final MyVariableElements pMyVariable;
+	private final VariableElements pVariable;
+	private final CastedVariableElements pCastedVariable;
 	private final MyBoolElements pMyBool;
 	private final PosBoolElements pPosBool;
 	private final NegBoolElements pNegBool;
@@ -1073,6 +1163,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	private final SecondLevelOpElements unknownRuleSecondLevelOp;
 	private final ThirdLevelOpElements unknownRuleThirdLevelOp;
 	private final FourthLevelOpElements unknownRuleFourthLevelOp;
+	private final CastedTypeElements unknownRuleCastedType;
 	private final TerminalRule tIDFUNCVAR;
 	
 	private final Grammar grammar;
@@ -1098,6 +1189,8 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPosInteger = new PosIntegerElements();
 		this.pNegInteger = new NegIntegerElements();
 		this.pMyVariable = new MyVariableElements();
+		this.pVariable = new VariableElements();
+		this.pCastedVariable = new CastedVariableElements();
 		this.pMyBool = new MyBoolElements();
 		this.pPosBool = new PosBoolElements();
 		this.pNegBool = new NegBoolElements();
@@ -1114,6 +1207,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		this.unknownRuleSecondLevelOp = new SecondLevelOpElements();
 		this.unknownRuleThirdLevelOp = new ThirdLevelOpElements();
 		this.unknownRuleFourthLevelOp = new FourthLevelOpElements();
+		this.unknownRuleCastedType = new CastedTypeElements();
 		this.tIDFUNCVAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IDFUNCVAR");
 	}
 	
@@ -1275,13 +1369,33 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MyVariable:
-	//	var=IDFUNCVAR;
+	//	Variable | CastedVariable;
 	public MyVariableElements getMyVariableAccess() {
 		return pMyVariable;
 	}
 	
 	public ParserRule getMyVariableRule() {
 		return getMyVariableAccess().getRule();
+	}
+
+	//Variable:
+	//	var=IDFUNCVAR;
+	public VariableElements getVariableAccess() {
+		return pVariable;
+	}
+	
+	public ParserRule getVariableRule() {
+		return getVariableAccess().getRule();
+	}
+
+	//CastedVariable:
+	//	var=IDFUNCVAR ":" type=CastedType;
+	public CastedVariableElements getCastedVariableAccess() {
+		return pCastedVariable;
+	}
+	
+	public ParserRule getCastedVariableRule() {
+		return getCastedVariableAccess().getRule();
 	}
 
 	//MyBool:
@@ -1442,6 +1556,16 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public EnumRule getFourthLevelOpRule() {
 		return getFourthLevelOpAccess().getRule();
+	}
+
+	//enum CastedType:
+	//	int | bool | string;
+	public CastedTypeElements getCastedTypeAccess() {
+		return unknownRuleCastedType;
+	}
+	
+	public EnumRule getCastedTypeRule() {
+		return getCastedTypeAccess().getRule();
 	}
 
 	//terminal IDFUNCVAR:

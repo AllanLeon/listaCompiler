@@ -6,6 +6,7 @@ package edu.upb.compilacion.serializer;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import edu.upb.compilacion.listaCompiler.BracketExpression;
+import edu.upb.compilacion.listaCompiler.CastedVariable;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
@@ -16,7 +17,6 @@ import edu.upb.compilacion.listaCompiler.List;
 import edu.upb.compilacion.listaCompiler.Lista;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
 import edu.upb.compilacion.listaCompiler.MyString;
-import edu.upb.compilacion.listaCompiler.MyVariable;
 import edu.upb.compilacion.listaCompiler.NegBool;
 import edu.upb.compilacion.listaCompiler.NegInteger;
 import edu.upb.compilacion.listaCompiler.PosBool;
@@ -25,6 +25,7 @@ import edu.upb.compilacion.listaCompiler.PreDefFunctionCall;
 import edu.upb.compilacion.listaCompiler.SecondLevelExp;
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall;
+import edu.upb.compilacion.listaCompiler.Variable;
 import edu.upb.compilacion.services.ListaCompilerGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
@@ -49,6 +50,9 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 		if(semanticObject.eClass().getEPackage() == ListaCompilerPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
 			case ListaCompilerPackage.BRACKET_EXPRESSION:
 				sequence_BracketExpression(context, (BracketExpression) semanticObject); 
+				return; 
+			case ListaCompilerPackage.CASTED_VARIABLE:
+				sequence_CastedVariable(context, (CastedVariable) semanticObject); 
 				return; 
 			case ListaCompilerPackage.EVALUATION:
 				sequence_Evaluation(context, (Evaluation) semanticObject); 
@@ -77,9 +81,6 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ListaCompilerPackage.MY_STRING:
 				sequence_MyString(context, (MyString) semanticObject); 
 				return; 
-			case ListaCompilerPackage.MY_VARIABLE:
-				sequence_MyVariable(context, (MyVariable) semanticObject); 
-				return; 
 			case ListaCompilerPackage.NEG_BOOL:
 				sequence_NegBool(context, (NegBool) semanticObject); 
 				return; 
@@ -104,6 +105,9 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ListaCompilerPackage.USER_DEF_FUNCTION_CALL:
 				sequence_UserDefFunctionCall(context, (UserDefFunctionCall) semanticObject); 
 				return; 
+			case ListaCompilerPackage.VARIABLE:
+				sequence_Variable(context, (Variable) semanticObject); 
+				return; 
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
@@ -120,6 +124,25 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getBracketExpressionAccess().getExpExpressionParserRuleCall_1_0(), semanticObject.getExp());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (var=IDFUNCVAR type=CastedType)
+	 */
+	protected void sequence_CastedVariable(EObject context, CastedVariable semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.MY_VARIABLE__VAR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.MY_VARIABLE__VAR));
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.CASTED_VARIABLE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.CASTED_VARIABLE__TYPE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getCastedVariableAccess().getVarIDFUNCVARTerminalRuleCall_0_0(), semanticObject.getVar());
+		feeder.accept(grammarAccess.getCastedVariableAccess().getTypeCastedTypeEnumRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
@@ -241,22 +264,6 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     var=IDFUNCVAR
-	 */
-	protected void sequence_MyVariable(EObject context, MyVariable semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.MY_VARIABLE__VAR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.MY_VARIABLE__VAR));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getMyVariableAccess().getVarIDFUNCVARTerminalRuleCall_0(), semanticObject.getVar());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (val=PosBool | val=BracketExpression)
 	 */
 	protected void sequence_NegBool(EObject context, NegBool semanticObject) {
@@ -338,5 +345,21 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	 */
 	protected void sequence_UserDefFunctionCall(EObject context, UserDefFunctionCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     var=IDFUNCVAR
+	 */
+	protected void sequence_Variable(EObject context, Variable semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, ListaCompilerPackage.Literals.MY_VARIABLE__VAR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ListaCompilerPackage.Literals.MY_VARIABLE__VAR));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getVariableAccess().getVarIDFUNCVARTerminalRuleCall_0(), semanticObject.getVar());
+		feeder.finish();
 	}
 }

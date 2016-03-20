@@ -58,6 +58,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="MyVariable" eSuperTypes="#//Term #//ListElem">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="var" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//MyVariable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CastedVariable" eSuperTypes="#//MyVariable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CastedType"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MyBool" eSuperTypes="#//Term"/>
   <eClassifiers xsi:type="ecore:EClass" name="PosBool" eSuperTypes="#//MyBool">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="#//Bool"/>
@@ -120,5 +124,10 @@
   <eClassifiers xsi:type="ecore:EEnum" name="FourthLevelOp">
     <eLiterals name="mult" literal="*"/>
     <eLiterals name="div" value="1" literal="/"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CastedType">
+    <eLiterals name="int" literal="int"/>
+    <eLiterals name="bool" value="1" literal="bool"/>
+    <eLiterals name="string" value="2" literal="string"/>
   </eClassifiers>
 </ecore:EPackage>

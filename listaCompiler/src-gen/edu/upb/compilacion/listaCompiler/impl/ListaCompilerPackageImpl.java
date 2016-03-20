@@ -4,6 +4,8 @@ package edu.upb.compilacion.listaCompiler.impl;
 
 import edu.upb.compilacion.listaCompiler.Bool;
 import edu.upb.compilacion.listaCompiler.BracketExpression;
+import edu.upb.compilacion.listaCompiler.CastedType;
+import edu.upb.compilacion.listaCompiler.CastedVariable;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
@@ -34,6 +36,7 @@ import edu.upb.compilacion.listaCompiler.Term;
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
 import edu.upb.compilacion.listaCompiler.ThirdLevelOp;
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall;
+import edu.upb.compilacion.listaCompiler.Variable;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -154,6 +157,20 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass variableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass castedVariableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass myBoolEClass = null;
 
   /**
@@ -260,6 +277,13 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * @generated
    */
   private EEnum fourthLevelOpEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum castedTypeEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -659,6 +683,36 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getVariable()
+  {
+    return variableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCastedVariable()
+  {
+    return castedVariableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCastedVariable_Type()
+  {
+    return (EAttribute)castedVariableEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getMyBool()
   {
     return myBoolEClass;
@@ -919,6 +973,16 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
+  public EEnum getCastedType()
+  {
+    return castedTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ListaCompilerFactory getListaCompilerFactory()
   {
     return (ListaCompilerFactory)getEFactoryInstance();
@@ -991,6 +1055,11 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     myVariableEClass = createEClass(MY_VARIABLE);
     createEAttribute(myVariableEClass, MY_VARIABLE__VAR);
 
+    variableEClass = createEClass(VARIABLE);
+
+    castedVariableEClass = createEClass(CASTED_VARIABLE);
+    createEAttribute(castedVariableEClass, CASTED_VARIABLE__TYPE);
+
     myBoolEClass = createEClass(MY_BOOL);
 
     posBoolEClass = createEClass(POS_BOOL);
@@ -1028,6 +1097,7 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     secondLevelOpEEnum = createEEnum(SECOND_LEVEL_OP);
     thirdLevelOpEEnum = createEEnum(THIRD_LEVEL_OP);
     fourthLevelOpEEnum = createEEnum(FOURTH_LEVEL_OP);
+    castedTypeEEnum = createEEnum(CASTED_TYPE);
   }
 
   /**
@@ -1066,6 +1136,8 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     negIntegerEClass.getESuperTypes().add(this.getMyInteger());
     myVariableEClass.getESuperTypes().add(this.getTerm());
     myVariableEClass.getESuperTypes().add(this.getListElem());
+    variableEClass.getESuperTypes().add(this.getMyVariable());
+    castedVariableEClass.getESuperTypes().add(this.getMyVariable());
     myBoolEClass.getESuperTypes().add(this.getTerm());
     posBoolEClass.getESuperTypes().add(this.getMyBool());
     negBoolEClass.getESuperTypes().add(this.getMyBool());
@@ -1123,6 +1195,11 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
 
     initEClass(myVariableEClass, MyVariable.class, "MyVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMyVariable_Var(), ecorePackage.getEString(), "var", null, 0, 1, MyVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(castedVariableEClass, CastedVariable.class, "CastedVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCastedVariable_Type(), this.getCastedType(), "type", null, 0, 1, CastedVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(myBoolEClass, MyBool.class, "MyBool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1184,6 +1261,11 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     initEEnum(fourthLevelOpEEnum, FourthLevelOp.class, "FourthLevelOp");
     addEEnumLiteral(fourthLevelOpEEnum, FourthLevelOp.MULT);
     addEEnumLiteral(fourthLevelOpEEnum, FourthLevelOp.DIV);
+
+    initEEnum(castedTypeEEnum, CastedType.class, "CastedType");
+    addEEnumLiteral(castedTypeEEnum, CastedType.INT);
+    addEEnumLiteral(castedTypeEEnum, CastedType.BOOL);
+    addEEnumLiteral(castedTypeEEnum, CastedType.STRING);
 
     // Create resource
     createResource(eNS_URI);

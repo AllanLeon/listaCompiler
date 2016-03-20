@@ -37,6 +37,11 @@
       <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//FourthLevelOp/mult"/>
       <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//FourthLevelOp/div"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ListaCompiler.ecore#//CastedType">
+      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//CastedType/int"/>
+      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//CastedType/bool"/>
+      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//CastedType/string"/>
+    </genEnums>
     <genClasses ecoreClass="ListaCompiler.ecore#//Lista">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//Lista/definitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//Lista/evaluations"/>
@@ -81,6 +86,10 @@
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//MyVariable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//MyVariable/var"/>
+    </genClasses>
+    <genClasses ecoreClass="ListaCompiler.ecore#//Variable"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//CastedVariable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//CastedVariable/type"/>
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//MyBool"/>
     <genClasses ecoreClass="ListaCompiler.ecore#//PosBool">

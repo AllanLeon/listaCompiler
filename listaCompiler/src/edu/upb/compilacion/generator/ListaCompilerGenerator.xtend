@@ -6,6 +6,7 @@ package edu.upb.compilacion.generator
 import edu.upb.compilacion.TypeInferrer
 import edu.upb.compilacion.TypeInferrer.DataType
 import edu.upb.compilacion.listaCompiler.BracketExpression
+import edu.upb.compilacion.listaCompiler.CastedVariable
 import edu.upb.compilacion.listaCompiler.Evaluation
 import edu.upb.compilacion.listaCompiler.Expression
 import edu.upb.compilacion.listaCompiler.FirstLevelExp
@@ -30,6 +31,7 @@ import edu.upb.compilacion.listaCompiler.Term
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp
 import edu.upb.compilacion.listaCompiler.ThirdLevelOp
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall
+import edu.upb.compilacion.listaCompiler.Variable
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
@@ -113,7 +115,7 @@ class ListaCompilerGenerator implements IGenerator {
 		} else if (term instanceof List) {
 			return (term as List).generate;
 		} else if (term instanceof MyVariable) {
-			return (term as MyVariable).^var;
+			return (term as MyVariable).generate;
 		} else if (term instanceof FunctionCall) {
 			return (term as FunctionCall).generate;
 		} else if (term instanceof IfControlFlow) {
@@ -151,11 +153,19 @@ class ListaCompilerGenerator implements IGenerator {
 	
 	def generate (List li) '''[«FOR elm : li.elems SEPARATOR ','»«elm.generate»«ENDFOR»]'''
 	
+	def generate (MyVariable mv) {
+		if (mv instanceof Variable) {
+			return (mv as Variable).^var;
+		} else if (mv instanceof CastedVariable) {
+			return (mv as CastedVariable).^var;
+		}
+	}
+	
 	def generate (ListElem le) {
 		if (le instanceof MyInteger) {
 			return (le as MyInteger).generate;
 		} else if (le instanceof MyVariable) {
-			return (le as MyVariable).^var;
+			return (le as MyVariable).generate;
 		}
 	}
 	
@@ -171,11 +181,7 @@ class ListaCompilerGenerator implements IGenerator {
 	
 	def generate (UserDefFunctionCall udf) '''«udf.function.getName»(«FOR exp : udf.args SEPARATOR ','»«exp.generate»«ENDFOR»)'''
 	
-	def generate (IfControlFlow icf) '''if («icf.cond.generate») {
-		«icf.iftrue.generate»;
-	} else {
-		«icf.iffalse.generate»;
-	}'''
+	def generate (IfControlFlow icf) '''((«icf.cond.generate») ? («icf.iftrue.generate») : («icf.iffalse.generate»))'''
 	
 	def generate (BracketExpression be) {
 		return "(" + be.exp.generate + ")"

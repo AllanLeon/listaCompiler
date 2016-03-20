@@ -6,6 +6,7 @@ package edu.upb.compilacion.generator;
 import edu.upb.compilacion.TypeInferrer;
 import edu.upb.compilacion.listaCompiler.Bool;
 import edu.upb.compilacion.listaCompiler.BracketExpression;
+import edu.upb.compilacion.listaCompiler.CastedVariable;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
@@ -34,6 +35,7 @@ import edu.upb.compilacion.listaCompiler.Term;
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
 import edu.upb.compilacion.listaCompiler.ThirdLevelOp;
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall;
+import edu.upb.compilacion.listaCompiler.Variable;
 import java.util.HashMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -229,7 +231,7 @@ public class ListaCompilerGenerator implements IGenerator {
             return this.generate(((List) term));
           } else {
             if ((term instanceof MyVariable)) {
-              return ((MyVariable) term).getVar();
+              return this.generate(((MyVariable) term));
             } else {
               if ((term instanceof FunctionCall)) {
                 return this.generate(((FunctionCall) term));
@@ -311,12 +313,23 @@ public class ListaCompilerGenerator implements IGenerator {
     return _builder;
   }
   
+  public String generate(final MyVariable mv) {
+    if ((mv instanceof Variable)) {
+      return ((Variable) mv).getVar();
+    } else {
+      if ((mv instanceof CastedVariable)) {
+        return ((CastedVariable) mv).getVar();
+      }
+    }
+    return null;
+  }
+  
   public String generate(final ListElem le) {
     if ((le instanceof MyInteger)) {
       return this.generate(((MyInteger) le));
     } else {
       if ((le instanceof MyVariable)) {
-        return ((MyVariable) le).getVar();
+        return this.generate(((MyVariable) le));
       }
     }
     return null;
@@ -390,29 +403,19 @@ public class ListaCompilerGenerator implements IGenerator {
   
   public CharSequence generate(final IfControlFlow icf) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("if (");
+    _builder.append("((");
     Expression _cond = icf.getCond();
     Object _generate = this.generate(_cond);
     _builder.append(_generate, "");
-    _builder.append(") {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
+    _builder.append(") ? (");
     Expression _iftrue = icf.getIftrue();
     Object _generate_1 = this.generate(_iftrue);
-    _builder.append(_generate_1, "\t\t");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("} else {");
-    _builder.newLine();
-    _builder.append("\t\t");
+    _builder.append(_generate_1, "");
+    _builder.append(") : (");
     Expression _iffalse = icf.getIffalse();
     Object _generate_2 = this.generate(_iffalse);
-    _builder.append(_generate_2, "\t\t");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("}");
+    _builder.append(_generate_2, "");
+    _builder.append("))");
     return _builder;
   }
   

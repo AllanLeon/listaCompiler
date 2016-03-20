@@ -443,9 +443,65 @@ ruleMyVariable
     }
 	:
 (
-{ before(grammarAccess.getMyVariableAccess().getVarAssignment()); }
-(rule__MyVariable__VarAssignment)
-{ after(grammarAccess.getMyVariableAccess().getVarAssignment()); }
+{ before(grammarAccess.getMyVariableAccess().getAlternatives()); }
+(rule__MyVariable__Alternatives)
+{ after(grammarAccess.getMyVariableAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+// Entry rule entryRuleVariable
+entryRuleVariable 
+:
+{ before(grammarAccess.getVariableRule()); }
+	 ruleVariable
+{ after(grammarAccess.getVariableRule()); } 
+	 EOF 
+;
+
+// Rule Variable
+ruleVariable
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getVariableAccess().getVarAssignment()); }
+(rule__Variable__VarAssignment)
+{ after(grammarAccess.getVariableAccess().getVarAssignment()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+// Entry rule entryRuleCastedVariable
+entryRuleCastedVariable 
+:
+{ before(grammarAccess.getCastedVariableRule()); }
+	 ruleCastedVariable
+{ after(grammarAccess.getCastedVariableRule()); } 
+	 EOF 
+;
+
+// Rule CastedVariable
+ruleCastedVariable
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getCastedVariableAccess().getGroup()); }
+(rule__CastedVariable__Group__0)
+{ after(grammarAccess.getCastedVariableAccess().getGroup()); }
 )
 
 ;
@@ -850,6 +906,25 @@ finally {
 
 
 
+// Rule CastedType
+ruleCastedType
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getCastedTypeAccess().getAlternatives()); }
+(rule__CastedType__Alternatives)
+{ after(grammarAccess.getCastedTypeAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 rule__Lista__Alternatives
     @init {
 		int stackSize = keepStackSize();
@@ -967,6 +1042,28 @@ rule__NegInteger__ValAlternatives_1_0
 { before(grammarAccess.getNegIntegerAccess().getValBracketExpressionParserRuleCall_1_0_1()); }
 	ruleBracketExpression
 { after(grammarAccess.getNegIntegerAccess().getValBracketExpressionParserRuleCall_1_0_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MyVariable__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMyVariableAccess().getVariableParserRuleCall_0()); }
+	ruleVariable
+{ after(grammarAccess.getMyVariableAccess().getVariableParserRuleCall_0()); }
+)
+
+    |(
+{ before(grammarAccess.getMyVariableAccess().getCastedVariableParserRuleCall_1()); }
+	ruleCastedVariable
+{ after(grammarAccess.getMyVariableAccess().getCastedVariableParserRuleCall_1()); }
 )
 
 ;
@@ -1241,6 +1338,37 @@ rule__FourthLevelOp__Alternatives
 (	'/' 
 )
 { after(grammarAccess.getFourthLevelOpAccess().getDivEnumLiteralDeclaration_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__CastedType__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getCastedTypeAccess().getIntEnumLiteralDeclaration_0()); }
+(	'int' 
+)
+{ after(grammarAccess.getCastedTypeAccess().getIntEnumLiteralDeclaration_0()); }
+)
+
+    |(
+{ before(grammarAccess.getCastedTypeAccess().getBoolEnumLiteralDeclaration_1()); }
+(	'bool' 
+)
+{ after(grammarAccess.getCastedTypeAccess().getBoolEnumLiteralDeclaration_1()); }
+)
+
+    |(
+{ before(grammarAccess.getCastedTypeAccess().getStringEnumLiteralDeclaration_2()); }
+(	'string' 
+)
+{ after(grammarAccess.getCastedTypeAccess().getStringEnumLiteralDeclaration_2()); }
 )
 
 ;
@@ -2335,6 +2463,100 @@ rule__NegInteger__Group__1__Impl
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+
+
+
+
+rule__CastedVariable__Group__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__CastedVariable__Group__0__Impl
+	rule__CastedVariable__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__CastedVariable__Group__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getCastedVariableAccess().getVarAssignment_0()); }
+(rule__CastedVariable__VarAssignment_0)
+{ after(grammarAccess.getCastedVariableAccess().getVarAssignment_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__CastedVariable__Group__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__CastedVariable__Group__1__Impl
+	rule__CastedVariable__Group__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__CastedVariable__Group__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getCastedVariableAccess().getColonKeyword_1()); }
+
+	':' 
+
+{ after(grammarAccess.getCastedVariableAccess().getColonKeyword_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__CastedVariable__Group__2
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__CastedVariable__Group__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__CastedVariable__Group__2__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getCastedVariableAccess().getTypeAssignment_2()); }
+(rule__CastedVariable__TypeAssignment_2)
+{ after(grammarAccess.getCastedVariableAccess().getTypeAssignment_2()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 
 
 
@@ -3770,14 +3992,44 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__MyVariable__VarAssignment
+rule__Variable__VarAssignment
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getMyVariableAccess().getVarIDFUNCVARTerminalRuleCall_0()); }
-	RULE_IDFUNCVAR{ after(grammarAccess.getMyVariableAccess().getVarIDFUNCVARTerminalRuleCall_0()); }
+{ before(grammarAccess.getVariableAccess().getVarIDFUNCVARTerminalRuleCall_0()); }
+	RULE_IDFUNCVAR{ after(grammarAccess.getVariableAccess().getVarIDFUNCVARTerminalRuleCall_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__CastedVariable__VarAssignment_0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getCastedVariableAccess().getVarIDFUNCVARTerminalRuleCall_0_0()); }
+	RULE_IDFUNCVAR{ after(grammarAccess.getCastedVariableAccess().getVarIDFUNCVARTerminalRuleCall_0_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__CastedVariable__TypeAssignment_2
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getCastedVariableAccess().getTypeCastedTypeEnumRuleCall_2_0()); }
+	ruleCastedType{ after(grammarAccess.getCastedVariableAccess().getTypeCastedTypeEnumRuleCall_2_0()); }
 )
 
 ;

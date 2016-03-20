@@ -3,6 +3,8 @@ package edu.upb.compilacion;
 import edu.upb.compilacion.HugeException;
 import edu.upb.compilacion.MismatchedTypeException;
 import edu.upb.compilacion.listaCompiler.BracketExpression;
+import edu.upb.compilacion.listaCompiler.CastedType;
+import edu.upb.compilacion.listaCompiler.CastedVariable;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
 import edu.upb.compilacion.listaCompiler.FirstLevelOp;
@@ -26,6 +28,7 @@ import edu.upb.compilacion.listaCompiler.Term;
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
 import edu.upb.compilacion.listaCompiler.ThirdLevelOp;
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall;
+import edu.upb.compilacion.listaCompiler.Variable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -107,19 +110,17 @@ public class TypeInferrer {
       final TypeInferrer.DataType secondType = TypeInferrer.getDataType(second);
       boolean _equals = firstType.equals(TypeInferrer.DataType.VAR);
       if (_equals) {
-        final MyVariable var1 = TypeInferrer.getVariable(first);
+        final String var1 = TypeInferrer.getVariable(first);
         HashMap<String, TypeInferrer.DataType> _get_2 = TypeInferrer.functionParams.get(fdName);
-        String _var = var1.getVar();
-        _get_2.put(_var, expected);
+        _get_2.put(var1, expected);
       } else {
         TypeInferrer.inferDataType(first, fdName);
       }
       boolean _equals_1 = secondType.equals(TypeInferrer.DataType.VAR);
       if (_equals_1) {
-        final MyVariable var2 = TypeInferrer.getVariable(second);
+        final String var2 = TypeInferrer.getVariable(second);
         HashMap<String, TypeInferrer.DataType> _get_3 = TypeInferrer.functionParams.get(fdName);
-        String _var_1 = var2.getVar();
-        _get_3.put(_var_1, expected);
+        _get_3.put(var2, expected);
       } else {
         TypeInferrer.inferDataType(second, fdName);
       }
@@ -162,19 +163,17 @@ public class TypeInferrer {
       final TypeInferrer.DataType secondType = TypeInferrer.getDataType(second);
       boolean _equals = firstType.equals(TypeInferrer.DataType.VAR);
       if (_equals) {
-        final MyVariable var1 = TypeInferrer.getVariable(first);
+        final String var1 = TypeInferrer.getVariable(first);
         HashMap<String, TypeInferrer.DataType> _get_2 = TypeInferrer.functionParams.get(fdName);
-        String _var = var1.getVar();
-        _get_2.put(_var, expected);
+        _get_2.put(var1, expected);
       } else {
         TypeInferrer.inferDataType(first, fdName);
       }
       boolean _equals_1 = secondType.equals(TypeInferrer.DataType.VAR);
       if (_equals_1) {
-        final MyVariable var2 = TypeInferrer.getVariable(second);
+        final String var2 = TypeInferrer.getVariable(second);
         HashMap<String, TypeInferrer.DataType> _get_3 = TypeInferrer.functionParams.get(fdName);
-        String _var_1 = var2.getVar();
-        _get_3.put(_var_1, expected);
+        _get_3.put(var2, expected);
       } else {
         TypeInferrer.inferDataType(second, fdName);
       }
@@ -217,19 +216,17 @@ public class TypeInferrer {
       final TypeInferrer.DataType secondType = TypeInferrer.getDataType(second);
       boolean _equals = firstType.equals(TypeInferrer.DataType.VAR);
       if (_equals) {
-        final MyVariable var1 = TypeInferrer.getVariable(first);
+        final String var1 = TypeInferrer.getVariable(first);
         HashMap<String, TypeInferrer.DataType> _get_2 = TypeInferrer.functionParams.get(fdName);
-        String _var = var1.getVar();
-        _get_2.put(_var, expected);
+        _get_2.put(var1, expected);
       } else {
         TypeInferrer.inferDataType(first, fdName);
       }
       boolean _equals_1 = secondType.equals(TypeInferrer.DataType.VAR);
       if (_equals_1) {
-        final MyVariable var2 = TypeInferrer.getVariable(second);
+        final String var2 = TypeInferrer.getVariable(second);
         HashMap<String, TypeInferrer.DataType> _get_3 = TypeInferrer.functionParams.get(fdName);
-        String _var_1 = var2.getVar();
-        _get_3.put(_var_1, expected);
+        _get_3.put(var2, expected);
       } else {
         TypeInferrer.inferDataType(second, fdName);
       }
@@ -255,19 +252,17 @@ public class TypeInferrer {
       final TypeInferrer.DataType secondType = TypeInferrer.getDataType(second);
       boolean _equals = firstType.equals(TypeInferrer.DataType.VAR);
       if (_equals) {
-        final MyVariable var1 = ((MyVariable) first);
+        final String var1 = TypeInferrer.getVariable(first);
         HashMap<String, TypeInferrer.DataType> _get_2 = TypeInferrer.functionParams.get(fdName);
-        String _var = var1.getVar();
-        _get_2.put(_var, expected);
+        _get_2.put(var1, expected);
       } else {
         TypeInferrer.inferDataType(first, fdName);
       }
       boolean _equals_1 = secondType.equals(TypeInferrer.DataType.VAR);
       if (_equals_1) {
-        final MyVariable var2 = TypeInferrer.getVariable(second);
+        final String var2 = TypeInferrer.getVariable(second);
         HashMap<String, TypeInferrer.DataType> _get_3 = TypeInferrer.functionParams.get(fdName);
-        String _var_1 = var2.getVar();
-        _get_3.put(_var_1, expected);
+        _get_3.put(var2, expected);
       } else {
         TypeInferrer.inferDataType(second, fdName);
       }
@@ -290,7 +285,7 @@ public class TypeInferrer {
             TypeInferrer.setFunctionType(fdName, TypeInferrer.DataType.LIST);
           } else {
             if ((term instanceof MyVariable)) {
-              TypeInferrer.setFunctionType(fdName, TypeInferrer.DataType.VAR);
+              TypeInferrer.inferDataType(((MyVariable) term), fdName);
             } else {
               if ((term instanceof FunctionCall)) {
                 TypeInferrer.inferDataType(((FunctionCall) term), fdName);
@@ -316,6 +311,18 @@ public class TypeInferrer {
             }
           }
         }
+      }
+    }
+  }
+  
+  public static void inferDataType(final MyVariable variable, final String fdName) {
+    if ((variable instanceof Variable)) {
+      TypeInferrer.setFunctionType(fdName, TypeInferrer.DataType.VAR);
+    } else {
+      if ((variable instanceof CastedVariable)) {
+        CastedType _type = ((CastedVariable) variable).getType();
+        TypeInferrer.DataType _dataTypeFromCast = TypeInferrer.getDataTypeFromCast(_type);
+        TypeInferrer.setFunctionType(fdName, _dataTypeFromCast);
       }
     }
   }
@@ -553,6 +560,40 @@ public class TypeInferrer {
     return null;
   }
   
+  public static TypeInferrer.DataType getDataType(final MyVariable variable) {
+    if ((variable instanceof Variable)) {
+      return TypeInferrer.getDataType(((Variable) variable));
+    } else {
+      if ((variable instanceof CastedVariable)) {
+        final CastedVariable cvar = ((CastedVariable) variable);
+        CastedType _type = cvar.getType();
+        final TypeInferrer.DataType type = TypeInferrer.getDataTypeFromCast(_type);
+        HashMap<String, TypeInferrer.DataType> _get = TypeInferrer.functionParams.get(TypeInferrer.currentFunction);
+        String _var = cvar.getVar();
+        _get.put(_var, type);
+        CastedType _type_1 = cvar.getType();
+        return TypeInferrer.getDataTypeFromCast(_type_1);
+      }
+    }
+    return null;
+  }
+  
+  public static TypeInferrer.DataType getDataType(final Variable variable) {
+    boolean _equals = TypeInferrer.currentFunction.equals("");
+    boolean _not = (!_equals);
+    if (_not) {
+      HashMap<String, TypeInferrer.DataType> _get = TypeInferrer.functionParams.get(TypeInferrer.currentFunction);
+      String _var = variable.getVar();
+      boolean _containsKey = _get.containsKey(_var);
+      if (_containsKey) {
+        HashMap<String, TypeInferrer.DataType> _get_1 = TypeInferrer.functionParams.get(TypeInferrer.currentFunction);
+        String _var_1 = variable.getVar();
+        return _get_1.get(_var_1);
+      }
+    }
+    return TypeInferrer.DataType.VAR;
+  }
+  
   public static TypeInferrer.DataType getDataType(final FunctionCall fcall) {
     if ((fcall instanceof PreDefFunctionCall)) {
       return TypeInferrer.getDataType(((PreDefFunctionCall) fcall));
@@ -782,10 +823,10 @@ public class TypeInferrer {
     try {
       EList<EObject> _args = exp.getArgs();
       EObject _get = _args.get(0);
-      final TypeInferrer.DataType first = TypeInferrer.checkDataType(((ThirdLevelExp) _get));
+      final TypeInferrer.DataType first = TypeInferrer.checkDataType(((FourthLevelExp) _get));
       EList<EObject> _args_1 = exp.getArgs();
       EObject _get_1 = _args_1.get(1);
-      final TypeInferrer.DataType second = TypeInferrer.checkDataType(((SecondLevelExp) _get_1));
+      final TypeInferrer.DataType second = TypeInferrer.checkDataType(((ThirdLevelExp) _get_1));
       boolean _equals = first.equals(TypeInferrer.DataType.STRING);
       if (_equals) {
         boolean _or = false;
@@ -1130,7 +1171,7 @@ public class TypeInferrer {
     }
   }
   
-  public static MyVariable getVariable(final FirstLevelExp exp) {
+  public static String getVariable(final FirstLevelExp exp) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
     EList<EObject> _args_1 = ((SecondLevelExp) _get).getArgs();
@@ -1142,7 +1183,7 @@ public class TypeInferrer {
     return TypeInferrer.getVariable(((Term) _get_3));
   }
   
-  public static MyVariable getVariable(final SecondLevelExp exp) {
+  public static String getVariable(final SecondLevelExp exp) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
     EList<EObject> _args_1 = ((ThirdLevelExp) _get).getArgs();
@@ -1152,7 +1193,7 @@ public class TypeInferrer {
     return TypeInferrer.getVariable(((Term) _get_2));
   }
   
-  public static MyVariable getVariable(final ThirdLevelExp exp) {
+  public static String getVariable(final ThirdLevelExp exp) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
     EList<EObject> _args_1 = ((FourthLevelExp) _get).getArgs();
@@ -1160,15 +1201,15 @@ public class TypeInferrer {
     return TypeInferrer.getVariable(((Term) _get_1));
   }
   
-  public static MyVariable getVariable(final FourthLevelExp exp) {
+  public static String getVariable(final FourthLevelExp exp) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
     return TypeInferrer.getVariable(((Term) _get));
   }
   
-  public static MyVariable getVariable(final Term term) {
+  public static String getVariable(final Term term) {
     if ((term instanceof MyVariable)) {
-      return ((MyVariable) term);
+      return TypeInferrer.getVariable(((MyVariable) term));
     } else {
       if ((term instanceof UserDefFunctionCall)) {
         FunctionDefinition _function = ((UserDefFunctionCall) term).getFunction();
@@ -1192,20 +1233,31 @@ public class TypeInferrer {
     return null;
   }
   
-  public static TypeInferrer.DataType getDataType(final MyVariable variable) {
-    boolean _equals = TypeInferrer.currentFunction.equals("");
-    boolean _not = (!_equals);
-    if (_not) {
-      HashMap<String, TypeInferrer.DataType> _get = TypeInferrer.functionParams.get(TypeInferrer.currentFunction);
-      String _var = variable.getVar();
-      boolean _containsKey = _get.containsKey(_var);
-      if (_containsKey) {
-        HashMap<String, TypeInferrer.DataType> _get_1 = TypeInferrer.functionParams.get(TypeInferrer.currentFunction);
-        String _var_1 = variable.getVar();
-        return _get_1.get(_var_1);
+  public static String getVariable(final MyVariable variable) {
+    if ((variable instanceof Variable)) {
+      return ((Variable) variable).getVar();
+    } else {
+      if ((variable instanceof CastedVariable)) {
+        return ((CastedVariable) variable).getVar();
       }
     }
-    return TypeInferrer.DataType.VAR;
+    return null;
+  }
+  
+  public static TypeInferrer.DataType getDataTypeFromCast(final CastedType ct) {
+    if (ct != null) {
+      switch (ct) {
+        case BOOL:
+          return TypeInferrer.DataType.BOOL;
+        case INT:
+          return TypeInferrer.DataType.INT;
+        case STRING:
+          return TypeInferrer.DataType.STRING;
+        default:
+          break;
+      }
+    }
+    return null;
   }
   
   public static void setFunctionType(final String name, final TypeInferrer.DataType type) {
