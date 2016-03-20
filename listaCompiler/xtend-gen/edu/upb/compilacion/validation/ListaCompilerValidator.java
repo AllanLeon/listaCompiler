@@ -6,7 +6,6 @@ package edu.upb.compilacion.validation;
 import edu.upb.compilacion.HugeException;
 import edu.upb.compilacion.MismatchedTypeException;
 import edu.upb.compilacion.TypeInferrer;
-import edu.upb.compilacion.TypeInferrer2;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
@@ -175,7 +174,7 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   public String checkFunctionDefinitionType(final FunctionDefinition fd) {
     String _xblockexpression = null;
     {
-      final TypeInferrer2 inferrer = new TypeInferrer2();
+      TypeInferrer.removeFunctionInfo(fd);
       TypeInferrer.inferDataType(fd);
       TypeInferrer.inferDataType(fd);
       this.checkFunctionDefinitionParams(fd);
@@ -199,7 +198,7 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
           throw Exceptions.sneakyThrow(_t);
         }
       }
-      _xblockexpression = TypeInferrer.resetFunction();
+      _xblockexpression = TypeInferrer.resetCurrentFunction();
     }
     return _xblockexpression;
   }

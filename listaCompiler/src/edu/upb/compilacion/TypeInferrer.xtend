@@ -39,11 +39,14 @@ class TypeInferrer {
 	private static var functionTypes = new HashMap<String, DataType>();
 	private static var currentFunction = "";
 	
-	static def resetFunction() {
+	static def resetCurrentFunction() {
 		currentFunction = "";
 	}
 	
-	
+	static def removeFunctionInfo(FunctionDefinition fd) {
+		functionParams.remove(fd.name);
+		functionTypes.remove(fd.name);
+	}
 	
 	static def inferDataType(FunctionDefinition fd) {
 		currentFunction = fd.name;

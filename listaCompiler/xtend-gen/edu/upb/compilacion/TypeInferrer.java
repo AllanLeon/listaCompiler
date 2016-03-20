@@ -63,8 +63,19 @@ public class TypeInferrer {
   
   private static String currentFunction = "";
   
-  public static String resetFunction() {
+  public static String resetCurrentFunction() {
     return TypeInferrer.currentFunction = "";
+  }
+  
+  public static TypeInferrer.DataType removeFunctionInfo(final FunctionDefinition fd) {
+    TypeInferrer.DataType _xblockexpression = null;
+    {
+      String _name = fd.getName();
+      TypeInferrer.functionParams.remove(_name);
+      String _name_1 = fd.getName();
+      _xblockexpression = TypeInferrer.functionTypes.remove(_name_1);
+    }
+    return _xblockexpression;
   }
   
   public static void inferDataType(final FunctionDefinition fd) {
