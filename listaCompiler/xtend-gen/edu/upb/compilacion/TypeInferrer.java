@@ -52,9 +52,7 @@ public class TypeInferrer {
     
     VAR,
     
-    GLOBAL,
-    
-    CONCAT;
+    GLOBAL;
   }
   
   private static HashMap<String, HashMap<String, TypeInferrer.DataType>> functionParams = new HashMap<String, HashMap<String, TypeInferrer.DataType>>();
@@ -302,11 +300,11 @@ public class TypeInferrer {
                 TypeInferrer.inferDataType(((FunctionCall) term), fdName);
               } else {
                 if ((term instanceof IfControlFlow)) {
-                  Expression _iftrue = ((IfControlFlow) term).getIftrue();
-                  FirstLevelExp _exp = _iftrue.getExp();
-                  TypeInferrer.inferDataType(_exp, fdName);
                   Expression _iffalse = ((IfControlFlow) term).getIffalse();
-                  FirstLevelExp _exp_1 = _iffalse.getExp();
+                  FirstLevelExp _exp = _iffalse.getExp();
+                  TypeInferrer.inferDataType(_exp, fdName);
+                  Expression _iftrue = ((IfControlFlow) term).getIftrue();
+                  FirstLevelExp _exp_1 = _iftrue.getExp();
                   TypeInferrer.inferDataType(_exp_1, fdName);
                   Expression _cond = ((IfControlFlow) term).getCond();
                   FirstLevelExp _exp_2 = _cond.getExp();

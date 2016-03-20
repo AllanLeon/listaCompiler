@@ -32,7 +32,7 @@ import edu.upb.compilacion.listaCompiler.CastedType
 class TypeInferrer {
 	
 	enum DataType {
-		INT, STRING, BOOL, LIST, VOID, VAR, GLOBAL, CONCAT
+		INT, STRING, BOOL, LIST, VOID, VAR, GLOBAL
 	}
 	
 	private static var functionParams = new HashMap<String, HashMap<String,DataType>>();
@@ -221,8 +221,8 @@ class TypeInferrer {
 		} else if (term instanceof FunctionCall) {
 			inferDataType((term as FunctionCall), fdName);
 		} else if (term instanceof IfControlFlow) {
-			inferDataType((term as IfControlFlow).iftrue.exp, fdName);
 			inferDataType((term as IfControlFlow).iffalse.exp, fdName);
+			inferDataType((term as IfControlFlow).iftrue.exp, fdName);
 			inferDataType((term as IfControlFlow).cond.exp, fdName);
 		} else if (term instanceof BracketExpression) {
 			inferDataType((term as BracketExpression).exp.exp, fdName);
@@ -363,7 +363,7 @@ class TypeInferrer {
 	
 	/*def inferDataType(IfControlFlow ifCF, String fdName) {
 		return ifCF.iftrue.getDataType;
-	}*/	
+	}*/
 	
 	static def DataType getDataType(Expression exp) {
 		return exp.exp.getDataType;

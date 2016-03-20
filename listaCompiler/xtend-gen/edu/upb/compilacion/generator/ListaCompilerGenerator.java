@@ -499,11 +499,13 @@ public class ListaCompilerGenerator implements IGenerator {
           return StringExtensions.toFirstUpper(_lowerCase);
         case LIST:
           return "int[]";
-        default:
+        case VOID:
           return "void";
+        default:
+          return "int";
       }
     } else {
-      return "void";
+      return "int";
     }
   }
   

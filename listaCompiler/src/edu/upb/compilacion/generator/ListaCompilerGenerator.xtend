@@ -206,8 +206,10 @@ class ListaCompilerGenerator implements IGenerator {
 				return dt.name.toLowerCase.toFirstUpper
 			case DataType.LIST:
 				return "int[]"
-			default:
+				case DataType.VOID:
 				return "void"
+			default:
+				return "int"
 		}
 	}
 	
