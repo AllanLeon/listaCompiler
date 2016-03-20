@@ -36,7 +36,6 @@ import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
-import com.google.common.escape.Escaper
 
 /**
  * Generates code from your model files on save.
@@ -56,11 +55,11 @@ class ListaCompilerGenerator implements IGenerator {
 	}
 	
 	def generate(Lista lista) '''public class Seks {
-		«generateMain(lista.evaluations)»«'\n\n'»«FOR fd : lista.definitions SEPARATOR '\n\n'»«fd.generate»«ENDFOR»«'\n\n'»«generatePreDefFunctions»
+	«generateMain(lista.evaluations)»«'\n\n'»«FOR fd : lista.definitions SEPARATOR '\n\n'»«fd.generate»«ENDFOR»«'\n\n'»«generatePreDefFunctions»
 }'''
 	
 	def generateMain(EList<Evaluation> evaluations) '''public static void main(String[] args) {
-		«FOR eval : evaluations»«eval.generate»;«ENDFOR»
+	«FOR eval : evaluations»«eval.generate»;«ENDFOR»
 }'''
 	
 	def generate(Evaluation ev) '''«ev.^return.generate»'''
