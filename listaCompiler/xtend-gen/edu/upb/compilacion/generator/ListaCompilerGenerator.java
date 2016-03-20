@@ -59,7 +59,7 @@ public class ListaCompilerGenerator implements IGenerator {
     EObject _get = _contents.get(0);
     final Lista lista = ((Lista) _get);
     CharSequence _generate = this.generate(lista);
-    fsa.generateFile("seks.java", _generate);
+    fsa.generateFile("Seks.java", _generate);
   }
   
   public CharSequence generate(final Lista lista) {
@@ -88,7 +88,6 @@ public class ListaCompilerGenerator implements IGenerator {
     CharSequence _generatePreDefFunctions = this.generatePreDefFunctions();
     _builder.append(_generatePreDefFunctions, "\t\t");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
     _builder.append("}");
     return _builder;
   }

@@ -51,12 +51,12 @@ class ListaCompilerGenerator implements IGenerator {
 //				.map[name]
 //				.join(', '))
 		val lista = (resource.contents.get(0) as Lista)
-		fsa.generateFile('seks.java', lista.generate)
+		fsa.generateFile('Seks.java', lista.generate)
 	}
 	
 	def generate(Lista lista) '''public class Seks {
 		«generateMain(lista.evaluations)»«'\n\n'»«FOR fd : lista.definitions SEPARATOR '\n\n'»«fd.generate»«ENDFOR»«'\n\n'»«generatePreDefFunctions»
-		}'''
+}'''
 	
 	def generateMain(EList<Evaluation> evaluations) '''public static void main(String[] args) {
 		«FOR eval : evaluations»«eval.generate»;«ENDFOR»
