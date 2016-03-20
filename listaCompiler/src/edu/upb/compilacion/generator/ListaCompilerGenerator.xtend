@@ -48,19 +48,22 @@ class ListaCompilerGenerator implements IGenerator {
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		val lista = (resource.contents.get(0) as Lista)
-		fsa.generateFile('Complements.java', generateComplementaryFile)
-		fsa.generateFile('Seks.java', lista.generate)
+		fsa.generateFile('SEKsComplements.java', generateComplementaryFile)
+		fsa.generateFile('SEKs.java', lista.generate)
 	}
 	
-	def generateComplementaryFile() '''public class Complements {
+	def generateComplementaryFile() '''public class SEKsComplements {
 	«generatePreDefFunctions»
 }'''
 	
-	def generate(Lista lista) '''public class Seks {
+	def generate(Lista lista) '''public class SEKs {
+	private SEKs s;
+	
 	«generateMain(lista.evaluations)»«'\n\n'»«FOR fd : lista.definitions SEPARATOR '\n\n'»«fd.generate»«ENDFOR»«'\n'»
 }'''
 	
 	def generateMain(EList<Evaluation> evaluations) '''public static void main(String[] args) {
+	SEKs s = new SEKs();
 	«FOR eval : evaluations»«eval.generate»;«ENDFOR»
 }'''
 	
@@ -193,7 +196,7 @@ class ListaCompilerGenerator implements IGenerator {
 	
 	def generate (PreDefFunctionCall pdf) '''«IF pdf.function.getName.equals("show")»«"System.out.println"»«ELSE»Complements.«pdf.function.getName»«ENDIF»(«FOR exp : pdf.args SEPARATOR ','»«exp.generate»«ENDFOR»)'''
 	
-	def generate (UserDefFunctionCall udf) '''«udf.function.getName»(«FOR exp : udf.args SEPARATOR ','»«exp.generate»«ENDFOR»)'''
+	def generate (UserDefFunctionCall udf) '''s.«udf.function.getName»(«FOR exp : udf.args SEPARATOR ','»«exp.generate»«ENDFOR»)'''
 	
 	def generate (IfControlFlow icf) '''((«icf.cond.generate») ? («icf.iftrue.generate») : («icf.iffalse.generate»))'''
 	

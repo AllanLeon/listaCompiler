@@ -61,14 +61,14 @@ public class ListaCompilerGenerator implements IGenerator {
     EObject _get = _contents.get(0);
     final Lista lista = ((Lista) _get);
     CharSequence _generateComplementaryFile = this.generateComplementaryFile();
-    fsa.generateFile("Complements.java", _generateComplementaryFile);
+    fsa.generateFile("SEKsComplements.java", _generateComplementaryFile);
     CharSequence _generate = this.generate(lista);
-    fsa.generateFile("Seks.java", _generate);
+    fsa.generateFile("SEKs.java", _generate);
   }
   
   public CharSequence generateComplementaryFile() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("public class Complements {");
+    _builder.append("public class SEKsComplements {");
     _builder.newLine();
     _builder.append("\t");
     CharSequence _generatePreDefFunctions = this.generatePreDefFunctions();
@@ -80,7 +80,12 @@ public class ListaCompilerGenerator implements IGenerator {
   
   public CharSequence generate(final Lista lista) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("public class Seks {");
+    _builder.append("public class SEKs {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private SEKs s;");
+    _builder.newLine();
+    _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
     EList<Evaluation> _evaluations = lista.getEvaluations();
@@ -109,6 +114,9 @@ public class ListaCompilerGenerator implements IGenerator {
   public CharSequence generateMain(final EList<Evaluation> evaluations) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public static void main(String[] args) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("SEKs s = new SEKs();");
     _builder.newLine();
     _builder.append("\t");
     {
@@ -408,6 +416,7 @@ public class ListaCompilerGenerator implements IGenerator {
   
   public CharSequence generate(final UserDefFunctionCall udf) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("s.");
     FunctionDefinition _function = udf.getFunction();
     String _name = _function.getName();
     _builder.append(_name, "");
