@@ -283,6 +283,70 @@ class TypeInferrer {
 		for (exp : fcall.args) {
 			inferDataType(exp.exp, fdName);
 		}
+		inferPDFArgsDataType(fcall, fdName);
+	}
+	
+	static def void inferPDFArgsDataType(PreDefFunctionCall fcall, String fdName) {
+		//var expected = DataType.GLOBAL;
+		var paramsTypes = new ArrayList<DataType>();
+		switch (fcall.function) {
+			case PDFunction.SHOW: {
+				//expected = DataType.VOID;
+				paramsTypes.add(DataType.GLOBAL);
+			}
+			case PDFunction.LENGTH: {
+				//expected = DataType.INT;
+				paramsTypes.add(DataType.STRING);
+			}
+			case PDFunction.CAR: {
+				//expected = DataType.INT;
+				paramsTypes.add(DataType.LIST);
+			}
+			case PDFunction.CDR: {
+				//expected = DataType.LIST;
+				paramsTypes.add(DataType.LIST);
+			}
+			case PDFunction.CONS: {
+				//expected = DataType.LIST;
+				paramsTypes.add(DataType.INT);
+				paramsTypes.add(DataType.LIST);
+			}
+			case PDFunction.IS_EMPTY: {
+				//expected = DataType.BOOL;
+				paramsTypes.add(DataType.LIST);
+			}
+		}
+		var i = 0;
+		for (exp : fcall.args) {
+			if (i > paramsTypes.size()) {
+				return;
+			}
+			if (!paramsTypes.get(i).equals(DataType.GLOBAL)) {
+				if (exp.getDataType.equals(DataType.VAR)) {
+					functionParams.get(fdName).put(exp.exp.getVariable, paramsTypes.get(i));
+				}
+			}
+			i++;
+		}
+	}
+	
+	static def void inferUDFArgsDataType(UserDefFunctionCall fcall, String fdName) {
+		if (functionTypes.containsKey(fcall.function.name)) {
+			val args = fcall.args;
+			val params = functionParams.get(fcall.function.name);
+			var i = 0;
+			for (current : fcall.function.params) {
+				if (i > args.size()) {
+					return;
+				}
+				if (params.containsKey(current)) {
+					if (args.get(i).getDataType.equals(DataType.VAR)) {
+						functionParams.get(fdName).put(args.get(i).exp.getVariable, params.get(current))
+					}
+				}
+				i++;
+			}
+		}
 	}
 	
 	static def void inferDataType(UserDefFunctionCall fcall, String fdName) {
@@ -294,6 +358,7 @@ class TypeInferrer {
 		for (exp : fcall.args) {
 			inferDataType(exp.exp, fdName);
 		}
+		inferUDFArgsDataType(fcall, fdName);
 	}
 	
 	/*def inferDataType(IfControlFlow ifCF, String fdName) {
@@ -564,19 +629,19 @@ class TypeInferrer {
 			if (second.equals(DataType.INT) || second.equals(DataType.BOOL) || second.equals(DataType.STRING)) {
 				return DataType.STRING;
 			} else {
-				throw new MismatchedTypeException(SecondLevelOp.EQ.literal + " only supports STRING, INT and BOOLEAN types.");
+				throw new MismatchedTypeException(ThirdLevelOp.CONCAT.literal + " only supports STRING, INT and BOOLEAN types.");
 			}
 		}
 		if (second.equals(DataType.STRING)) {
 			if (first.equals(DataType.INT) || first.equals(DataType.BOOL) || first.equals(DataType.STRING)) {
 				return DataType.STRING;
 			} else {
-				throw new MismatchedTypeException(SecondLevelOp.EQ.literal + " only supports STRING, INT and BOOLEAN types.");
+				throw new MismatchedTypeException(ThirdLevelOp.CONCAT.literal + " only supports STRING, INT and BOOLEAN types.");
 			}
 		}
 		throw new MismatchedTypeException("At least one of the arguments in a " + SecondLevelOp.EQ.literal + " operation should be type STRING.");
 	}
-	
+
 	static def DataType checkDataType(FourthLevelExp exp) {
 		val first = (exp.args.get(0) as Term).checkDataType;
 		if (exp.args.length > 1) {
@@ -649,10 +714,8 @@ class TypeInferrer {
 		var expected = DataType.GLOBAL;
 		var paramsTypes = new ArrayList<DataType>();
 		switch (fcall.function) {
-			case PDFunction.SHOW: {
-				expected = DataType.VOID;
-				paramsTypes.add(DataType.GLOBAL);
-			}
+			case PDFunction.SHOW: 
+				return checkShowDataType(fcall)
 			case PDFunction.LENGTH: {
 				expected = DataType.INT;
 				paramsTypes.add(DataType.STRING);
@@ -679,6 +742,9 @@ class TypeInferrer {
 		}
 		var i = 0;
 		for (exp : fcall.args) {
+			if (i > paramsTypes.size()) {
+				throw new MismatchedTypeException("Too many arguments in function " + fcall.function.getName);
+			}
 			if (!paramsTypes.get(i).equals(DataType.GLOBAL)) {
 				if (!exp.checkDataType.equals(paramsTypes.get(i))) {
 					throw new MismatchedTypeException("Argument type should be " + paramsTypes.get(i));
@@ -689,12 +755,23 @@ class TypeInferrer {
 		return expected;
 	}
 	
+	static def DataType checkShowDataType(PreDefFunctionCall fcall) {
+		val arg = fcall.args.get(0).checkDataType;
+		if (!(arg.equals(DataType.INT) || arg.equals(DataType.STRING) || arg.equals(DataType.BOOL))) {
+			throw new MismatchedTypeException("Argument type should be INT, STRING or BOOL");
+		}
+		return DataType.VOID;
+	}
+	
 	static def DataType checkDataType(UserDefFunctionCall fcall) {
 		if (functionTypes.containsKey(fcall.function.name)) {
 			val args = fcall.args;
 			val params = functionParams.get(fcall.function.name);
 			var i = 0;
 			for (current : fcall.function.params) {
+				if (i > args.size()) {
+					throw new MismatchedTypeException("Too many arguments in function " + fcall.function.name);
+				}
 				if (params.containsKey(current)) {
 					if (!args.get(i).checkDataType.equals(params.get(current))) {
 						throw new MismatchedTypeException("Argument type should be " + params.get(current));

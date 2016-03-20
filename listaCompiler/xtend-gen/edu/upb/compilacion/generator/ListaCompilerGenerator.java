@@ -220,8 +220,8 @@ public class ListaCompilerGenerator implements IGenerator {
       return this.generate(((MyInteger) term));
     } else {
       if ((term instanceof MyString)) {
-        String _val = ((MyString) term).getVal();
-        String _plus = ("\"" + _val);
+        String _generate = this.generate(((MyString) term));
+        String _plus = ("\"" + _generate);
         return (_plus + "\"");
       } else {
         if ((term instanceof MyBool)) {
@@ -424,6 +424,11 @@ public class ListaCompilerGenerator implements IGenerator {
     Object _generate = this.generate(_exp);
     String _plus = ("(" + _generate);
     return (_plus + ")");
+  }
+  
+  public String generate(final MyString myStr) {
+    String _val = myStr.getVal();
+    return _val.replaceAll("\n", "\\\\n");
   }
   
   public CharSequence generate(final FunctionDefinition funcd) {
