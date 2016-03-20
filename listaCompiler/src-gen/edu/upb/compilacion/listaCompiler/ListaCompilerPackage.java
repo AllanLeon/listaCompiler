@@ -495,6 +495,71 @@ public interface ListaCompilerPackage extends EPackage
   int MY_VARIABLE_FEATURE_COUNT = TERM_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.VariableImpl <em>Variable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.impl.VariableImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getVariable()
+   * @generated
+   */
+  int VARIABLE = 14;
+
+  /**
+   * The feature id for the '<em><b>Var</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIABLE__VAR = MY_VARIABLE__VAR;
+
+  /**
+   * The number of structural features of the '<em>Variable</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIABLE_FEATURE_COUNT = MY_VARIABLE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.CastedVariableImpl <em>Casted Variable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.impl.CastedVariableImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getCastedVariable()
+   * @generated
+   */
+  int CASTED_VARIABLE = 15;
+
+  /**
+   * The feature id for the '<em><b>Var</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CASTED_VARIABLE__VAR = MY_VARIABLE__VAR;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CASTED_VARIABLE__TYPE = MY_VARIABLE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Casted Variable</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CASTED_VARIABLE_FEATURE_COUNT = MY_VARIABLE_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.MyBoolImpl <em>My Bool</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -502,7 +567,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getMyBool()
    * @generated
    */
-  int MY_BOOL = 14;
+  int MY_BOOL = 16;
 
   /**
    * The number of structural features of the '<em>My Bool</em>' class.
@@ -521,7 +586,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPosBool()
    * @generated
    */
-  int POS_BOOL = 15;
+  int POS_BOOL = 17;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -549,7 +614,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getNegBool()
    * @generated
    */
-  int NEG_BOOL = 16;
+  int NEG_BOOL = 18;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' containment reference.
@@ -577,7 +642,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getMyString()
    * @generated
    */
-  int MY_STRING = 17;
+  int MY_STRING = 19;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -605,7 +670,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getIfControlFlow()
    * @generated
    */
-  int IF_CONTROL_FLOW = 18;
+  int IF_CONTROL_FLOW = 20;
 
   /**
    * The feature id for the '<em><b>Cond</b></em>' containment reference.
@@ -651,7 +716,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFunctionCall()
    * @generated
    */
-  int FUNCTION_CALL = 19;
+  int FUNCTION_CALL = 21;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -679,7 +744,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPreDefFunctionCall()
    * @generated
    */
-  int PRE_DEF_FUNCTION_CALL = 20;
+  int PRE_DEF_FUNCTION_CALL = 22;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -716,7 +781,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getUserDefFunctionCall()
    * @generated
    */
-  int USER_DEF_FUNCTION_CALL = 21;
+  int USER_DEF_FUNCTION_CALL = 23;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -753,7 +818,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getList()
    * @generated
    */
-  int LIST = 22;
+  int LIST = 24;
 
   /**
    * The feature id for the '<em><b>Elems</b></em>' containment reference list.
@@ -781,7 +846,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getListElem()
    * @generated
    */
-  int LIST_ELEM = 23;
+  int LIST_ELEM = 25;
 
   /**
    * The number of structural features of the '<em>List Elem</em>' class.
@@ -800,7 +865,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getBool()
    * @generated
    */
-  int BOOL = 24;
+  int BOOL = 26;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.PDFunction <em>PD Function</em>}' enum.
@@ -810,7 +875,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getPDFunction()
    * @generated
    */
-  int PD_FUNCTION = 25;
+  int PD_FUNCTION = 27;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.FirstLevelOp <em>First Level Op</em>}' enum.
@@ -820,7 +885,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFirstLevelOp()
    * @generated
    */
-  int FIRST_LEVEL_OP = 26;
+  int FIRST_LEVEL_OP = 28;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.SecondLevelOp <em>Second Level Op</em>}' enum.
@@ -830,7 +895,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getSecondLevelOp()
    * @generated
    */
-  int SECOND_LEVEL_OP = 27;
+  int SECOND_LEVEL_OP = 29;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.ThirdLevelOp <em>Third Level Op</em>}' enum.
@@ -840,7 +905,7 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getThirdLevelOp()
    * @generated
    */
-  int THIRD_LEVEL_OP = 28;
+  int THIRD_LEVEL_OP = 30;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.FourthLevelOp <em>Fourth Level Op</em>}' enum.
@@ -850,7 +915,17 @@ public interface ListaCompilerPackage extends EPackage
    * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getFourthLevelOp()
    * @generated
    */
-  int FOURTH_LEVEL_OP = 29;
+  int FOURTH_LEVEL_OP = 31;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.CastedType <em>Casted Type</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.CastedType
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getCastedType()
+   * @generated
+   */
+  int CASTED_TYPE = 32;
 
 
   /**
@@ -1203,6 +1278,37 @@ public interface ListaCompilerPackage extends EPackage
   EAttribute getMyVariable_Var();
 
   /**
+   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.Variable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Variable</em>'.
+   * @see edu.upb.compilacion.listaCompiler.Variable
+   * @generated
+   */
+  EClass getVariable();
+
+  /**
+   * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.CastedVariable <em>Casted Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Casted Variable</em>'.
+   * @see edu.upb.compilacion.listaCompiler.CastedVariable
+   * @generated
+   */
+  EClass getCastedVariable();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.upb.compilacion.listaCompiler.CastedVariable#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see edu.upb.compilacion.listaCompiler.CastedVariable#getType()
+   * @see #getCastedVariable()
+   * @generated
+   */
+  EAttribute getCastedVariable_Type();
+
+  /**
    * Returns the meta object for class '{@link edu.upb.compilacion.listaCompiler.MyBool <em>My Bool</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1471,6 +1577,16 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    */
   EEnum getFourthLevelOp();
+
+  /**
+   * Returns the meta object for enum '{@link edu.upb.compilacion.listaCompiler.CastedType <em>Casted Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Casted Type</em>'.
+   * @see edu.upb.compilacion.listaCompiler.CastedType
+   * @generated
+   */
+  EEnum getCastedType();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1788,6 +1904,34 @@ public interface ListaCompilerPackage extends EPackage
     EAttribute MY_VARIABLE__VAR = eINSTANCE.getMyVariable_Var();
 
     /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.VariableImpl <em>Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.impl.VariableImpl
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getVariable()
+     * @generated
+     */
+    EClass VARIABLE = eINSTANCE.getVariable();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.CastedVariableImpl <em>Casted Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.impl.CastedVariableImpl
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getCastedVariable()
+     * @generated
+     */
+    EClass CASTED_VARIABLE = eINSTANCE.getCastedVariable();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CASTED_VARIABLE__TYPE = eINSTANCE.getCastedVariable_Type();
+
+    /**
      * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.impl.MyBoolImpl <em>My Bool</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2026,6 +2170,16 @@ public interface ListaCompilerPackage extends EPackage
      * @generated
      */
     EEnum FOURTH_LEVEL_OP = eINSTANCE.getFourthLevelOp();
+
+    /**
+     * The meta object literal for the '{@link edu.upb.compilacion.listaCompiler.CastedType <em>Casted Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.upb.compilacion.listaCompiler.CastedType
+     * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getCastedType()
+     * @generated
+     */
+    EEnum CASTED_TYPE = eINSTANCE.getCastedType();
 
   }
 

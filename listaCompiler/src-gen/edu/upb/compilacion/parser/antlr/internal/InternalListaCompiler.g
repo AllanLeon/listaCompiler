@@ -923,14 +923,54 @@ ruleMyVariable returns [EObject current=null]
     }
     @after { leaveRule(); }:
 (
+    { 
+        newCompositeNode(grammarAccess.getMyVariableAccess().getVariableParserRuleCall_0()); 
+    }
+    this_Variable_0=ruleVariable
+    { 
+        $current = $this_Variable_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getMyVariableAccess().getCastedVariableParserRuleCall_1()); 
+    }
+    this_CastedVariable_1=ruleCastedVariable
+    { 
+        $current = $this_CastedVariable_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleVariable
+entryRuleVariable returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getVariableRule()); }
+	 iv_ruleVariable=ruleVariable 
+	 { $current=$iv_ruleVariable.current; } 
+	 EOF 
+;
+
+// Rule Variable
+ruleVariable returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
 (
 		lv_var_0_0=RULE_IDFUNCVAR
 		{
-			newLeafNode(lv_var_0_0, grammarAccess.getMyVariableAccess().getVarIDFUNCVARTerminalRuleCall_0()); 
+			newLeafNode(lv_var_0_0, grammarAccess.getVariableAccess().getVarIDFUNCVARTerminalRuleCall_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMyVariableRule());
+	            $current = createModelElement(grammarAccess.getVariableRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -941,6 +981,67 @@ ruleMyVariable returns [EObject current=null]
 
 )
 )
+;
+
+
+
+
+
+// Entry rule entryRuleCastedVariable
+entryRuleCastedVariable returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getCastedVariableRule()); }
+	 iv_ruleCastedVariable=ruleCastedVariable 
+	 { $current=$iv_ruleCastedVariable.current; } 
+	 EOF 
+;
+
+// Rule CastedVariable
+ruleCastedVariable returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		lv_var_0_0=RULE_IDFUNCVAR
+		{
+			newLeafNode(lv_var_0_0, grammarAccess.getCastedVariableAccess().getVarIDFUNCVARTerminalRuleCall_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCastedVariableRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"var",
+        		lv_var_0_0, 
+        		"IDFUNCVAR");
+	    }
+
+)
+)	otherlv_1=':' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getCastedVariableAccess().getColonKeyword_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getCastedVariableAccess().getTypeCastedTypeEnumRuleCall_2_0()); 
+	    }
+		lv_type_2_0=ruleCastedType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getCastedVariableRule());
+	        }
+       		set(
+       			$current, 
+       			"type",
+        		lv_type_2_0, 
+        		"CastedType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
 ;
 
 
@@ -1690,6 +1791,31 @@ ruleFourthLevelOp returns [Enumerator current=null]
 	{
         $current = grammarAccess.getFourthLevelOpAccess().getDivEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
         newLeafNode(enumLiteral_1, grammarAccess.getFourthLevelOpAccess().getDivEnumLiteralDeclaration_1()); 
+    }
+));
+
+
+
+// Rule CastedType
+ruleCastedType returns [Enumerator current=null] 
+    @init { enterRule(); }
+    @after { leaveRule(); }:
+((	enumLiteral_0='int' 
+	{
+        $current = grammarAccess.getCastedTypeAccess().getIntEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_0, grammarAccess.getCastedTypeAccess().getIntEnumLiteralDeclaration_0()); 
+    }
+)
+    |(	enumLiteral_1='bool' 
+	{
+        $current = grammarAccess.getCastedTypeAccess().getBoolEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_1, grammarAccess.getCastedTypeAccess().getBoolEnumLiteralDeclaration_1()); 
+    }
+)
+    |(	enumLiteral_2='string' 
+	{
+        $current = grammarAccess.getCastedTypeAccess().getStringEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_2, grammarAccess.getCastedTypeAccess().getStringEnumLiteralDeclaration_2()); 
     }
 ));
 

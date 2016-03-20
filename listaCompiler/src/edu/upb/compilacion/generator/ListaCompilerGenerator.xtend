@@ -4,7 +4,9 @@
 package edu.upb.compilacion.generator
 
 import edu.upb.compilacion.TypeInferrer
+import edu.upb.compilacion.TypeInferrer.DataType
 import edu.upb.compilacion.listaCompiler.BracketExpression
+import edu.upb.compilacion.listaCompiler.CastedVariable
 import edu.upb.compilacion.listaCompiler.Evaluation
 import edu.upb.compilacion.listaCompiler.Expression
 import edu.upb.compilacion.listaCompiler.FirstLevelExp
@@ -27,8 +29,9 @@ import edu.upb.compilacion.listaCompiler.PreDefFunctionCall
 import edu.upb.compilacion.listaCompiler.SecondLevelExp
 import edu.upb.compilacion.listaCompiler.Term
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp
+import edu.upb.compilacion.listaCompiler.ThirdLevelOp
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall
-import edu.upb.compilacion.validation.ListaCompilerValidator.DataType
+import edu.upb.compilacion.listaCompiler.Variable
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
@@ -51,7 +54,9 @@ class ListaCompilerGenerator implements IGenerator {
 		fsa.generateFile('seks.java', lista.generate)
 	}
 	
-	def generate(Lista lista) '''«generateMain(lista.evaluations)»«'\n\n'»«FOR fd : lista.definitions SEPARATOR '\n\n'»«fd.generate»«ENDFOR»«'\n\n'»«generatePreDefFunctions»'''
+	def generate(Lista lista) '''public class Seks {
+		«generateMain(lista.evaluations)»«'\n\n'»«FOR fd : lista.definitions SEPARATOR '\n\n'»«fd.generate»«ENDFOR»«'\n\n'»«generatePreDefFunctions»
+		}'''
 	
 	def generateMain(EList<Evaluation> evaluations) '''public static void main(String[] args) {
 		«FOR eval : evaluations»«eval.generate»;«ENDFOR»
@@ -82,7 +87,11 @@ class ListaCompilerGenerator implements IGenerator {
 		val first = exp.args.get(0) as FourthLevelExp;
 		var res = first.generate; 
 		if(exp.args.length > 1) {
-			res = res + exp.op.literal + (exp.args.get(1) as ThirdLevelExp).generate;
+			var op = exp.op.literal;
+			if (exp.op.equals(ThirdLevelOp.CONCAT)) {
+				op = "+";
+			}
+			res = res + op + (exp.args.get(1) as ThirdLevelExp).generate;
 		}
 		return res;
 				
@@ -100,13 +109,13 @@ class ListaCompilerGenerator implements IGenerator {
 		if (term instanceof MyInteger) {
 			return (term as MyInteger).generate;
 		} else if (term instanceof MyString) {
-			return (term as MyString).^val;
+			return '"' + (term as MyString).^val + '"';
 		} else if (term instanceof MyBool) {
 			return (term as MyBool).generate;
 		} else if (term instanceof List) {
 			return (term as List).generate;
 		} else if (term instanceof MyVariable) {
-			return (term as MyVariable).^var;
+			return (term as MyVariable).generate;
 		} else if (term instanceof FunctionCall) {
 			return (term as FunctionCall).generate;
 		} else if (term instanceof IfControlFlow) {
@@ -144,11 +153,19 @@ class ListaCompilerGenerator implements IGenerator {
 	
 	def generate (List li) '''[«FOR elm : li.elems SEPARATOR ','»«elm.generate»«ENDFOR»]'''
 	
+	def generate (MyVariable mv) {
+		if (mv instanceof Variable) {
+			return (mv as Variable).^var;
+		} else if (mv instanceof CastedVariable) {
+			return (mv as CastedVariable).^var;
+		}
+	}
+	
 	def generate (ListElem le) {
 		if (le instanceof MyInteger) {
 			return (le as MyInteger).generate;
 		} else if (le instanceof MyVariable) {
-			return (le as MyVariable).^var;
+			return (le as MyVariable).generate;
 		}
 	}
 	
@@ -164,18 +181,14 @@ class ListaCompilerGenerator implements IGenerator {
 	
 	def generate (UserDefFunctionCall udf) '''«udf.function.getName»(«FOR exp : udf.args SEPARATOR ','»«exp.generate»«ENDFOR»)'''
 	
-	def generate (IfControlFlow icf) '''if («icf.cond.generate») {
-		«icf.iftrue.generate»
-	} else {
-		«icf.iffalse.generate»
-	}'''
+	def generate (IfControlFlow icf) '''((«icf.cond.generate») ? («icf.iftrue.generate») : («icf.iffalse.generate»))'''
 	
 	def generate (BracketExpression be) {
 		return "(" + be.exp.generate + ")"
 	}
 	
 	def generate(FunctionDefinition funcd) '''public «TypeInferrer.getFunctionTypes.get(funcd.name).convertDTtoString» «funcd.name»(«FOR fp : funcd.params SEPARATOR ','»«TypeInferrer.functionParams.get(funcd.name).get(fp).convertDTtoString + ' ' + fp»«ENDFOR») {
-	«funcd.^return.exp.generate»;
+	«IF !TypeInferrer.functionTypes.get(funcd.name).equals(DataType.VOID)»«"return "»«ENDIF»«funcd.^return.exp.generate»;
 }'''
 
 	def convertDTtoString(DataType dt) {
@@ -193,32 +206,32 @@ class ListaCompilerGenerator implements IGenerator {
 		}
 	}
 	
-	def generatePreDefFunctions() '''int[] cons(int x, int[] l) {
-        int[] res = new int[l.length + 1];
-        res[0] = x;
-        for (int i = 1; i < l.length + 1; i++) {
-            res[i] = l[i - 1];
-        }
-        return res;
+	def generatePreDefFunctions() '''public int[] cons(int x, int[] l) {
+    int[] res = new int[l.length + 1];
+    res[0] = x;
+    for (int i = 1; i < l.length + 1; i++) {
+        res[i] = l[i - 1];
     }
-    
-    int car(int[] l) {
-        return l[0];
+    return res;
+}
+
+public int car(int[] l) {
+    return l[0];
+}
+
+public int[] cdr(int[] l) {
+    int[] res = new int[l.length - 1];
+    for (int i = 1; i < l.length ; i++) {
+        res[i - 1] = l[i];
     }
-    
-    int[] cdr(int[] l) {
-        int[] res = new int[l.length - 1];
-        for (int i = 1; i < l.length ; i++) {
-            res[i - 1] = l[i];
-        }
-        return res;
-    }
-    
-    boolean isEmpty(int[] l) {
-        return (l.length > 1) ? false : true;
-    }
-    
-    int length(String s) {
-        return s.length();
-    }'''
+    return res;
+}
+
+public boolean isEmpty(int[] l) {
+    return (l.length > 1) ? false : true;
+}
+
+public int length(String s) {
+    return s.length();
+}'''
 }

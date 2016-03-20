@@ -6,6 +6,7 @@ package edu.upb.compilacion.validation;
 import edu.upb.compilacion.HugeException;
 import edu.upb.compilacion.MismatchedTypeException;
 import edu.upb.compilacion.TypeInferrer;
+import edu.upb.compilacion.TypeInferrer2;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
@@ -30,20 +31,6 @@ import org.eclipse.xtext.xbase.lib.ExclusiveRange;
  */
 @SuppressWarnings("all")
 public class ListaCompilerValidator extends AbstractListaCompilerValidator {
-  public enum DataType {
-    INT,
-    
-    STRING,
-    
-    BOOL,
-    
-    LIST,
-    
-    VAR,
-    
-    GLOBAL;
-  }
-  
   private final static String WRONG_PARAMETERS_NUMBER = "wrongParametersNumber";
   
   private final static String WRONG_EXPRESSION_TYPE = "wrongExpressionType";
@@ -188,6 +175,7 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   public String checkFunctionDefinitionType(final FunctionDefinition fd) {
     String _xblockexpression = null;
     {
+      final TypeInferrer2 inferrer = new TypeInferrer2();
       TypeInferrer.inferDataType(fd);
       TypeInferrer.inferDataType(fd);
       this.checkFunctionDefinitionParams(fd);
@@ -219,9 +207,9 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   public void checkFunctionDefinitionParams(final FunctionDefinition fd) {
     EList<String> _params = fd.getParams();
     for (final String param : _params) {
-      HashMap<String, HashMap<String, ListaCompilerValidator.DataType>> _functionParams = TypeInferrer.getFunctionParams();
+      HashMap<String, HashMap<String, TypeInferrer.DataType>> _functionParams = TypeInferrer.getFunctionParams();
       String _name = fd.getName();
-      HashMap<String, ListaCompilerValidator.DataType> _get = _functionParams.get(_name);
+      HashMap<String, TypeInferrer.DataType> _get = _functionParams.get(_name);
       boolean _containsKey = _get.containsKey(param);
       boolean _not = (!_containsKey);
       if (_not) {
@@ -230,9 +218,9 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
           ListaCompilerValidator.UNUSED_VARIABLE);
       }
     }
-    HashMap<String, HashMap<String, ListaCompilerValidator.DataType>> _functionParams_1 = TypeInferrer.getFunctionParams();
+    HashMap<String, HashMap<String, TypeInferrer.DataType>> _functionParams_1 = TypeInferrer.getFunctionParams();
     String _name_1 = fd.getName();
-    HashMap<String, ListaCompilerValidator.DataType> _get_1 = _functionParams_1.get(_name_1);
+    HashMap<String, TypeInferrer.DataType> _get_1 = _functionParams_1.get(_name_1);
     Set<String> _keySet = _get_1.keySet();
     for (final String param_1 : _keySet) {
       EList<String> _params_1 = fd.getParams();
@@ -247,8 +235,8 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   }
   
   @Check
-  public ListaCompilerValidator.DataType checkFunctionEvaluationType(final Evaluation eval) {
-    ListaCompilerValidator.DataType _xtrycatchfinallyexpression = null;
+  public TypeInferrer.DataType checkFunctionEvaluationType(final Evaluation eval) {
+    TypeInferrer.DataType _xtrycatchfinallyexpression = null;
     try {
       Expression _return = eval.getReturn();
       _xtrycatchfinallyexpression = TypeInferrer.checkDataType(_return);

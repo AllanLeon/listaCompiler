@@ -149,6 +149,24 @@ public interface ListaCompilerFactory extends EFactory
   MyVariable createMyVariable();
 
   /**
+   * Returns a new object of class '<em>Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Variable</em>'.
+   * @generated
+   */
+  Variable createVariable();
+
+  /**
+   * Returns a new object of class '<em>Casted Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Casted Variable</em>'.
+   * @generated
+   */
+  CastedVariable createCastedVariable();
+
+  /**
    * Returns a new object of class '<em>My Bool</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

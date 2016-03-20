@@ -79,6 +79,8 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
       case ListaCompilerPackage.POS_INTEGER: return createPosInteger();
       case ListaCompilerPackage.NEG_INTEGER: return createNegInteger();
       case ListaCompilerPackage.MY_VARIABLE: return createMyVariable();
+      case ListaCompilerPackage.VARIABLE: return createVariable();
+      case ListaCompilerPackage.CASTED_VARIABLE: return createCastedVariable();
       case ListaCompilerPackage.MY_BOOL: return createMyBool();
       case ListaCompilerPackage.POS_BOOL: return createPosBool();
       case ListaCompilerPackage.NEG_BOOL: return createNegBool();
@@ -116,6 +118,8 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
         return createThirdLevelOpFromString(eDataType, initialValue);
       case ListaCompilerPackage.FOURTH_LEVEL_OP:
         return createFourthLevelOpFromString(eDataType, initialValue);
+      case ListaCompilerPackage.CASTED_TYPE:
+        return createCastedTypeFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -143,6 +147,8 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
         return convertThirdLevelOpToString(eDataType, instanceValue);
       case ListaCompilerPackage.FOURTH_LEVEL_OP:
         return convertFourthLevelOpToString(eDataType, instanceValue);
+      case ListaCompilerPackage.CASTED_TYPE:
+        return convertCastedTypeToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -300,6 +306,28 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
   {
     MyVariableImpl myVariable = new MyVariableImpl();
     return myVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Variable createVariable()
+  {
+    VariableImpl variable = new VariableImpl();
+    return variable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CastedVariable createCastedVariable()
+  {
+    CastedVariableImpl castedVariable = new CastedVariableImpl();
+    return castedVariable;
   }
 
   /**
@@ -540,6 +568,28 @@ public class ListaCompilerFactoryImpl extends EFactoryImpl implements ListaCompi
    * @generated
    */
   public String convertFourthLevelOpToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CastedType createCastedTypeFromString(EDataType eDataType, String initialValue)
+  {
+    CastedType result = CastedType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertCastedTypeToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

@@ -22,33 +22,18 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_IDFUNCVAR", "RULE_INT", "RULE_STRING", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'?'", "';'", "'('", "','", "')'", "'='", "'-'", "'!'", "'if'", "'['", "']'", "'true'", "'false'", "'length'", "'cons'", "'car'", "'cdr'", "'isEmpty'", "'show'", "'&'", "'|'", "'>'", "'<'", "'=='", "'+'", "'++'", "'*'", "'/'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_IDFUNCVAR", "RULE_INT", "RULE_STRING", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'?'", "';'", "'('", "','", "')'", "'='", "'-'", "':'", "'!'", "'if'", "'['", "']'", "'true'", "'false'", "'length'", "'cons'", "'car'", "'cdr'", "'isEmpty'", "'show'", "'&'", "'|'", "'>'", "'<'", "'=='", "'+'", "'++'", "'*'", "'/'", "'int'", "'bool'", "'string'"
     };
-    public static final int RULE_STRING=6;
-    public static final int RULE_SL_COMMENT=9;
     public static final int T__19=19;
     public static final int T__15=15;
-    public static final int T__37=37;
     public static final int T__16=16;
-    public static final int T__38=38;
     public static final int T__17=17;
-    public static final int T__39=39;
     public static final int T__18=18;
-    public static final int T__33=33;
     public static final int T__12=12;
-    public static final int T__34=34;
     public static final int T__13=13;
-    public static final int T__35=35;
     public static final int T__14=14;
-    public static final int T__36=36;
-    public static final int EOF=-1;
-    public static final int T__30=30;
-    public static final int T__31=31;
-    public static final int T__32=32;
     public static final int RULE_ID=7;
-    public static final int RULE_WS=10;
     public static final int RULE_IDFUNCVAR=4;
-    public static final int RULE_ANY_OTHER=11;
     public static final int T__26=26;
     public static final int T__27=27;
     public static final int T__28=28;
@@ -61,6 +46,25 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
     public static final int T__25=25;
     public static final int T__20=20;
     public static final int T__21=21;
+    public static final int RULE_STRING=6;
+    public static final int RULE_SL_COMMENT=9;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
+    public static final int T__33=33;
+    public static final int T__34=34;
+    public static final int T__35=35;
+    public static final int T__36=36;
+    public static final int EOF=-1;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int T__32=32;
+    public static final int RULE_WS=10;
+    public static final int RULE_ANY_OTHER=11;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int T__42=42;
+    public static final int T__43=43;
 
     // delegates
     // delegators
@@ -824,7 +828,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( ((LA4_0>=31 && LA4_0<=32)) ) {
+            if ( ((LA4_0>=32 && LA4_0<=33)) ) {
                 alt4=1;
             }
             switch (alt4) {
@@ -1011,7 +1015,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( ((LA5_0>=33 && LA5_0<=35)) ) {
+            if ( ((LA5_0>=34 && LA5_0<=36)) ) {
                 alt5=1;
             }
             switch (alt5) {
@@ -1198,7 +1202,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
             int alt6=2;
             int LA6_0 = input.LA(1);
 
-            if ( (LA6_0==18||(LA6_0>=36 && LA6_0<=37)) ) {
+            if ( (LA6_0==18||(LA6_0>=37 && LA6_0<=38)) ) {
                 alt6=1;
             }
             switch (alt6) {
@@ -1385,7 +1389,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
             int alt7=2;
             int LA7_0 = input.LA(1);
 
-            if ( ((LA7_0>=38 && LA7_0<=39)) ) {
+            if ( ((LA7_0>=39 && LA7_0<=40)) ) {
                 alt7=1;
             }
             switch (alt7) {
@@ -2242,8 +2246,143 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMyVariable"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:921:1: ruleMyVariable returns [EObject current=null] : ( (lv_var_0_0= RULE_IDFUNCVAR ) ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:921:1: ruleMyVariable returns [EObject current=null] : (this_Variable_0= ruleVariable | this_CastedVariable_1= ruleCastedVariable ) ;
     public final EObject ruleMyVariable() throws RecognitionException {
+        EObject current = null;
+
+        EObject this_Variable_0 = null;
+
+        EObject this_CastedVariable_1 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:924:28: ( (this_Variable_0= ruleVariable | this_CastedVariable_1= ruleCastedVariable ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:925:1: (this_Variable_0= ruleVariable | this_CastedVariable_1= ruleCastedVariable )
+            {
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:925:1: (this_Variable_0= ruleVariable | this_CastedVariable_1= ruleCastedVariable )
+            int alt11=2;
+            int LA11_0 = input.LA(1);
+
+            if ( (LA11_0==RULE_IDFUNCVAR) ) {
+                int LA11_1 = input.LA(2);
+
+                if ( (LA11_1==19) ) {
+                    alt11=2;
+                }
+                else if ( (LA11_1==EOF||(LA11_1>=RULE_IDFUNCVAR && LA11_1<=RULE_INT)||LA11_1==13||(LA11_1>=15 && LA11_1<=16)||LA11_1==18||LA11_1==23||(LA11_1>=32 && LA11_1<=40)) ) {
+                    alt11=1;
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 11, 1, input);
+
+                    throw nvae;
+                }
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 11, 0, input);
+
+                throw nvae;
+            }
+            switch (alt11) {
+                case 1 :
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:926:5: this_Variable_0= ruleVariable
+                    {
+                     
+                            newCompositeNode(grammarAccess.getMyVariableAccess().getVariableParserRuleCall_0()); 
+                        
+                    pushFollow(FOLLOW_ruleVariable_in_ruleMyVariable1965);
+                    this_Variable_0=ruleVariable();
+
+                    state._fsp--;
+
+                     
+                            current = this_Variable_0; 
+                            afterParserOrEnumRuleCall();
+                        
+
+                    }
+                    break;
+                case 2 :
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:936:5: this_CastedVariable_1= ruleCastedVariable
+                    {
+                     
+                            newCompositeNode(grammarAccess.getMyVariableAccess().getCastedVariableParserRuleCall_1()); 
+                        
+                    pushFollow(FOLLOW_ruleCastedVariable_in_ruleMyVariable1992);
+                    this_CastedVariable_1=ruleCastedVariable();
+
+                    state._fsp--;
+
+                     
+                            current = this_CastedVariable_1; 
+                            afterParserOrEnumRuleCall();
+                        
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleMyVariable"
+
+
+    // $ANTLR start "entryRuleVariable"
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:952:1: entryRuleVariable returns [EObject current=null] : iv_ruleVariable= ruleVariable EOF ;
+    public final EObject entryRuleVariable() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleVariable = null;
+
+
+        try {
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:953:2: (iv_ruleVariable= ruleVariable EOF )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:954:2: iv_ruleVariable= ruleVariable EOF
+            {
+             newCompositeNode(grammarAccess.getVariableRule()); 
+            pushFollow(FOLLOW_ruleVariable_in_entryRuleVariable2027);
+            iv_ruleVariable=ruleVariable();
+
+            state._fsp--;
+
+             current =iv_ruleVariable; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleVariable2037); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleVariable"
+
+
+    // $ANTLR start "ruleVariable"
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:961:1: ruleVariable returns [EObject current=null] : ( (lv_var_0_0= RULE_IDFUNCVAR ) ) ;
+    public final EObject ruleVariable() throws RecognitionException {
         EObject current = null;
 
         Token lv_var_0_0=null;
@@ -2251,22 +2390,22 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:924:28: ( ( (lv_var_0_0= RULE_IDFUNCVAR ) ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:925:1: ( (lv_var_0_0= RULE_IDFUNCVAR ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:964:28: ( ( (lv_var_0_0= RULE_IDFUNCVAR ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:965:1: ( (lv_var_0_0= RULE_IDFUNCVAR ) )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:925:1: ( (lv_var_0_0= RULE_IDFUNCVAR ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:926:1: (lv_var_0_0= RULE_IDFUNCVAR )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:965:1: ( (lv_var_0_0= RULE_IDFUNCVAR ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:966:1: (lv_var_0_0= RULE_IDFUNCVAR )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:926:1: (lv_var_0_0= RULE_IDFUNCVAR )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:927:3: lv_var_0_0= RULE_IDFUNCVAR
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:966:1: (lv_var_0_0= RULE_IDFUNCVAR )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:967:3: lv_var_0_0= RULE_IDFUNCVAR
             {
-            lv_var_0_0=(Token)match(input,RULE_IDFUNCVAR,FOLLOW_RULE_IDFUNCVAR_in_ruleMyVariable1959); 
+            lv_var_0_0=(Token)match(input,RULE_IDFUNCVAR,FOLLOW_RULE_IDFUNCVAR_in_ruleVariable2078); 
 
-            			newLeafNode(lv_var_0_0, grammarAccess.getMyVariableAccess().getVarIDFUNCVARTerminalRuleCall_0()); 
+            			newLeafNode(lv_var_0_0, grammarAccess.getVariableAccess().getVarIDFUNCVARTerminalRuleCall_0()); 
             		
 
             	        if (current==null) {
-            	            current = createModelElement(grammarAccess.getMyVariableRule());
+            	            current = createModelElement(grammarAccess.getVariableRule());
             	        }
                    		setWithLastConsumed(
                    			current, 
@@ -2294,11 +2433,147 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleMyVariable"
+    // $ANTLR end "ruleVariable"
+
+
+    // $ANTLR start "entryRuleCastedVariable"
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:991:1: entryRuleCastedVariable returns [EObject current=null] : iv_ruleCastedVariable= ruleCastedVariable EOF ;
+    public final EObject entryRuleCastedVariable() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleCastedVariable = null;
+
+
+        try {
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:992:2: (iv_ruleCastedVariable= ruleCastedVariable EOF )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:993:2: iv_ruleCastedVariable= ruleCastedVariable EOF
+            {
+             newCompositeNode(grammarAccess.getCastedVariableRule()); 
+            pushFollow(FOLLOW_ruleCastedVariable_in_entryRuleCastedVariable2118);
+            iv_ruleCastedVariable=ruleCastedVariable();
+
+            state._fsp--;
+
+             current =iv_ruleCastedVariable; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleCastedVariable2128); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleCastedVariable"
+
+
+    // $ANTLR start "ruleCastedVariable"
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1000:1: ruleCastedVariable returns [EObject current=null] : ( ( (lv_var_0_0= RULE_IDFUNCVAR ) ) otherlv_1= ':' ( (lv_type_2_0= ruleCastedType ) ) ) ;
+    public final EObject ruleCastedVariable() throws RecognitionException {
+        EObject current = null;
+
+        Token lv_var_0_0=null;
+        Token otherlv_1=null;
+        Enumerator lv_type_2_0 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1003:28: ( ( ( (lv_var_0_0= RULE_IDFUNCVAR ) ) otherlv_1= ':' ( (lv_type_2_0= ruleCastedType ) ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1004:1: ( ( (lv_var_0_0= RULE_IDFUNCVAR ) ) otherlv_1= ':' ( (lv_type_2_0= ruleCastedType ) ) )
+            {
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1004:1: ( ( (lv_var_0_0= RULE_IDFUNCVAR ) ) otherlv_1= ':' ( (lv_type_2_0= ruleCastedType ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1004:2: ( (lv_var_0_0= RULE_IDFUNCVAR ) ) otherlv_1= ':' ( (lv_type_2_0= ruleCastedType ) )
+            {
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1004:2: ( (lv_var_0_0= RULE_IDFUNCVAR ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1005:1: (lv_var_0_0= RULE_IDFUNCVAR )
+            {
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1005:1: (lv_var_0_0= RULE_IDFUNCVAR )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1006:3: lv_var_0_0= RULE_IDFUNCVAR
+            {
+            lv_var_0_0=(Token)match(input,RULE_IDFUNCVAR,FOLLOW_RULE_IDFUNCVAR_in_ruleCastedVariable2170); 
+
+            			newLeafNode(lv_var_0_0, grammarAccess.getCastedVariableAccess().getVarIDFUNCVARTerminalRuleCall_0_0()); 
+            		
+
+            	        if (current==null) {
+            	            current = createModelElement(grammarAccess.getCastedVariableRule());
+            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"var",
+                    		lv_var_0_0, 
+                    		"IDFUNCVAR");
+            	    
+
+            }
+
+
+            }
+
+            otherlv_1=(Token)match(input,19,FOLLOW_19_in_ruleCastedVariable2187); 
+
+                	newLeafNode(otherlv_1, grammarAccess.getCastedVariableAccess().getColonKeyword_1());
+                
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1026:1: ( (lv_type_2_0= ruleCastedType ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1027:1: (lv_type_2_0= ruleCastedType )
+            {
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1027:1: (lv_type_2_0= ruleCastedType )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1028:3: lv_type_2_0= ruleCastedType
+            {
+             
+            	        newCompositeNode(grammarAccess.getCastedVariableAccess().getTypeCastedTypeEnumRuleCall_2_0()); 
+            	    
+            pushFollow(FOLLOW_ruleCastedType_in_ruleCastedVariable2208);
+            lv_type_2_0=ruleCastedType();
+
+            state._fsp--;
+
+
+            	        if (current==null) {
+            	            current = createModelElementForParent(grammarAccess.getCastedVariableRule());
+            	        }
+                   		set(
+                   			current, 
+                   			"type",
+                    		lv_type_2_0, 
+                    		"CastedType");
+            	        afterParserOrEnumRuleCall();
+            	    
+
+            }
+
+
+            }
+
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleCastedVariable"
 
 
     // $ANTLR start "entryRuleMyBool"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:951:1: entryRuleMyBool returns [EObject current=null] : iv_ruleMyBool= ruleMyBool EOF ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1052:1: entryRuleMyBool returns [EObject current=null] : iv_ruleMyBool= ruleMyBool EOF ;
     public final EObject entryRuleMyBool() throws RecognitionException {
         EObject current = null;
 
@@ -2306,17 +2581,17 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:952:2: (iv_ruleMyBool= ruleMyBool EOF )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:953:2: iv_ruleMyBool= ruleMyBool EOF
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1053:2: (iv_ruleMyBool= ruleMyBool EOF )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1054:2: iv_ruleMyBool= ruleMyBool EOF
             {
              newCompositeNode(grammarAccess.getMyBoolRule()); 
-            pushFollow(FOLLOW_ruleMyBool_in_entryRuleMyBool1999);
+            pushFollow(FOLLOW_ruleMyBool_in_entryRuleMyBool2244);
             iv_ruleMyBool=ruleMyBool();
 
             state._fsp--;
 
              current =iv_ruleMyBool; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMyBool2009); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMyBool2254); 
 
             }
 
@@ -2334,7 +2609,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMyBool"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:960:1: ruleMyBool returns [EObject current=null] : (this_PosBool_0= rulePosBool | this_NegBool_1= ruleNegBool ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1061:1: ruleMyBool returns [EObject current=null] : (this_PosBool_0= rulePosBool | this_NegBool_1= ruleNegBool ) ;
     public final EObject ruleMyBool() throws RecognitionException {
         EObject current = null;
 
@@ -2346,33 +2621,33 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:963:28: ( (this_PosBool_0= rulePosBool | this_NegBool_1= ruleNegBool ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:964:1: (this_PosBool_0= rulePosBool | this_NegBool_1= ruleNegBool )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1064:28: ( (this_PosBool_0= rulePosBool | this_NegBool_1= ruleNegBool ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1065:1: (this_PosBool_0= rulePosBool | this_NegBool_1= ruleNegBool )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:964:1: (this_PosBool_0= rulePosBool | this_NegBool_1= ruleNegBool )
-            int alt11=2;
-            int LA11_0 = input.LA(1);
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1065:1: (this_PosBool_0= rulePosBool | this_NegBool_1= ruleNegBool )
+            int alt12=2;
+            int LA12_0 = input.LA(1);
 
-            if ( ((LA11_0>=23 && LA11_0<=24)) ) {
-                alt11=1;
+            if ( ((LA12_0>=24 && LA12_0<=25)) ) {
+                alt12=1;
             }
-            else if ( (LA11_0==19) ) {
-                alt11=2;
+            else if ( (LA12_0==20) ) {
+                alt12=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 11, 0, input);
+                    new NoViableAltException("", 12, 0, input);
 
                 throw nvae;
             }
-            switch (alt11) {
+            switch (alt12) {
                 case 1 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:965:5: this_PosBool_0= rulePosBool
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1066:5: this_PosBool_0= rulePosBool
                     {
                      
                             newCompositeNode(grammarAccess.getMyBoolAccess().getPosBoolParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_rulePosBool_in_ruleMyBool2056);
+                    pushFollow(FOLLOW_rulePosBool_in_ruleMyBool2301);
                     this_PosBool_0=rulePosBool();
 
                     state._fsp--;
@@ -2385,12 +2660,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:975:5: this_NegBool_1= ruleNegBool
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1076:5: this_NegBool_1= ruleNegBool
                     {
                      
                             newCompositeNode(grammarAccess.getMyBoolAccess().getNegBoolParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleNegBool_in_ruleMyBool2083);
+                    pushFollow(FOLLOW_ruleNegBool_in_ruleMyBool2328);
                     this_NegBool_1=ruleNegBool();
 
                     state._fsp--;
@@ -2423,7 +2698,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePosBool"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:991:1: entryRulePosBool returns [EObject current=null] : iv_rulePosBool= rulePosBool EOF ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1092:1: entryRulePosBool returns [EObject current=null] : iv_rulePosBool= rulePosBool EOF ;
     public final EObject entryRulePosBool() throws RecognitionException {
         EObject current = null;
 
@@ -2431,17 +2706,17 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:992:2: (iv_rulePosBool= rulePosBool EOF )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:993:2: iv_rulePosBool= rulePosBool EOF
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1093:2: (iv_rulePosBool= rulePosBool EOF )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1094:2: iv_rulePosBool= rulePosBool EOF
             {
              newCompositeNode(grammarAccess.getPosBoolRule()); 
-            pushFollow(FOLLOW_rulePosBool_in_entryRulePosBool2118);
+            pushFollow(FOLLOW_rulePosBool_in_entryRulePosBool2363);
             iv_rulePosBool=rulePosBool();
 
             state._fsp--;
 
              current =iv_rulePosBool; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePosBool2128); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePosBool2373); 
 
             }
 
@@ -2459,7 +2734,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePosBool"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1000:1: rulePosBool returns [EObject current=null] : ( (lv_val_0_0= ruleBool ) ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1101:1: rulePosBool returns [EObject current=null] : ( (lv_val_0_0= ruleBool ) ) ;
     public final EObject rulePosBool() throws RecognitionException {
         EObject current = null;
 
@@ -2469,19 +2744,19 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1003:28: ( ( (lv_val_0_0= ruleBool ) ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1004:1: ( (lv_val_0_0= ruleBool ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1104:28: ( ( (lv_val_0_0= ruleBool ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1105:1: ( (lv_val_0_0= ruleBool ) )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1004:1: ( (lv_val_0_0= ruleBool ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1005:1: (lv_val_0_0= ruleBool )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1105:1: ( (lv_val_0_0= ruleBool ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1106:1: (lv_val_0_0= ruleBool )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1005:1: (lv_val_0_0= ruleBool )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1006:3: lv_val_0_0= ruleBool
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1106:1: (lv_val_0_0= ruleBool )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1107:3: lv_val_0_0= ruleBool
             {
              
             	        newCompositeNode(grammarAccess.getPosBoolAccess().getValBoolEnumRuleCall_0()); 
             	    
-            pushFollow(FOLLOW_ruleBool_in_rulePosBool2173);
+            pushFollow(FOLLOW_ruleBool_in_rulePosBool2418);
             lv_val_0_0=ruleBool();
 
             state._fsp--;
@@ -2521,7 +2796,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNegBool"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1030:1: entryRuleNegBool returns [EObject current=null] : iv_ruleNegBool= ruleNegBool EOF ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1131:1: entryRuleNegBool returns [EObject current=null] : iv_ruleNegBool= ruleNegBool EOF ;
     public final EObject entryRuleNegBool() throws RecognitionException {
         EObject current = null;
 
@@ -2529,17 +2804,17 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1031:2: (iv_ruleNegBool= ruleNegBool EOF )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1032:2: iv_ruleNegBool= ruleNegBool EOF
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1132:2: (iv_ruleNegBool= ruleNegBool EOF )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1133:2: iv_ruleNegBool= ruleNegBool EOF
             {
              newCompositeNode(grammarAccess.getNegBoolRule()); 
-            pushFollow(FOLLOW_ruleNegBool_in_entryRuleNegBool2208);
+            pushFollow(FOLLOW_ruleNegBool_in_entryRuleNegBool2453);
             iv_ruleNegBool=ruleNegBool();
 
             state._fsp--;
 
              current =iv_ruleNegBool; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNegBool2218); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNegBool2463); 
 
             }
 
@@ -2557,7 +2832,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNegBool"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1039:1: ruleNegBool returns [EObject current=null] : (otherlv_0= '!' ( ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) ) ) ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1140:1: ruleNegBool returns [EObject current=null] : (otherlv_0= '!' ( ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) ) ) ) ;
     public final EObject ruleNegBool() throws RecognitionException {
         EObject current = null;
 
@@ -2570,46 +2845,46 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1042:28: ( (otherlv_0= '!' ( ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) ) ) ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1043:1: (otherlv_0= '!' ( ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1143:28: ( (otherlv_0= '!' ( ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) ) ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1144:1: (otherlv_0= '!' ( ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) ) ) )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1043:1: (otherlv_0= '!' ( ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) ) ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1043:3: otherlv_0= '!' ( ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1144:1: (otherlv_0= '!' ( ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1144:3: otherlv_0= '!' ( ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) ) )
             {
-            otherlv_0=(Token)match(input,19,FOLLOW_19_in_ruleNegBool2255); 
+            otherlv_0=(Token)match(input,20,FOLLOW_20_in_ruleNegBool2500); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getNegBoolAccess().getExclamationMarkKeyword_0());
                 
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1047:1: ( ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1048:1: ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1148:1: ( ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1149:1: ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1048:1: ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1049:1: (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1149:1: ( (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1150:1: (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1049:1: (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression )
-            int alt12=2;
-            int LA12_0 = input.LA(1);
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1150:1: (lv_val_1_1= rulePosBool | lv_val_1_2= ruleBracketExpression )
+            int alt13=2;
+            int LA13_0 = input.LA(1);
 
-            if ( ((LA12_0>=23 && LA12_0<=24)) ) {
-                alt12=1;
+            if ( ((LA13_0>=24 && LA13_0<=25)) ) {
+                alt13=1;
             }
-            else if ( (LA12_0==14) ) {
-                alt12=2;
+            else if ( (LA13_0==14) ) {
+                alt13=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 12, 0, input);
+                    new NoViableAltException("", 13, 0, input);
 
                 throw nvae;
             }
-            switch (alt12) {
+            switch (alt13) {
                 case 1 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1050:3: lv_val_1_1= rulePosBool
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1151:3: lv_val_1_1= rulePosBool
                     {
                      
                     	        newCompositeNode(grammarAccess.getNegBoolAccess().getValPosBoolParserRuleCall_1_0_0()); 
                     	    
-                    pushFollow(FOLLOW_rulePosBool_in_ruleNegBool2278);
+                    pushFollow(FOLLOW_rulePosBool_in_ruleNegBool2523);
                     lv_val_1_1=rulePosBool();
 
                     state._fsp--;
@@ -2629,12 +2904,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1065:8: lv_val_1_2= ruleBracketExpression
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1166:8: lv_val_1_2= ruleBracketExpression
                     {
                      
                     	        newCompositeNode(grammarAccess.getNegBoolAccess().getValBracketExpressionParserRuleCall_1_0_1()); 
                     	    
-                    pushFollow(FOLLOW_ruleBracketExpression_in_ruleNegBool2297);
+                    pushFollow(FOLLOW_ruleBracketExpression_in_ruleNegBool2542);
                     lv_val_1_2=ruleBracketExpression();
 
                     state._fsp--;
@@ -2683,7 +2958,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMyString"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1091:1: entryRuleMyString returns [EObject current=null] : iv_ruleMyString= ruleMyString EOF ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1192:1: entryRuleMyString returns [EObject current=null] : iv_ruleMyString= ruleMyString EOF ;
     public final EObject entryRuleMyString() throws RecognitionException {
         EObject current = null;
 
@@ -2691,17 +2966,17 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1092:2: (iv_ruleMyString= ruleMyString EOF )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1093:2: iv_ruleMyString= ruleMyString EOF
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1193:2: (iv_ruleMyString= ruleMyString EOF )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1194:2: iv_ruleMyString= ruleMyString EOF
             {
              newCompositeNode(grammarAccess.getMyStringRule()); 
-            pushFollow(FOLLOW_ruleMyString_in_entryRuleMyString2336);
+            pushFollow(FOLLOW_ruleMyString_in_entryRuleMyString2581);
             iv_ruleMyString=ruleMyString();
 
             state._fsp--;
 
              current =iv_ruleMyString; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMyString2346); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMyString2591); 
 
             }
 
@@ -2719,7 +2994,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMyString"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1100:1: ruleMyString returns [EObject current=null] : ( (lv_val_0_0= RULE_STRING ) ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1201:1: ruleMyString returns [EObject current=null] : ( (lv_val_0_0= RULE_STRING ) ) ;
     public final EObject ruleMyString() throws RecognitionException {
         EObject current = null;
 
@@ -2728,16 +3003,16 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1103:28: ( ( (lv_val_0_0= RULE_STRING ) ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1104:1: ( (lv_val_0_0= RULE_STRING ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1204:28: ( ( (lv_val_0_0= RULE_STRING ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1205:1: ( (lv_val_0_0= RULE_STRING ) )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1104:1: ( (lv_val_0_0= RULE_STRING ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1105:1: (lv_val_0_0= RULE_STRING )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1205:1: ( (lv_val_0_0= RULE_STRING ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1206:1: (lv_val_0_0= RULE_STRING )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1105:1: (lv_val_0_0= RULE_STRING )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1106:3: lv_val_0_0= RULE_STRING
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1206:1: (lv_val_0_0= RULE_STRING )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1207:3: lv_val_0_0= RULE_STRING
             {
-            lv_val_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleMyString2387); 
+            lv_val_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleMyString2632); 
 
             			newLeafNode(lv_val_0_0, grammarAccess.getMyStringAccess().getValSTRINGTerminalRuleCall_0()); 
             		
@@ -2775,7 +3050,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIfControlFlow"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1130:1: entryRuleIfControlFlow returns [EObject current=null] : iv_ruleIfControlFlow= ruleIfControlFlow EOF ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1231:1: entryRuleIfControlFlow returns [EObject current=null] : iv_ruleIfControlFlow= ruleIfControlFlow EOF ;
     public final EObject entryRuleIfControlFlow() throws RecognitionException {
         EObject current = null;
 
@@ -2783,17 +3058,17 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1131:2: (iv_ruleIfControlFlow= ruleIfControlFlow EOF )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1132:2: iv_ruleIfControlFlow= ruleIfControlFlow EOF
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1232:2: (iv_ruleIfControlFlow= ruleIfControlFlow EOF )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1233:2: iv_ruleIfControlFlow= ruleIfControlFlow EOF
             {
              newCompositeNode(grammarAccess.getIfControlFlowRule()); 
-            pushFollow(FOLLOW_ruleIfControlFlow_in_entryRuleIfControlFlow2427);
+            pushFollow(FOLLOW_ruleIfControlFlow_in_entryRuleIfControlFlow2672);
             iv_ruleIfControlFlow=ruleIfControlFlow();
 
             state._fsp--;
 
              current =iv_ruleIfControlFlow; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleIfControlFlow2437); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleIfControlFlow2682); 
 
             }
 
@@ -2811,7 +3086,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIfControlFlow"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1139:1: ruleIfControlFlow returns [EObject current=null] : (otherlv_0= 'if' otherlv_1= '(' ( (lv_cond_2_0= ruleExpression ) ) otherlv_3= ',' ( (lv_iftrue_4_0= ruleExpression ) ) otherlv_5= ',' ( (lv_iffalse_6_0= ruleExpression ) ) otherlv_7= ')' ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1240:1: ruleIfControlFlow returns [EObject current=null] : (otherlv_0= 'if' otherlv_1= '(' ( (lv_cond_2_0= ruleExpression ) ) otherlv_3= ',' ( (lv_iftrue_4_0= ruleExpression ) ) otherlv_5= ',' ( (lv_iffalse_6_0= ruleExpression ) ) otherlv_7= ')' ) ;
     public final EObject ruleIfControlFlow() throws RecognitionException {
         EObject current = null;
 
@@ -2830,30 +3105,30 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1142:28: ( (otherlv_0= 'if' otherlv_1= '(' ( (lv_cond_2_0= ruleExpression ) ) otherlv_3= ',' ( (lv_iftrue_4_0= ruleExpression ) ) otherlv_5= ',' ( (lv_iffalse_6_0= ruleExpression ) ) otherlv_7= ')' ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1143:1: (otherlv_0= 'if' otherlv_1= '(' ( (lv_cond_2_0= ruleExpression ) ) otherlv_3= ',' ( (lv_iftrue_4_0= ruleExpression ) ) otherlv_5= ',' ( (lv_iffalse_6_0= ruleExpression ) ) otherlv_7= ')' )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1243:28: ( (otherlv_0= 'if' otherlv_1= '(' ( (lv_cond_2_0= ruleExpression ) ) otherlv_3= ',' ( (lv_iftrue_4_0= ruleExpression ) ) otherlv_5= ',' ( (lv_iffalse_6_0= ruleExpression ) ) otherlv_7= ')' ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1244:1: (otherlv_0= 'if' otherlv_1= '(' ( (lv_cond_2_0= ruleExpression ) ) otherlv_3= ',' ( (lv_iftrue_4_0= ruleExpression ) ) otherlv_5= ',' ( (lv_iffalse_6_0= ruleExpression ) ) otherlv_7= ')' )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1143:1: (otherlv_0= 'if' otherlv_1= '(' ( (lv_cond_2_0= ruleExpression ) ) otherlv_3= ',' ( (lv_iftrue_4_0= ruleExpression ) ) otherlv_5= ',' ( (lv_iffalse_6_0= ruleExpression ) ) otherlv_7= ')' )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1143:3: otherlv_0= 'if' otherlv_1= '(' ( (lv_cond_2_0= ruleExpression ) ) otherlv_3= ',' ( (lv_iftrue_4_0= ruleExpression ) ) otherlv_5= ',' ( (lv_iffalse_6_0= ruleExpression ) ) otherlv_7= ')'
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1244:1: (otherlv_0= 'if' otherlv_1= '(' ( (lv_cond_2_0= ruleExpression ) ) otherlv_3= ',' ( (lv_iftrue_4_0= ruleExpression ) ) otherlv_5= ',' ( (lv_iffalse_6_0= ruleExpression ) ) otherlv_7= ')' )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1244:3: otherlv_0= 'if' otherlv_1= '(' ( (lv_cond_2_0= ruleExpression ) ) otherlv_3= ',' ( (lv_iftrue_4_0= ruleExpression ) ) otherlv_5= ',' ( (lv_iffalse_6_0= ruleExpression ) ) otherlv_7= ')'
             {
-            otherlv_0=(Token)match(input,20,FOLLOW_20_in_ruleIfControlFlow2474); 
+            otherlv_0=(Token)match(input,21,FOLLOW_21_in_ruleIfControlFlow2719); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getIfControlFlowAccess().getIfKeyword_0());
                 
-            otherlv_1=(Token)match(input,14,FOLLOW_14_in_ruleIfControlFlow2486); 
+            otherlv_1=(Token)match(input,14,FOLLOW_14_in_ruleIfControlFlow2731); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getIfControlFlowAccess().getLeftParenthesisKeyword_1());
                 
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1151:1: ( (lv_cond_2_0= ruleExpression ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1152:1: (lv_cond_2_0= ruleExpression )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1252:1: ( (lv_cond_2_0= ruleExpression ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1253:1: (lv_cond_2_0= ruleExpression )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1152:1: (lv_cond_2_0= ruleExpression )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1153:3: lv_cond_2_0= ruleExpression
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1253:1: (lv_cond_2_0= ruleExpression )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1254:3: lv_cond_2_0= ruleExpression
             {
              
             	        newCompositeNode(grammarAccess.getIfControlFlowAccess().getCondExpressionParserRuleCall_2_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleIfControlFlow2507);
+            pushFollow(FOLLOW_ruleExpression_in_ruleIfControlFlow2752);
             lv_cond_2_0=ruleExpression();
 
             state._fsp--;
@@ -2875,20 +3150,20 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,15,FOLLOW_15_in_ruleIfControlFlow2519); 
+            otherlv_3=(Token)match(input,15,FOLLOW_15_in_ruleIfControlFlow2764); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getIfControlFlowAccess().getCommaKeyword_3());
                 
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1173:1: ( (lv_iftrue_4_0= ruleExpression ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1174:1: (lv_iftrue_4_0= ruleExpression )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1274:1: ( (lv_iftrue_4_0= ruleExpression ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1275:1: (lv_iftrue_4_0= ruleExpression )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1174:1: (lv_iftrue_4_0= ruleExpression )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1175:3: lv_iftrue_4_0= ruleExpression
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1275:1: (lv_iftrue_4_0= ruleExpression )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1276:3: lv_iftrue_4_0= ruleExpression
             {
              
             	        newCompositeNode(grammarAccess.getIfControlFlowAccess().getIftrueExpressionParserRuleCall_4_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleIfControlFlow2540);
+            pushFollow(FOLLOW_ruleExpression_in_ruleIfControlFlow2785);
             lv_iftrue_4_0=ruleExpression();
 
             state._fsp--;
@@ -2910,20 +3185,20 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,15,FOLLOW_15_in_ruleIfControlFlow2552); 
+            otherlv_5=(Token)match(input,15,FOLLOW_15_in_ruleIfControlFlow2797); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getIfControlFlowAccess().getCommaKeyword_5());
                 
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1195:1: ( (lv_iffalse_6_0= ruleExpression ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1196:1: (lv_iffalse_6_0= ruleExpression )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1296:1: ( (lv_iffalse_6_0= ruleExpression ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1297:1: (lv_iffalse_6_0= ruleExpression )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1196:1: (lv_iffalse_6_0= ruleExpression )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1197:3: lv_iffalse_6_0= ruleExpression
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1297:1: (lv_iffalse_6_0= ruleExpression )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1298:3: lv_iffalse_6_0= ruleExpression
             {
              
             	        newCompositeNode(grammarAccess.getIfControlFlowAccess().getIffalseExpressionParserRuleCall_6_0()); 
             	    
-            pushFollow(FOLLOW_ruleExpression_in_ruleIfControlFlow2573);
+            pushFollow(FOLLOW_ruleExpression_in_ruleIfControlFlow2818);
             lv_iffalse_6_0=ruleExpression();
 
             state._fsp--;
@@ -2945,7 +3220,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,16,FOLLOW_16_in_ruleIfControlFlow2585); 
+            otherlv_7=(Token)match(input,16,FOLLOW_16_in_ruleIfControlFlow2830); 
 
                 	newLeafNode(otherlv_7, grammarAccess.getIfControlFlowAccess().getRightParenthesisKeyword_7());
                 
@@ -2970,7 +3245,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFunctionCall"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1225:1: entryRuleFunctionCall returns [EObject current=null] : iv_ruleFunctionCall= ruleFunctionCall EOF ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1326:1: entryRuleFunctionCall returns [EObject current=null] : iv_ruleFunctionCall= ruleFunctionCall EOF ;
     public final EObject entryRuleFunctionCall() throws RecognitionException {
         EObject current = null;
 
@@ -2978,17 +3253,17 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1226:2: (iv_ruleFunctionCall= ruleFunctionCall EOF )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1227:2: iv_ruleFunctionCall= ruleFunctionCall EOF
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1327:2: (iv_ruleFunctionCall= ruleFunctionCall EOF )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1328:2: iv_ruleFunctionCall= ruleFunctionCall EOF
             {
              newCompositeNode(grammarAccess.getFunctionCallRule()); 
-            pushFollow(FOLLOW_ruleFunctionCall_in_entryRuleFunctionCall2621);
+            pushFollow(FOLLOW_ruleFunctionCall_in_entryRuleFunctionCall2866);
             iv_ruleFunctionCall=ruleFunctionCall();
 
             state._fsp--;
 
              current =iv_ruleFunctionCall; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionCall2631); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionCall2876); 
 
             }
 
@@ -3006,7 +3281,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFunctionCall"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1234:1: ruleFunctionCall returns [EObject current=null] : (this_PreDefFunctionCall_0= rulePreDefFunctionCall | this_UserDefFunctionCall_1= ruleUserDefFunctionCall ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1335:1: ruleFunctionCall returns [EObject current=null] : (this_PreDefFunctionCall_0= rulePreDefFunctionCall | this_UserDefFunctionCall_1= ruleUserDefFunctionCall ) ;
     public final EObject ruleFunctionCall() throws RecognitionException {
         EObject current = null;
 
@@ -3018,33 +3293,33 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1237:28: ( (this_PreDefFunctionCall_0= rulePreDefFunctionCall | this_UserDefFunctionCall_1= ruleUserDefFunctionCall ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1238:1: (this_PreDefFunctionCall_0= rulePreDefFunctionCall | this_UserDefFunctionCall_1= ruleUserDefFunctionCall )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1338:28: ( (this_PreDefFunctionCall_0= rulePreDefFunctionCall | this_UserDefFunctionCall_1= ruleUserDefFunctionCall ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1339:1: (this_PreDefFunctionCall_0= rulePreDefFunctionCall | this_UserDefFunctionCall_1= ruleUserDefFunctionCall )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1238:1: (this_PreDefFunctionCall_0= rulePreDefFunctionCall | this_UserDefFunctionCall_1= ruleUserDefFunctionCall )
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1339:1: (this_PreDefFunctionCall_0= rulePreDefFunctionCall | this_UserDefFunctionCall_1= ruleUserDefFunctionCall )
+            int alt14=2;
+            int LA14_0 = input.LA(1);
 
-            if ( ((LA13_0>=25 && LA13_0<=30)) ) {
-                alt13=1;
+            if ( ((LA14_0>=26 && LA14_0<=31)) ) {
+                alt14=1;
             }
-            else if ( (LA13_0==RULE_IDFUNCVAR) ) {
-                alt13=2;
+            else if ( (LA14_0==RULE_IDFUNCVAR) ) {
+                alt14=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 13, 0, input);
+                    new NoViableAltException("", 14, 0, input);
 
                 throw nvae;
             }
-            switch (alt13) {
+            switch (alt14) {
                 case 1 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1239:5: this_PreDefFunctionCall_0= rulePreDefFunctionCall
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1340:5: this_PreDefFunctionCall_0= rulePreDefFunctionCall
                     {
                      
                             newCompositeNode(grammarAccess.getFunctionCallAccess().getPreDefFunctionCallParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_rulePreDefFunctionCall_in_ruleFunctionCall2678);
+                    pushFollow(FOLLOW_rulePreDefFunctionCall_in_ruleFunctionCall2923);
                     this_PreDefFunctionCall_0=rulePreDefFunctionCall();
 
                     state._fsp--;
@@ -3057,12 +3332,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1249:5: this_UserDefFunctionCall_1= ruleUserDefFunctionCall
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1350:5: this_UserDefFunctionCall_1= ruleUserDefFunctionCall
                     {
                      
                             newCompositeNode(grammarAccess.getFunctionCallAccess().getUserDefFunctionCallParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleUserDefFunctionCall_in_ruleFunctionCall2705);
+                    pushFollow(FOLLOW_ruleUserDefFunctionCall_in_ruleFunctionCall2950);
                     this_UserDefFunctionCall_1=ruleUserDefFunctionCall();
 
                     state._fsp--;
@@ -3095,7 +3370,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePreDefFunctionCall"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1265:1: entryRulePreDefFunctionCall returns [EObject current=null] : iv_rulePreDefFunctionCall= rulePreDefFunctionCall EOF ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1366:1: entryRulePreDefFunctionCall returns [EObject current=null] : iv_rulePreDefFunctionCall= rulePreDefFunctionCall EOF ;
     public final EObject entryRulePreDefFunctionCall() throws RecognitionException {
         EObject current = null;
 
@@ -3103,17 +3378,17 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1266:2: (iv_rulePreDefFunctionCall= rulePreDefFunctionCall EOF )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1267:2: iv_rulePreDefFunctionCall= rulePreDefFunctionCall EOF
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1367:2: (iv_rulePreDefFunctionCall= rulePreDefFunctionCall EOF )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1368:2: iv_rulePreDefFunctionCall= rulePreDefFunctionCall EOF
             {
              newCompositeNode(grammarAccess.getPreDefFunctionCallRule()); 
-            pushFollow(FOLLOW_rulePreDefFunctionCall_in_entryRulePreDefFunctionCall2740);
+            pushFollow(FOLLOW_rulePreDefFunctionCall_in_entryRulePreDefFunctionCall2985);
             iv_rulePreDefFunctionCall=rulePreDefFunctionCall();
 
             state._fsp--;
 
              current =iv_rulePreDefFunctionCall; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePreDefFunctionCall2750); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePreDefFunctionCall2995); 
 
             }
 
@@ -3131,7 +3406,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePreDefFunctionCall"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1274:1: rulePreDefFunctionCall returns [EObject current=null] : ( ( (lv_function_0_0= rulePDFunction ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1375:1: rulePreDefFunctionCall returns [EObject current=null] : ( ( (lv_function_0_0= rulePDFunction ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' ) ;
     public final EObject rulePreDefFunctionCall() throws RecognitionException {
         EObject current = null;
 
@@ -3148,22 +3423,22 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1277:28: ( ( ( (lv_function_0_0= rulePDFunction ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1278:1: ( ( (lv_function_0_0= rulePDFunction ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1378:28: ( ( ( (lv_function_0_0= rulePDFunction ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1379:1: ( ( (lv_function_0_0= rulePDFunction ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1278:1: ( ( (lv_function_0_0= rulePDFunction ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1278:2: ( (lv_function_0_0= rulePDFunction ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')'
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1379:1: ( ( (lv_function_0_0= rulePDFunction ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1379:2: ( (lv_function_0_0= rulePDFunction ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')'
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1278:2: ( (lv_function_0_0= rulePDFunction ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1279:1: (lv_function_0_0= rulePDFunction )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1379:2: ( (lv_function_0_0= rulePDFunction ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1380:1: (lv_function_0_0= rulePDFunction )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1279:1: (lv_function_0_0= rulePDFunction )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1280:3: lv_function_0_0= rulePDFunction
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1380:1: (lv_function_0_0= rulePDFunction )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1381:3: lv_function_0_0= rulePDFunction
             {
              
             	        newCompositeNode(grammarAccess.getPreDefFunctionCallAccess().getFunctionPDFunctionEnumRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_rulePDFunction_in_rulePreDefFunctionCall2796);
+            pushFollow(FOLLOW_rulePDFunction_in_rulePreDefFunctionCall3041);
             lv_function_0_0=rulePDFunction();
 
             state._fsp--;
@@ -3185,31 +3460,31 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,14,FOLLOW_14_in_rulePreDefFunctionCall2808); 
+            otherlv_1=(Token)match(input,14,FOLLOW_14_in_rulePreDefFunctionCall3053); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getPreDefFunctionCallAccess().getLeftParenthesisKeyword_1());
                 
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1300:1: ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )?
-            int alt15=2;
-            int LA15_0 = input.LA(1);
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1401:1: ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )?
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            if ( ((LA15_0>=RULE_IDFUNCVAR && LA15_0<=RULE_STRING)||LA15_0==14||(LA15_0>=18 && LA15_0<=21)||(LA15_0>=23 && LA15_0<=30)) ) {
-                alt15=1;
+            if ( ((LA16_0>=RULE_IDFUNCVAR && LA16_0<=RULE_STRING)||LA16_0==14||LA16_0==18||(LA16_0>=20 && LA16_0<=22)||(LA16_0>=24 && LA16_0<=31)) ) {
+                alt16=1;
             }
-            switch (alt15) {
+            switch (alt16) {
                 case 1 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1300:2: ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )*
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1401:2: ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )*
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1300:2: ( (lv_args_2_0= ruleExpression ) )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1301:1: (lv_args_2_0= ruleExpression )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1401:2: ( (lv_args_2_0= ruleExpression ) )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1402:1: (lv_args_2_0= ruleExpression )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1301:1: (lv_args_2_0= ruleExpression )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1302:3: lv_args_2_0= ruleExpression
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1402:1: (lv_args_2_0= ruleExpression )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1403:3: lv_args_2_0= ruleExpression
                     {
                      
                     	        newCompositeNode(grammarAccess.getPreDefFunctionCallAccess().getArgsExpressionParserRuleCall_2_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleExpression_in_rulePreDefFunctionCall2830);
+                    pushFollow(FOLLOW_ruleExpression_in_rulePreDefFunctionCall3075);
                     lv_args_2_0=ruleExpression();
 
                     state._fsp--;
@@ -3231,35 +3506,35 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1318:2: (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )*
-                    loop14:
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1419:2: (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )*
+                    loop15:
                     do {
-                        int alt14=2;
-                        int LA14_0 = input.LA(1);
+                        int alt15=2;
+                        int LA15_0 = input.LA(1);
 
-                        if ( (LA14_0==15) ) {
-                            alt14=1;
+                        if ( (LA15_0==15) ) {
+                            alt15=1;
                         }
 
 
-                        switch (alt14) {
+                        switch (alt15) {
                     	case 1 :
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1318:4: otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) )
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1419:4: otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) )
                     	    {
-                    	    otherlv_3=(Token)match(input,15,FOLLOW_15_in_rulePreDefFunctionCall2843); 
+                    	    otherlv_3=(Token)match(input,15,FOLLOW_15_in_rulePreDefFunctionCall3088); 
 
                     	        	newLeafNode(otherlv_3, grammarAccess.getPreDefFunctionCallAccess().getCommaKeyword_2_1_0());
                     	        
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1322:1: ( (lv_args_4_0= ruleExpression ) )
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1323:1: (lv_args_4_0= ruleExpression )
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1423:1: ( (lv_args_4_0= ruleExpression ) )
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1424:1: (lv_args_4_0= ruleExpression )
                     	    {
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1323:1: (lv_args_4_0= ruleExpression )
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1324:3: lv_args_4_0= ruleExpression
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1424:1: (lv_args_4_0= ruleExpression )
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1425:3: lv_args_4_0= ruleExpression
                     	    {
                     	     
                     	    	        newCompositeNode(grammarAccess.getPreDefFunctionCallAccess().getArgsExpressionParserRuleCall_2_1_1_0()); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleExpression_in_rulePreDefFunctionCall2864);
+                    	    pushFollow(FOLLOW_ruleExpression_in_rulePreDefFunctionCall3109);
                     	    lv_args_4_0=ruleExpression();
 
                     	    state._fsp--;
@@ -3286,7 +3561,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop14;
+                    	    break loop15;
                         }
                     } while (true);
 
@@ -3296,7 +3571,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,16,FOLLOW_16_in_rulePreDefFunctionCall2880); 
+            otherlv_5=(Token)match(input,16,FOLLOW_16_in_rulePreDefFunctionCall3125); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getPreDefFunctionCallAccess().getRightParenthesisKeyword_3());
                 
@@ -3321,7 +3596,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUserDefFunctionCall"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1352:1: entryRuleUserDefFunctionCall returns [EObject current=null] : iv_ruleUserDefFunctionCall= ruleUserDefFunctionCall EOF ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1453:1: entryRuleUserDefFunctionCall returns [EObject current=null] : iv_ruleUserDefFunctionCall= ruleUserDefFunctionCall EOF ;
     public final EObject entryRuleUserDefFunctionCall() throws RecognitionException {
         EObject current = null;
 
@@ -3329,17 +3604,17 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1353:2: (iv_ruleUserDefFunctionCall= ruleUserDefFunctionCall EOF )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1354:2: iv_ruleUserDefFunctionCall= ruleUserDefFunctionCall EOF
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1454:2: (iv_ruleUserDefFunctionCall= ruleUserDefFunctionCall EOF )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1455:2: iv_ruleUserDefFunctionCall= ruleUserDefFunctionCall EOF
             {
              newCompositeNode(grammarAccess.getUserDefFunctionCallRule()); 
-            pushFollow(FOLLOW_ruleUserDefFunctionCall_in_entryRuleUserDefFunctionCall2916);
+            pushFollow(FOLLOW_ruleUserDefFunctionCall_in_entryRuleUserDefFunctionCall3161);
             iv_ruleUserDefFunctionCall=ruleUserDefFunctionCall();
 
             state._fsp--;
 
              current =iv_ruleUserDefFunctionCall; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleUserDefFunctionCall2926); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleUserDefFunctionCall3171); 
 
             }
 
@@ -3357,7 +3632,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUserDefFunctionCall"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1361:1: ruleUserDefFunctionCall returns [EObject current=null] : ( ( (otherlv_0= RULE_IDFUNCVAR ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1462:1: ruleUserDefFunctionCall returns [EObject current=null] : ( ( (otherlv_0= RULE_IDFUNCVAR ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' ) ;
     public final EObject ruleUserDefFunctionCall() throws RecognitionException {
         EObject current = null;
 
@@ -3373,24 +3648,24 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1364:28: ( ( ( (otherlv_0= RULE_IDFUNCVAR ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1365:1: ( ( (otherlv_0= RULE_IDFUNCVAR ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1465:28: ( ( ( (otherlv_0= RULE_IDFUNCVAR ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1466:1: ( ( (otherlv_0= RULE_IDFUNCVAR ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1365:1: ( ( (otherlv_0= RULE_IDFUNCVAR ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1365:2: ( (otherlv_0= RULE_IDFUNCVAR ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')'
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1466:1: ( ( (otherlv_0= RULE_IDFUNCVAR ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')' )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1466:2: ( (otherlv_0= RULE_IDFUNCVAR ) ) otherlv_1= '(' ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )? otherlv_5= ')'
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1365:2: ( (otherlv_0= RULE_IDFUNCVAR ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1366:1: (otherlv_0= RULE_IDFUNCVAR )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1466:2: ( (otherlv_0= RULE_IDFUNCVAR ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1467:1: (otherlv_0= RULE_IDFUNCVAR )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1366:1: (otherlv_0= RULE_IDFUNCVAR )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1367:3: otherlv_0= RULE_IDFUNCVAR
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1467:1: (otherlv_0= RULE_IDFUNCVAR )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1468:3: otherlv_0= RULE_IDFUNCVAR
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getUserDefFunctionCallRule());
             	        }
                     
-            otherlv_0=(Token)match(input,RULE_IDFUNCVAR,FOLLOW_RULE_IDFUNCVAR_in_ruleUserDefFunctionCall2971); 
+            otherlv_0=(Token)match(input,RULE_IDFUNCVAR,FOLLOW_RULE_IDFUNCVAR_in_ruleUserDefFunctionCall3216); 
 
             		newLeafNode(otherlv_0, grammarAccess.getUserDefFunctionCallAccess().getFunctionFunctionDefinitionCrossReference_0_0()); 
             	
@@ -3400,31 +3675,31 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,14,FOLLOW_14_in_ruleUserDefFunctionCall2983); 
+            otherlv_1=(Token)match(input,14,FOLLOW_14_in_ruleUserDefFunctionCall3228); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getUserDefFunctionCallAccess().getLeftParenthesisKeyword_1());
                 
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1382:1: ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )?
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1483:1: ( ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )* )?
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( ((LA17_0>=RULE_IDFUNCVAR && LA17_0<=RULE_STRING)||LA17_0==14||(LA17_0>=18 && LA17_0<=21)||(LA17_0>=23 && LA17_0<=30)) ) {
-                alt17=1;
+            if ( ((LA18_0>=RULE_IDFUNCVAR && LA18_0<=RULE_STRING)||LA18_0==14||LA18_0==18||(LA18_0>=20 && LA18_0<=22)||(LA18_0>=24 && LA18_0<=31)) ) {
+                alt18=1;
             }
-            switch (alt17) {
+            switch (alt18) {
                 case 1 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1382:2: ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )*
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1483:2: ( (lv_args_2_0= ruleExpression ) ) (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )*
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1382:2: ( (lv_args_2_0= ruleExpression ) )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1383:1: (lv_args_2_0= ruleExpression )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1483:2: ( (lv_args_2_0= ruleExpression ) )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1484:1: (lv_args_2_0= ruleExpression )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1383:1: (lv_args_2_0= ruleExpression )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1384:3: lv_args_2_0= ruleExpression
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1484:1: (lv_args_2_0= ruleExpression )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1485:3: lv_args_2_0= ruleExpression
                     {
                      
                     	        newCompositeNode(grammarAccess.getUserDefFunctionCallAccess().getArgsExpressionParserRuleCall_2_0_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleExpression_in_ruleUserDefFunctionCall3005);
+                    pushFollow(FOLLOW_ruleExpression_in_ruleUserDefFunctionCall3250);
                     lv_args_2_0=ruleExpression();
 
                     state._fsp--;
@@ -3446,35 +3721,35 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1400:2: (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )*
-                    loop16:
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1501:2: (otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) ) )*
+                    loop17:
                     do {
-                        int alt16=2;
-                        int LA16_0 = input.LA(1);
+                        int alt17=2;
+                        int LA17_0 = input.LA(1);
 
-                        if ( (LA16_0==15) ) {
-                            alt16=1;
+                        if ( (LA17_0==15) ) {
+                            alt17=1;
                         }
 
 
-                        switch (alt16) {
+                        switch (alt17) {
                     	case 1 :
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1400:4: otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) )
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1501:4: otherlv_3= ',' ( (lv_args_4_0= ruleExpression ) )
                     	    {
-                    	    otherlv_3=(Token)match(input,15,FOLLOW_15_in_ruleUserDefFunctionCall3018); 
+                    	    otherlv_3=(Token)match(input,15,FOLLOW_15_in_ruleUserDefFunctionCall3263); 
 
                     	        	newLeafNode(otherlv_3, grammarAccess.getUserDefFunctionCallAccess().getCommaKeyword_2_1_0());
                     	        
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1404:1: ( (lv_args_4_0= ruleExpression ) )
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1405:1: (lv_args_4_0= ruleExpression )
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1505:1: ( (lv_args_4_0= ruleExpression ) )
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1506:1: (lv_args_4_0= ruleExpression )
                     	    {
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1405:1: (lv_args_4_0= ruleExpression )
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1406:3: lv_args_4_0= ruleExpression
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1506:1: (lv_args_4_0= ruleExpression )
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1507:3: lv_args_4_0= ruleExpression
                     	    {
                     	     
                     	    	        newCompositeNode(grammarAccess.getUserDefFunctionCallAccess().getArgsExpressionParserRuleCall_2_1_1_0()); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleExpression_in_ruleUserDefFunctionCall3039);
+                    	    pushFollow(FOLLOW_ruleExpression_in_ruleUserDefFunctionCall3284);
                     	    lv_args_4_0=ruleExpression();
 
                     	    state._fsp--;
@@ -3501,7 +3776,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop16;
+                    	    break loop17;
                         }
                     } while (true);
 
@@ -3511,7 +3786,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,16,FOLLOW_16_in_ruleUserDefFunctionCall3055); 
+            otherlv_5=(Token)match(input,16,FOLLOW_16_in_ruleUserDefFunctionCall3300); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getUserDefFunctionCallAccess().getRightParenthesisKeyword_3());
                 
@@ -3536,7 +3811,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleList"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1434:1: entryRuleList returns [EObject current=null] : iv_ruleList= ruleList EOF ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1535:1: entryRuleList returns [EObject current=null] : iv_ruleList= ruleList EOF ;
     public final EObject entryRuleList() throws RecognitionException {
         EObject current = null;
 
@@ -3544,17 +3819,17 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1435:2: (iv_ruleList= ruleList EOF )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1436:2: iv_ruleList= ruleList EOF
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1536:2: (iv_ruleList= ruleList EOF )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1537:2: iv_ruleList= ruleList EOF
             {
              newCompositeNode(grammarAccess.getListRule()); 
-            pushFollow(FOLLOW_ruleList_in_entryRuleList3091);
+            pushFollow(FOLLOW_ruleList_in_entryRuleList3336);
             iv_ruleList=ruleList();
 
             state._fsp--;
 
              current =iv_ruleList; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleList3101); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleList3346); 
 
             }
 
@@ -3572,7 +3847,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleList"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1443:1: ruleList returns [EObject current=null] : (otherlv_0= '[' () ( ( (lv_elems_2_0= ruleListElem ) )+ (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )* )? otherlv_5= ']' ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1544:1: ruleList returns [EObject current=null] : (otherlv_0= '[' () ( ( (lv_elems_2_0= ruleListElem ) )+ (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )* )? otherlv_5= ']' ) ;
     public final EObject ruleList() throws RecognitionException {
         EObject current = null;
 
@@ -3587,18 +3862,18 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1446:28: ( (otherlv_0= '[' () ( ( (lv_elems_2_0= ruleListElem ) )+ (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )* )? otherlv_5= ']' ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1447:1: (otherlv_0= '[' () ( ( (lv_elems_2_0= ruleListElem ) )+ (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )* )? otherlv_5= ']' )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1547:28: ( (otherlv_0= '[' () ( ( (lv_elems_2_0= ruleListElem ) )+ (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )* )? otherlv_5= ']' ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1548:1: (otherlv_0= '[' () ( ( (lv_elems_2_0= ruleListElem ) )+ (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )* )? otherlv_5= ']' )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1447:1: (otherlv_0= '[' () ( ( (lv_elems_2_0= ruleListElem ) )+ (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )* )? otherlv_5= ']' )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1447:3: otherlv_0= '[' () ( ( (lv_elems_2_0= ruleListElem ) )+ (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )* )? otherlv_5= ']'
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1548:1: (otherlv_0= '[' () ( ( (lv_elems_2_0= ruleListElem ) )+ (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )* )? otherlv_5= ']' )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1548:3: otherlv_0= '[' () ( ( (lv_elems_2_0= ruleListElem ) )+ (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )* )? otherlv_5= ']'
             {
-            otherlv_0=(Token)match(input,21,FOLLOW_21_in_ruleList3138); 
+            otherlv_0=(Token)match(input,22,FOLLOW_22_in_ruleList3383); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getListAccess().getLeftSquareBracketKeyword_0());
                 
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1451:1: ()
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1452:5: 
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1552:1: ()
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1553:5: 
             {
 
                     current = forceCreateModelElement(
@@ -3608,40 +3883,40 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1457:2: ( ( (lv_elems_2_0= ruleListElem ) )+ (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )* )?
-            int alt20=2;
-            int LA20_0 = input.LA(1);
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1558:2: ( ( (lv_elems_2_0= ruleListElem ) )+ (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )* )?
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            if ( ((LA20_0>=RULE_IDFUNCVAR && LA20_0<=RULE_INT)||LA20_0==18) ) {
-                alt20=1;
+            if ( ((LA21_0>=RULE_IDFUNCVAR && LA21_0<=RULE_INT)||LA21_0==18) ) {
+                alt21=1;
             }
-            switch (alt20) {
+            switch (alt21) {
                 case 1 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1457:3: ( (lv_elems_2_0= ruleListElem ) )+ (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )*
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1558:3: ( (lv_elems_2_0= ruleListElem ) )+ (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )*
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1457:3: ( (lv_elems_2_0= ruleListElem ) )+
-                    int cnt18=0;
-                    loop18:
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1558:3: ( (lv_elems_2_0= ruleListElem ) )+
+                    int cnt19=0;
+                    loop19:
                     do {
-                        int alt18=2;
-                        int LA18_0 = input.LA(1);
+                        int alt19=2;
+                        int LA19_0 = input.LA(1);
 
-                        if ( ((LA18_0>=RULE_IDFUNCVAR && LA18_0<=RULE_INT)||LA18_0==18) ) {
-                            alt18=1;
+                        if ( ((LA19_0>=RULE_IDFUNCVAR && LA19_0<=RULE_INT)||LA19_0==18) ) {
+                            alt19=1;
                         }
 
 
-                        switch (alt18) {
+                        switch (alt19) {
                     	case 1 :
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1458:1: (lv_elems_2_0= ruleListElem )
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1559:1: (lv_elems_2_0= ruleListElem )
                     	    {
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1458:1: (lv_elems_2_0= ruleListElem )
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1459:3: lv_elems_2_0= ruleListElem
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1559:1: (lv_elems_2_0= ruleListElem )
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1560:3: lv_elems_2_0= ruleListElem
                     	    {
                     	     
                     	    	        newCompositeNode(grammarAccess.getListAccess().getElemsListElemParserRuleCall_2_0_0()); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleListElem_in_ruleList3169);
+                    	    pushFollow(FOLLOW_ruleListElem_in_ruleList3414);
                     	    lv_elems_2_0=ruleListElem();
 
                     	    state._fsp--;
@@ -3665,43 +3940,43 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    if ( cnt18 >= 1 ) break loop18;
+                    	    if ( cnt19 >= 1 ) break loop19;
                                 EarlyExitException eee =
-                                    new EarlyExitException(18, input);
+                                    new EarlyExitException(19, input);
                                 throw eee;
                         }
-                        cnt18++;
+                        cnt19++;
                     } while (true);
 
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1475:3: (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )*
-                    loop19:
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1576:3: (otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) ) )*
+                    loop20:
                     do {
-                        int alt19=2;
-                        int LA19_0 = input.LA(1);
+                        int alt20=2;
+                        int LA20_0 = input.LA(1);
 
-                        if ( (LA19_0==15) ) {
-                            alt19=1;
+                        if ( (LA20_0==15) ) {
+                            alt20=1;
                         }
 
 
-                        switch (alt19) {
+                        switch (alt20) {
                     	case 1 :
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1475:5: otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) )
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1576:5: otherlv_3= ',' ( (lv_elems_4_0= ruleListElem ) )
                     	    {
-                    	    otherlv_3=(Token)match(input,15,FOLLOW_15_in_ruleList3183); 
+                    	    otherlv_3=(Token)match(input,15,FOLLOW_15_in_ruleList3428); 
 
                     	        	newLeafNode(otherlv_3, grammarAccess.getListAccess().getCommaKeyword_2_1_0());
                     	        
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1479:1: ( (lv_elems_4_0= ruleListElem ) )
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1480:1: (lv_elems_4_0= ruleListElem )
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1580:1: ( (lv_elems_4_0= ruleListElem ) )
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1581:1: (lv_elems_4_0= ruleListElem )
                     	    {
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1480:1: (lv_elems_4_0= ruleListElem )
-                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1481:3: lv_elems_4_0= ruleListElem
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1581:1: (lv_elems_4_0= ruleListElem )
+                    	    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1582:3: lv_elems_4_0= ruleListElem
                     	    {
                     	     
                     	    	        newCompositeNode(grammarAccess.getListAccess().getElemsListElemParserRuleCall_2_1_1_0()); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleListElem_in_ruleList3204);
+                    	    pushFollow(FOLLOW_ruleListElem_in_ruleList3449);
                     	    lv_elems_4_0=ruleListElem();
 
                     	    state._fsp--;
@@ -3728,7 +4003,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop19;
+                    	    break loop20;
                         }
                     } while (true);
 
@@ -3738,7 +4013,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,22,FOLLOW_22_in_ruleList3220); 
+            otherlv_5=(Token)match(input,23,FOLLOW_23_in_ruleList3465); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getListAccess().getRightSquareBracketKeyword_3());
                 
@@ -3763,7 +4038,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleListElem"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1509:1: entryRuleListElem returns [EObject current=null] : iv_ruleListElem= ruleListElem EOF ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1610:1: entryRuleListElem returns [EObject current=null] : iv_ruleListElem= ruleListElem EOF ;
     public final EObject entryRuleListElem() throws RecognitionException {
         EObject current = null;
 
@@ -3771,17 +4046,17 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1510:2: (iv_ruleListElem= ruleListElem EOF )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1511:2: iv_ruleListElem= ruleListElem EOF
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1611:2: (iv_ruleListElem= ruleListElem EOF )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1612:2: iv_ruleListElem= ruleListElem EOF
             {
              newCompositeNode(grammarAccess.getListElemRule()); 
-            pushFollow(FOLLOW_ruleListElem_in_entryRuleListElem3256);
+            pushFollow(FOLLOW_ruleListElem_in_entryRuleListElem3501);
             iv_ruleListElem=ruleListElem();
 
             state._fsp--;
 
              current =iv_ruleListElem; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleListElem3266); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleListElem3511); 
 
             }
 
@@ -3799,7 +4074,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleListElem"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1518:1: ruleListElem returns [EObject current=null] : (this_MyInteger_0= ruleMyInteger | this_MyVariable_1= ruleMyVariable ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1619:1: ruleListElem returns [EObject current=null] : (this_MyInteger_0= ruleMyInteger | this_MyVariable_1= ruleMyVariable ) ;
     public final EObject ruleListElem() throws RecognitionException {
         EObject current = null;
 
@@ -3811,33 +4086,33 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1521:28: ( (this_MyInteger_0= ruleMyInteger | this_MyVariable_1= ruleMyVariable ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1522:1: (this_MyInteger_0= ruleMyInteger | this_MyVariable_1= ruleMyVariable )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1622:28: ( (this_MyInteger_0= ruleMyInteger | this_MyVariable_1= ruleMyVariable ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1623:1: (this_MyInteger_0= ruleMyInteger | this_MyVariable_1= ruleMyVariable )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1522:1: (this_MyInteger_0= ruleMyInteger | this_MyVariable_1= ruleMyVariable )
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1623:1: (this_MyInteger_0= ruleMyInteger | this_MyVariable_1= ruleMyVariable )
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA21_0==RULE_INT||LA21_0==18) ) {
-                alt21=1;
+            if ( (LA22_0==RULE_INT||LA22_0==18) ) {
+                alt22=1;
             }
-            else if ( (LA21_0==RULE_IDFUNCVAR) ) {
-                alt21=2;
+            else if ( (LA22_0==RULE_IDFUNCVAR) ) {
+                alt22=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 21, 0, input);
+                    new NoViableAltException("", 22, 0, input);
 
                 throw nvae;
             }
-            switch (alt21) {
+            switch (alt22) {
                 case 1 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1523:5: this_MyInteger_0= ruleMyInteger
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1624:5: this_MyInteger_0= ruleMyInteger
                     {
                      
                             newCompositeNode(grammarAccess.getListElemAccess().getMyIntegerParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleMyInteger_in_ruleListElem3313);
+                    pushFollow(FOLLOW_ruleMyInteger_in_ruleListElem3558);
                     this_MyInteger_0=ruleMyInteger();
 
                     state._fsp--;
@@ -3850,12 +4125,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1533:5: this_MyVariable_1= ruleMyVariable
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1634:5: this_MyVariable_1= ruleMyVariable
                     {
                      
                             newCompositeNode(grammarAccess.getListElemAccess().getMyVariableParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleMyVariable_in_ruleListElem3340);
+                    pushFollow(FOLLOW_ruleMyVariable_in_ruleListElem3585);
                     this_MyVariable_1=ruleMyVariable();
 
                     state._fsp--;
@@ -3888,7 +4163,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBool"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1549:1: ruleBool returns [Enumerator current=null] : ( (enumLiteral_0= 'true' ) | (enumLiteral_1= 'false' ) ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1650:1: ruleBool returns [Enumerator current=null] : ( (enumLiteral_0= 'true' ) | (enumLiteral_1= 'false' ) ) ;
     public final Enumerator ruleBool() throws RecognitionException {
         Enumerator current = null;
 
@@ -3897,33 +4172,33 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1551:28: ( ( (enumLiteral_0= 'true' ) | (enumLiteral_1= 'false' ) ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1552:1: ( (enumLiteral_0= 'true' ) | (enumLiteral_1= 'false' ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1652:28: ( ( (enumLiteral_0= 'true' ) | (enumLiteral_1= 'false' ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1653:1: ( (enumLiteral_0= 'true' ) | (enumLiteral_1= 'false' ) )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1552:1: ( (enumLiteral_0= 'true' ) | (enumLiteral_1= 'false' ) )
-            int alt22=2;
-            int LA22_0 = input.LA(1);
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1653:1: ( (enumLiteral_0= 'true' ) | (enumLiteral_1= 'false' ) )
+            int alt23=2;
+            int LA23_0 = input.LA(1);
 
-            if ( (LA22_0==23) ) {
-                alt22=1;
+            if ( (LA23_0==24) ) {
+                alt23=1;
             }
-            else if ( (LA22_0==24) ) {
-                alt22=2;
+            else if ( (LA23_0==25) ) {
+                alt23=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 22, 0, input);
+                    new NoViableAltException("", 23, 0, input);
 
                 throw nvae;
             }
-            switch (alt22) {
+            switch (alt23) {
                 case 1 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1552:2: (enumLiteral_0= 'true' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1653:2: (enumLiteral_0= 'true' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1552:2: (enumLiteral_0= 'true' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1552:4: enumLiteral_0= 'true'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1653:2: (enumLiteral_0= 'true' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1653:4: enumLiteral_0= 'true'
                     {
-                    enumLiteral_0=(Token)match(input,23,FOLLOW_23_in_ruleBool3389); 
+                    enumLiteral_0=(Token)match(input,24,FOLLOW_24_in_ruleBool3634); 
 
                             current = grammarAccess.getBoolAccess().getTrueEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getBoolAccess().getTrueEnumLiteralDeclaration_0()); 
@@ -3935,12 +4210,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1558:6: (enumLiteral_1= 'false' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1659:6: (enumLiteral_1= 'false' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1558:6: (enumLiteral_1= 'false' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1558:8: enumLiteral_1= 'false'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1659:6: (enumLiteral_1= 'false' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1659:8: enumLiteral_1= 'false'
                     {
-                    enumLiteral_1=(Token)match(input,24,FOLLOW_24_in_ruleBool3406); 
+                    enumLiteral_1=(Token)match(input,25,FOLLOW_25_in_ruleBool3651); 
 
                             current = grammarAccess.getBoolAccess().getFalseEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getBoolAccess().getFalseEnumLiteralDeclaration_1()); 
@@ -3972,7 +4247,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePDFunction"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1568:1: rulePDFunction returns [Enumerator current=null] : ( (enumLiteral_0= 'length' ) | (enumLiteral_1= 'cons' ) | (enumLiteral_2= 'car' ) | (enumLiteral_3= 'cdr' ) | (enumLiteral_4= 'isEmpty' ) | (enumLiteral_5= 'show' ) ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1669:1: rulePDFunction returns [Enumerator current=null] : ( (enumLiteral_0= 'length' ) | (enumLiteral_1= 'cons' ) | (enumLiteral_2= 'car' ) | (enumLiteral_3= 'cdr' ) | (enumLiteral_4= 'isEmpty' ) | (enumLiteral_5= 'show' ) ) ;
     public final Enumerator rulePDFunction() throws RecognitionException {
         Enumerator current = null;
 
@@ -3985,57 +4260,57 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1570:28: ( ( (enumLiteral_0= 'length' ) | (enumLiteral_1= 'cons' ) | (enumLiteral_2= 'car' ) | (enumLiteral_3= 'cdr' ) | (enumLiteral_4= 'isEmpty' ) | (enumLiteral_5= 'show' ) ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1571:1: ( (enumLiteral_0= 'length' ) | (enumLiteral_1= 'cons' ) | (enumLiteral_2= 'car' ) | (enumLiteral_3= 'cdr' ) | (enumLiteral_4= 'isEmpty' ) | (enumLiteral_5= 'show' ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1671:28: ( ( (enumLiteral_0= 'length' ) | (enumLiteral_1= 'cons' ) | (enumLiteral_2= 'car' ) | (enumLiteral_3= 'cdr' ) | (enumLiteral_4= 'isEmpty' ) | (enumLiteral_5= 'show' ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1672:1: ( (enumLiteral_0= 'length' ) | (enumLiteral_1= 'cons' ) | (enumLiteral_2= 'car' ) | (enumLiteral_3= 'cdr' ) | (enumLiteral_4= 'isEmpty' ) | (enumLiteral_5= 'show' ) )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1571:1: ( (enumLiteral_0= 'length' ) | (enumLiteral_1= 'cons' ) | (enumLiteral_2= 'car' ) | (enumLiteral_3= 'cdr' ) | (enumLiteral_4= 'isEmpty' ) | (enumLiteral_5= 'show' ) )
-            int alt23=6;
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1672:1: ( (enumLiteral_0= 'length' ) | (enumLiteral_1= 'cons' ) | (enumLiteral_2= 'car' ) | (enumLiteral_3= 'cdr' ) | (enumLiteral_4= 'isEmpty' ) | (enumLiteral_5= 'show' ) )
+            int alt24=6;
             switch ( input.LA(1) ) {
-            case 25:
-                {
-                alt23=1;
-                }
-                break;
             case 26:
                 {
-                alt23=2;
+                alt24=1;
                 }
                 break;
             case 27:
                 {
-                alt23=3;
+                alt24=2;
                 }
                 break;
             case 28:
                 {
-                alt23=4;
+                alt24=3;
                 }
                 break;
             case 29:
                 {
-                alt23=5;
+                alt24=4;
                 }
                 break;
             case 30:
                 {
-                alt23=6;
+                alt24=5;
+                }
+                break;
+            case 31:
+                {
+                alt24=6;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 23, 0, input);
+                    new NoViableAltException("", 24, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt23) {
+            switch (alt24) {
                 case 1 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1571:2: (enumLiteral_0= 'length' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1672:2: (enumLiteral_0= 'length' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1571:2: (enumLiteral_0= 'length' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1571:4: enumLiteral_0= 'length'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1672:2: (enumLiteral_0= 'length' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1672:4: enumLiteral_0= 'length'
                     {
-                    enumLiteral_0=(Token)match(input,25,FOLLOW_25_in_rulePDFunction3451); 
+                    enumLiteral_0=(Token)match(input,26,FOLLOW_26_in_rulePDFunction3696); 
 
                             current = grammarAccess.getPDFunctionAccess().getLengthEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getPDFunctionAccess().getLengthEnumLiteralDeclaration_0()); 
@@ -4047,12 +4322,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1577:6: (enumLiteral_1= 'cons' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1678:6: (enumLiteral_1= 'cons' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1577:6: (enumLiteral_1= 'cons' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1577:8: enumLiteral_1= 'cons'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1678:6: (enumLiteral_1= 'cons' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1678:8: enumLiteral_1= 'cons'
                     {
-                    enumLiteral_1=(Token)match(input,26,FOLLOW_26_in_rulePDFunction3468); 
+                    enumLiteral_1=(Token)match(input,27,FOLLOW_27_in_rulePDFunction3713); 
 
                             current = grammarAccess.getPDFunctionAccess().getConsEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getPDFunctionAccess().getConsEnumLiteralDeclaration_1()); 
@@ -4064,12 +4339,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1583:6: (enumLiteral_2= 'car' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1684:6: (enumLiteral_2= 'car' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1583:6: (enumLiteral_2= 'car' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1583:8: enumLiteral_2= 'car'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1684:6: (enumLiteral_2= 'car' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1684:8: enumLiteral_2= 'car'
                     {
-                    enumLiteral_2=(Token)match(input,27,FOLLOW_27_in_rulePDFunction3485); 
+                    enumLiteral_2=(Token)match(input,28,FOLLOW_28_in_rulePDFunction3730); 
 
                             current = grammarAccess.getPDFunctionAccess().getCarEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getPDFunctionAccess().getCarEnumLiteralDeclaration_2()); 
@@ -4081,12 +4356,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1589:6: (enumLiteral_3= 'cdr' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1690:6: (enumLiteral_3= 'cdr' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1589:6: (enumLiteral_3= 'cdr' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1589:8: enumLiteral_3= 'cdr'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1690:6: (enumLiteral_3= 'cdr' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1690:8: enumLiteral_3= 'cdr'
                     {
-                    enumLiteral_3=(Token)match(input,28,FOLLOW_28_in_rulePDFunction3502); 
+                    enumLiteral_3=(Token)match(input,29,FOLLOW_29_in_rulePDFunction3747); 
 
                             current = grammarAccess.getPDFunctionAccess().getCdrEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_3, grammarAccess.getPDFunctionAccess().getCdrEnumLiteralDeclaration_3()); 
@@ -4098,12 +4373,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1595:6: (enumLiteral_4= 'isEmpty' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1696:6: (enumLiteral_4= 'isEmpty' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1595:6: (enumLiteral_4= 'isEmpty' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1595:8: enumLiteral_4= 'isEmpty'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1696:6: (enumLiteral_4= 'isEmpty' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1696:8: enumLiteral_4= 'isEmpty'
                     {
-                    enumLiteral_4=(Token)match(input,29,FOLLOW_29_in_rulePDFunction3519); 
+                    enumLiteral_4=(Token)match(input,30,FOLLOW_30_in_rulePDFunction3764); 
 
                             current = grammarAccess.getPDFunctionAccess().getIsEmptyEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_4, grammarAccess.getPDFunctionAccess().getIsEmptyEnumLiteralDeclaration_4()); 
@@ -4115,12 +4390,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1601:6: (enumLiteral_5= 'show' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1702:6: (enumLiteral_5= 'show' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1601:6: (enumLiteral_5= 'show' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1601:8: enumLiteral_5= 'show'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1702:6: (enumLiteral_5= 'show' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1702:8: enumLiteral_5= 'show'
                     {
-                    enumLiteral_5=(Token)match(input,30,FOLLOW_30_in_rulePDFunction3536); 
+                    enumLiteral_5=(Token)match(input,31,FOLLOW_31_in_rulePDFunction3781); 
 
                             current = grammarAccess.getPDFunctionAccess().getShowEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_5, grammarAccess.getPDFunctionAccess().getShowEnumLiteralDeclaration_5()); 
@@ -4152,7 +4427,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFirstLevelOp"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1611:1: ruleFirstLevelOp returns [Enumerator current=null] : ( (enumLiteral_0= '&' ) | (enumLiteral_1= '|' ) ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1712:1: ruleFirstLevelOp returns [Enumerator current=null] : ( (enumLiteral_0= '&' ) | (enumLiteral_1= '|' ) ) ;
     public final Enumerator ruleFirstLevelOp() throws RecognitionException {
         Enumerator current = null;
 
@@ -4161,33 +4436,33 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1613:28: ( ( (enumLiteral_0= '&' ) | (enumLiteral_1= '|' ) ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1614:1: ( (enumLiteral_0= '&' ) | (enumLiteral_1= '|' ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1714:28: ( ( (enumLiteral_0= '&' ) | (enumLiteral_1= '|' ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1715:1: ( (enumLiteral_0= '&' ) | (enumLiteral_1= '|' ) )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1614:1: ( (enumLiteral_0= '&' ) | (enumLiteral_1= '|' ) )
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1715:1: ( (enumLiteral_0= '&' ) | (enumLiteral_1= '|' ) )
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA24_0==31) ) {
-                alt24=1;
+            if ( (LA25_0==32) ) {
+                alt25=1;
             }
-            else if ( (LA24_0==32) ) {
-                alt24=2;
+            else if ( (LA25_0==33) ) {
+                alt25=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 24, 0, input);
+                    new NoViableAltException("", 25, 0, input);
 
                 throw nvae;
             }
-            switch (alt24) {
+            switch (alt25) {
                 case 1 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1614:2: (enumLiteral_0= '&' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1715:2: (enumLiteral_0= '&' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1614:2: (enumLiteral_0= '&' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1614:4: enumLiteral_0= '&'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1715:2: (enumLiteral_0= '&' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1715:4: enumLiteral_0= '&'
                     {
-                    enumLiteral_0=(Token)match(input,31,FOLLOW_31_in_ruleFirstLevelOp3581); 
+                    enumLiteral_0=(Token)match(input,32,FOLLOW_32_in_ruleFirstLevelOp3826); 
 
                             current = grammarAccess.getFirstLevelOpAccess().getAndEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getFirstLevelOpAccess().getAndEnumLiteralDeclaration_0()); 
@@ -4199,12 +4474,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1620:6: (enumLiteral_1= '|' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1721:6: (enumLiteral_1= '|' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1620:6: (enumLiteral_1= '|' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1620:8: enumLiteral_1= '|'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1721:6: (enumLiteral_1= '|' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1721:8: enumLiteral_1= '|'
                     {
-                    enumLiteral_1=(Token)match(input,32,FOLLOW_32_in_ruleFirstLevelOp3598); 
+                    enumLiteral_1=(Token)match(input,33,FOLLOW_33_in_ruleFirstLevelOp3843); 
 
                             current = grammarAccess.getFirstLevelOpAccess().getOrEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getFirstLevelOpAccess().getOrEnumLiteralDeclaration_1()); 
@@ -4236,7 +4511,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSecondLevelOp"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1630:1: ruleSecondLevelOp returns [Enumerator current=null] : ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '==' ) ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1731:1: ruleSecondLevelOp returns [Enumerator current=null] : ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '==' ) ) ;
     public final Enumerator ruleSecondLevelOp() throws RecognitionException {
         Enumerator current = null;
 
@@ -4246,42 +4521,42 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1632:28: ( ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '==' ) ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1633:1: ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '==' ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1733:28: ( ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '==' ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1734:1: ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '==' ) )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1633:1: ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '==' ) )
-            int alt25=3;
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1734:1: ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '==' ) )
+            int alt26=3;
             switch ( input.LA(1) ) {
-            case 33:
-                {
-                alt25=1;
-                }
-                break;
             case 34:
                 {
-                alt25=2;
+                alt26=1;
                 }
                 break;
             case 35:
                 {
-                alt25=3;
+                alt26=2;
+                }
+                break;
+            case 36:
+                {
+                alt26=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 25, 0, input);
+                    new NoViableAltException("", 26, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt25) {
+            switch (alt26) {
                 case 1 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1633:2: (enumLiteral_0= '>' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1734:2: (enumLiteral_0= '>' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1633:2: (enumLiteral_0= '>' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1633:4: enumLiteral_0= '>'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1734:2: (enumLiteral_0= '>' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1734:4: enumLiteral_0= '>'
                     {
-                    enumLiteral_0=(Token)match(input,33,FOLLOW_33_in_ruleSecondLevelOp3643); 
+                    enumLiteral_0=(Token)match(input,34,FOLLOW_34_in_ruleSecondLevelOp3888); 
 
                             current = grammarAccess.getSecondLevelOpAccess().getGtEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getSecondLevelOpAccess().getGtEnumLiteralDeclaration_0()); 
@@ -4293,12 +4568,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1639:6: (enumLiteral_1= '<' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1740:6: (enumLiteral_1= '<' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1639:6: (enumLiteral_1= '<' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1639:8: enumLiteral_1= '<'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1740:6: (enumLiteral_1= '<' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1740:8: enumLiteral_1= '<'
                     {
-                    enumLiteral_1=(Token)match(input,34,FOLLOW_34_in_ruleSecondLevelOp3660); 
+                    enumLiteral_1=(Token)match(input,35,FOLLOW_35_in_ruleSecondLevelOp3905); 
 
                             current = grammarAccess.getSecondLevelOpAccess().getLtEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getSecondLevelOpAccess().getLtEnumLiteralDeclaration_1()); 
@@ -4310,12 +4585,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1645:6: (enumLiteral_2= '==' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1746:6: (enumLiteral_2= '==' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1645:6: (enumLiteral_2= '==' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1645:8: enumLiteral_2= '=='
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1746:6: (enumLiteral_2= '==' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1746:8: enumLiteral_2= '=='
                     {
-                    enumLiteral_2=(Token)match(input,35,FOLLOW_35_in_ruleSecondLevelOp3677); 
+                    enumLiteral_2=(Token)match(input,36,FOLLOW_36_in_ruleSecondLevelOp3922); 
 
                             current = grammarAccess.getSecondLevelOpAccess().getEqEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getSecondLevelOpAccess().getEqEnumLiteralDeclaration_2()); 
@@ -4347,7 +4622,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleThirdLevelOp"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1655:1: ruleThirdLevelOp returns [Enumerator current=null] : ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1756:1: ruleThirdLevelOp returns [Enumerator current=null] : ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) ) ;
     public final Enumerator ruleThirdLevelOp() throws RecognitionException {
         Enumerator current = null;
 
@@ -4357,42 +4632,42 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1657:28: ( ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1658:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1758:28: ( ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1759:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1658:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) )
-            int alt26=3;
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1759:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '++' ) )
+            int alt27=3;
             switch ( input.LA(1) ) {
-            case 36:
+            case 37:
                 {
-                alt26=1;
+                alt27=1;
                 }
                 break;
             case 18:
                 {
-                alt26=2;
+                alt27=2;
                 }
                 break;
-            case 37:
+            case 38:
                 {
-                alt26=3;
+                alt27=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 26, 0, input);
+                    new NoViableAltException("", 27, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt26) {
+            switch (alt27) {
                 case 1 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1658:2: (enumLiteral_0= '+' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1759:2: (enumLiteral_0= '+' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1658:2: (enumLiteral_0= '+' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1658:4: enumLiteral_0= '+'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1759:2: (enumLiteral_0= '+' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1759:4: enumLiteral_0= '+'
                     {
-                    enumLiteral_0=(Token)match(input,36,FOLLOW_36_in_ruleThirdLevelOp3722); 
+                    enumLiteral_0=(Token)match(input,37,FOLLOW_37_in_ruleThirdLevelOp3967); 
 
                             current = grammarAccess.getThirdLevelOpAccess().getPlusEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getThirdLevelOpAccess().getPlusEnumLiteralDeclaration_0()); 
@@ -4404,12 +4679,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1664:6: (enumLiteral_1= '-' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1765:6: (enumLiteral_1= '-' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1664:6: (enumLiteral_1= '-' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1664:8: enumLiteral_1= '-'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1765:6: (enumLiteral_1= '-' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1765:8: enumLiteral_1= '-'
                     {
-                    enumLiteral_1=(Token)match(input,18,FOLLOW_18_in_ruleThirdLevelOp3739); 
+                    enumLiteral_1=(Token)match(input,18,FOLLOW_18_in_ruleThirdLevelOp3984); 
 
                             current = grammarAccess.getThirdLevelOpAccess().getMinusEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getThirdLevelOpAccess().getMinusEnumLiteralDeclaration_1()); 
@@ -4421,12 +4696,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1670:6: (enumLiteral_2= '++' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1771:6: (enumLiteral_2= '++' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1670:6: (enumLiteral_2= '++' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1670:8: enumLiteral_2= '++'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1771:6: (enumLiteral_2= '++' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1771:8: enumLiteral_2= '++'
                     {
-                    enumLiteral_2=(Token)match(input,37,FOLLOW_37_in_ruleThirdLevelOp3756); 
+                    enumLiteral_2=(Token)match(input,38,FOLLOW_38_in_ruleThirdLevelOp4001); 
 
                             current = grammarAccess.getThirdLevelOpAccess().getConcatEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getThirdLevelOpAccess().getConcatEnumLiteralDeclaration_2()); 
@@ -4458,7 +4733,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFourthLevelOp"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1680:1: ruleFourthLevelOp returns [Enumerator current=null] : ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1781:1: ruleFourthLevelOp returns [Enumerator current=null] : ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) ) ;
     public final Enumerator ruleFourthLevelOp() throws RecognitionException {
         Enumerator current = null;
 
@@ -4467,33 +4742,33 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1682:28: ( ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1683:1: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1783:28: ( ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1784:1: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1683:1: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) )
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1784:1: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) )
+            int alt28=2;
+            int LA28_0 = input.LA(1);
 
-            if ( (LA27_0==38) ) {
-                alt27=1;
+            if ( (LA28_0==39) ) {
+                alt28=1;
             }
-            else if ( (LA27_0==39) ) {
-                alt27=2;
+            else if ( (LA28_0==40) ) {
+                alt28=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 27, 0, input);
+                    new NoViableAltException("", 28, 0, input);
 
                 throw nvae;
             }
-            switch (alt27) {
+            switch (alt28) {
                 case 1 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1683:2: (enumLiteral_0= '*' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1784:2: (enumLiteral_0= '*' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1683:2: (enumLiteral_0= '*' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1683:4: enumLiteral_0= '*'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1784:2: (enumLiteral_0= '*' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1784:4: enumLiteral_0= '*'
                     {
-                    enumLiteral_0=(Token)match(input,38,FOLLOW_38_in_ruleFourthLevelOp3801); 
+                    enumLiteral_0=(Token)match(input,39,FOLLOW_39_in_ruleFourthLevelOp4046); 
 
                             current = grammarAccess.getFourthLevelOpAccess().getMultEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getFourthLevelOpAccess().getMultEnumLiteralDeclaration_0()); 
@@ -4505,12 +4780,12 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1689:6: (enumLiteral_1= '/' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1790:6: (enumLiteral_1= '/' )
                     {
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1689:6: (enumLiteral_1= '/' )
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1689:8: enumLiteral_1= '/'
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1790:6: (enumLiteral_1= '/' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1790:8: enumLiteral_1= '/'
                     {
-                    enumLiteral_1=(Token)match(input,39,FOLLOW_39_in_ruleFourthLevelOp3818); 
+                    enumLiteral_1=(Token)match(input,40,FOLLOW_40_in_ruleFourthLevelOp4063); 
 
                             current = grammarAccess.getFourthLevelOpAccess().getDivEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getFourthLevelOpAccess().getDivEnumLiteralDeclaration_1()); 
@@ -4540,6 +4815,117 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
     }
     // $ANTLR end "ruleFourthLevelOp"
 
+
+    // $ANTLR start "ruleCastedType"
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1800:1: ruleCastedType returns [Enumerator current=null] : ( (enumLiteral_0= 'int' ) | (enumLiteral_1= 'bool' ) | (enumLiteral_2= 'string' ) ) ;
+    public final Enumerator ruleCastedType() throws RecognitionException {
+        Enumerator current = null;
+
+        Token enumLiteral_0=null;
+        Token enumLiteral_1=null;
+        Token enumLiteral_2=null;
+
+         enterRule(); 
+        try {
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1802:28: ( ( (enumLiteral_0= 'int' ) | (enumLiteral_1= 'bool' ) | (enumLiteral_2= 'string' ) ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1803:1: ( (enumLiteral_0= 'int' ) | (enumLiteral_1= 'bool' ) | (enumLiteral_2= 'string' ) )
+            {
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1803:1: ( (enumLiteral_0= 'int' ) | (enumLiteral_1= 'bool' ) | (enumLiteral_2= 'string' ) )
+            int alt29=3;
+            switch ( input.LA(1) ) {
+            case 41:
+                {
+                alt29=1;
+                }
+                break;
+            case 42:
+                {
+                alt29=2;
+                }
+                break;
+            case 43:
+                {
+                alt29=3;
+                }
+                break;
+            default:
+                NoViableAltException nvae =
+                    new NoViableAltException("", 29, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt29) {
+                case 1 :
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1803:2: (enumLiteral_0= 'int' )
+                    {
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1803:2: (enumLiteral_0= 'int' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1803:4: enumLiteral_0= 'int'
+                    {
+                    enumLiteral_0=(Token)match(input,41,FOLLOW_41_in_ruleCastedType4108); 
+
+                            current = grammarAccess.getCastedTypeAccess().getIntEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+                            newLeafNode(enumLiteral_0, grammarAccess.getCastedTypeAccess().getIntEnumLiteralDeclaration_0()); 
+                        
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1809:6: (enumLiteral_1= 'bool' )
+                    {
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1809:6: (enumLiteral_1= 'bool' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1809:8: enumLiteral_1= 'bool'
+                    {
+                    enumLiteral_1=(Token)match(input,42,FOLLOW_42_in_ruleCastedType4125); 
+
+                            current = grammarAccess.getCastedTypeAccess().getBoolEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+                            newLeafNode(enumLiteral_1, grammarAccess.getCastedTypeAccess().getBoolEnumLiteralDeclaration_1()); 
+                        
+
+                    }
+
+
+                    }
+                    break;
+                case 3 :
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1815:6: (enumLiteral_2= 'string' )
+                    {
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1815:6: (enumLiteral_2= 'string' )
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1815:8: enumLiteral_2= 'string'
+                    {
+                    enumLiteral_2=(Token)match(input,43,FOLLOW_43_in_ruleCastedType4142); 
+
+                            current = grammarAccess.getCastedTypeAccess().getStringEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+                            newLeafNode(enumLiteral_2, grammarAccess.getCastedTypeAccess().getStringEnumLiteralDeclaration_2()); 
+                        
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleCastedType"
+
     // Delegated rules
 
 
@@ -4551,18 +4937,18 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
     static final String DFA8_minS =
         "\1\4\3\uffff\1\15\5\uffff";
     static final String DFA8_maxS =
-        "\1\36\3\uffff\1\47\5\uffff";
+        "\1\37\3\uffff\1\50\5\uffff";
     static final String DFA8_acceptS =
         "\1\uffff\1\1\1\2\1\3\1\uffff\1\5\1\6\1\7\1\10\1\4";
     static final String DFA8_specialS =
         "\12\uffff}>";
     static final String[] DFA8_transitionS = {
-            "\1\4\1\1\1\2\7\uffff\1\10\3\uffff\1\1\1\3\1\7\1\5\1\uffff\2"+
-            "\3\6\6",
+            "\1\4\1\1\1\2\7\uffff\1\10\3\uffff\1\1\1\uffff\1\3\1\7\1\5\1"+
+            "\uffff\2\3\6\6",
             "",
             "",
             "",
-            "\1\11\1\6\2\11\1\uffff\1\11\14\uffff\11\11",
+            "\1\11\1\6\2\11\1\uffff\2\11\14\uffff\11\11",
             "",
             "",
             "",
@@ -4611,7 +4997,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleEvaluation_in_ruleLista158 = new BitSet(new long[]{0x0000000000001012L});
     public static final BitSet FOLLOW_ruleEvaluation_in_entryRuleEvaluation195 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleEvaluation205 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_ruleEvaluation242 = new BitSet(new long[]{0x000000007FBC4070L});
+    public static final BitSet FOLLOW_12_in_ruleEvaluation242 = new BitSet(new long[]{0x00000000FF744070L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleEvaluation263 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_13_in_ruleEvaluation275 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFunctionDefinition_in_entryRuleFunctionDefinition311 = new BitSet(new long[]{0x0000000000000000L});
@@ -4622,7 +5008,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_15_in_ruleFunctionDefinition416 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_IDFUNCVAR_in_ruleFunctionDefinition433 = new BitSet(new long[]{0x0000000000018000L});
     public static final BitSet FOLLOW_16_in_ruleFunctionDefinition454 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleFunctionDefinition466 = new BitSet(new long[]{0x000000007FBC4070L});
+    public static final BitSet FOLLOW_17_in_ruleFunctionDefinition466 = new BitSet(new long[]{0x00000000FF744070L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleFunctionDefinition487 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_13_in_ruleFunctionDefinition499 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_entryRuleExpression535 = new BitSet(new long[]{0x0000000000000000L});
@@ -4630,23 +5016,23 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleFirstLevelExp_in_ruleExpression590 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFirstLevelExp_in_entryRuleFirstLevelExp625 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFirstLevelExp635 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSecondLevelExp_in_ruleFirstLevelExp681 = new BitSet(new long[]{0x0000000180000002L});
-    public static final BitSet FOLLOW_ruleFirstLevelOp_in_ruleFirstLevelExp703 = new BitSet(new long[]{0x000000007FBC4070L});
+    public static final BitSet FOLLOW_ruleSecondLevelExp_in_ruleFirstLevelExp681 = new BitSet(new long[]{0x0000000300000002L});
+    public static final BitSet FOLLOW_ruleFirstLevelOp_in_ruleFirstLevelExp703 = new BitSet(new long[]{0x00000000FF744070L});
     public static final BitSet FOLLOW_ruleFirstLevelExp_in_ruleFirstLevelExp724 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSecondLevelExp_in_entryRuleSecondLevelExp762 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleSecondLevelExp772 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleThirdLevelExp_in_ruleSecondLevelExp818 = new BitSet(new long[]{0x0000000E00000002L});
-    public static final BitSet FOLLOW_ruleSecondLevelOp_in_ruleSecondLevelExp840 = new BitSet(new long[]{0x000000007FBC4070L});
+    public static final BitSet FOLLOW_ruleThirdLevelExp_in_ruleSecondLevelExp818 = new BitSet(new long[]{0x0000001C00000002L});
+    public static final BitSet FOLLOW_ruleSecondLevelOp_in_ruleSecondLevelExp840 = new BitSet(new long[]{0x00000000FF744070L});
     public static final BitSet FOLLOW_ruleSecondLevelExp_in_ruleSecondLevelExp861 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleThirdLevelExp_in_entryRuleThirdLevelExp899 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleThirdLevelExp909 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFourthLevelExp_in_ruleThirdLevelExp955 = new BitSet(new long[]{0x0000003000040002L});
-    public static final BitSet FOLLOW_ruleThirdLevelOp_in_ruleThirdLevelExp977 = new BitSet(new long[]{0x000000007FBC4070L});
+    public static final BitSet FOLLOW_ruleFourthLevelExp_in_ruleThirdLevelExp955 = new BitSet(new long[]{0x0000006000040002L});
+    public static final BitSet FOLLOW_ruleThirdLevelOp_in_ruleThirdLevelExp977 = new BitSet(new long[]{0x00000000FF744070L});
     public static final BitSet FOLLOW_ruleThirdLevelExp_in_ruleThirdLevelExp998 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFourthLevelExp_in_entryRuleFourthLevelExp1036 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFourthLevelExp1046 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTerm_in_ruleFourthLevelExp1092 = new BitSet(new long[]{0x000000C000000002L});
-    public static final BitSet FOLLOW_ruleFourthLevelOp_in_ruleFourthLevelExp1114 = new BitSet(new long[]{0x000000007FBC4070L});
+    public static final BitSet FOLLOW_ruleTerm_in_ruleFourthLevelExp1092 = new BitSet(new long[]{0x0000018000000002L});
+    public static final BitSet FOLLOW_ruleFourthLevelOp_in_ruleFourthLevelExp1114 = new BitSet(new long[]{0x00000000FF744070L});
     public static final BitSet FOLLOW_ruleFourthLevelExp_in_ruleFourthLevelExp1135 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleTerm_in_entryRuleTerm1173 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleTerm1183 = new BitSet(new long[]{0x0000000000000002L});
@@ -4660,7 +5046,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleBracketExpression_in_ruleTerm1419 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBracketExpression_in_entryRuleBracketExpression1454 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleBracketExpression1464 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_ruleBracketExpression1501 = new BitSet(new long[]{0x000000007FBC4070L});
+    public static final BitSet FOLLOW_14_in_ruleBracketExpression1501 = new BitSet(new long[]{0x00000000FF744070L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleBracketExpression1522 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_16_in_ruleBracketExpression1534 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMyInteger_in_entryRuleMyInteger1570 = new BitSet(new long[]{0x0000000000000000L});
@@ -4672,85 +5058,97 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_RULE_INT_in_rulePosInteger1740 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleNegInteger_in_entryRuleNegInteger1780 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleNegInteger1790 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_ruleNegInteger1827 = new BitSet(new long[]{0x000000007FBC4070L});
+    public static final BitSet FOLLOW_18_in_ruleNegInteger1827 = new BitSet(new long[]{0x00000000FF744070L});
     public static final BitSet FOLLOW_rulePosInteger_in_ruleNegInteger1850 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBracketExpression_in_ruleNegInteger1869 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMyVariable_in_entryRuleMyVariable1908 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleMyVariable1918 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDFUNCVAR_in_ruleMyVariable1959 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMyBool_in_entryRuleMyBool1999 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMyBool2009 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePosBool_in_ruleMyBool2056 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNegBool_in_ruleMyBool2083 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePosBool_in_entryRulePosBool2118 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePosBool2128 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBool_in_rulePosBool2173 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNegBool_in_entryRuleNegBool2208 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNegBool2218 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_ruleNegBool2255 = new BitSet(new long[]{0x000000007FBC4070L});
-    public static final BitSet FOLLOW_rulePosBool_in_ruleNegBool2278 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBracketExpression_in_ruleNegBool2297 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMyString_in_entryRuleMyString2336 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMyString2346 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleMyString2387 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIfControlFlow_in_entryRuleIfControlFlow2427 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleIfControlFlow2437 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_ruleIfControlFlow2474 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleIfControlFlow2486 = new BitSet(new long[]{0x000000007FBC4070L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleIfControlFlow2507 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_ruleIfControlFlow2519 = new BitSet(new long[]{0x000000007FBC4070L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleIfControlFlow2540 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_ruleIfControlFlow2552 = new BitSet(new long[]{0x000000007FBC4070L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleIfControlFlow2573 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleIfControlFlow2585 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionCall_in_entryRuleFunctionCall2621 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionCall2631 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePreDefFunctionCall_in_ruleFunctionCall2678 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUserDefFunctionCall_in_ruleFunctionCall2705 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePreDefFunctionCall_in_entryRulePreDefFunctionCall2740 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePreDefFunctionCall2750 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePDFunction_in_rulePreDefFunctionCall2796 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_rulePreDefFunctionCall2808 = new BitSet(new long[]{0x000000007FBD4070L});
-    public static final BitSet FOLLOW_ruleExpression_in_rulePreDefFunctionCall2830 = new BitSet(new long[]{0x0000000000018000L});
-    public static final BitSet FOLLOW_15_in_rulePreDefFunctionCall2843 = new BitSet(new long[]{0x000000007FBC4070L});
-    public static final BitSet FOLLOW_ruleExpression_in_rulePreDefFunctionCall2864 = new BitSet(new long[]{0x0000000000018000L});
-    public static final BitSet FOLLOW_16_in_rulePreDefFunctionCall2880 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUserDefFunctionCall_in_entryRuleUserDefFunctionCall2916 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleUserDefFunctionCall2926 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDFUNCVAR_in_ruleUserDefFunctionCall2971 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleUserDefFunctionCall2983 = new BitSet(new long[]{0x000000007FBD4070L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleUserDefFunctionCall3005 = new BitSet(new long[]{0x0000000000018000L});
-    public static final BitSet FOLLOW_15_in_ruleUserDefFunctionCall3018 = new BitSet(new long[]{0x000000007FBC4070L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleUserDefFunctionCall3039 = new BitSet(new long[]{0x0000000000018000L});
-    public static final BitSet FOLLOW_16_in_ruleUserDefFunctionCall3055 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleList_in_entryRuleList3091 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleList3101 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_ruleList3138 = new BitSet(new long[]{0x0000000000440030L});
-    public static final BitSet FOLLOW_ruleListElem_in_ruleList3169 = new BitSet(new long[]{0x0000000000448030L});
-    public static final BitSet FOLLOW_15_in_ruleList3183 = new BitSet(new long[]{0x0000000000040030L});
-    public static final BitSet FOLLOW_ruleListElem_in_ruleList3204 = new BitSet(new long[]{0x0000000000408000L});
-    public static final BitSet FOLLOW_22_in_ruleList3220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleListElem_in_entryRuleListElem3256 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleListElem3266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMyInteger_in_ruleListElem3313 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMyVariable_in_ruleListElem3340 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_ruleBool3389 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_ruleBool3406 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_rulePDFunction3451 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_rulePDFunction3468 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_rulePDFunction3485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_rulePDFunction3502 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rulePDFunction3519 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_rulePDFunction3536 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_ruleFirstLevelOp3581 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_ruleFirstLevelOp3598 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_ruleSecondLevelOp3643 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleSecondLevelOp3660 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_ruleSecondLevelOp3677 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_ruleThirdLevelOp3722 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_ruleThirdLevelOp3739 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_ruleThirdLevelOp3756 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_ruleFourthLevelOp3801 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_ruleFourthLevelOp3818 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariable_in_ruleMyVariable1965 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCastedVariable_in_ruleMyVariable1992 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariable_in_entryRuleVariable2027 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleVariable2037 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDFUNCVAR_in_ruleVariable2078 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCastedVariable_in_entryRuleCastedVariable2118 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleCastedVariable2128 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDFUNCVAR_in_ruleCastedVariable2170 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_ruleCastedVariable2187 = new BitSet(new long[]{0x00000E0000000000L});
+    public static final BitSet FOLLOW_ruleCastedType_in_ruleCastedVariable2208 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMyBool_in_entryRuleMyBool2244 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMyBool2254 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePosBool_in_ruleMyBool2301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNegBool_in_ruleMyBool2328 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePosBool_in_entryRulePosBool2363 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePosBool2373 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBool_in_rulePosBool2418 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNegBool_in_entryRuleNegBool2453 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNegBool2463 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_ruleNegBool2500 = new BitSet(new long[]{0x00000000FF744070L});
+    public static final BitSet FOLLOW_rulePosBool_in_ruleNegBool2523 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBracketExpression_in_ruleNegBool2542 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMyString_in_entryRuleMyString2581 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMyString2591 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleMyString2632 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIfControlFlow_in_entryRuleIfControlFlow2672 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleIfControlFlow2682 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_ruleIfControlFlow2719 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_ruleIfControlFlow2731 = new BitSet(new long[]{0x00000000FF744070L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleIfControlFlow2752 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleIfControlFlow2764 = new BitSet(new long[]{0x00000000FF744070L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleIfControlFlow2785 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleIfControlFlow2797 = new BitSet(new long[]{0x00000000FF744070L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleIfControlFlow2818 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleIfControlFlow2830 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionCall_in_entryRuleFunctionCall2866 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionCall2876 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePreDefFunctionCall_in_ruleFunctionCall2923 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUserDefFunctionCall_in_ruleFunctionCall2950 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePreDefFunctionCall_in_entryRulePreDefFunctionCall2985 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePreDefFunctionCall2995 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePDFunction_in_rulePreDefFunctionCall3041 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_rulePreDefFunctionCall3053 = new BitSet(new long[]{0x00000000FF754070L});
+    public static final BitSet FOLLOW_ruleExpression_in_rulePreDefFunctionCall3075 = new BitSet(new long[]{0x0000000000018000L});
+    public static final BitSet FOLLOW_15_in_rulePreDefFunctionCall3088 = new BitSet(new long[]{0x00000000FF744070L});
+    public static final BitSet FOLLOW_ruleExpression_in_rulePreDefFunctionCall3109 = new BitSet(new long[]{0x0000000000018000L});
+    public static final BitSet FOLLOW_16_in_rulePreDefFunctionCall3125 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUserDefFunctionCall_in_entryRuleUserDefFunctionCall3161 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleUserDefFunctionCall3171 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDFUNCVAR_in_ruleUserDefFunctionCall3216 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_ruleUserDefFunctionCall3228 = new BitSet(new long[]{0x00000000FF754070L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleUserDefFunctionCall3250 = new BitSet(new long[]{0x0000000000018000L});
+    public static final BitSet FOLLOW_15_in_ruleUserDefFunctionCall3263 = new BitSet(new long[]{0x00000000FF744070L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleUserDefFunctionCall3284 = new BitSet(new long[]{0x0000000000018000L});
+    public static final BitSet FOLLOW_16_in_ruleUserDefFunctionCall3300 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleList_in_entryRuleList3336 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleList3346 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_ruleList3383 = new BitSet(new long[]{0x0000000000840030L});
+    public static final BitSet FOLLOW_ruleListElem_in_ruleList3414 = new BitSet(new long[]{0x0000000000848030L});
+    public static final BitSet FOLLOW_15_in_ruleList3428 = new BitSet(new long[]{0x0000000000040030L});
+    public static final BitSet FOLLOW_ruleListElem_in_ruleList3449 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_23_in_ruleList3465 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleListElem_in_entryRuleListElem3501 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleListElem3511 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMyInteger_in_ruleListElem3558 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMyVariable_in_ruleListElem3585 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_ruleBool3634 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_ruleBool3651 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_rulePDFunction3696 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_rulePDFunction3713 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_rulePDFunction3730 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rulePDFunction3747 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_rulePDFunction3764 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_rulePDFunction3781 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_ruleFirstLevelOp3826 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_ruleFirstLevelOp3843 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleSecondLevelOp3888 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_ruleSecondLevelOp3905 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_ruleSecondLevelOp3922 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_ruleThirdLevelOp3967 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_ruleThirdLevelOp3984 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_ruleThirdLevelOp4001 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_ruleFourthLevelOp4046 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_ruleFourthLevelOp4063 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_ruleCastedType4108 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_ruleCastedType4125 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_ruleCastedType4142 = new BitSet(new long[]{0x0000000000000002L});
 
 }

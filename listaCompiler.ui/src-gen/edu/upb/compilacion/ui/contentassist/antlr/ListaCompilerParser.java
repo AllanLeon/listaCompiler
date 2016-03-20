@@ -41,6 +41,7 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTermAccess().getAlternatives(), "rule__Term__Alternatives");
 					put(grammarAccess.getMyIntegerAccess().getAlternatives(), "rule__MyInteger__Alternatives");
 					put(grammarAccess.getNegIntegerAccess().getValAlternatives_1_0(), "rule__NegInteger__ValAlternatives_1_0");
+					put(grammarAccess.getMyVariableAccess().getAlternatives(), "rule__MyVariable__Alternatives");
 					put(grammarAccess.getMyBoolAccess().getAlternatives(), "rule__MyBool__Alternatives");
 					put(grammarAccess.getNegBoolAccess().getValAlternatives_1_0(), "rule__NegBool__ValAlternatives_1_0");
 					put(grammarAccess.getFunctionCallAccess().getAlternatives(), "rule__FunctionCall__Alternatives");
@@ -51,6 +52,7 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSecondLevelOpAccess().getAlternatives(), "rule__SecondLevelOp__Alternatives");
 					put(grammarAccess.getThirdLevelOpAccess().getAlternatives(), "rule__ThirdLevelOp__Alternatives");
 					put(grammarAccess.getFourthLevelOpAccess().getAlternatives(), "rule__FourthLevelOp__Alternatives");
+					put(grammarAccess.getCastedTypeAccess().getAlternatives(), "rule__CastedType__Alternatives");
 					put(grammarAccess.getEvaluationAccess().getGroup(), "rule__Evaluation__Group__0");
 					put(grammarAccess.getFunctionDefinitionAccess().getGroup(), "rule__FunctionDefinition__Group__0");
 					put(grammarAccess.getFunctionDefinitionAccess().getGroup_2(), "rule__FunctionDefinition__Group_2__0");
@@ -65,6 +67,7 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFourthLevelExpAccess().getGroup_1(), "rule__FourthLevelExp__Group_1__0");
 					put(grammarAccess.getBracketExpressionAccess().getGroup(), "rule__BracketExpression__Group__0");
 					put(grammarAccess.getNegIntegerAccess().getGroup(), "rule__NegInteger__Group__0");
+					put(grammarAccess.getCastedVariableAccess().getGroup(), "rule__CastedVariable__Group__0");
 					put(grammarAccess.getNegBoolAccess().getGroup(), "rule__NegBool__Group__0");
 					put(grammarAccess.getIfControlFlowAccess().getGroup(), "rule__IfControlFlow__Group__0");
 					put(grammarAccess.getPreDefFunctionCallAccess().getGroup(), "rule__PreDefFunctionCall__Group__0");
@@ -99,7 +102,9 @@ public class ListaCompilerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBracketExpressionAccess().getExpAssignment_1(), "rule__BracketExpression__ExpAssignment_1");
 					put(grammarAccess.getPosIntegerAccess().getValAssignment(), "rule__PosInteger__ValAssignment");
 					put(grammarAccess.getNegIntegerAccess().getValAssignment_1(), "rule__NegInteger__ValAssignment_1");
-					put(grammarAccess.getMyVariableAccess().getVarAssignment(), "rule__MyVariable__VarAssignment");
+					put(grammarAccess.getVariableAccess().getVarAssignment(), "rule__Variable__VarAssignment");
+					put(grammarAccess.getCastedVariableAccess().getVarAssignment_0(), "rule__CastedVariable__VarAssignment_0");
+					put(grammarAccess.getCastedVariableAccess().getTypeAssignment_2(), "rule__CastedVariable__TypeAssignment_2");
 					put(grammarAccess.getPosBoolAccess().getValAssignment(), "rule__PosBool__ValAssignment");
 					put(grammarAccess.getNegBoolAccess().getValAssignment_1(), "rule__NegBool__ValAssignment_1");
 					put(grammarAccess.getMyStringAccess().getValAssignment(), "rule__MyString__ValAssignment");
