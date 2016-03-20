@@ -1,6 +1,9 @@
 package edu.upb.compilacion
 
 import edu.upb.compilacion.listaCompiler.BracketExpression
+import edu.upb.compilacion.listaCompiler.CastedType
+import edu.upb.compilacion.listaCompiler.CastedVariable
+import edu.upb.compilacion.listaCompiler.ComplexTerm
 import edu.upb.compilacion.listaCompiler.Expression
 import edu.upb.compilacion.listaCompiler.FirstLevelExp
 import edu.upb.compilacion.listaCompiler.FirstLevelOp
@@ -19,6 +22,7 @@ import edu.upb.compilacion.listaCompiler.PDFunction
 import edu.upb.compilacion.listaCompiler.PreDefFunctionCall
 import edu.upb.compilacion.listaCompiler.SecondLevelExp
 import edu.upb.compilacion.listaCompiler.SecondLevelOp
+import edu.upb.compilacion.listaCompiler.SimpleTerm
 import edu.upb.compilacion.listaCompiler.Term
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp
 import edu.upb.compilacion.listaCompiler.ThirdLevelOp
@@ -26,8 +30,6 @@ import edu.upb.compilacion.listaCompiler.UserDefFunctionCall
 import edu.upb.compilacion.listaCompiler.Variable
 import java.util.ArrayList
 import java.util.HashMap
-import edu.upb.compilacion.listaCompiler.CastedVariable
-import edu.upb.compilacion.listaCompiler.CastedType
 
 class TypeInferrer {
 	
@@ -51,7 +53,17 @@ class TypeInferrer {
 	static def inferDataType(FunctionDefinition fd) {
 		currentFunction = fd.name;
 		functionParams.put(fd.name, new HashMap<String, DataType>());
+		searchCastedVariables(fd);
 		inferDataType(fd.^return.exp, fd.name);
+	}
+	
+	static def searchCastedVariables(FunctionDefinition fd) {
+		for (mvar : fd.params) {
+			if (mvar instanceof CastedVariable) {
+				val cvar = mvar as CastedVariable;
+				functionParams.get(fd.name).put(cvar.^var, getDataTypeFromCast(cvar.type));
+			}
+		}
 	}
 	
 	static def void inferDataType(FirstLevelExp exp, String fdName) {
@@ -78,8 +90,7 @@ class TypeInferrer {
 			}
 			if (secondType.equals(DataType.VAR)) {
 				val var2 = second.getVariable;
-				functionParams.get(fdName).put(var2, expected
-				);
+				functionParams.get(fdName).put(var2, expected);
 			} else {
 				inferDataType(second, fdName);
 			}
@@ -208,6 +219,14 @@ class TypeInferrer {
 	}
 	
 	static def void inferDataType(Term term, String fdName) {
+		if (term instanceof SimpleTerm) {
+			inferDataType((term as SimpleTerm), fdName);
+		} else if (term instanceof ComplexTerm) {
+			inferDataType((term as ComplexTerm), fdName);
+		}
+	}
+	
+	static def void inferDataType(SimpleTerm term, String fdName) {
 		if (term instanceof MyInteger) {
 			inferDataType((term as MyInteger), fdName);
 		} else if (term instanceof MyString) {
@@ -216,33 +235,38 @@ class TypeInferrer {
 			inferDataType((term as MyBool), fdName);
 		} else if (term instanceof List) {
 			setFunctionType(fdName, DataType.LIST);
-		} else if (term instanceof MyVariable) {
-			inferDataType((term as MyVariable), fdName);
-		} else if (term instanceof FunctionCall) {
+		} else if (term instanceof Variable) {
+			setFunctionType(fdName, DataType.VAR);
+		}
+	}
+	
+	static def void inferDataType(ComplexTerm term, String fdName) {
+		if (term instanceof FunctionCall) {
 			inferDataType((term as FunctionCall), fdName);
 		} else if (term instanceof IfControlFlow) {
-			inferDataType((term as IfControlFlow).iffalse.exp, fdName);
 			inferDataType((term as IfControlFlow).iftrue.exp, fdName);
+			inferDataType((term as IfControlFlow).iffalse.exp, fdName);
 			inferDataType((term as IfControlFlow).cond.exp, fdName);
 		} else if (term instanceof BracketExpression) {
 			inferDataType((term as BracketExpression).exp.exp, fdName);
 		}
 	}
 	
-	static def void inferDataType(MyVariable variable, String fdName) {
+	/*static def void inferDataType(MyVariable variable, String fdName) {
 		if (variable instanceof Variable) {
 			setFunctionType(fdName, DataType.VAR);
 		} else if (variable instanceof CastedVariable) {
 			setFunctionType(fdName, getDataTypeFromCast((variable as CastedVariable).type));
 		}
-	}
+	}*/
 	
 	static def void inferDataType(MyInteger myInt, String fdName) {
 		setFunctionType(fdName, DataType.INT);
 		if (myInt instanceof NegInteger) {
 			val exp = (myInt as NegInteger).^val;
-			if (exp instanceof BracketExpression) {
-				inferDataType((exp as BracketExpression).exp.exp, fdName);
+			if (exp instanceof ComplexTerm) {
+				inferDataType((exp as ComplexTerm), fdName
+				);
 			}
 		}
 	}
@@ -251,8 +275,8 @@ class TypeInferrer {
 		setFunctionType(fdName, DataType.BOOL);
 		if (myBool instanceof NegBool) {
 			val exp = (myBool as NegBool).^val;
-			if (exp instanceof BracketExpression) {
-				inferDataType((exp as BracketExpression).exp.exp, fdName);
+			if (exp instanceof ComplexTerm) {
+				inferDataType((exp as ComplexTerm), fdName);
 			}
 		}
 	}
@@ -318,7 +342,7 @@ class TypeInferrer {
 		}
 		var i = 0;
 		for (exp : fcall.args) {
-			if (i > paramsTypes.size()) {
+			if (i >= paramsTypes.size()) {
 				return;
 			}
 			if (!paramsTypes.get(i).equals(DataType.GLOBAL)) {
@@ -336,16 +360,24 @@ class TypeInferrer {
 			val params = functionParams.get(fcall.function.name);
 			var i = 0;
 			for (current : fcall.function.params) {
-				if (i > args.size()) {
+				if (i >= args.size()) {
 					return;
 				}
-				if (params.containsKey(current)) {
+				if (params.containsKey(getVariableName(current))) {
 					if (args.get(i).getDataType.equals(DataType.VAR)) {
-						functionParams.get(fdName).put(args.get(i).exp.getVariable, params.get(current))
+						functionParams.get(fdName).put(args.get(i).exp.getVariable, params.get(getVariableName(current)))
 					}
 				}
 				i++;
 			}
+		}
+	}
+	
+	static def String getVariableName(MyVariable mvar) {
+		if (mvar instanceof Variable) {
+			return (mvar as Variable).^var;
+		} else if (mvar instanceof CastedVariable) {
+			return (mvar as CastedVariable).^var;
 		}
 	}
 	
@@ -360,10 +392,6 @@ class TypeInferrer {
 		}
 		inferUDFArgsDataType(fcall, fdName);
 	}
-	
-	/*def inferDataType(IfControlFlow ifCF, String fdName) {
-		return ifCF.iftrue.getDataType;
-	}*/
 	
 	static def DataType getDataType(Expression exp) {
 		return exp.exp.getDataType;
@@ -463,6 +491,14 @@ class TypeInferrer {
 	}
 	
 	static def DataType getDataType(Term term) {
+		if (term instanceof SimpleTerm) {
+			return (term as SimpleTerm).getDataType;
+		} else if (term instanceof ComplexTerm) {
+			return (term as ComplexTerm).getDataType;
+		}
+	}
+	
+	static def DataType getDataType(SimpleTerm term) {
 		if (term instanceof MyInteger) {
 			return DataType.INT;
 		} else if (term instanceof MyString) {
@@ -471,9 +507,13 @@ class TypeInferrer {
 			return DataType.BOOL;
 		} else if (term instanceof List) {
 			return DataType.LIST;
-		} else if (term instanceof MyVariable) {
-			return (term as MyVariable).getDataType;
-		} else if (term instanceof FunctionCall) {
+		} else if (term instanceof Variable) {
+			return (term as Variable).getDataType;
+		}
+	}
+	
+	static def DataType getDataType(ComplexTerm term) {
+		if (term instanceof FunctionCall) {
 			return (term as FunctionCall).getDataType;
 		} else if (term instanceof IfControlFlow) {
 			return (term as IfControlFlow).getDataType;
@@ -482,7 +522,7 @@ class TypeInferrer {
 		}
 	}
 	
-	static def DataType getDataType(MyVariable variable) {
+	/*static def DataType getDataType(MyVariable variable) {
 		if (variable instanceof Variable) {
 			return (variable as Variable).getDataType;
 		} else if (variable instanceof CastedVariable) {
@@ -491,7 +531,7 @@ class TypeInferrer {
 			functionParams.get(currentFunction).put(cvar.^var, type);
 			return getDataTypeFromCast(cvar.type);
 		}
-	}
+	}*/
 	
 	static def DataType getDataType(Variable variable) {
 		if (!currentFunction.equals("")) {
@@ -580,7 +620,7 @@ class TypeInferrer {
 					expectedReturn = DataType.BOOL;
 					}
 				case SecondLevelOp.EQ:
-					return exp.compareEquals
+					return exp.checkEqualsDataType
 				default:
 					expectedReturn = DataType.GLOBAL				
 			}
@@ -606,7 +646,7 @@ class TypeInferrer {
 				case ThirdLevelOp.MINUS:
 					expected = DataType.INT
 				case ThirdLevelOp.CONCAT:
-					return exp.checkStringConcat
+					return exp.checkConcatDataType
 				default:
 					expected = DataType.GLOBAL				
 			}
@@ -622,7 +662,7 @@ class TypeInferrer {
 		}
 	}
 	
-	static def DataType checkStringConcat(ThirdLevelExp exp) {
+	static def DataType checkConcatDataType(ThirdLevelExp exp) {
 		val first = (exp.args.get(0) as FourthLevelExp).checkDataType;
 		val second = (exp.args.get(1) as ThirdLevelExp).checkDataType;
 		if (first.equals(DataType.STRING)) {
@@ -657,6 +697,14 @@ class TypeInferrer {
 	}
 	
 	static def DataType checkDataType(Term term) {
+		if (term instanceof SimpleTerm) {
+			return (term as SimpleTerm).checkDataType;
+		} else if (term instanceof ComplexTerm) {
+			return (term as ComplexTerm).checkDataType;
+		}
+	}
+	
+	static def DataType checkDataType(SimpleTerm term) {
 		if (term instanceof MyInteger) {
 			return (term as MyInteger).checkDataType;
 		} else if (term instanceof MyString) {
@@ -665,9 +713,13 @@ class TypeInferrer {
 			return (term as MyBool).checkDataType;
 		} else if (term instanceof List) {
 			return DataType.LIST;
-		} else if (term instanceof MyVariable) {
-			return (term as MyVariable).getDataType;
-		} else if (term instanceof FunctionCall) {
+		} else if (term instanceof Variable) {
+			return (term as Variable).getDataType;
+		}
+	}
+	
+	static def DataType checkDataType(ComplexTerm term) {
+		if (term instanceof FunctionCall) {
 			return (term as FunctionCall).checkDataType;
 		} else if (term instanceof IfControlFlow) {
 			return (term as IfControlFlow).checkDataType;
@@ -679,8 +731,8 @@ class TypeInferrer {
 	static def DataType checkDataType(MyInteger myInt) {
 		if (myInt instanceof NegInteger) {
 			val exp = (myInt as NegInteger).^val;
-			if (exp instanceof BracketExpression) {
-				val expType = (exp as BracketExpression).exp.checkDataType;
+			if (exp instanceof ComplexTerm) {
+				val expType = (exp as ComplexTerm).checkDataType;
 				if (!expType.equals(DataType.INT)) {
 					throw new MismatchedTypeException("Argument type should be INT.")
 				}
@@ -692,8 +744,8 @@ class TypeInferrer {
 	static def DataType checkDataType(MyBool myBool) {
 		if (myBool instanceof NegBool) {
 			val exp = (myBool as NegBool).^val;
-			if (exp instanceof BracketExpression) {
-				val expType = (exp as BracketExpression).exp.checkDataType;
+			if (exp instanceof ComplexTerm) {
+				val expType = (exp as ComplexTerm).checkDataType;
 				if (!expType.equals(DataType.BOOL)) {
 					throw new MismatchedTypeException("Argument type should be BOOL.")
 				}
@@ -742,7 +794,7 @@ class TypeInferrer {
 		}
 		var i = 0;
 		for (exp : fcall.args) {
-			if (i > paramsTypes.size()) {
+			if (i >= paramsTypes.size()) {
 				throw new MismatchedTypeException("Too many arguments in function " + fcall.function.getName);
 			}
 			if (!paramsTypes.get(i).equals(DataType.GLOBAL)) {
@@ -769,12 +821,13 @@ class TypeInferrer {
 			val params = functionParams.get(fcall.function.name);
 			var i = 0;
 			for (current : fcall.function.params) {
-				if (i > args.size()) {
+				if (i >= args.size()) {
 					throw new MismatchedTypeException("Too many arguments in function " + fcall.function.name);
 				}
-				if (params.containsKey(current)) {
-					if (!args.get(i).checkDataType.equals(params.get(current))) {
-						throw new MismatchedTypeException("Argument type should be " + params.get(current));
+				val name = getVariableName(current);
+				if (params.containsKey(name)) {
+					if (!args.get(i).checkDataType.equals(params.get(name))) {
+						throw new MismatchedTypeException("Argument type should be " + params.get(name));
 					}
 				}
 				i++;
@@ -798,7 +851,7 @@ class TypeInferrer {
 		return iftrue;
 	}
 	
-	static def DataType compareEquals(SecondLevelExp exp) {
+	static def DataType checkEqualsDataType(SecondLevelExp exp) {
 		val first = (exp.args.get(0) as ThirdLevelExp).checkDataType;
 		val second = (exp.args.get(1) as SecondLevelExp).checkDataType;
 		if (first.equals(second)) {
@@ -808,15 +861,15 @@ class TypeInferrer {
 	}
 	
 	static def String getVariable(FirstLevelExp exp) {
-		return ((((exp.args.get(0) as SecondLevelExp).args.get(0) as ThirdLevelExp).args.get(0) as FourthLevelExp).args.get(0) as Term).getVariable;
+		return (exp.args.get(0) as SecondLevelExp).getVariable;
 	}
 	
 	static def String getVariable(SecondLevelExp exp) {
-		return (((exp.args.get(0) as ThirdLevelExp).args.get(0) as FourthLevelExp).args.get(0) as Term).getVariable;
+		return (exp.args.get(0) as ThirdLevelExp).getVariable;
 	}
 	
 	static def String getVariable(ThirdLevelExp exp) {
-		return ((exp.args.get(0) as FourthLevelExp).args.get(0) as Term).getVariable;
+		return (exp.args.get(0) as FourthLevelExp).getVariable;
 	}
 	
 	static def String getVariable(FourthLevelExp exp) {
@@ -824,8 +877,8 @@ class TypeInferrer {
 	}
 	
 	static def String getVariable(Term term) {
-		if (term instanceof MyVariable) {
-			return (term as MyVariable).getVariable;
+		if (term instanceof Variable) {
+			return (term as Variable).^var;
 		} else if (term instanceof UserDefFunctionCall) {
 			return (term as UserDefFunctionCall).function.^return.exp.getVariable;
 		} else if (term instanceof IfControlFlow) {
@@ -839,9 +892,6 @@ class TypeInferrer {
 		if (variable instanceof Variable) {
 			return (variable as Variable).^var;
 		} else if (variable instanceof CastedVariable) {
-			/*val cvar = variable as CastedVariable;
-			functionParams.get(currentFunction).put(cvar.^var, getDataTypeFromCast())
-			return cvar.^var;*/
 			return (variable as CastedVariable).^var;
 		}
 	}
@@ -854,7 +904,21 @@ class TypeInferrer {
 				return DataType.INT
 			case CastedType.STRING:
 				return DataType.STRING
+			case CastedType.LIST:
+				return DataType.LIST
 		}
+	}
+	
+	static def String getFunctionString(FunctionDefinition fd) {
+		val name = fd.name;
+		var res = name + "->" + functionTypes.get(name);
+		for (p : functionParams.get(name).keySet) {
+			res = res + "\n_" + p + ":" + functionParams.get(name).get(p);
+		}
+		/*for (p : fd.params) {
+			res = res + "\n" p.getVariable + ":" + functionParams.get(name).get(p.getVariable);
+		}*/
+		return res;
 	}
 	
 	static def void setFunctionType(String name, DataType type) {
@@ -865,15 +929,6 @@ class TypeInferrer {
 		} else {
 			functionTypes.put(name, type);
 		}
-	}
-	
-	static def String getFunctionString(FunctionDefinition fd) {
-		val name = fd.name;
-		var res = name + "->" + functionTypes.get(name);
-		for (cur : functionParams.get(name).keySet()) {
-			res += "\n" + cur + ":" + functionParams.get(name).get(cur);
-		}		
-		return res;
 	}
 	
 	static def getFunctionTypes() {

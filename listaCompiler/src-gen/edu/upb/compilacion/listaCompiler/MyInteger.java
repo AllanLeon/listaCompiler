@@ -13,6 +13,6 @@ package edu.upb.compilacion.listaCompiler;
  * @model
  * @generated
  */
-public interface MyInteger extends Term, ListElem
+public interface MyInteger extends SimpleTerm, ListElem
 {
 } // MyInteger

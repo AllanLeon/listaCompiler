@@ -82,11 +82,11 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Assignment cParamsAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final RuleCall cParamsIDFUNCVARTerminalRuleCall_2_0_0 = (RuleCall)cParamsAssignment_2_0.eContents().get(0);
+		private final RuleCall cParamsMyVariableParserRuleCall_2_0_0 = (RuleCall)cParamsAssignment_2_0.eContents().get(0);
 		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
 		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
 		private final Assignment cParamsAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
-		private final RuleCall cParamsIDFUNCVARTerminalRuleCall_2_1_1_0 = (RuleCall)cParamsAssignment_2_1_1.eContents().get(0);
+		private final RuleCall cParamsMyVariableParserRuleCall_2_1_1_0 = (RuleCall)cParamsAssignment_2_1_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cReturnAssignment_5 = (Assignment)cGroup.eContents().get(5);
@@ -94,10 +94,10 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//FunctionDefinition:
-		//	name=IDFUNCVAR "(" (params+=IDFUNCVAR ("," params+=IDFUNCVAR)*)? ")" "=" return=Expression ";";
+		//	name=IDFUNCVAR "(" (params+=MyVariable ("," params+=MyVariable)*)? ")" "=" return=Expression ";";
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=IDFUNCVAR "(" (params+=IDFUNCVAR ("," params+=IDFUNCVAR)*)? ")" "=" return=Expression ";"
+		//name=IDFUNCVAR "(" (params+=MyVariable ("," params+=MyVariable)*)? ")" "=" return=Expression ";"
 		public Group getGroup() { return cGroup; }
 
 		//name=IDFUNCVAR
@@ -109,26 +109,26 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
-		//(params+=IDFUNCVAR ("," params+=IDFUNCVAR)*)?
+		//(params+=MyVariable ("," params+=MyVariable)*)?
 		public Group getGroup_2() { return cGroup_2; }
 
-		//params+=IDFUNCVAR
+		//params+=MyVariable
 		public Assignment getParamsAssignment_2_0() { return cParamsAssignment_2_0; }
 
-		//IDFUNCVAR
-		public RuleCall getParamsIDFUNCVARTerminalRuleCall_2_0_0() { return cParamsIDFUNCVARTerminalRuleCall_2_0_0; }
+		//MyVariable
+		public RuleCall getParamsMyVariableParserRuleCall_2_0_0() { return cParamsMyVariableParserRuleCall_2_0_0; }
 
-		//("," params+=IDFUNCVAR)*
+		//("," params+=MyVariable)*
 		public Group getGroup_2_1() { return cGroup_2_1; }
 
 		//","
 		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
 
-		//params+=IDFUNCVAR
+		//params+=MyVariable
 		public Assignment getParamsAssignment_2_1_1() { return cParamsAssignment_2_1_1; }
 
-		//IDFUNCVAR
-		public RuleCall getParamsIDFUNCVARTerminalRuleCall_2_1_1_0() { return cParamsIDFUNCVARTerminalRuleCall_2_1_1_0; }
+		//MyVariable
+		public RuleCall getParamsMyVariableParserRuleCall_2_1_1_0() { return cParamsMyVariableParserRuleCall_2_1_1_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
@@ -325,20 +325,37 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	public class TermElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Term");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cSimpleTermParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cComplexTermParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Term:
+		//	SimpleTerm | ComplexTerm;
+		@Override public ParserRule getRule() { return rule; }
+
+		//SimpleTerm | ComplexTerm
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//SimpleTerm
+		public RuleCall getSimpleTermParserRuleCall_0() { return cSimpleTermParserRuleCall_0; }
+
+		//ComplexTerm
+		public RuleCall getComplexTermParserRuleCall_1() { return cComplexTermParserRuleCall_1; }
+	}
+
+	public class SimpleTermElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SimpleTerm");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cMyIntegerParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cMyStringParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cMyBoolParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cMyVariableParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cVariableParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cListParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cFunctionCallParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cIfControlFlowParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cBracketExpressionParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		
-		//Term:
-		//	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | BracketExpression;
+		//SimpleTerm:
+		//	MyInteger | MyString | MyBool | Variable | List;
 		@Override public ParserRule getRule() { return rule; }
 
-		//MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | BracketExpression
+		//MyInteger | MyString | MyBool | Variable | List
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//MyInteger
@@ -350,20 +367,35 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		//MyBool
 		public RuleCall getMyBoolParserRuleCall_2() { return cMyBoolParserRuleCall_2; }
 
-		//MyVariable
-		public RuleCall getMyVariableParserRuleCall_3() { return cMyVariableParserRuleCall_3; }
+		//Variable
+		public RuleCall getVariableParserRuleCall_3() { return cVariableParserRuleCall_3; }
 
 		//List
 		public RuleCall getListParserRuleCall_4() { return cListParserRuleCall_4; }
+	}
+
+	public class ComplexTermElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ComplexTerm");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cFunctionCallParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cIfControlFlowParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cBracketExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//ComplexTerm:
+		//	FunctionCall | IfControlFlow | BracketExpression;
+		@Override public ParserRule getRule() { return rule; }
+
+		//FunctionCall | IfControlFlow | BracketExpression
+		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//FunctionCall
-		public RuleCall getFunctionCallParserRuleCall_5() { return cFunctionCallParserRuleCall_5; }
+		public RuleCall getFunctionCallParserRuleCall_0() { return cFunctionCallParserRuleCall_0; }
 
 		//IfControlFlow
-		public RuleCall getIfControlFlowParserRuleCall_6() { return cIfControlFlowParserRuleCall_6; }
+		public RuleCall getIfControlFlowParserRuleCall_1() { return cIfControlFlowParserRuleCall_1; }
 
 		//BracketExpression
-		public RuleCall getBracketExpressionParserRuleCall_7() { return cBracketExpressionParserRuleCall_7; }
+		public RuleCall getBracketExpressionParserRuleCall_2() { return cBracketExpressionParserRuleCall_2; }
 	}
 
 	public class BracketExpressionElements extends AbstractParserRuleElementFinder {
@@ -437,29 +469,29 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final Alternatives cValAlternatives_1_0 = (Alternatives)cValAssignment_1.eContents().get(0);
 		private final RuleCall cValPosIntegerParserRuleCall_1_0_0 = (RuleCall)cValAlternatives_1_0.eContents().get(0);
-		private final RuleCall cValBracketExpressionParserRuleCall_1_0_1 = (RuleCall)cValAlternatives_1_0.eContents().get(1);
+		private final RuleCall cValComplexTermParserRuleCall_1_0_1 = (RuleCall)cValAlternatives_1_0.eContents().get(1);
 		
 		//NegInteger:
-		//	"-" val=(PosInteger | BracketExpression);
+		//	"-" val=(PosInteger | ComplexTerm);
 		@Override public ParserRule getRule() { return rule; }
 
-		//"-" val=(PosInteger | BracketExpression)
+		//"-" val=(PosInteger | ComplexTerm)
 		public Group getGroup() { return cGroup; }
 
 		//"-"
 		public Keyword getHyphenMinusKeyword_0() { return cHyphenMinusKeyword_0; }
 
-		//val=(PosInteger | BracketExpression)
+		//val=(PosInteger | ComplexTerm)
 		public Assignment getValAssignment_1() { return cValAssignment_1; }
 
-		//PosInteger | BracketExpression
+		//PosInteger | ComplexTerm
 		public Alternatives getValAlternatives_1_0() { return cValAlternatives_1_0; }
 
 		//PosInteger
 		public RuleCall getValPosIntegerParserRuleCall_1_0_0() { return cValPosIntegerParserRuleCall_1_0_0; }
 
-		//BracketExpression
-		public RuleCall getValBracketExpressionParserRuleCall_1_0_1() { return cValBracketExpressionParserRuleCall_1_0_1; }
+		//ComplexTerm
+		public RuleCall getValComplexTermParserRuleCall_1_0_1() { return cValComplexTermParserRuleCall_1_0_1; }
 	}
 
 	public class MyVariableElements extends AbstractParserRuleElementFinder {
@@ -573,29 +605,29 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final Alternatives cValAlternatives_1_0 = (Alternatives)cValAssignment_1.eContents().get(0);
 		private final RuleCall cValPosBoolParserRuleCall_1_0_0 = (RuleCall)cValAlternatives_1_0.eContents().get(0);
-		private final RuleCall cValBracketExpressionParserRuleCall_1_0_1 = (RuleCall)cValAlternatives_1_0.eContents().get(1);
+		private final RuleCall cValComplexTermParserRuleCall_1_0_1 = (RuleCall)cValAlternatives_1_0.eContents().get(1);
 		
 		//NegBool:
-		//	"!" val=(PosBool | BracketExpression);
+		//	"!" val=(PosBool | ComplexTerm);
 		@Override public ParserRule getRule() { return rule; }
 
-		//"!" val=(PosBool | BracketExpression)
+		//"!" val=(PosBool | ComplexTerm)
 		public Group getGroup() { return cGroup; }
 
 		//"!"
 		public Keyword getExclamationMarkKeyword_0() { return cExclamationMarkKeyword_0; }
 
-		//val=(PosBool | BracketExpression)
+		//val=(PosBool | ComplexTerm)
 		public Assignment getValAssignment_1() { return cValAssignment_1; }
 
-		//PosBool | BracketExpression
+		//PosBool | ComplexTerm
 		public Alternatives getValAlternatives_1_0() { return cValAlternatives_1_0; }
 
 		//PosBool
 		public RuleCall getValPosBoolParserRuleCall_1_0_0() { return cValPosBoolParserRuleCall_1_0_0; }
 
-		//BracketExpression
-		public RuleCall getValBracketExpressionParserRuleCall_1_0_1() { return cValBracketExpressionParserRuleCall_1_0_1; }
+		//ComplexTerm
+		public RuleCall getValComplexTermParserRuleCall_1_0_1() { return cValComplexTermParserRuleCall_1_0_1; }
 	}
 
 	public class MyStringElements extends AbstractParserRuleElementFinder {
@@ -1104,12 +1136,14 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cBoolBoolKeyword_1_0 = (Keyword)cBoolEnumLiteralDeclaration_1.eContents().get(0);
 		private final EnumLiteralDeclaration cStringEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
 		private final Keyword cStringStringKeyword_2_0 = (Keyword)cStringEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cListEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cListIntKeyword_3_0 = (Keyword)cListEnumLiteralDeclaration_3.eContents().get(0);
 		
 		//enum CastedType:
-		//	int | bool | string;
+		//	int | bool | string | list="[int]";
 		public EnumRule getRule() { return rule; }
 
-		//int | bool | string
+		//int | bool | string | list="[int]"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//int
@@ -1129,6 +1163,12 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"string"
 		public Keyword getStringStringKeyword_2_0() { return cStringStringKeyword_2_0; }
+
+		//list="[int]"
+		public EnumLiteralDeclaration getListEnumLiteralDeclaration_3() { return cListEnumLiteralDeclaration_3; }
+
+		//"[int]"
+		public Keyword getListIntKeyword_3_0() { return cListIntKeyword_3_0; }
 	}
 	
 	private final ListaElements pLista;
@@ -1140,6 +1180,8 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	private final ThirdLevelExpElements pThirdLevelExp;
 	private final FourthLevelExpElements pFourthLevelExp;
 	private final TermElements pTerm;
+	private final SimpleTermElements pSimpleTerm;
+	private final ComplexTermElements pComplexTerm;
 	private final BracketExpressionElements pBracketExpression;
 	private final MyIntegerElements pMyInteger;
 	private final PosIntegerElements pPosInteger;
@@ -1184,6 +1226,8 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		this.pThirdLevelExp = new ThirdLevelExpElements();
 		this.pFourthLevelExp = new FourthLevelExpElements();
 		this.pTerm = new TermElements();
+		this.pSimpleTerm = new SimpleTermElements();
+		this.pComplexTerm = new ComplexTermElements();
 		this.pBracketExpression = new BracketExpressionElements();
 		this.pMyInteger = new MyIntegerElements();
 		this.pPosInteger = new PosIntegerElements();
@@ -1259,7 +1303,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FunctionDefinition:
-	//	name=IDFUNCVAR "(" (params+=IDFUNCVAR ("," params+=IDFUNCVAR)*)? ")" "=" return=Expression ";";
+	//	name=IDFUNCVAR "(" (params+=MyVariable ("," params+=MyVariable)*)? ")" "=" return=Expression ";";
 	public FunctionDefinitionElements getFunctionDefinitionAccess() {
 		return pFunctionDefinition;
 	}
@@ -1319,13 +1363,33 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Term:
-	//	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | BracketExpression;
+	//	SimpleTerm | ComplexTerm;
 	public TermElements getTermAccess() {
 		return pTerm;
 	}
 	
 	public ParserRule getTermRule() {
 		return getTermAccess().getRule();
+	}
+
+	//SimpleTerm:
+	//	MyInteger | MyString | MyBool | Variable | List;
+	public SimpleTermElements getSimpleTermAccess() {
+		return pSimpleTerm;
+	}
+	
+	public ParserRule getSimpleTermRule() {
+		return getSimpleTermAccess().getRule();
+	}
+
+	//ComplexTerm:
+	//	FunctionCall | IfControlFlow | BracketExpression;
+	public ComplexTermElements getComplexTermAccess() {
+		return pComplexTerm;
+	}
+	
+	public ParserRule getComplexTermRule() {
+		return getComplexTermAccess().getRule();
 	}
 
 	//BracketExpression:
@@ -1359,7 +1423,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NegInteger:
-	//	"-" val=(PosInteger | BracketExpression);
+	//	"-" val=(PosInteger | ComplexTerm);
 	public NegIntegerElements getNegIntegerAccess() {
 		return pNegInteger;
 	}
@@ -1419,7 +1483,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NegBool:
-	//	"!" val=(PosBool | BracketExpression);
+	//	"!" val=(PosBool | ComplexTerm);
 	public NegBoolElements getNegBoolAccess() {
 		return pNegBool;
 	}
@@ -1559,7 +1623,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum CastedType:
-	//	int | bool | string;
+	//	int | bool | string | list="[int]";
 	public CastedTypeElements getCastedTypeAccess() {
 		return unknownRuleCastedType;
 	}

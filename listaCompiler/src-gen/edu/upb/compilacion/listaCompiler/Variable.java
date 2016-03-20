@@ -13,6 +13,6 @@ package edu.upb.compilacion.listaCompiler;
  * @model
  * @generated
  */
-public interface Variable extends MyVariable
+public interface Variable extends SimpleTerm, MyVariable
 {
 } // Variable

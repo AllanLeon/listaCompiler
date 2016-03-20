@@ -199,7 +199,7 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (name=IDFUNCVAR (params+=IDFUNCVAR params+=IDFUNCVAR*)? return=Expression)
+	 *     (name=IDFUNCVAR (params+=MyVariable params+=MyVariable*)? return=Expression)
 	 */
 	protected void sequence_FunctionDefinition(EObject context, FunctionDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -264,7 +264,7 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (val=PosBool | val=BracketExpression)
+	 *     (val=PosBool | val=ComplexTerm)
 	 */
 	protected void sequence_NegBool(EObject context, NegBool semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -273,7 +273,7 @@ public class ListaCompilerSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Constraint:
-	 *     (val=PosInteger | val=BracketExpression)
+	 *     (val=PosInteger | val=ComplexTerm)
 	 */
 	protected void sequence_NegInteger(EObject context, NegInteger semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

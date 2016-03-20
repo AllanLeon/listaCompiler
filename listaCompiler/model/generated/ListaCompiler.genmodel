@@ -41,6 +41,7 @@
       <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//CastedType/int"/>
       <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//CastedType/bool"/>
       <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//CastedType/string"/>
+      <genEnumLiterals ecoreEnumLiteral="ListaCompiler.ecore#//CastedType/list"/>
     </genEnums>
     <genClasses ecoreClass="ListaCompiler.ecore#//Lista">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//Lista/definitions"/>
@@ -51,7 +52,7 @@
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//FunctionDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//FunctionDefinition/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//FunctionDefinition/params"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//FunctionDefinition/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//FunctionDefinition/return"/>
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//Expression">
@@ -74,6 +75,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ListaCompiler.ecore#//FourthLevelExp/op"/>
     </genClasses>
     <genClasses ecoreClass="ListaCompiler.ecore#//Term"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//SimpleTerm"/>
+    <genClasses ecoreClass="ListaCompiler.ecore#//ComplexTerm"/>
     <genClasses ecoreClass="ListaCompiler.ecore#//BracketExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ListaCompiler.ecore#//BracketExpression/exp"/>
     </genClasses>

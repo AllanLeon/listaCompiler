@@ -315,6 +315,62 @@ finally {
 
 
 
+// Entry rule entryRuleSimpleTerm
+entryRuleSimpleTerm 
+:
+{ before(grammarAccess.getSimpleTermRule()); }
+	 ruleSimpleTerm
+{ after(grammarAccess.getSimpleTermRule()); } 
+	 EOF 
+;
+
+// Rule SimpleTerm
+ruleSimpleTerm
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getSimpleTermAccess().getAlternatives()); }
+(rule__SimpleTerm__Alternatives)
+{ after(grammarAccess.getSimpleTermAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+// Entry rule entryRuleComplexTerm
+entryRuleComplexTerm 
+:
+{ before(grammarAccess.getComplexTermRule()); }
+	 ruleComplexTerm
+{ after(grammarAccess.getComplexTermRule()); } 
+	 EOF 
+;
+
+// Rule ComplexTerm
+ruleComplexTerm
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getComplexTermAccess().getAlternatives()); }
+(rule__ComplexTerm__Alternatives)
+{ after(grammarAccess.getComplexTermAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleBracketExpression
 entryRuleBracketExpression 
 :
@@ -953,51 +1009,83 @@ rule__Term__Alternatives
     }
 :
 (
-{ before(grammarAccess.getTermAccess().getMyIntegerParserRuleCall_0()); }
+{ before(grammarAccess.getTermAccess().getSimpleTermParserRuleCall_0()); }
+	ruleSimpleTerm
+{ after(grammarAccess.getTermAccess().getSimpleTermParserRuleCall_0()); }
+)
+
+    |(
+{ before(grammarAccess.getTermAccess().getComplexTermParserRuleCall_1()); }
+	ruleComplexTerm
+{ after(grammarAccess.getTermAccess().getComplexTermParserRuleCall_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__SimpleTerm__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getSimpleTermAccess().getMyIntegerParserRuleCall_0()); }
 	ruleMyInteger
-{ after(grammarAccess.getTermAccess().getMyIntegerParserRuleCall_0()); }
+{ after(grammarAccess.getSimpleTermAccess().getMyIntegerParserRuleCall_0()); }
 )
 
     |(
-{ before(grammarAccess.getTermAccess().getMyStringParserRuleCall_1()); }
+{ before(grammarAccess.getSimpleTermAccess().getMyStringParserRuleCall_1()); }
 	ruleMyString
-{ after(grammarAccess.getTermAccess().getMyStringParserRuleCall_1()); }
+{ after(grammarAccess.getSimpleTermAccess().getMyStringParserRuleCall_1()); }
 )
 
     |(
-{ before(grammarAccess.getTermAccess().getMyBoolParserRuleCall_2()); }
+{ before(grammarAccess.getSimpleTermAccess().getMyBoolParserRuleCall_2()); }
 	ruleMyBool
-{ after(grammarAccess.getTermAccess().getMyBoolParserRuleCall_2()); }
+{ after(grammarAccess.getSimpleTermAccess().getMyBoolParserRuleCall_2()); }
 )
 
     |(
-{ before(grammarAccess.getTermAccess().getMyVariableParserRuleCall_3()); }
-	ruleMyVariable
-{ after(grammarAccess.getTermAccess().getMyVariableParserRuleCall_3()); }
+{ before(grammarAccess.getSimpleTermAccess().getVariableParserRuleCall_3()); }
+	ruleVariable
+{ after(grammarAccess.getSimpleTermAccess().getVariableParserRuleCall_3()); }
 )
 
     |(
-{ before(grammarAccess.getTermAccess().getListParserRuleCall_4()); }
+{ before(grammarAccess.getSimpleTermAccess().getListParserRuleCall_4()); }
 	ruleList
-{ after(grammarAccess.getTermAccess().getListParserRuleCall_4()); }
+{ after(grammarAccess.getSimpleTermAccess().getListParserRuleCall_4()); }
 )
 
-    |(
-{ before(grammarAccess.getTermAccess().getFunctionCallParserRuleCall_5()); }
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ComplexTerm__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getComplexTermAccess().getFunctionCallParserRuleCall_0()); }
 	ruleFunctionCall
-{ after(grammarAccess.getTermAccess().getFunctionCallParserRuleCall_5()); }
+{ after(grammarAccess.getComplexTermAccess().getFunctionCallParserRuleCall_0()); }
 )
 
     |(
-{ before(grammarAccess.getTermAccess().getIfControlFlowParserRuleCall_6()); }
+{ before(grammarAccess.getComplexTermAccess().getIfControlFlowParserRuleCall_1()); }
 	ruleIfControlFlow
-{ after(grammarAccess.getTermAccess().getIfControlFlowParserRuleCall_6()); }
+{ after(grammarAccess.getComplexTermAccess().getIfControlFlowParserRuleCall_1()); }
 )
 
     |(
-{ before(grammarAccess.getTermAccess().getBracketExpressionParserRuleCall_7()); }
+{ before(grammarAccess.getComplexTermAccess().getBracketExpressionParserRuleCall_2()); }
 	ruleBracketExpression
-{ after(grammarAccess.getTermAccess().getBracketExpressionParserRuleCall_7()); }
+{ after(grammarAccess.getComplexTermAccess().getBracketExpressionParserRuleCall_2()); }
 )
 
 ;
@@ -1039,9 +1127,9 @@ rule__NegInteger__ValAlternatives_1_0
 )
 
     |(
-{ before(grammarAccess.getNegIntegerAccess().getValBracketExpressionParserRuleCall_1_0_1()); }
-	ruleBracketExpression
-{ after(grammarAccess.getNegIntegerAccess().getValBracketExpressionParserRuleCall_1_0_1()); }
+{ before(grammarAccess.getNegIntegerAccess().getValComplexTermParserRuleCall_1_0_1()); }
+	ruleComplexTerm
+{ after(grammarAccess.getNegIntegerAccess().getValComplexTermParserRuleCall_1_0_1()); }
 )
 
 ;
@@ -1105,9 +1193,9 @@ rule__NegBool__ValAlternatives_1_0
 )
 
     |(
-{ before(grammarAccess.getNegBoolAccess().getValBracketExpressionParserRuleCall_1_0_1()); }
-	ruleBracketExpression
-{ after(grammarAccess.getNegBoolAccess().getValBracketExpressionParserRuleCall_1_0_1()); }
+{ before(grammarAccess.getNegBoolAccess().getValComplexTermParserRuleCall_1_0_1()); }
+	ruleComplexTerm
+{ after(grammarAccess.getNegBoolAccess().getValComplexTermParserRuleCall_1_0_1()); }
 )
 
 ;
@@ -1369,6 +1457,13 @@ rule__CastedType__Alternatives
 (	'string' 
 )
 { after(grammarAccess.getCastedTypeAccess().getStringEnumLiteralDeclaration_2()); }
+)
+
+    |(
+{ before(grammarAccess.getCastedTypeAccess().getListEnumLiteralDeclaration_3()); }
+(	'[int]' 
+)
+{ after(grammarAccess.getCastedTypeAccess().getListEnumLiteralDeclaration_3()); }
 )
 
 ;
@@ -3712,8 +3807,8 @@ rule__FunctionDefinition__ParamsAssignment_2_0
     }
 :
 (
-{ before(grammarAccess.getFunctionDefinitionAccess().getParamsIDFUNCVARTerminalRuleCall_2_0_0()); }
-	RULE_IDFUNCVAR{ after(grammarAccess.getFunctionDefinitionAccess().getParamsIDFUNCVARTerminalRuleCall_2_0_0()); }
+{ before(grammarAccess.getFunctionDefinitionAccess().getParamsMyVariableParserRuleCall_2_0_0()); }
+	ruleMyVariable{ after(grammarAccess.getFunctionDefinitionAccess().getParamsMyVariableParserRuleCall_2_0_0()); }
 )
 
 ;
@@ -3727,8 +3822,8 @@ rule__FunctionDefinition__ParamsAssignment_2_1_1
     }
 :
 (
-{ before(grammarAccess.getFunctionDefinitionAccess().getParamsIDFUNCVARTerminalRuleCall_2_1_1_0()); }
-	RULE_IDFUNCVAR{ after(grammarAccess.getFunctionDefinitionAccess().getParamsIDFUNCVARTerminalRuleCall_2_1_1_0()); }
+{ before(grammarAccess.getFunctionDefinitionAccess().getParamsMyVariableParserRuleCall_2_1_1_0()); }
+	ruleMyVariable{ after(grammarAccess.getFunctionDefinitionAccess().getParamsMyVariableParserRuleCall_2_1_1_0()); }
 )
 
 ;

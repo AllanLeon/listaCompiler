@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class FunctionCallImpl extends TermImpl implements FunctionCall
+public class FunctionCallImpl extends ComplexTermImpl implements FunctionCall
 {
   /**
    * The cached value of the '{@link #getArgs() <em>Args</em>}' containment reference list.

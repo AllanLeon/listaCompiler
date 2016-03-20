@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface FunctionCall extends Term
+public interface FunctionCall extends ComplexTerm
 {
   /**
    * Returns the value of the '<em><b>Args</b></em>' containment reference list.

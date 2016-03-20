@@ -2,26 +2,26 @@
  */
 package edu.upb.compilacion.listaCompiler.impl;
 
+import edu.upb.compilacion.listaCompiler.ComplexTerm;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
-import edu.upb.compilacion.listaCompiler.MyBool;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>My Bool</b></em>'.
+ * An implementation of the model object '<em><b>Complex Term</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class MyBoolImpl extends SimpleTermImpl implements MyBool
+public class ComplexTermImpl extends TermImpl implements ComplexTerm
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected MyBoolImpl()
+  protected ComplexTermImpl()
   {
     super();
   }
@@ -34,7 +34,7 @@ public class MyBoolImpl extends SimpleTermImpl implements MyBool
   @Override
   protected EClass eStaticClass()
   {
-    return ListaCompilerPackage.Literals.MY_BOOL;
+    return ListaCompilerPackage.Literals.COMPLEX_TERM;
   }
 
-} //MyBoolImpl
+} //ComplexTermImpl

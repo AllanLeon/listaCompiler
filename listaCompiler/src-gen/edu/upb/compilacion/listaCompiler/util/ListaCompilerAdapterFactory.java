@@ -120,6 +120,16 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
         return createTermAdapter();
       }
       @Override
+      public Adapter caseSimpleTerm(SimpleTerm object)
+      {
+        return createSimpleTermAdapter();
+      }
+      @Override
+      public Adapter caseComplexTerm(ComplexTerm object)
+      {
+        return createComplexTermAdapter();
+      }
+      @Override
       public Adapter caseBracketExpression(BracketExpression object)
       {
         return createBracketExpressionAdapter();
@@ -357,6 +367,36 @@ public class ListaCompilerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTermAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.SimpleTerm <em>Simple Term</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.SimpleTerm
+   * @generated
+   */
+  public Adapter createSimpleTermAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.upb.compilacion.listaCompiler.ComplexTerm <em>Complex Term</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.upb.compilacion.listaCompiler.ComplexTerm
+   * @generated
+   */
+  public Adapter createComplexTermAdapter()
   {
     return null;
   }

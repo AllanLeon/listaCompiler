@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class MyVariableImpl extends TermImpl implements MyVariable
+public class MyVariableImpl extends ListElemImpl implements MyVariable
 {
   /**
    * The default value of the '{@link #getVar() <em>Var</em>}' attribute.

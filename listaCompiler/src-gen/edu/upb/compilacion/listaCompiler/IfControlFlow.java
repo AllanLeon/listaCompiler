@@ -21,7 +21,7 @@ package edu.upb.compilacion.listaCompiler;
  * @model
  * @generated
  */
-public interface IfControlFlow extends Term
+public interface IfControlFlow extends ComplexTerm
 {
   /**
    * Returns the value of the '<em><b>Cond</b></em>' containment reference.

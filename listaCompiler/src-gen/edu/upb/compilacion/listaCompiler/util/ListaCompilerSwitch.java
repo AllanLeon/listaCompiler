@@ -135,10 +135,27 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ListaCompilerPackage.SIMPLE_TERM:
+      {
+        SimpleTerm simpleTerm = (SimpleTerm)theEObject;
+        T result = caseSimpleTerm(simpleTerm);
+        if (result == null) result = caseTerm(simpleTerm);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ListaCompilerPackage.COMPLEX_TERM:
+      {
+        ComplexTerm complexTerm = (ComplexTerm)theEObject;
+        T result = caseComplexTerm(complexTerm);
+        if (result == null) result = caseTerm(complexTerm);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ListaCompilerPackage.BRACKET_EXPRESSION:
       {
         BracketExpression bracketExpression = (BracketExpression)theEObject;
         T result = caseBracketExpression(bracketExpression);
+        if (result == null) result = caseComplexTerm(bracketExpression);
         if (result == null) result = caseTerm(bracketExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -147,8 +164,9 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         MyInteger myInteger = (MyInteger)theEObject;
         T result = caseMyInteger(myInteger);
-        if (result == null) result = caseTerm(myInteger);
+        if (result == null) result = caseSimpleTerm(myInteger);
         if (result == null) result = caseListElem(myInteger);
+        if (result == null) result = caseTerm(myInteger);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -157,8 +175,9 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         PosInteger posInteger = (PosInteger)theEObject;
         T result = casePosInteger(posInteger);
         if (result == null) result = caseMyInteger(posInteger);
-        if (result == null) result = caseTerm(posInteger);
+        if (result == null) result = caseSimpleTerm(posInteger);
         if (result == null) result = caseListElem(posInteger);
+        if (result == null) result = caseTerm(posInteger);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -167,8 +186,9 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         NegInteger negInteger = (NegInteger)theEObject;
         T result = caseNegInteger(negInteger);
         if (result == null) result = caseMyInteger(negInteger);
-        if (result == null) result = caseTerm(negInteger);
+        if (result == null) result = caseSimpleTerm(negInteger);
         if (result == null) result = caseListElem(negInteger);
+        if (result == null) result = caseTerm(negInteger);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -176,7 +196,6 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         MyVariable myVariable = (MyVariable)theEObject;
         T result = caseMyVariable(myVariable);
-        if (result == null) result = caseTerm(myVariable);
         if (result == null) result = caseListElem(myVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -185,6 +204,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         Variable variable = (Variable)theEObject;
         T result = caseVariable(variable);
+        if (result == null) result = caseSimpleTerm(variable);
         if (result == null) result = caseMyVariable(variable);
         if (result == null) result = caseTerm(variable);
         if (result == null) result = caseListElem(variable);
@@ -196,7 +216,6 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         CastedVariable castedVariable = (CastedVariable)theEObject;
         T result = caseCastedVariable(castedVariable);
         if (result == null) result = caseMyVariable(castedVariable);
-        if (result == null) result = caseTerm(castedVariable);
         if (result == null) result = caseListElem(castedVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -205,6 +224,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         MyBool myBool = (MyBool)theEObject;
         T result = caseMyBool(myBool);
+        if (result == null) result = caseSimpleTerm(myBool);
         if (result == null) result = caseTerm(myBool);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -214,6 +234,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         PosBool posBool = (PosBool)theEObject;
         T result = casePosBool(posBool);
         if (result == null) result = caseMyBool(posBool);
+        if (result == null) result = caseSimpleTerm(posBool);
         if (result == null) result = caseTerm(posBool);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -223,6 +244,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         NegBool negBool = (NegBool)theEObject;
         T result = caseNegBool(negBool);
         if (result == null) result = caseMyBool(negBool);
+        if (result == null) result = caseSimpleTerm(negBool);
         if (result == null) result = caseTerm(negBool);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -231,6 +253,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         MyString myString = (MyString)theEObject;
         T result = caseMyString(myString);
+        if (result == null) result = caseSimpleTerm(myString);
         if (result == null) result = caseTerm(myString);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -239,6 +262,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         IfControlFlow ifControlFlow = (IfControlFlow)theEObject;
         T result = caseIfControlFlow(ifControlFlow);
+        if (result == null) result = caseComplexTerm(ifControlFlow);
         if (result == null) result = caseTerm(ifControlFlow);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -247,6 +271,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         FunctionCall functionCall = (FunctionCall)theEObject;
         T result = caseFunctionCall(functionCall);
+        if (result == null) result = caseComplexTerm(functionCall);
         if (result == null) result = caseTerm(functionCall);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -256,6 +281,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         PreDefFunctionCall preDefFunctionCall = (PreDefFunctionCall)theEObject;
         T result = casePreDefFunctionCall(preDefFunctionCall);
         if (result == null) result = caseFunctionCall(preDefFunctionCall);
+        if (result == null) result = caseComplexTerm(preDefFunctionCall);
         if (result == null) result = caseTerm(preDefFunctionCall);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -265,6 +291,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         UserDefFunctionCall userDefFunctionCall = (UserDefFunctionCall)theEObject;
         T result = caseUserDefFunctionCall(userDefFunctionCall);
         if (result == null) result = caseFunctionCall(userDefFunctionCall);
+        if (result == null) result = caseComplexTerm(userDefFunctionCall);
         if (result == null) result = caseTerm(userDefFunctionCall);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -273,6 +300,7 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         List list = (List)theEObject;
         T result = caseList(list);
+        if (result == null) result = caseSimpleTerm(list);
         if (result == null) result = caseTerm(list);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -428,6 +456,38 @@ public class ListaCompilerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseTerm(Term object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Simple Term</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Simple Term</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSimpleTerm(SimpleTerm object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Complex Term</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Complex Term</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseComplexTerm(ComplexTerm object)
   {
     return null;
   }

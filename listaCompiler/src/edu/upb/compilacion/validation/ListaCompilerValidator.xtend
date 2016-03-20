@@ -66,9 +66,9 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 	def checkFunctionDefinitionsParameters(FunctionDefinition fd) {
 		var curName = ""
 		for (cur : 1 ..< fd.params.length) {
-			curName = fd.params.get(cur);
+			curName = TypeInferrer.getVariable(fd.params.get(cur));
 			for (i : 0 ..< cur) {
-				if (fd.params.get(i).equals(curName)) {
+				if (TypeInferrer.getVariable(fd.params.get(i)).equals(curName)) {
 					error("The parameter '" + curName + "' can only be declared once.",
 					ListaCompilerPackage.Literals.FUNCTION_DEFINITION__PARAMS,
 					ListaCompilerValidator.INVALID_FUNCTION_DECLARATION
@@ -122,6 +122,7 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		TypeInferrer.inferDataType(fd);
 		TypeInferrer.inferDataType(fd);
 		
+		System.out.println(TypeInferrer.getFunctionString(fd));
 		checkFunctionDefinitionParams(fd);
 		try {
 			TypeInferrer.checkDataType(fd.^return);
@@ -139,20 +140,29 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 	
 	def checkFunctionDefinitionParams(FunctionDefinition fd) {
 		for (param : fd.params) {
-			if (!TypeInferrer.functionParams.get(fd.name).containsKey(param)) {
-				warning("Variable " + param + " is not used.",
+			if (!TypeInferrer.functionParams.get(fd.name).containsKey(TypeInferrer.getVariable(param))) {
+				warning("Variable " + TypeInferrer.getVariable(param) + " is not used.",
 					ListaCompilerPackage.Literals.FUNCTION_DEFINITION__PARAMS,
 					UNUSED_VARIABLE);
 			}
 		}
 		
 		for (param : TypeInferrer.functionParams.get(fd.name).keySet()) {
-			if (!fd.params.contains(param)) {
+			if (!fdContainsParam(fd,param)) {
 				error("Variable " + param + " is not declared, should be added to the function's parameters.",
 					ListaCompilerPackage.Literals.FUNCTION_DEFINITION__PARAMS,
 					INVALID_FUNCTION_DECLARATION);
 			}
 		}
+	}
+	
+	def fdContainsParam(FunctionDefinition fd, String name) {
+		for (param : fd.params) {
+			if (TypeInferrer.getVariable(param).equals(name)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	@Check

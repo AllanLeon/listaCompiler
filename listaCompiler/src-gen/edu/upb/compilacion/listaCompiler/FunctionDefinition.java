@@ -53,20 +53,20 @@ public interface FunctionDefinition extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Params</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Params</b></em>' containment reference list.
+   * The list contents are of type {@link edu.upb.compilacion.listaCompiler.MyVariable}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Params</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Params</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Params</em>' attribute list.
+   * @return the value of the '<em>Params</em>' containment reference list.
    * @see edu.upb.compilacion.listaCompiler.ListaCompilerPackage#getFunctionDefinition_Params()
-   * @model unique="false"
+   * @model containment="true"
    * @generated
    */
-  EList<String> getParams();
+  EList<MyVariable> getParams();
 
   /**
    * Returns the value of the '<em><b>Return</b></em>' containment reference.

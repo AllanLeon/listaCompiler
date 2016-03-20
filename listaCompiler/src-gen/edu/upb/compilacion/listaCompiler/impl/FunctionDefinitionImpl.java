@@ -5,6 +5,7 @@ package edu.upb.compilacion.listaCompiler.impl;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
+import edu.upb.compilacion.listaCompiler.MyVariable;
 
 import java.util.Collection;
 
@@ -19,7 +20,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,14 +61,14 @@ public class FunctionDefinitionImpl extends MinimalEObjectImpl.Container impleme
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getParams() <em>Params</em>}' attribute list.
+   * The cached value of the '{@link #getParams() <em>Params</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getParams()
    * @generated
    * @ordered
    */
-  protected EList<String> params;
+  protected EList<MyVariable> params;
 
   /**
    * The cached value of the '{@link #getReturn() <em>Return</em>}' containment reference.
@@ -127,11 +129,11 @@ public class FunctionDefinitionImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getParams()
+  public EList<MyVariable> getParams()
   {
     if (params == null)
     {
-      params = new EDataTypeEList<String>(String.class, this, ListaCompilerPackage.FUNCTION_DEFINITION__PARAMS);
+      params = new EObjectContainmentEList<MyVariable>(MyVariable.class, this, ListaCompilerPackage.FUNCTION_DEFINITION__PARAMS);
     }
     return params;
   }
@@ -194,6 +196,8 @@ public class FunctionDefinitionImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
+      case ListaCompilerPackage.FUNCTION_DEFINITION__PARAMS:
+        return ((InternalEList<?>)getParams()).basicRemove(otherEnd, msgs);
       case ListaCompilerPackage.FUNCTION_DEFINITION__RETURN:
         return basicSetReturn(null, msgs);
     }
@@ -236,7 +240,7 @@ public class FunctionDefinitionImpl extends MinimalEObjectImpl.Container impleme
         return;
       case ListaCompilerPackage.FUNCTION_DEFINITION__PARAMS:
         getParams().clear();
-        getParams().addAll((Collection<? extends String>)newValue);
+        getParams().addAll((Collection<? extends MyVariable>)newValue);
         return;
       case ListaCompilerPackage.FUNCTION_DEFINITION__RETURN:
         setReturn((Expression)newValue);
@@ -301,8 +305,6 @@ public class FunctionDefinitionImpl extends MinimalEObjectImpl.Container impleme
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", params: ");
-    result.append(params);
     result.append(')');
     return result.toString();
   }
