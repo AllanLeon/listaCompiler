@@ -63,8 +63,19 @@ public class TypeInferrer {
   
   private static String currentFunction = "";
   
-  public static String resetFunction() {
+  public static String resetCurrentFunction() {
     return TypeInferrer.currentFunction = "";
+  }
+  
+  public static TypeInferrer.DataType removeFunctionInfo(final FunctionDefinition fd) {
+    TypeInferrer.DataType _xblockexpression = null;
+    {
+      String _name = fd.getName();
+      TypeInferrer.functionParams.remove(_name);
+      String _name_1 = fd.getName();
+      _xblockexpression = TypeInferrer.functionTypes.remove(_name_1);
+    }
+    return _xblockexpression;
   }
   
   public static void inferDataType(final FunctionDefinition fd) {
@@ -388,6 +399,102 @@ public class TypeInferrer {
       FirstLevelExp _exp = exp.getExp();
       TypeInferrer.inferDataType(_exp, fdName);
     }
+    TypeInferrer.inferPDFArgsDataType(fcall, fdName);
+  }
+  
+  public static void inferPDFArgsDataType(final PreDefFunctionCall fcall, final String fdName) {
+    ArrayList<TypeInferrer.DataType> paramsTypes = new ArrayList<TypeInferrer.DataType>();
+    PDFunction _function = fcall.getFunction();
+    if (_function != null) {
+      switch (_function) {
+        case SHOW:
+          paramsTypes.add(TypeInferrer.DataType.GLOBAL);
+          break;
+        case LENGTH:
+          paramsTypes.add(TypeInferrer.DataType.STRING);
+          break;
+        case CAR:
+          paramsTypes.add(TypeInferrer.DataType.LIST);
+          break;
+        case CDR:
+          paramsTypes.add(TypeInferrer.DataType.LIST);
+          break;
+        case CONS:
+          paramsTypes.add(TypeInferrer.DataType.INT);
+          paramsTypes.add(TypeInferrer.DataType.LIST);
+          break;
+        case IS_EMPTY:
+          paramsTypes.add(TypeInferrer.DataType.LIST);
+          break;
+        default:
+          break;
+      }
+    }
+    int i = 0;
+    EList<Expression> _args = fcall.getArgs();
+    for (final Expression exp : _args) {
+      {
+        int _size = paramsTypes.size();
+        boolean _greaterThan = (i > _size);
+        if (_greaterThan) {
+          return;
+        }
+        TypeInferrer.DataType _get = paramsTypes.get(i);
+        boolean _equals = _get.equals(TypeInferrer.DataType.GLOBAL);
+        boolean _not = (!_equals);
+        if (_not) {
+          TypeInferrer.DataType _dataType = TypeInferrer.getDataType(exp);
+          boolean _equals_1 = _dataType.equals(TypeInferrer.DataType.VAR);
+          if (_equals_1) {
+            HashMap<String, TypeInferrer.DataType> _get_1 = TypeInferrer.functionParams.get(fdName);
+            FirstLevelExp _exp = exp.getExp();
+            String _variable = TypeInferrer.getVariable(_exp);
+            TypeInferrer.DataType _get_2 = paramsTypes.get(i);
+            _get_1.put(_variable, _get_2);
+          }
+        }
+        i++;
+      }
+    }
+  }
+  
+  public static void inferUDFArgsDataType(final UserDefFunctionCall fcall, final String fdName) {
+    FunctionDefinition _function = fcall.getFunction();
+    String _name = _function.getName();
+    boolean _containsKey = TypeInferrer.functionTypes.containsKey(_name);
+    if (_containsKey) {
+      final EList<Expression> args = fcall.getArgs();
+      FunctionDefinition _function_1 = fcall.getFunction();
+      String _name_1 = _function_1.getName();
+      final HashMap<String, TypeInferrer.DataType> params = TypeInferrer.functionParams.get(_name_1);
+      int i = 0;
+      FunctionDefinition _function_2 = fcall.getFunction();
+      EList<String> _params = _function_2.getParams();
+      for (final String current : _params) {
+        {
+          int _size = args.size();
+          boolean _greaterThan = (i > _size);
+          if (_greaterThan) {
+            return;
+          }
+          boolean _containsKey_1 = params.containsKey(current);
+          if (_containsKey_1) {
+            Expression _get = args.get(i);
+            TypeInferrer.DataType _dataType = TypeInferrer.getDataType(_get);
+            boolean _equals = _dataType.equals(TypeInferrer.DataType.VAR);
+            if (_equals) {
+              HashMap<String, TypeInferrer.DataType> _get_1 = TypeInferrer.functionParams.get(fdName);
+              Expression _get_2 = args.get(i);
+              FirstLevelExp _exp = _get_2.getExp();
+              String _variable = TypeInferrer.getVariable(_exp);
+              TypeInferrer.DataType _get_3 = params.get(current);
+              _get_1.put(_variable, _get_3);
+            }
+          }
+          i++;
+        }
+      }
+    }
   }
   
   public static void inferDataType(final UserDefFunctionCall fcall, final String fdName) {
@@ -407,6 +514,7 @@ public class TypeInferrer {
       FirstLevelExp _exp = exp.getExp();
       TypeInferrer.inferDataType(_exp, fdName);
     }
+    TypeInferrer.inferUDFArgsDataType(fcall, fdName);
   }
   
   /**
@@ -847,7 +955,7 @@ public class TypeInferrer {
         if (_or) {
           return TypeInferrer.DataType.STRING;
         } else {
-          String _literal = SecondLevelOp.EQ.getLiteral();
+          String _literal = ThirdLevelOp.CONCAT.getLiteral();
           String _plus = (_literal + " only supports STRING, INT and BOOLEAN types.");
           throw new MismatchedTypeException(_plus);
         }
@@ -872,7 +980,7 @@ public class TypeInferrer {
         if (_or_2) {
           return TypeInferrer.DataType.STRING;
         } else {
-          String _literal_1 = SecondLevelOp.EQ.getLiteral();
+          String _literal_1 = ThirdLevelOp.CONCAT.getLiteral();
           String _plus_1 = (_literal_1 + " only supports STRING, INT and BOOLEAN types.");
           throw new MismatchedTypeException(_plus_1);
         }
@@ -1018,9 +1126,7 @@ public class TypeInferrer {
       if (_function != null) {
         switch (_function) {
           case SHOW:
-            expected = TypeInferrer.DataType.VOID;
-            paramsTypes.add(TypeInferrer.DataType.GLOBAL);
-            break;
+            return TypeInferrer.checkShowDataType(fcall);
           case LENGTH:
             expected = TypeInferrer.DataType.INT;
             paramsTypes.add(TypeInferrer.DataType.STRING);
@@ -1058,6 +1164,14 @@ public class TypeInferrer {
       EList<Expression> _args = fcall.getArgs();
       for (final Expression exp : _args) {
         {
+          int _size = paramsTypes.size();
+          boolean _greaterThan = (i > _size);
+          if (_greaterThan) {
+            PDFunction _function_2 = fcall.getFunction();
+            String _name_1 = _function_2.getName();
+            String _plus_1 = ("Too many arguments in function " + _name_1);
+            throw new MismatchedTypeException(_plus_1);
+          }
           TypeInferrer.DataType _get = paramsTypes.get(i);
           boolean _equals = _get.equals(TypeInferrer.DataType.GLOBAL);
           boolean _not = (!_equals);
@@ -1068,14 +1182,44 @@ public class TypeInferrer {
             boolean _not_1 = (!_equals_1);
             if (_not_1) {
               TypeInferrer.DataType _get_2 = paramsTypes.get(i);
-              String _plus_1 = ("Argument type should be " + _get_2);
-              throw new MismatchedTypeException(_plus_1);
+              String _plus_2 = ("Argument type should be " + _get_2);
+              throw new MismatchedTypeException(_plus_2);
             }
           }
           i++;
         }
       }
       return expected;
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public static TypeInferrer.DataType checkShowDataType(final PreDefFunctionCall fcall) {
+    try {
+      EList<Expression> _args = fcall.getArgs();
+      Expression _get = _args.get(0);
+      final TypeInferrer.DataType arg = TypeInferrer.checkDataType(_get);
+      boolean _or = false;
+      boolean _or_1 = false;
+      boolean _equals = arg.equals(TypeInferrer.DataType.INT);
+      if (_equals) {
+        _or_1 = true;
+      } else {
+        boolean _equals_1 = arg.equals(TypeInferrer.DataType.STRING);
+        _or_1 = _equals_1;
+      }
+      if (_or_1) {
+        _or = true;
+      } else {
+        boolean _equals_2 = arg.equals(TypeInferrer.DataType.BOOL);
+        _or = _equals_2;
+      }
+      boolean _not = (!_or);
+      if (_not) {
+        throw new MismatchedTypeException("Argument type should be INT, STRING or BOOL");
+      }
+      return TypeInferrer.DataType.VOID;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -1096,6 +1240,14 @@ public class TypeInferrer {
         EList<String> _params = _function_2.getParams();
         for (final String current : _params) {
           {
+            int _size = args.size();
+            boolean _greaterThan = (i > _size);
+            if (_greaterThan) {
+              FunctionDefinition _function_3 = fcall.getFunction();
+              String _name_2 = _function_3.getName();
+              String _plus = ("Too many arguments in function " + _name_2);
+              throw new MismatchedTypeException(_plus);
+            }
             boolean _containsKey_1 = params.containsKey(current);
             if (_containsKey_1) {
               Expression _get = args.get(i);
@@ -1105,8 +1257,8 @@ public class TypeInferrer {
               boolean _not = (!_equals);
               if (_not) {
                 TypeInferrer.DataType _get_2 = params.get(current);
-                String _plus = ("Argument type should be " + _get_2);
-                throw new MismatchedTypeException(_plus);
+                String _plus_1 = ("Argument type should be " + _get_2);
+                throw new MismatchedTypeException(_plus_1);
               }
             }
             i++;

@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
+import com.google.common.escape.Escaper
 
 /**
  * Generates code from your model files on save.
@@ -109,7 +110,7 @@ class ListaCompilerGenerator implements IGenerator {
 		if (term instanceof MyInteger) {
 			return (term as MyInteger).generate;
 		} else if (term instanceof MyString) {
-			return '"' + (term as MyString).^val + '"';
+			return '"' + (term as MyString).generate + '"';
 		} else if (term instanceof MyBool) {
 			return (term as MyBool).generate;
 		} else if (term instanceof List) {
@@ -185,6 +186,10 @@ class ListaCompilerGenerator implements IGenerator {
 	
 	def generate (BracketExpression be) {
 		return "(" + be.exp.generate + ")"
+	}
+	
+	def generate (MyString myStr) {
+		return myStr.^val.replaceAll("\n", "\\\\n");
 	}
 	
 	def generate(FunctionDefinition funcd) '''public «TypeInferrer.getFunctionTypes.get(funcd.name).convertDTtoString» «funcd.name»(«FOR fp : funcd.params SEPARATOR ','»«TypeInferrer.functionParams.get(funcd.name).get(fp).convertDTtoString + ' ' + fp»«ENDFOR») {

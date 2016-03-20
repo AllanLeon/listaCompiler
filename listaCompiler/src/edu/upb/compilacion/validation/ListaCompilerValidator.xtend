@@ -14,7 +14,6 @@ import edu.upb.compilacion.listaCompiler.PDFunction
 import edu.upb.compilacion.listaCompiler.PreDefFunctionCall
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall
 import org.eclipse.xtext.validation.Check
-import edu.upb.compilacion.TypeInferrer2
 
 //import org.eclipse.xtext.validation.Check
 
@@ -119,16 +118,11 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 	
 	@Check
 	def checkFunctionDefinitionType(FunctionDefinition fd) {
-		//TypeInferrer.functionParams.clear();
-		//TypeInferrer.functionTypes.clear();
-		
-		val inferrer = new TypeInferrer2();
-		
+		TypeInferrer.removeFunctionInfo(fd);
 		TypeInferrer.inferDataType(fd);
 		TypeInferrer.inferDataType(fd);
 		
 		checkFunctionDefinitionParams(fd);
-		//System.out.println(TypeInferrer.getFunctionString(fd));
 		try {
 			TypeInferrer.checkDataType(fd.^return);
 		} catch (MismatchedTypeException ex) {
@@ -140,7 +134,7 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 			ListaCompilerPackage.Literals.FUNCTION_DEFINITION__RETURN,
 			WRONG_EXPRESSION_TYPE);
 		}
-		TypeInferrer.resetFunction();
+		TypeInferrer.resetCurrentFunction();
 	}
 	
 	def checkFunctionDefinitionParams(FunctionDefinition fd) {
