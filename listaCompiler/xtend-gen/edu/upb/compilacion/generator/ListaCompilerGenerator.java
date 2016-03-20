@@ -59,18 +59,18 @@ public class ListaCompilerGenerator implements IGenerator {
     EObject _get = _contents.get(0);
     final Lista lista = ((Lista) _get);
     CharSequence _generate = this.generate(lista);
-    fsa.generateFile("seks.java", _generate);
+    fsa.generateFile("Seks.java", _generate);
   }
   
   public CharSequence generate(final Lista lista) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public class Seks {");
     _builder.newLine();
-    _builder.append("\t\t");
+    _builder.append("\t");
     EList<Evaluation> _evaluations = lista.getEvaluations();
     CharSequence _generateMain = this.generateMain(_evaluations);
-    _builder.append(_generateMain, "\t\t");
-    _builder.append("\n\n", "\t\t");
+    _builder.append(_generateMain, "\t");
+    _builder.append("\n\n", "\t");
     {
       EList<FunctionDefinition> _definitions = lista.getDefinitions();
       boolean _hasElements = false;
@@ -78,17 +78,16 @@ public class ListaCompilerGenerator implements IGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate("\n\n", "\t\t");
+          _builder.appendImmediate("\n\n", "\t");
         }
         CharSequence _generate = this.generate(fd);
-        _builder.append(_generate, "\t\t");
+        _builder.append(_generate, "\t");
       }
     }
-    _builder.append("\n\n", "\t\t");
+    _builder.append("\n\n", "\t");
     CharSequence _generatePreDefFunctions = this.generatePreDefFunctions();
-    _builder.append(_generatePreDefFunctions, "\t\t");
+    _builder.append(_generatePreDefFunctions, "\t");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
     _builder.append("}");
     return _builder;
   }
@@ -97,11 +96,11 @@ public class ListaCompilerGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public static void main(String[] args) {");
     _builder.newLine();
-    _builder.append("\t\t");
+    _builder.append("\t");
     {
       for(final Evaluation eval : evaluations) {
         CharSequence _generate = this.generate(eval);
-        _builder.append(_generate, "\t\t");
+        _builder.append(_generate, "\t");
         _builder.append(";");
       }
     }
