@@ -54,7 +54,15 @@ NegInteger:
 ;
 
 MyVariable:
+	Variable | CastedVariable
+;
+
+Variable:
 	var=IDFUNCVAR
+;
+
+CastedVariable:
+	var=IDFUNCVAR ":" type=CastedType
 ;
 
 MyBool:
@@ -131,6 +139,12 @@ enum ThirdLevelOp:
 enum FourthLevelOp:
 	mult = "*" |
 	div = "/"
+;
+
+enum CastedType:
+	int = "int" |
+	bool = "bool" |
+	string = "string"
 ;
 
 terminal IDFUNCVAR: ('a'..'z'|'A'..'Z')('A'..'Z'|'a'..'z'|'0'..'9')*;

@@ -34,7 +34,6 @@ import edu.upb.compilacion.listaCompiler.Term;
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
 import edu.upb.compilacion.listaCompiler.ThirdLevelOp;
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall;
-import edu.upb.compilacion.validation.ListaCompilerValidator;
 import java.util.HashMap;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -63,10 +62,13 @@ public class ListaCompilerGenerator implements IGenerator {
   
   public CharSequence generate(final Lista lista) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public class Seks {");
+    _builder.newLine();
+    _builder.append("\t\t");
     EList<Evaluation> _evaluations = lista.getEvaluations();
     CharSequence _generateMain = this.generateMain(_evaluations);
-    _builder.append(_generateMain, "");
-    _builder.append("\n\n", "");
+    _builder.append(_generateMain, "\t\t");
+    _builder.append("\n\n", "\t\t");
     {
       EList<FunctionDefinition> _definitions = lista.getDefinitions();
       boolean _hasElements = false;
@@ -74,15 +76,18 @@ public class ListaCompilerGenerator implements IGenerator {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate("\n\n", "");
+          _builder.appendImmediate("\n\n", "\t\t");
         }
         CharSequence _generate = this.generate(fd);
-        _builder.append(_generate, "");
+        _builder.append(_generate, "\t\t");
       }
     }
-    _builder.append("\n\n", "");
+    _builder.append("\n\n", "\t\t");
     CharSequence _generatePreDefFunctions = this.generatePreDefFunctions();
-    _builder.append(_generatePreDefFunctions, "");
+    _builder.append(_generatePreDefFunctions, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("}");
     return _builder;
   }
   
@@ -171,8 +176,13 @@ public class ListaCompilerGenerator implements IGenerator {
     boolean _greaterThan = (_length > 1);
     if (_greaterThan) {
       ThirdLevelOp _op = exp.getOp();
-      String _literal = _op.getLiteral();
-      String _plus = (res + _literal);
+      String op = _op.getLiteral();
+      ThirdLevelOp _op_1 = exp.getOp();
+      boolean _equals = _op_1.equals(ThirdLevelOp.CONCAT);
+      if (_equals) {
+        op = "+";
+      }
+      String _plus = (res + op);
       EList<EObject> _args_2 = exp.getArgs();
       EObject _get_1 = _args_2.get(1);
       Object _generate = this.generate(((ThirdLevelExp) _get_1));
@@ -208,7 +218,9 @@ public class ListaCompilerGenerator implements IGenerator {
       return this.generate(((MyInteger) term));
     } else {
       if ((term instanceof MyString)) {
-        return ((MyString) term).getVal();
+        String _val = ((MyString) term).getVal();
+        String _plus = ("\"" + _val);
+        return (_plus + "\"");
       } else {
         if ((term instanceof MyBool)) {
           return this.generate(((MyBool) term));
@@ -388,6 +400,7 @@ public class ListaCompilerGenerator implements IGenerator {
     Expression _iftrue = icf.getIftrue();
     Object _generate_1 = this.generate(_iftrue);
     _builder.append(_generate_1, "\t\t");
+    _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("} else {");
@@ -396,6 +409,7 @@ public class ListaCompilerGenerator implements IGenerator {
     Expression _iffalse = icf.getIffalse();
     Object _generate_2 = this.generate(_iffalse);
     _builder.append(_generate_2, "\t\t");
+    _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("}");
@@ -412,9 +426,9 @@ public class ListaCompilerGenerator implements IGenerator {
   public CharSequence generate(final FunctionDefinition funcd) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public ");
-    HashMap<String, ListaCompilerValidator.DataType> _functionTypes = TypeInferrer.getFunctionTypes();
+    HashMap<String, TypeInferrer.DataType> _functionTypes = TypeInferrer.getFunctionTypes();
     String _name = funcd.getName();
-    ListaCompilerValidator.DataType _get = _functionTypes.get(_name);
+    TypeInferrer.DataType _get = _functionTypes.get(_name);
     String _convertDTtoString = this.convertDTtoString(_get);
     _builder.append(_convertDTtoString, "");
     _builder.append(" ");
@@ -430,10 +444,10 @@ public class ListaCompilerGenerator implements IGenerator {
         } else {
           _builder.appendImmediate(",", "");
         }
-        HashMap<String, HashMap<String, ListaCompilerValidator.DataType>> _functionParams = TypeInferrer.getFunctionParams();
+        HashMap<String, HashMap<String, TypeInferrer.DataType>> _functionParams = TypeInferrer.getFunctionParams();
         String _name_2 = funcd.getName();
-        HashMap<String, ListaCompilerValidator.DataType> _get_1 = _functionParams.get(_name_2);
-        ListaCompilerValidator.DataType _get_2 = _get_1.get(fp);
+        HashMap<String, TypeInferrer.DataType> _get_1 = _functionParams.get(_name_2);
+        TypeInferrer.DataType _get_2 = _get_1.get(fp);
         String _convertDTtoString_1 = this.convertDTtoString(_get_2);
         String _plus = (_convertDTtoString_1 + " ");
         String _plus_1 = (_plus + fp);
@@ -443,6 +457,16 @@ public class ListaCompilerGenerator implements IGenerator {
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
+    {
+      HashMap<String, TypeInferrer.DataType> _functionTypes_1 = TypeInferrer.getFunctionTypes();
+      String _name_3 = funcd.getName();
+      TypeInferrer.DataType _get_3 = _functionTypes_1.get(_name_3);
+      boolean _equals = _get_3.equals(TypeInferrer.DataType.VOID);
+      boolean _not = (!_equals);
+      if (_not) {
+        _builder.append("return ", "\t");
+      }
+    }
     Expression _return = funcd.getReturn();
     FirstLevelExp _exp = _return.getExp();
     Object _generate = this.generate(_exp);
@@ -453,7 +477,7 @@ public class ListaCompilerGenerator implements IGenerator {
     return _builder;
   }
   
-  public String convertDTtoString(final ListaCompilerValidator.DataType dt) {
+  public String convertDTtoString(final TypeInferrer.DataType dt) {
     if (dt != null) {
       switch (dt) {
         case BOOL:
@@ -477,83 +501,70 @@ public class ListaCompilerGenerator implements IGenerator {
   
   public CharSequence generatePreDefFunctions() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("int[] cons(int x, int[] l) {");
+    _builder.append("public int[] cons(int x, int[] l) {");
     _builder.newLine();
-    _builder.append("        ");
+    _builder.append("    ");
     _builder.append("int[] res = new int[l.length + 1];");
     _builder.newLine();
-    _builder.append("        ");
+    _builder.append("    ");
     _builder.append("res[0] = x;");
     _builder.newLine();
-    _builder.append("        ");
+    _builder.append("    ");
     _builder.append("for (int i = 1; i < l.length + 1; i++) {");
     _builder.newLine();
-    _builder.append("            ");
+    _builder.append("        ");
     _builder.append("res[i] = l[i - 1];");
     _builder.newLine();
-    _builder.append("        ");
+    _builder.append("    ");
     _builder.append("}");
     _builder.newLine();
-    _builder.append("        ");
+    _builder.append("    ");
     _builder.append("return res;");
     _builder.newLine();
-    _builder.append("    ");
     _builder.append("}");
     _builder.newLine();
-    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("public int car(int[] l) {");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("int car(int[] l) {");
-    _builder.newLine();
-    _builder.append("        ");
     _builder.append("return l[0];");
     _builder.newLine();
-    _builder.append("    ");
     _builder.append("}");
     _builder.newLine();
-    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("public int[] cdr(int[] l) {");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("int[] cdr(int[] l) {");
-    _builder.newLine();
-    _builder.append("        ");
     _builder.append("int[] res = new int[l.length - 1];");
     _builder.newLine();
-    _builder.append("        ");
+    _builder.append("    ");
     _builder.append("for (int i = 1; i < l.length ; i++) {");
     _builder.newLine();
-    _builder.append("            ");
+    _builder.append("        ");
     _builder.append("res[i - 1] = l[i];");
     _builder.newLine();
-    _builder.append("        ");
+    _builder.append("    ");
     _builder.append("}");
     _builder.newLine();
-    _builder.append("        ");
+    _builder.append("    ");
     _builder.append("return res;");
     _builder.newLine();
-    _builder.append("    ");
     _builder.append("}");
     _builder.newLine();
-    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("public boolean isEmpty(int[] l) {");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("boolean isEmpty(int[] l) {");
-    _builder.newLine();
-    _builder.append("        ");
     _builder.append("return (l.length > 1) ? false : true;");
     _builder.newLine();
-    _builder.append("    ");
     _builder.append("}");
     _builder.newLine();
-    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("public int length(String s) {");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("int length(String s) {");
-    _builder.newLine();
-    _builder.append("        ");
     _builder.append("return s.length();");
     _builder.newLine();
-    _builder.append("    ");
     _builder.append("}");
     return _builder;
   }
