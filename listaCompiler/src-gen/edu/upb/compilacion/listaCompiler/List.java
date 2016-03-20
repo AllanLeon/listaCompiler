@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface List extends Term
+public interface List extends SimpleTerm
 {
   /**
    * Returns the value of the '<em><b>Elems</b></em>' containment reference list.

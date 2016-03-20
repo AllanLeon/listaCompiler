@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class MyIntegerImpl extends TermImpl implements MyInteger
+public class MyIntegerImpl extends SimpleTermImpl implements MyInteger
 {
   /**
    * <!-- begin-user-doc -->

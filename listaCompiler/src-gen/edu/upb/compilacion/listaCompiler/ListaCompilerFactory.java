@@ -104,6 +104,24 @@ public interface ListaCompilerFactory extends EFactory
   Term createTerm();
 
   /**
+   * Returns a new object of class '<em>Simple Term</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Simple Term</em>'.
+   * @generated
+   */
+  SimpleTerm createSimpleTerm();
+
+  /**
+   * Returns a new object of class '<em>Complex Term</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Complex Term</em>'.
+   * @generated
+   */
+  ComplexTerm createComplexTerm();
+
+  /**
    * Returns a new object of class '<em>Bracket Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

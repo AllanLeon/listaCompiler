@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ListImpl extends TermImpl implements List
+public class ListImpl extends SimpleTermImpl implements List
 {
   /**
    * The cached value of the '{@link #getElems() <em>Elems</em>}' containment reference list.

@@ -19,7 +19,7 @@ package edu.upb.compilacion.listaCompiler;
  * @model
  * @generated
  */
-public interface BracketExpression extends Term
+public interface BracketExpression extends ComplexTerm
 {
   /**
    * Returns the value of the '<em><b>Exp</b></em>' containment reference.

@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class BracketExpressionImpl extends TermImpl implements BracketExpression
+public class BracketExpressionImpl extends ComplexTermImpl implements BracketExpression
 {
   /**
    * The cached value of the '{@link #getExp() <em>Exp</em>}' containment reference.

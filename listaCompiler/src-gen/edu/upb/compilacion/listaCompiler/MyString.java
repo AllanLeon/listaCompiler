@@ -19,7 +19,7 @@ package edu.upb.compilacion.listaCompiler;
  * @model
  * @generated
  */
-public interface MyString extends Term
+public interface MyString extends SimpleTerm
 {
   /**
    * Returns the value of the '<em><b>Val</b></em>' attribute.

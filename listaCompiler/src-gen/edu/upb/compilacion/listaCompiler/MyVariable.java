@@ -19,7 +19,7 @@ package edu.upb.compilacion.listaCompiler;
  * @model
  * @generated
  */
-public interface MyVariable extends Term, ListElem
+public interface MyVariable extends ListElem
 {
   /**
    * Returns the value of the '<em><b>Var</b></em>' attribute.

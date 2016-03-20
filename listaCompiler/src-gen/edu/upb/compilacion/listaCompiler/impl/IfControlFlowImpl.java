@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class IfControlFlowImpl extends TermImpl implements IfControlFlow
+public class IfControlFlowImpl extends ComplexTermImpl implements IfControlFlow
 {
   /**
    * The cached value of the '{@link #getCond() <em>Cond</em>}' containment reference.

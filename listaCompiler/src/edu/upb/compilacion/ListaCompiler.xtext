@@ -9,7 +9,7 @@ Evaluation:
 	"?" return=Expression ";"
 ;
 
-FunctionDefinition: name=IDFUNCVAR "(" (params+=IDFUNCVAR (',' params+=IDFUNCVAR)*)? ")"
+FunctionDefinition: name=IDFUNCVAR "(" (params+=MyVariable (',' params+=MyVariable)*)? ")"
 	"=" return=Expression ";"
 ;
 
@@ -34,7 +34,15 @@ FourthLevelExp:
 ;
 
 Term:
-	MyInteger | MyString | MyBool | MyVariable | List | FunctionCall | IfControlFlow | BracketExpression
+	SimpleTerm | ComplexTerm
+;
+
+SimpleTerm:
+	MyInteger | MyString | MyBool | Variable | List
+;
+
+ComplexTerm:
+	FunctionCall | IfControlFlow | BracketExpression
 ;
 
 BracketExpression:
@@ -50,7 +58,7 @@ PosInteger:
 ;
 
 NegInteger:
-	"-" val=(PosInteger | BracketExpression)
+	"-" val=(PosInteger | ComplexTerm)
 ;
 
 MyVariable:
@@ -74,7 +82,7 @@ PosBool:
 ;
 
 NegBool:
-	"!" val=(PosBool | BracketExpression)
+	"!" val=(PosBool | ComplexTerm)
 ;
 
 MyString:
@@ -144,7 +152,8 @@ enum FourthLevelOp:
 enum CastedType:
 	int = "int" |
 	bool = "bool" |
-	string = "string"
+	string = "string" |
+	list = "[int]"
 ;
 
 terminal IDFUNCVAR: ('a'..'z'|'A'..'Z')('A'..'Z'|'a'..'z'|'0'..'9')*;

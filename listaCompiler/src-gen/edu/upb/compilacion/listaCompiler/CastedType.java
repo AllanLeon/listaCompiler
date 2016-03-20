@@ -47,7 +47,17 @@ public enum CastedType implements Enumerator
    * @generated
    * @ordered
    */
-  STRING(2, "string", "string");
+  STRING(2, "string", "string"),
+
+  /**
+   * The '<em><b>List</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #LIST_VALUE
+   * @generated
+   * @ordered
+   */
+  LIST(3, "list", "[int]");
 
   /**
    * The '<em><b>Int</b></em>' literal value.
@@ -95,6 +105,21 @@ public enum CastedType implements Enumerator
   public static final int STRING_VALUE = 2;
 
   /**
+   * The '<em><b>List</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>List</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @see #LIST
+   * @model name="list" literal="[int]"
+   * @generated
+   * @ordered
+   */
+  public static final int LIST_VALUE = 3;
+
+  /**
    * An array of all the '<em><b>Casted Type</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -106,6 +131,7 @@ public enum CastedType implements Enumerator
       INT,
       BOOL,
       STRING,
+      LIST,
     };
 
   /**
@@ -173,6 +199,7 @@ public enum CastedType implements Enumerator
       case INT_VALUE: return INT;
       case BOOL_VALUE: return BOOL;
       case STRING_VALUE: return STRING;
+      case LIST_VALUE: return LIST;
     }
     return null;
   }

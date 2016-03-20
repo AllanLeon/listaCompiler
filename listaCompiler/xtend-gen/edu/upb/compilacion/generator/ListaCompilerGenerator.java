@@ -7,6 +7,7 @@ import edu.upb.compilacion.TypeInferrer;
 import edu.upb.compilacion.listaCompiler.Bool;
 import edu.upb.compilacion.listaCompiler.BracketExpression;
 import edu.upb.compilacion.listaCompiler.CastedVariable;
+import edu.upb.compilacion.listaCompiler.ComplexTerm;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
@@ -31,6 +32,7 @@ import edu.upb.compilacion.listaCompiler.PosInteger;
 import edu.upb.compilacion.listaCompiler.PreDefFunctionCall;
 import edu.upb.compilacion.listaCompiler.SecondLevelExp;
 import edu.upb.compilacion.listaCompiler.SecondLevelOp;
+import edu.upb.compilacion.listaCompiler.SimpleTerm;
 import edu.upb.compilacion.listaCompiler.Term;
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
 import edu.upb.compilacion.listaCompiler.ThirdLevelOp;
@@ -58,8 +60,22 @@ public class ListaCompilerGenerator implements IGenerator {
     EList<EObject> _contents = resource.getContents();
     EObject _get = _contents.get(0);
     final Lista lista = ((Lista) _get);
+    CharSequence _generateComplementaryFile = this.generateComplementaryFile();
+    fsa.generateFile("Complements.java", _generateComplementaryFile);
     CharSequence _generate = this.generate(lista);
     fsa.generateFile("Seks.java", _generate);
+  }
+  
+  public CharSequence generateComplementaryFile() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public class Complements {");
+    _builder.newLine();
+    _builder.append("\t");
+    CharSequence _generatePreDefFunctions = this.generatePreDefFunctions();
+    _builder.append(_generatePreDefFunctions, "\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("}");
+    return _builder;
   }
   
   public CharSequence generate(final Lista lista) {
@@ -84,9 +100,7 @@ public class ListaCompilerGenerator implements IGenerator {
         _builder.append(_generate, "\t");
       }
     }
-    _builder.append("\n\n", "\t");
-    CharSequence _generatePreDefFunctions = this.generatePreDefFunctions();
-    _builder.append(_generatePreDefFunctions, "\t");
+    _builder.append("\n", "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("}");
     return _builder;
@@ -215,6 +229,17 @@ public class ListaCompilerGenerator implements IGenerator {
   }
   
   public Object generate(final Term term) {
+    if ((term instanceof SimpleTerm)) {
+      return this.generate(((SimpleTerm) term));
+    } else {
+      if ((term instanceof ComplexTerm)) {
+        return this.generate(((ComplexTerm) term));
+      }
+    }
+    return null;
+  }
+  
+  public Object generate(final SimpleTerm term) {
     if ((term instanceof MyInteger)) {
       return this.generate(((MyInteger) term));
     } else {
@@ -230,20 +255,7 @@ public class ListaCompilerGenerator implements IGenerator {
             return this.generate(((List) term));
           } else {
             if ((term instanceof MyVariable)) {
-              return this.generate(((MyVariable) term));
-            } else {
-              if ((term instanceof FunctionCall)) {
-                return this.generate(((FunctionCall) term));
-              } else {
-                if ((term instanceof IfControlFlow)) {
-                  return this.generate(((IfControlFlow) term));
-                } else {
-                  if ((term instanceof BracketExpression)) {
-                    Expression _exp = ((BracketExpression) term).getExp();
-                    return this.generate(_exp);
-                  }
-                }
-              }
+              return ((Variable) term).getVar();
             }
           }
         }
@@ -252,7 +264,23 @@ public class ListaCompilerGenerator implements IGenerator {
     return null;
   }
   
-  public String generate(final MyInteger mi) {
+  public Object generate(final ComplexTerm term) {
+    if ((term instanceof FunctionCall)) {
+      return this.generate(((FunctionCall) term));
+    } else {
+      if ((term instanceof IfControlFlow)) {
+        return this.generate(((IfControlFlow) term));
+      } else {
+        if ((term instanceof BracketExpression)) {
+          Expression _exp = ((BracketExpression) term).getExp();
+          return this.generate(_exp);
+        }
+      }
+    }
+    return null;
+  }
+  
+  public Object generate(final MyInteger mi) {
     if ((mi instanceof PosInteger)) {
       int _val = ((PosInteger) mi).getVal();
       return Integer.valueOf(_val).toString();
@@ -263,8 +291,8 @@ public class ListaCompilerGenerator implements IGenerator {
           int _val_1 = ((PosInteger) exp).getVal();
           return Integer.valueOf(_val_1).toString();
         } else {
-          if ((exp instanceof BracketExpression)) {
-            return this.generate(((BracketExpression) exp));
+          if ((exp instanceof ComplexTerm)) {
+            return this.generate(((ComplexTerm) exp));
           }
         }
       }
@@ -272,7 +300,7 @@ public class ListaCompilerGenerator implements IGenerator {
     return null;
   }
   
-  public String generate(final MyBool mb) {
+  public Object generate(final MyBool mb) {
     if ((mb instanceof PosBool)) {
       Bool _val = ((PosBool) mb).getVal();
       return _val.toString();
@@ -283,8 +311,8 @@ public class ListaCompilerGenerator implements IGenerator {
           Bool _val_1 = ((PosBool) exp).getVal();
           return _val_1.toString();
         } else {
-          if ((exp instanceof BracketExpression)) {
-            return this.generate(((BracketExpression) exp));
+          if ((exp instanceof ComplexTerm)) {
+            return this.generate(((ComplexTerm) exp));
           }
         }
       }
@@ -304,7 +332,7 @@ public class ListaCompilerGenerator implements IGenerator {
         } else {
           _builder.appendImmediate(",", "");
         }
-        String _generate = this.generate(elm);
+        Object _generate = this.generate(elm);
         _builder.append(_generate, "");
       }
     }
@@ -323,7 +351,7 @@ public class ListaCompilerGenerator implements IGenerator {
     return null;
   }
   
-  public String generate(final ListElem le) {
+  public Object generate(final ListElem le) {
     if ((le instanceof MyInteger)) {
       return this.generate(((MyInteger) le));
     } else {
@@ -354,6 +382,7 @@ public class ListaCompilerGenerator implements IGenerator {
       if (_equals) {
         _builder.append("System.out.println", "");
       } else {
+        _builder.append("Complements.");
         PDFunction _function_1 = pdf.getFunction();
         String _name_1 = _function_1.getName();
         _builder.append(_name_1, "");
@@ -420,7 +449,7 @@ public class ListaCompilerGenerator implements IGenerator {
   
   public String generate(final BracketExpression be) {
     Expression _exp = be.getExp();
-    Object _generate = this.generate(_exp);
+    CharSequence _generate = this.generate(_exp);
     String _plus = ("(" + _generate);
     return (_plus + ")");
   }
@@ -443,9 +472,9 @@ public class ListaCompilerGenerator implements IGenerator {
     _builder.append(_name_1, "");
     _builder.append("(");
     {
-      EList<String> _params = funcd.getParams();
+      EList<MyVariable> _params = funcd.getParams();
       boolean _hasElements = false;
-      for(final String fp : _params) {
+      for(final MyVariable fp : _params) {
         if (!_hasElements) {
           _hasElements = true;
         } else {
@@ -454,10 +483,12 @@ public class ListaCompilerGenerator implements IGenerator {
         HashMap<String, HashMap<String, TypeInferrer.DataType>> _functionParams = TypeInferrer.getFunctionParams();
         String _name_2 = funcd.getName();
         HashMap<String, TypeInferrer.DataType> _get_1 = _functionParams.get(_name_2);
-        TypeInferrer.DataType _get_2 = _get_1.get(fp);
+        String _generate = this.generate(fp);
+        TypeInferrer.DataType _get_2 = _get_1.get(_generate);
         String _convertDTtoString_1 = this.convertDTtoString(_get_2);
         String _plus = (_convertDTtoString_1 + " ");
-        String _plus_1 = (_plus + fp);
+        String _generate_1 = this.generate(fp);
+        String _plus_1 = (_plus + _generate_1);
         _builder.append(_plus_1, "");
       }
     }
@@ -476,8 +507,8 @@ public class ListaCompilerGenerator implements IGenerator {
     }
     Expression _return = funcd.getReturn();
     FirstLevelExp _exp = _return.getExp();
-    Object _generate = this.generate(_exp);
-    _builder.append(_generate, "\t");
+    Object _generate_2 = this.generate(_exp);
+    _builder.append(_generate_2, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("}");
@@ -498,17 +529,19 @@ public class ListaCompilerGenerator implements IGenerator {
           return StringExtensions.toFirstUpper(_lowerCase);
         case LIST:
           return "int[]";
-        default:
+        case VOID:
           return "void";
+        default:
+          return "int";
       }
     } else {
-      return "void";
+      return "int";
     }
   }
   
   public CharSequence generatePreDefFunctions() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("public int[] cons(int x, int[] l) {");
+    _builder.append("public static int[] cons(int x, int[] l) {");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("int[] res = new int[l.length + 1];");
@@ -531,7 +564,7 @@ public class ListaCompilerGenerator implements IGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("public int car(int[] l) {");
+    _builder.append("public static int car(int[] l) {");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("return l[0];");
@@ -539,7 +572,7 @@ public class ListaCompilerGenerator implements IGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("public int[] cdr(int[] l) {");
+    _builder.append("public static int[] cdr(int[] l) {");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("int[] res = new int[l.length - 1];");
@@ -559,7 +592,7 @@ public class ListaCompilerGenerator implements IGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("public boolean isEmpty(int[] l) {");
+    _builder.append("public static boolean isEmpty(int[] l) {");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("return (l.length > 1) ? false : true;");
@@ -567,7 +600,7 @@ public class ListaCompilerGenerator implements IGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("public int length(String s) {");
+    _builder.append("public static int length(String s) {");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("return s.length();");

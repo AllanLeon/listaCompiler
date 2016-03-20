@@ -13,6 +13,6 @@ package edu.upb.compilacion.listaCompiler;
  * @model
  * @generated
  */
-public interface MyBool extends Term
+public interface MyBool extends SimpleTerm
 {
 } // MyBool

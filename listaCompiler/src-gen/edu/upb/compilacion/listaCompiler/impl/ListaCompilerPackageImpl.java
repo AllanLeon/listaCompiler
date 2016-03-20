@@ -6,6 +6,7 @@ import edu.upb.compilacion.listaCompiler.Bool;
 import edu.upb.compilacion.listaCompiler.BracketExpression;
 import edu.upb.compilacion.listaCompiler.CastedType;
 import edu.upb.compilacion.listaCompiler.CastedVariable;
+import edu.upb.compilacion.listaCompiler.ComplexTerm;
 import edu.upb.compilacion.listaCompiler.Evaluation;
 import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FirstLevelExp;
@@ -32,6 +33,7 @@ import edu.upb.compilacion.listaCompiler.PosInteger;
 import edu.upb.compilacion.listaCompiler.PreDefFunctionCall;
 import edu.upb.compilacion.listaCompiler.SecondLevelExp;
 import edu.upb.compilacion.listaCompiler.SecondLevelOp;
+import edu.upb.compilacion.listaCompiler.SimpleTerm;
 import edu.upb.compilacion.listaCompiler.Term;
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp;
 import edu.upb.compilacion.listaCompiler.ThirdLevelOp;
@@ -116,6 +118,20 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * @generated
    */
   private EClass termEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass simpleTermEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass complexTermEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -423,9 +439,9 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFunctionDefinition_Params()
+  public EReference getFunctionDefinition_Params()
   {
-    return (EAttribute)functionDefinitionEClass.getEStructuralFeatures().get(1);
+    return (EReference)functionDefinitionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -586,6 +602,26 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
   public EClass getTerm()
   {
     return termEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSimpleTerm()
+  {
+    return simpleTermEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getComplexTerm()
+  {
+    return complexTermEClass;
   }
 
   /**
@@ -1017,7 +1053,7 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
 
     functionDefinitionEClass = createEClass(FUNCTION_DEFINITION);
     createEAttribute(functionDefinitionEClass, FUNCTION_DEFINITION__NAME);
-    createEAttribute(functionDefinitionEClass, FUNCTION_DEFINITION__PARAMS);
+    createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__PARAMS);
     createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__RETURN);
 
     expressionEClass = createEClass(EXPRESSION);
@@ -1040,6 +1076,10 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     createEAttribute(fourthLevelExpEClass, FOURTH_LEVEL_EXP__OP);
 
     termEClass = createEClass(TERM);
+
+    simpleTermEClass = createEClass(SIMPLE_TERM);
+
+    complexTermEClass = createEClass(COMPLEX_TERM);
 
     bracketExpressionEClass = createEClass(BRACKET_EXPRESSION);
     createEReference(bracketExpressionEClass, BRACKET_EXPRESSION__EXP);
@@ -1129,24 +1169,26 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    bracketExpressionEClass.getESuperTypes().add(this.getTerm());
-    myIntegerEClass.getESuperTypes().add(this.getTerm());
+    simpleTermEClass.getESuperTypes().add(this.getTerm());
+    complexTermEClass.getESuperTypes().add(this.getTerm());
+    bracketExpressionEClass.getESuperTypes().add(this.getComplexTerm());
+    myIntegerEClass.getESuperTypes().add(this.getSimpleTerm());
     myIntegerEClass.getESuperTypes().add(this.getListElem());
     posIntegerEClass.getESuperTypes().add(this.getMyInteger());
     negIntegerEClass.getESuperTypes().add(this.getMyInteger());
-    myVariableEClass.getESuperTypes().add(this.getTerm());
     myVariableEClass.getESuperTypes().add(this.getListElem());
+    variableEClass.getESuperTypes().add(this.getSimpleTerm());
     variableEClass.getESuperTypes().add(this.getMyVariable());
     castedVariableEClass.getESuperTypes().add(this.getMyVariable());
-    myBoolEClass.getESuperTypes().add(this.getTerm());
+    myBoolEClass.getESuperTypes().add(this.getSimpleTerm());
     posBoolEClass.getESuperTypes().add(this.getMyBool());
     negBoolEClass.getESuperTypes().add(this.getMyBool());
-    myStringEClass.getESuperTypes().add(this.getTerm());
-    ifControlFlowEClass.getESuperTypes().add(this.getTerm());
-    functionCallEClass.getESuperTypes().add(this.getTerm());
+    myStringEClass.getESuperTypes().add(this.getSimpleTerm());
+    ifControlFlowEClass.getESuperTypes().add(this.getComplexTerm());
+    functionCallEClass.getESuperTypes().add(this.getComplexTerm());
     preDefFunctionCallEClass.getESuperTypes().add(this.getFunctionCall());
     userDefFunctionCallEClass.getESuperTypes().add(this.getFunctionCall());
-    listEClass.getESuperTypes().add(this.getTerm());
+    listEClass.getESuperTypes().add(this.getSimpleTerm());
 
     // Initialize classes and features; add operations and parameters
     initEClass(listaEClass, Lista.class, "Lista", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1158,7 +1200,7 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
 
     initEClass(functionDefinitionEClass, FunctionDefinition.class, "FunctionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFunctionDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFunctionDefinition_Params(), ecorePackage.getEString(), "params", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFunctionDefinition_Params(), this.getMyVariable(), null, "params", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFunctionDefinition_Return(), this.getExpression(), null, "return", null, 0, 1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1181,6 +1223,10 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     initEAttribute(getFourthLevelExp_Op(), this.getFourthLevelOp(), "op", null, 0, 1, FourthLevelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(termEClass, Term.class, "Term", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(simpleTermEClass, SimpleTerm.class, "SimpleTerm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(complexTermEClass, ComplexTerm.class, "ComplexTerm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(bracketExpressionEClass, BracketExpression.class, "BracketExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBracketExpression_Exp(), this.getExpression(), null, "exp", null, 0, 1, BracketExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1266,6 +1312,7 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     addEEnumLiteral(castedTypeEEnum, CastedType.INT);
     addEEnumLiteral(castedTypeEEnum, CastedType.BOOL);
     addEEnumLiteral(castedTypeEEnum, CastedType.STRING);
+    addEEnumLiteral(castedTypeEEnum, CastedType.LIST);
 
     // Create resource
     createResource(eNS_URI);

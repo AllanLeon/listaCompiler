@@ -207,19 +207,19 @@ ruleFunctionDefinition returns [EObject current=null]
     }
 ((
 (
-		lv_params_2_0=RULE_IDFUNCVAR
-		{
-			newLeafNode(lv_params_2_0, grammarAccess.getFunctionDefinitionAccess().getParamsIDFUNCVARTerminalRuleCall_2_0_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getParamsMyVariableParserRuleCall_2_0_0()); 
+	    }
+		lv_params_2_0=ruleMyVariable		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getFunctionDefinitionRule());
+	            $current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
 	        }
-       		addWithLastConsumed(
+       		add(
        			$current, 
        			"params",
         		lv_params_2_0, 
-        		"IDFUNCVAR");
+        		"MyVariable");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -229,19 +229,19 @@ ruleFunctionDefinition returns [EObject current=null]
     }
 (
 (
-		lv_params_4_0=RULE_IDFUNCVAR
-		{
-			newLeafNode(lv_params_4_0, grammarAccess.getFunctionDefinitionAccess().getParamsIDFUNCVARTerminalRuleCall_2_1_1_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getParamsMyVariableParserRuleCall_2_1_1_0()); 
+	    }
+		lv_params_4_0=ruleMyVariable		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getFunctionDefinitionRule());
+	            $current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
 	        }
-       		addWithLastConsumed(
+       		add(
        			$current, 
        			"params",
         		lv_params_4_0, 
-        		"IDFUNCVAR");
+        		"MyVariable");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -637,7 +637,47 @@ ruleTerm returns [EObject current=null]
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getTermAccess().getMyIntegerParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getTermAccess().getSimpleTermParserRuleCall_0()); 
+    }
+    this_SimpleTerm_0=ruleSimpleTerm
+    { 
+        $current = $this_SimpleTerm_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getTermAccess().getComplexTermParserRuleCall_1()); 
+    }
+    this_ComplexTerm_1=ruleComplexTerm
+    { 
+        $current = $this_ComplexTerm_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleSimpleTerm
+entryRuleSimpleTerm returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getSimpleTermRule()); }
+	 iv_ruleSimpleTerm=ruleSimpleTerm 
+	 { $current=$iv_ruleSimpleTerm.current; } 
+	 EOF 
+;
+
+// Rule SimpleTerm
+ruleSimpleTerm returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getSimpleTermAccess().getMyIntegerParserRuleCall_0()); 
     }
     this_MyInteger_0=ruleMyInteger
     { 
@@ -647,7 +687,7 @@ ruleTerm returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getTermAccess().getMyStringParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getSimpleTermAccess().getMyStringParserRuleCall_1()); 
     }
     this_MyString_1=ruleMyString
     { 
@@ -657,7 +697,7 @@ ruleTerm returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getTermAccess().getMyBoolParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getSimpleTermAccess().getMyBoolParserRuleCall_2()); 
     }
     this_MyBool_2=ruleMyBool
     { 
@@ -667,51 +707,71 @@ ruleTerm returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getTermAccess().getMyVariableParserRuleCall_3()); 
+        newCompositeNode(grammarAccess.getSimpleTermAccess().getVariableParserRuleCall_3()); 
     }
-    this_MyVariable_3=ruleMyVariable
+    this_Variable_3=ruleVariable
     { 
-        $current = $this_MyVariable_3.current; 
+        $current = $this_Variable_3.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getTermAccess().getListParserRuleCall_4()); 
+        newCompositeNode(grammarAccess.getSimpleTermAccess().getListParserRuleCall_4()); 
     }
     this_List_4=ruleList
     { 
         $current = $this_List_4.current; 
         afterParserOrEnumRuleCall();
     }
+)
+;
 
-    |
-    { 
-        newCompositeNode(grammarAccess.getTermAccess().getFunctionCallParserRuleCall_5()); 
+
+
+
+
+// Entry rule entryRuleComplexTerm
+entryRuleComplexTerm returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getComplexTermRule()); }
+	 iv_ruleComplexTerm=ruleComplexTerm 
+	 { $current=$iv_ruleComplexTerm.current; } 
+	 EOF 
+;
+
+// Rule ComplexTerm
+ruleComplexTerm returns [EObject current=null] 
+    @init { enterRule(); 
     }
-    this_FunctionCall_5=ruleFunctionCall
+    @after { leaveRule(); }:
+(
     { 
-        $current = $this_FunctionCall_5.current; 
+        newCompositeNode(grammarAccess.getComplexTermAccess().getFunctionCallParserRuleCall_0()); 
+    }
+    this_FunctionCall_0=ruleFunctionCall
+    { 
+        $current = $this_FunctionCall_0.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getTermAccess().getIfControlFlowParserRuleCall_6()); 
+        newCompositeNode(grammarAccess.getComplexTermAccess().getIfControlFlowParserRuleCall_1()); 
     }
-    this_IfControlFlow_6=ruleIfControlFlow
+    this_IfControlFlow_1=ruleIfControlFlow
     { 
-        $current = $this_IfControlFlow_6.current; 
+        $current = $this_IfControlFlow_1.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getTermAccess().getBracketExpressionParserRuleCall_7()); 
+        newCompositeNode(grammarAccess.getComplexTermAccess().getBracketExpressionParserRuleCall_2()); 
     }
-    this_BracketExpression_7=ruleBracketExpression
+    this_BracketExpression_2=ruleBracketExpression
     { 
-        $current = $this_BracketExpression_7.current; 
+        $current = $this_BracketExpression_2.current; 
         afterParserOrEnumRuleCall();
     }
 )
@@ -884,9 +944,9 @@ ruleNegInteger returns [EObject current=null]
 	    }
 
     |		{ 
-	        newCompositeNode(grammarAccess.getNegIntegerAccess().getValBracketExpressionParserRuleCall_1_0_1()); 
+	        newCompositeNode(grammarAccess.getNegIntegerAccess().getValComplexTermParserRuleCall_1_0_1()); 
 	    }
-		lv_val_1_2=ruleBracketExpression		{
+		lv_val_1_2=ruleComplexTerm		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getNegIntegerRule());
 	        }
@@ -894,7 +954,7 @@ ruleNegInteger returns [EObject current=null]
        			$current, 
        			"val",
         		lv_val_1_2, 
-        		"BracketExpression");
+        		"ComplexTerm");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1164,9 +1224,9 @@ ruleNegBool returns [EObject current=null]
 	    }
 
     |		{ 
-	        newCompositeNode(grammarAccess.getNegBoolAccess().getValBracketExpressionParserRuleCall_1_0_1()); 
+	        newCompositeNode(grammarAccess.getNegBoolAccess().getValComplexTermParserRuleCall_1_0_1()); 
 	    }
-		lv_val_1_2=ruleBracketExpression		{
+		lv_val_1_2=ruleComplexTerm		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getNegBoolRule());
 	        }
@@ -1174,7 +1234,7 @@ ruleNegBool returns [EObject current=null]
        			$current, 
        			"val",
         		lv_val_1_2, 
-        		"BracketExpression");
+        		"ComplexTerm");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1816,6 +1876,12 @@ ruleCastedType returns [Enumerator current=null]
 	{
         $current = grammarAccess.getCastedTypeAccess().getStringEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
         newLeafNode(enumLiteral_2, grammarAccess.getCastedTypeAccess().getStringEnumLiteralDeclaration_2()); 
+    }
+)
+    |(	enumLiteral_3='[int]' 
+	{
+        $current = grammarAccess.getCastedTypeAccess().getListEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_3, grammarAccess.getCastedTypeAccess().getListEnumLiteralDeclaration_3()); 
     }
 ));
 

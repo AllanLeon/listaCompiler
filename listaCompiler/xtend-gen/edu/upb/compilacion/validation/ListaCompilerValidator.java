@@ -11,6 +11,7 @@ import edu.upb.compilacion.listaCompiler.Expression;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.Lista;
 import edu.upb.compilacion.listaCompiler.ListaCompilerPackage;
+import edu.upb.compilacion.listaCompiler.MyVariable;
 import edu.upb.compilacion.listaCompiler.PDFunction;
 import edu.upb.compilacion.listaCompiler.PreDefFunctionCall;
 import edu.upb.compilacion.listaCompiler.UserDefFunctionCall;
@@ -91,19 +92,21 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   @Check
   public void checkFunctionDefinitionsParameters(final FunctionDefinition fd) {
     String curName = "";
-    EList<String> _params = fd.getParams();
+    EList<MyVariable> _params = fd.getParams();
     int _length = ((Object[])Conversions.unwrapArray(_params, Object.class)).length;
     ExclusiveRange _doubleDotLessThan = new ExclusiveRange(1, _length, true);
     for (final Integer cur : _doubleDotLessThan) {
       {
-        EList<String> _params_1 = fd.getParams();
-        String _get = _params_1.get((cur).intValue());
-        curName = _get;
+        EList<MyVariable> _params_1 = fd.getParams();
+        MyVariable _get = _params_1.get((cur).intValue());
+        String _variable = TypeInferrer.getVariable(_get);
+        curName = _variable;
         ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, (cur).intValue(), true);
         for (final Integer i : _doubleDotLessThan_1) {
-          EList<String> _params_2 = fd.getParams();
-          String _get_1 = _params_2.get((i).intValue());
-          boolean _equals = _get_1.equals(curName);
+          EList<MyVariable> _params_2 = fd.getParams();
+          MyVariable _get_1 = _params_2.get((i).intValue());
+          String _variable_1 = TypeInferrer.getVariable(_get_1);
+          boolean _equals = _variable_1.equals(curName);
           if (_equals) {
             this.error((("The parameter \'" + curName) + "\' can only be declared once."), 
               ListaCompilerPackage.Literals.FUNCTION_DEFINITION__PARAMS, 
@@ -117,7 +120,7 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   @Check
   public void checkUserDefParametersNumber(final UserDefFunctionCall fcall) {
     FunctionDefinition _function = fcall.getFunction();
-    EList<String> _params = _function.getParams();
+    EList<MyVariable> _params = _function.getParams();
     final int params = ((Object[])Conversions.unwrapArray(_params, Object.class)).length;
     EList<Expression> _args = fcall.getArgs();
     int _length = ((Object[])Conversions.unwrapArray(_args, Object.class)).length;
@@ -177,6 +180,8 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
       TypeInferrer.removeFunctionInfo(fd);
       TypeInferrer.inferDataType(fd);
       TypeInferrer.inferDataType(fd);
+      String _functionString = TypeInferrer.getFunctionString(fd);
+      System.out.println(_functionString);
       this.checkFunctionDefinitionParams(fd);
       try {
         Expression _return = fd.getReturn();
@@ -204,15 +209,19 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   }
   
   public void checkFunctionDefinitionParams(final FunctionDefinition fd) {
-    EList<String> _params = fd.getParams();
-    for (final String param : _params) {
+    EList<MyVariable> _params = fd.getParams();
+    for (final MyVariable param : _params) {
       HashMap<String, HashMap<String, TypeInferrer.DataType>> _functionParams = TypeInferrer.getFunctionParams();
       String _name = fd.getName();
       HashMap<String, TypeInferrer.DataType> _get = _functionParams.get(_name);
-      boolean _containsKey = _get.containsKey(param);
+      String _variable = TypeInferrer.getVariable(param);
+      boolean _containsKey = _get.containsKey(_variable);
       boolean _not = (!_containsKey);
       if (_not) {
-        this.warning((("Variable " + param) + " is not used."), 
+        String _variable_1 = TypeInferrer.getVariable(param);
+        String _plus = ("Variable " + _variable_1);
+        String _plus_1 = (_plus + " is not used.");
+        this.warning(_plus_1, 
           ListaCompilerPackage.Literals.FUNCTION_DEFINITION__PARAMS, 
           ListaCompilerValidator.UNUSED_VARIABLE);
       }
@@ -222,15 +231,26 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     HashMap<String, TypeInferrer.DataType> _get_1 = _functionParams_1.get(_name_1);
     Set<String> _keySet = _get_1.keySet();
     for (final String param_1 : _keySet) {
-      EList<String> _params_1 = fd.getParams();
-      boolean _contains = _params_1.contains(param_1);
-      boolean _not_1 = (!_contains);
+      boolean _fdContainsParam = this.fdContainsParam(fd, param_1);
+      boolean _not_1 = (!_fdContainsParam);
       if (_not_1) {
         this.error((("Variable " + param_1) + " is not declared, should be added to the function\'s parameters."), 
           ListaCompilerPackage.Literals.FUNCTION_DEFINITION__PARAMS, 
           ListaCompilerValidator.INVALID_FUNCTION_DECLARATION);
       }
     }
+  }
+  
+  public boolean fdContainsParam(final FunctionDefinition fd, final String name) {
+    EList<MyVariable> _params = fd.getParams();
+    for (final MyVariable param : _params) {
+      String _variable = TypeInferrer.getVariable(param);
+      boolean _equals = _variable.equals(name);
+      if (_equals) {
+        return true;
+      }
+    }
+    return false;
   }
   
   @Check

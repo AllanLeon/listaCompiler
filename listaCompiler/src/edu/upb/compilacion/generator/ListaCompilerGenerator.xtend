@@ -7,6 +7,7 @@ import edu.upb.compilacion.TypeInferrer
 import edu.upb.compilacion.TypeInferrer.DataType
 import edu.upb.compilacion.listaCompiler.BracketExpression
 import edu.upb.compilacion.listaCompiler.CastedVariable
+import edu.upb.compilacion.listaCompiler.ComplexTerm
 import edu.upb.compilacion.listaCompiler.Evaluation
 import edu.upb.compilacion.listaCompiler.Expression
 import edu.upb.compilacion.listaCompiler.FirstLevelExp
@@ -27,6 +28,7 @@ import edu.upb.compilacion.listaCompiler.PosBool
 import edu.upb.compilacion.listaCompiler.PosInteger
 import edu.upb.compilacion.listaCompiler.PreDefFunctionCall
 import edu.upb.compilacion.listaCompiler.SecondLevelExp
+import edu.upb.compilacion.listaCompiler.SimpleTerm
 import edu.upb.compilacion.listaCompiler.Term
 import edu.upb.compilacion.listaCompiler.ThirdLevelExp
 import edu.upb.compilacion.listaCompiler.ThirdLevelOp
@@ -45,17 +47,17 @@ import org.eclipse.xtext.generator.IGenerator
 class ListaCompilerGenerator implements IGenerator {
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(typeof(Greeting))
-//				.map[name]
-//				.join(', '))
 		val lista = (resource.contents.get(0) as Lista)
+		fsa.generateFile('Complements.java', generateComplementaryFile)
 		fsa.generateFile('Seks.java', lista.generate)
 	}
 	
+	def generateComplementaryFile() '''public class Complements {
+	«generatePreDefFunctions»
+}'''
+	
 	def generate(Lista lista) '''public class Seks {
-	«generateMain(lista.evaluations)»«'\n\n'»«FOR fd : lista.definitions SEPARATOR '\n\n'»«fd.generate»«ENDFOR»«'\n\n'»«generatePreDefFunctions»
+	«generateMain(lista.evaluations)»«'\n\n'»«FOR fd : lista.definitions SEPARATOR '\n\n'»«fd.generate»«ENDFOR»«'\n'»
 }'''
 	
 	def generateMain(EList<Evaluation> evaluations) '''public static void main(String[] args) {
@@ -106,6 +108,14 @@ class ListaCompilerGenerator implements IGenerator {
 	}
 	
 	def generate(Term term) {
+		if (term instanceof SimpleTerm) {
+			return (term as SimpleTerm).generate;
+		} else if (term instanceof ComplexTerm) {
+			return (term as ComplexTerm).generate;
+		}
+	}
+	
+	def generate(SimpleTerm term) {
 		if (term instanceof MyInteger) {
 			return (term as MyInteger).generate;
 		} else if (term instanceof MyString) {
@@ -115,8 +125,12 @@ class ListaCompilerGenerator implements IGenerator {
 		} else if (term instanceof List) {
 			return (term as List).generate;
 		} else if (term instanceof MyVariable) {
-			return (term as MyVariable).generate;
-		} else if (term instanceof FunctionCall) {
+			return (term as Variable).^var;
+		}
+	}
+	
+	def generate(ComplexTerm term) {
+		if (term instanceof FunctionCall) {
 			return (term as FunctionCall).generate;
 		} else if (term instanceof IfControlFlow) {
 			return (term as IfControlFlow).generate;
@@ -132,8 +146,8 @@ class ListaCompilerGenerator implements IGenerator {
 			val exp = (mi as NegInteger).^val;
 			if (exp instanceof PosInteger) {
 				return (exp as PosInteger).^val.toString;
-			} else if (exp instanceof BracketExpression) {
-				return (exp as BracketExpression).generate;
+			} else if (exp instanceof ComplexTerm) {
+				return (exp as ComplexTerm).generate;
 			}
 		}
 	}
@@ -145,8 +159,8 @@ class ListaCompilerGenerator implements IGenerator {
 			val exp = (mb as NegBool).^val;
 			if (exp instanceof PosBool) {
 				return (exp as PosBool).^val.toString;
-			} else if (exp instanceof BracketExpression) {
-				return (exp as BracketExpression).generate;
+			} else if (exp instanceof ComplexTerm) {
+				return (exp as ComplexTerm).generate;
 			}
 		}
 	}
@@ -177,7 +191,7 @@ class ListaCompilerGenerator implements IGenerator {
 		}
 	}
 	
-	def generate (PreDefFunctionCall pdf) '''«IF pdf.function.getName.equals("show")»«"System.out.println"»«ELSE»«pdf.function.getName»«ENDIF»(«FOR exp : pdf.args SEPARATOR ','»«exp.generate»«ENDFOR»)'''
+	def generate (PreDefFunctionCall pdf) '''«IF pdf.function.getName.equals("show")»«"System.out.println"»«ELSE»Complements.«pdf.function.getName»«ENDIF»(«FOR exp : pdf.args SEPARATOR ','»«exp.generate»«ENDFOR»)'''
 	
 	def generate (UserDefFunctionCall udf) '''«udf.function.getName»(«FOR exp : udf.args SEPARATOR ','»«exp.generate»«ENDFOR»)'''
 	
@@ -191,7 +205,7 @@ class ListaCompilerGenerator implements IGenerator {
 		return myStr.^val.replaceAll("\n", "\\\\n");
 	}
 	
-	def generate(FunctionDefinition funcd) '''public «TypeInferrer.getFunctionTypes.get(funcd.name).convertDTtoString» «funcd.name»(«FOR fp : funcd.params SEPARATOR ','»«TypeInferrer.functionParams.get(funcd.name).get(fp).convertDTtoString + ' ' + fp»«ENDFOR») {
+	def generate(FunctionDefinition funcd) '''public «TypeInferrer.getFunctionTypes.get(funcd.name).convertDTtoString» «funcd.name»(«FOR fp : funcd.params SEPARATOR ','»«TypeInferrer.functionParams.get(funcd.name).get(fp.generate).convertDTtoString + ' ' + fp.generate»«ENDFOR») {
 	«IF !TypeInferrer.functionTypes.get(funcd.name).equals(DataType.VOID)»«"return "»«ENDIF»«funcd.^return.exp.generate»;
 }'''
 
@@ -205,12 +219,14 @@ class ListaCompilerGenerator implements IGenerator {
 				return dt.name.toLowerCase.toFirstUpper
 			case DataType.LIST:
 				return "int[]"
-			default:
+				case DataType.VOID:
 				return "void"
+			default:
+				return "int"
 		}
 	}
 	
-	def generatePreDefFunctions() '''public int[] cons(int x, int[] l) {
+	def generatePreDefFunctions() '''public static int[] cons(int x, int[] l) {
     int[] res = new int[l.length + 1];
     res[0] = x;
     for (int i = 1; i < l.length + 1; i++) {
@@ -219,11 +235,11 @@ class ListaCompilerGenerator implements IGenerator {
     return res;
 }
 
-public int car(int[] l) {
+public static int car(int[] l) {
     return l[0];
 }
 
-public int[] cdr(int[] l) {
+public static int[] cdr(int[] l) {
     int[] res = new int[l.length - 1];
     for (int i = 1; i < l.length ; i++) {
         res[i - 1] = l[i];
@@ -231,11 +247,11 @@ public int[] cdr(int[] l) {
     return res;
 }
 
-public boolean isEmpty(int[] l) {
+public static boolean isEmpty(int[] l) {
     return (l.length > 1) ? false : true;
 }
 
-public int length(String s) {
+public static int length(String s) {
     return s.length();
 }'''
 }
