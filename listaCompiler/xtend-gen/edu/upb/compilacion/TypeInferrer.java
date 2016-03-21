@@ -34,7 +34,6 @@ import edu.upb.compilacion.listaCompiler.UserDefFunctionCall;
 import edu.upb.compilacion.listaCompiler.Variable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.Conversions;
@@ -42,6 +41,9 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 
 @SuppressWarnings("all")
 public class TypeInferrer {
+  /**
+   * DataTypes that a expression could have.
+   */
   public enum DataType {
     INT,
     
@@ -58,16 +60,26 @@ public class TypeInferrer {
     GLOBAL;
   }
   
+  /**
+   * Represents the symbols table.
+   */
   private static HashMap<String, HashMap<String, TypeInferrer.DataType>> functionParams = new HashMap<String, HashMap<String, TypeInferrer.DataType>>();
   
   private static HashMap<String, TypeInferrer.DataType> functionTypes = new HashMap<String, TypeInferrer.DataType>();
   
   private static String currentFunction = "";
   
+  /**
+   * Resets the currentFunction string so the next check doesn't try to get another function
+   * type.
+   */
   public static String resetCurrentFunction() {
     return TypeInferrer.currentFunction = "";
   }
   
+  /**
+   * Cleans the symbols table info of a function.
+   */
   public static TypeInferrer.DataType removeFunctionInfo(final FunctionDefinition fd) {
     TypeInferrer.DataType _xblockexpression = null;
     {
@@ -79,6 +91,9 @@ public class TypeInferrer {
     return _xblockexpression;
   }
   
+  /**
+   * Infers the data type of a function and it's parameters if any.
+   */
   public static void inferDataType(final FunctionDefinition fd) {
     String _name = fd.getName();
     TypeInferrer.currentFunction = _name;
@@ -92,6 +107,9 @@ public class TypeInferrer {
     TypeInferrer.inferDataType(_exp, _name_2);
   }
   
+  /**
+   * Automatically sets the type if a variable is casted.
+   */
   public static void searchCastedVariables(final FunctionDefinition fd) {
     EList<MyVariable> _params = fd.getParams();
     for (final MyVariable mvar : _params) {
@@ -107,6 +125,11 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Infers the type of a FirstLevelExp and then infers the type of both sides of it, the
+   * variables types are inferred based on the operator. The types are saved on the current
+   * function table.
+   */
   public static void inferDataType(final FirstLevelExp exp, final String fdName) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
@@ -157,6 +180,11 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Infers the type of a SecondLevelExp and then infers the type of both sides of it, the
+   * variables types are inferred based on the operator. The types are saved on the current
+   * function table.
+   */
   public static void inferDataType(final SecondLevelExp exp, final String fdName) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
@@ -210,6 +238,11 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Infers the type of a ThirdLevelExp and then infers the type of both sides of it, the
+   * variables types are inferred based on the operator. The types are saved on the current
+   * function table.
+   */
   public static void inferDataType(final ThirdLevelExp exp, final String fdName) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
@@ -263,6 +296,11 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Infers the type of a FourthLevelExp and then infers the type of both sides of it, the
+   * variables types are inferred based on the operator. The types are saved on the current
+   * function table.
+   */
   public static void inferDataType(final FourthLevelExp exp, final String fdName) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
@@ -299,6 +337,9 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Infers the type of a Term.
+   */
   public static void inferDataType(final Term term, final String fdName) {
     if ((term instanceof SimpleTerm)) {
       TypeInferrer.inferDataType(((SimpleTerm) term), fdName);
@@ -309,6 +350,9 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Infers the type of a SimpleTerm, based of the instance of it.
+   */
   public static void inferDataType(final SimpleTerm term, final String fdName) {
     if ((term instanceof MyInteger)) {
       TypeInferrer.inferDataType(((MyInteger) term), fdName);
@@ -331,6 +375,10 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Infers the type of a list and it's elements. Saves the variables types in the current
+   * function table.
+   */
   public static void inferDataType(final List li, final String fdName) {
     EList<ListElem> _elems = li.getElems();
     for (final ListElem el : _elems) {
@@ -343,6 +391,9 @@ public class TypeInferrer {
     TypeInferrer.setFunctionType(fdName, TypeInferrer.DataType.LIST);
   }
   
+  /**
+   * Infers the type of a ComplexTerm, based of the instance of it.
+   */
   public static void inferDataType(final ComplexTerm term, final String fdName) {
     if ((term instanceof FunctionCall)) {
       TypeInferrer.inferDataType(((FunctionCall) term), fdName);
@@ -368,13 +419,8 @@ public class TypeInferrer {
   }
   
   /**
-   * static def void inferDataType(MyVariable variable, String fdName) {
-   * if (variable instanceof Variable) {
-   * setFunctionType(fdName, DataType.VAR);
-   * } else if (variable instanceof CastedVariable) {
-   * setFunctionType(fdName, getDataTypeFromCast((variable as CastedVariable).type));
-   * }
-   * }
+   * Infers the type of a MyInteger, if it's a negation of a ComplexTerm, it's type is
+   * inferred as well.
    */
   public static void inferDataType(final MyInteger myInt, final String fdName) {
     TypeInferrer.setFunctionType(fdName, TypeInferrer.DataType.INT);
@@ -386,6 +432,10 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Infers the type of a MyBool, if it's a negation of a ComplexTerm, it's type is
+   * inferred as well.
+   */
   public static void inferDataType(final MyBool myBool, final String fdName) {
     TypeInferrer.setFunctionType(fdName, TypeInferrer.DataType.BOOL);
     if ((myBool instanceof NegBool)) {
@@ -396,6 +446,9 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Infers the type of a function call.
+   */
   public static void inferDataType(final FunctionCall fcall, final String fdName) {
     if ((fcall instanceof PreDefFunctionCall)) {
       TypeInferrer.inferDataType(((PreDefFunctionCall) fcall), fdName);
@@ -406,6 +459,9 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * If an Expression calls a predefined function, it gains it's type.
+   */
   public static void inferDataType(final PreDefFunctionCall fcall, final String fdName) {
     PDFunction _function = fcall.getFunction();
     if (_function != null) {
@@ -436,6 +492,9 @@ public class TypeInferrer {
     TypeInferrer.inferPDFArgsDataType(fcall, fdName);
   }
   
+  /**
+   * Infers the arguments types of a predefined function.
+   */
   public static void inferPDFArgsDataType(final PreDefFunctionCall fcall, final String fdName) {
     ArrayList<TypeInferrer.DataType> paramsTypes = new ArrayList<TypeInferrer.DataType>();
     PDFunction _function = fcall.getFunction();
@@ -492,6 +551,9 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Infers the arguments types of an user defined function.
+   */
   public static void inferUDFArgsDataType(final UserDefFunctionCall fcall, final String fdName) {
     FunctionDefinition _function = fcall.getFunction();
     String _name = _function.getName();
@@ -511,8 +573,8 @@ public class TypeInferrer {
           if (_greaterEqualsThan) {
             return;
           }
-          String _variableName = TypeInferrer.getVariableName(current);
-          boolean _containsKey_1 = params.containsKey(_variableName);
+          String _variable = TypeInferrer.getVariable(current);
+          boolean _containsKey_1 = params.containsKey(_variable);
           if (_containsKey_1) {
             Expression _get = args.get(i);
             TypeInferrer.DataType _dataType = TypeInferrer.getDataType(_get);
@@ -521,10 +583,10 @@ public class TypeInferrer {
               HashMap<String, TypeInferrer.DataType> _get_1 = TypeInferrer.functionParams.get(fdName);
               Expression _get_2 = args.get(i);
               FirstLevelExp _exp = _get_2.getExp();
-              String _variable = TypeInferrer.getVariable(_exp);
-              String _variableName_1 = TypeInferrer.getVariableName(current);
-              TypeInferrer.DataType _get_3 = params.get(_variableName_1);
-              _get_1.put(_variable, _get_3);
+              String _variable_1 = TypeInferrer.getVariable(_exp);
+              String _variable_2 = TypeInferrer.getVariable(current);
+              TypeInferrer.DataType _get_3 = params.get(_variable_2);
+              _get_1.put(_variable_1, _get_3);
             }
           }
           i++;
@@ -533,17 +595,9 @@ public class TypeInferrer {
     }
   }
   
-  public static String getVariableName(final MyVariable mvar) {
-    if ((mvar instanceof Variable)) {
-      return ((Variable) mvar).getVar();
-    } else {
-      if ((mvar instanceof CastedVariable)) {
-        return ((CastedVariable) mvar).getVar();
-      }
-    }
-    return null;
-  }
-  
+  /**
+   * If an Expression calls an user defined function, it gains it's type.
+   */
   public static void inferDataType(final UserDefFunctionCall fcall, final String fdName) {
     FunctionDefinition _function = fcall.getFunction();
     String _name = _function.getName();
@@ -564,11 +618,17 @@ public class TypeInferrer {
     TypeInferrer.inferUDFArgsDataType(fcall, fdName);
   }
   
+  /**
+   * Returns the DataType of an Expression
+   */
   public static TypeInferrer.DataType getDataType(final Expression exp) {
     FirstLevelExp _exp = exp.getExp();
     return TypeInferrer.getDataType(_exp);
   }
   
+  /**
+   * Returns the DataType of a FirstLevelExp, based on it's operator or on it't left side.
+   */
   public static TypeInferrer.DataType getDataType(final FirstLevelExp exp) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
@@ -598,6 +658,9 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Returns the DataType of a SecondLevelExp, based on it's operator or on it't left side.
+   */
   public static TypeInferrer.DataType getDataType(final SecondLevelExp exp) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
@@ -628,6 +691,9 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Returns the DataType of a ThirdLevelExp, based on it's operator or on it't left side.
+   */
   public static TypeInferrer.DataType getDataType(final ThirdLevelExp exp) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
@@ -660,6 +726,9 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Returns the DataType of a FourthLevelExp, based on it's operator or on it't left side.
+   */
   public static TypeInferrer.DataType getDataType(final FourthLevelExp exp) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
@@ -674,6 +743,9 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Returns the DataType of a Term.
+   */
   public static TypeInferrer.DataType getDataType(final Term term) {
     if ((term instanceof SimpleTerm)) {
       return TypeInferrer.getDataType(((SimpleTerm) term));
@@ -685,6 +757,9 @@ public class TypeInferrer {
     return null;
   }
   
+  /**
+   * Returns the DataType of a SimpleTerm based on it's instance.
+   */
   public static TypeInferrer.DataType getDataType(final SimpleTerm term) {
     if ((term instanceof MyInteger)) {
       return TypeInferrer.DataType.INT;
@@ -708,6 +783,9 @@ public class TypeInferrer {
     return null;
   }
   
+  /**
+   * Returns the DataType of a ComplexTerm based on it's instance.
+   */
   public static TypeInferrer.DataType getDataType(final ComplexTerm term) {
     if ((term instanceof FunctionCall)) {
       return TypeInferrer.getDataType(((FunctionCall) term));
@@ -725,16 +803,7 @@ public class TypeInferrer {
   }
   
   /**
-   * static def DataType getDataType(MyVariable variable) {
-   * if (variable instanceof Variable) {
-   * return (variable as Variable).getDataType;
-   * } else if (variable instanceof CastedVariable) {
-   * val cvar = variable as CastedVariable;
-   * val type = getDataTypeFromCast(cvar.type);
-   * functionParams.get(currentFunction).put(cvar.^var, type);
-   * return getDataTypeFromCast(cvar.type);
-   * }
-   * }
+   * Returns the DataType of a variable if it has been already inferred.
    */
   public static TypeInferrer.DataType getDataType(final Variable variable) {
     boolean _equals = TypeInferrer.currentFunction.equals("");
@@ -752,6 +821,9 @@ public class TypeInferrer {
     return TypeInferrer.DataType.VAR;
   }
   
+  /**
+   * Returns the DataType of a function call.
+   */
   public static TypeInferrer.DataType getDataType(final FunctionCall fcall) {
     if ((fcall instanceof PreDefFunctionCall)) {
       return TypeInferrer.getDataType(((PreDefFunctionCall) fcall));
@@ -763,6 +835,9 @@ public class TypeInferrer {
     return null;
   }
   
+  /**
+   * Returns the DataType of a predefined function call.
+   */
   public static TypeInferrer.DataType getDataType(final PreDefFunctionCall fcall) {
     PDFunction _function = fcall.getFunction();
     if (_function != null) {
@@ -784,6 +859,9 @@ public class TypeInferrer {
     return null;
   }
   
+  /**
+   * Returns the DataType of an user defined function call.
+   */
   public static TypeInferrer.DataType getDataType(final UserDefFunctionCall fcall) {
     FunctionDefinition _function = fcall.getFunction();
     String _name = _function.getName();
@@ -799,16 +877,26 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Returns the DataType of an IfControlFlow.
+   */
   public static TypeInferrer.DataType getDataType(final IfControlFlow ifCF) {
     Expression _iftrue = ifCF.getIftrue();
     return TypeInferrer.getDataType(_iftrue);
   }
   
+  /**
+   * Checks and returns the DataType of a Expression.
+   */
   public static TypeInferrer.DataType checkDataType(final Expression exp) {
     FirstLevelExp _exp = exp.getExp();
     return TypeInferrer.checkDataType(_exp);
   }
   
+  /**
+   * Checks and returns the DataType of a FirstLevelExp.
+   * Verifies that both sides of the expression have the type that it's operator accepts.
+   */
   public static TypeInferrer.DataType checkDataType(final FirstLevelExp exp) {
     try {
       EList<EObject> _args = exp.getArgs();
@@ -863,6 +951,10 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Checks and returns the DataType of a SecondLevelExp.
+   * Verifies that both sides of the expression have the type that it's operator accepts.
+   */
   public static TypeInferrer.DataType checkDataType(final SecondLevelExp exp) {
     try {
       EList<EObject> _args = exp.getArgs();
@@ -921,6 +1013,10 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Checks and returns the DataType of a ThirdLevelExp.
+   * Verifies that both sides of the expression have the type that it's operator accepts.
+   */
   public static TypeInferrer.DataType checkDataType(final ThirdLevelExp exp) {
     try {
       EList<EObject> _args = exp.getArgs();
@@ -977,6 +1073,51 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Checks and returns the DataType of a FourthLevelExp.
+   * Verifies that both sides of the expression have the type that it's operator accepts.
+   */
+  public static TypeInferrer.DataType checkDataType(final FourthLevelExp exp) {
+    try {
+      EList<EObject> _args = exp.getArgs();
+      EObject _get = _args.get(0);
+      final TypeInferrer.DataType first = TypeInferrer.checkDataType(((Term) _get));
+      EList<EObject> _args_1 = exp.getArgs();
+      int _length = ((Object[])Conversions.unwrapArray(_args_1, Object.class)).length;
+      boolean _greaterThan = (_length > 1);
+      if (_greaterThan) {
+        boolean _and = false;
+        boolean _equals = first.equals(TypeInferrer.DataType.INT);
+        if (!_equals) {
+          _and = false;
+        } else {
+          EList<EObject> _args_2 = exp.getArgs();
+          EObject _get_1 = _args_2.get(1);
+          TypeInferrer.DataType _checkDataType = TypeInferrer.checkDataType(((FourthLevelExp) _get_1));
+          boolean _equals_1 = _checkDataType.equals(TypeInferrer.DataType.INT);
+          _and = _equals_1;
+        }
+        if (_and) {
+          return TypeInferrer.DataType.INT;
+        } else {
+          FourthLevelOp _op = exp.getOp();
+          String _literal = _op.getLiteral();
+          String _plus = ("Mismatched data types for operator " + _literal);
+          String _plus_1 = (_plus + ", arguments should be INT.");
+          throw new MismatchedTypeException(_plus_1);
+        }
+      } else {
+        return first;
+      }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Checks and returns the DataType of a ThirdLevelExp that uses a concat operator.
+   * This operator can accept BOOL, INT and STRING types, and needs a different check.
+   */
   public static TypeInferrer.DataType checkConcatDataType(final ThirdLevelExp exp) {
     try {
       EList<EObject> _args = exp.getArgs();
@@ -1044,43 +1185,34 @@ public class TypeInferrer {
     }
   }
   
-  public static TypeInferrer.DataType checkDataType(final FourthLevelExp exp) {
+  /**
+   * Checks and returns the DataType of a SecondLevelExp that uses an equals operator.
+   * This operator can accept all types, and needs a different check.
+   */
+  public static TypeInferrer.DataType checkEqualsDataType(final SecondLevelExp exp) {
     try {
       EList<EObject> _args = exp.getArgs();
       EObject _get = _args.get(0);
-      final TypeInferrer.DataType first = TypeInferrer.checkDataType(((Term) _get));
+      final TypeInferrer.DataType first = TypeInferrer.checkDataType(((ThirdLevelExp) _get));
       EList<EObject> _args_1 = exp.getArgs();
-      int _length = ((Object[])Conversions.unwrapArray(_args_1, Object.class)).length;
-      boolean _greaterThan = (_length > 1);
-      if (_greaterThan) {
-        boolean _and = false;
-        boolean _equals = first.equals(TypeInferrer.DataType.INT);
-        if (!_equals) {
-          _and = false;
-        } else {
-          EList<EObject> _args_2 = exp.getArgs();
-          EObject _get_1 = _args_2.get(1);
-          TypeInferrer.DataType _checkDataType = TypeInferrer.checkDataType(((FourthLevelExp) _get_1));
-          boolean _equals_1 = _checkDataType.equals(TypeInferrer.DataType.INT);
-          _and = _equals_1;
-        }
-        if (_and) {
-          return TypeInferrer.DataType.INT;
-        } else {
-          FourthLevelOp _op = exp.getOp();
-          String _literal = _op.getLiteral();
-          String _plus = ("Mismatched data types for operator " + _literal);
-          String _plus_1 = (_plus + ", arguments should be INT.");
-          throw new MismatchedTypeException(_plus_1);
-        }
-      } else {
-        return first;
+      EObject _get_1 = _args_1.get(1);
+      final TypeInferrer.DataType second = TypeInferrer.checkDataType(((SecondLevelExp) _get_1));
+      boolean _equals = first.equals(second);
+      if (_equals) {
+        return TypeInferrer.DataType.BOOL;
       }
+      String _name = SecondLevelOp.EQ.getName();
+      String _plus = ("The two arguments being compared with " + _name);
+      String _plus_1 = (_plus + " should have the same type.");
+      throw new MismatchedTypeException(_plus_1);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
+  /**
+   * Checks and returns the type of a Term.
+   */
   public static TypeInferrer.DataType checkDataType(final Term term) {
     if ((term instanceof SimpleTerm)) {
       return TypeInferrer.checkDataType(((SimpleTerm) term));
@@ -1092,6 +1224,9 @@ public class TypeInferrer {
     return null;
   }
   
+  /**
+   * Checks and returns the type of a SimpleTerm, based on it's instance.
+   */
   public static TypeInferrer.DataType checkDataType(final SimpleTerm term) {
     if ((term instanceof MyInteger)) {
       return TypeInferrer.checkDataType(((MyInteger) term));
@@ -1115,6 +1250,28 @@ public class TypeInferrer {
     return null;
   }
   
+  /**
+   * Checks and returns the type of a ComplexTerm, based on it's instance.
+   */
+  public static TypeInferrer.DataType checkDataType(final ComplexTerm term) {
+    if ((term instanceof FunctionCall)) {
+      return TypeInferrer.checkDataType(((FunctionCall) term));
+    } else {
+      if ((term instanceof IfControlFlow)) {
+        return TypeInferrer.checkDataType(((IfControlFlow) term));
+      } else {
+        if ((term instanceof BracketExpression)) {
+          Expression _exp = ((BracketExpression) term).getExp();
+          return TypeInferrer.checkDataType(_exp);
+        }
+      }
+    }
+    return null;
+  }
+  
+  /**
+   * Checks and returns the type of a List and it's elements.
+   */
   public static TypeInferrer.DataType checkDataType(final List li) {
     try {
       EList<ListElem> _elems = li.getElems();
@@ -1134,22 +1291,10 @@ public class TypeInferrer {
     }
   }
   
-  public static TypeInferrer.DataType checkDataType(final ComplexTerm term) {
-    if ((term instanceof FunctionCall)) {
-      return TypeInferrer.checkDataType(((FunctionCall) term));
-    } else {
-      if ((term instanceof IfControlFlow)) {
-        return TypeInferrer.checkDataType(((IfControlFlow) term));
-      } else {
-        if ((term instanceof BracketExpression)) {
-          Expression _exp = ((BracketExpression) term).getExp();
-          return TypeInferrer.checkDataType(_exp);
-        }
-      }
-    }
-    return null;
-  }
-  
+  /**
+   * Checks and returns the type of a MyInteger. If it's a negation of a ComplexTerm,
+   * it's type is checked as well.
+   */
   public static TypeInferrer.DataType checkDataType(final MyInteger myInt) {
     try {
       if ((myInt instanceof NegInteger)) {
@@ -1169,6 +1314,10 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Checks and returns the type of a MyBool. If it's a negation of a ComplexTerm,
+   * it's type is checked as well.
+   */
   public static TypeInferrer.DataType checkDataType(final MyBool myBool) {
     try {
       if ((myBool instanceof NegBool)) {
@@ -1188,6 +1337,9 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Checks and returns the type of a FunctionCall.
+   */
   public static TypeInferrer.DataType checkDataType(final FunctionCall fcall) {
     if ((fcall instanceof PreDefFunctionCall)) {
       return TypeInferrer.checkDataType(((PreDefFunctionCall) fcall));
@@ -1199,6 +1351,9 @@ public class TypeInferrer {
     return null;
   }
   
+  /**
+   * Checks and returns the type of a predefined function call and it's arguments.
+   */
   public static TypeInferrer.DataType checkDataType(final PreDefFunctionCall fcall) {
     try {
       TypeInferrer.DataType expected = TypeInferrer.DataType.GLOBAL;
@@ -1276,6 +1431,66 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Checks and returns the type of an user defined function call and it's arguments.
+   */
+  public static TypeInferrer.DataType checkDataType(final UserDefFunctionCall fcall) {
+    try {
+      FunctionDefinition _function = fcall.getFunction();
+      String _name = _function.getName();
+      boolean _containsKey = TypeInferrer.functionTypes.containsKey(_name);
+      if (_containsKey) {
+        final EList<Expression> args = fcall.getArgs();
+        FunctionDefinition _function_1 = fcall.getFunction();
+        String _name_1 = _function_1.getName();
+        final HashMap<String, TypeInferrer.DataType> params = TypeInferrer.functionParams.get(_name_1);
+        int i = 0;
+        FunctionDefinition _function_2 = fcall.getFunction();
+        EList<MyVariable> _params = _function_2.getParams();
+        for (final MyVariable current : _params) {
+          {
+            int _size = args.size();
+            boolean _greaterEqualsThan = (i >= _size);
+            if (_greaterEqualsThan) {
+              FunctionDefinition _function_3 = fcall.getFunction();
+              String _name_2 = _function_3.getName();
+              String _plus = ("Too many arguments in function " + _name_2);
+              throw new MismatchedTypeException(_plus);
+            }
+            final String name = TypeInferrer.getVariable(current);
+            boolean _containsKey_1 = params.containsKey(name);
+            if (_containsKey_1) {
+              Expression _get = args.get(i);
+              TypeInferrer.DataType _checkDataType = TypeInferrer.checkDataType(_get);
+              TypeInferrer.DataType _get_1 = params.get(name);
+              boolean _equals = _checkDataType.equals(_get_1);
+              boolean _not = (!_equals);
+              if (_not) {
+                TypeInferrer.DataType _get_2 = params.get(name);
+                String _plus_1 = ("Argument type should be " + _get_2);
+                throw new MismatchedTypeException(_plus_1);
+              }
+            }
+            i++;
+          }
+        }
+        FunctionDefinition _function_3 = fcall.getFunction();
+        String _name_2 = _function_3.getName();
+        return TypeInferrer.functionTypes.get(_name_2);
+      } else {
+        FunctionDefinition _function_4 = fcall.getFunction();
+        String _name_3 = _function_4.getName();
+        String _plus = (_name_3 + " method was not defined.");
+        throw new HugeException(_plus);
+      }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Checks that the argument of a show function call is BOOL, STRING, INT or LIST.
+   */
   public static TypeInferrer.DataType checkShowDataType(final PreDefFunctionCall fcall) {
     try {
       EList<Expression> _args = fcall.getArgs();
@@ -1313,60 +1528,10 @@ public class TypeInferrer {
     }
   }
   
-  public static TypeInferrer.DataType checkDataType(final UserDefFunctionCall fcall) {
-    try {
-      FunctionDefinition _function = fcall.getFunction();
-      String _name = _function.getName();
-      boolean _containsKey = TypeInferrer.functionTypes.containsKey(_name);
-      if (_containsKey) {
-        final EList<Expression> args = fcall.getArgs();
-        FunctionDefinition _function_1 = fcall.getFunction();
-        String _name_1 = _function_1.getName();
-        final HashMap<String, TypeInferrer.DataType> params = TypeInferrer.functionParams.get(_name_1);
-        int i = 0;
-        FunctionDefinition _function_2 = fcall.getFunction();
-        EList<MyVariable> _params = _function_2.getParams();
-        for (final MyVariable current : _params) {
-          {
-            int _size = args.size();
-            boolean _greaterEqualsThan = (i >= _size);
-            if (_greaterEqualsThan) {
-              FunctionDefinition _function_3 = fcall.getFunction();
-              String _name_2 = _function_3.getName();
-              String _plus = ("Too many arguments in function " + _name_2);
-              throw new MismatchedTypeException(_plus);
-            }
-            final String name = TypeInferrer.getVariableName(current);
-            boolean _containsKey_1 = params.containsKey(name);
-            if (_containsKey_1) {
-              Expression _get = args.get(i);
-              TypeInferrer.DataType _checkDataType = TypeInferrer.checkDataType(_get);
-              TypeInferrer.DataType _get_1 = params.get(name);
-              boolean _equals = _checkDataType.equals(_get_1);
-              boolean _not = (!_equals);
-              if (_not) {
-                TypeInferrer.DataType _get_2 = params.get(name);
-                String _plus_1 = ("Argument type should be " + _get_2);
-                throw new MismatchedTypeException(_plus_1);
-              }
-            }
-            i++;
-          }
-        }
-        FunctionDefinition _function_3 = fcall.getFunction();
-        String _name_2 = _function_3.getName();
-        return TypeInferrer.functionTypes.get(_name_2);
-      } else {
-        FunctionDefinition _function_4 = fcall.getFunction();
-        String _name_3 = _function_4.getName();
-        String _plus = (_name_3 + " method was not defined.");
-        throw new HugeException(_plus);
-      }
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
+  /**
+   * Checks and returns the type of an IfControlFlow, and checks the types of it's condition,
+   * if true return and if false return.
+   */
   public static TypeInferrer.DataType checkDataType(final IfControlFlow ifCF) {
     try {
       Expression _cond = ifCF.getCond();
@@ -1391,51 +1556,45 @@ public class TypeInferrer {
     }
   }
   
-  public static TypeInferrer.DataType checkEqualsDataType(final SecondLevelExp exp) {
-    try {
-      EList<EObject> _args = exp.getArgs();
-      EObject _get = _args.get(0);
-      final TypeInferrer.DataType first = TypeInferrer.checkDataType(((ThirdLevelExp) _get));
-      EList<EObject> _args_1 = exp.getArgs();
-      EObject _get_1 = _args_1.get(1);
-      final TypeInferrer.DataType second = TypeInferrer.checkDataType(((SecondLevelExp) _get_1));
-      boolean _equals = first.equals(second);
-      if (_equals) {
-        return TypeInferrer.DataType.BOOL;
-      }
-      String _name = SecondLevelOp.EQ.getName();
-      String _plus = ("The two arguments being compared with " + _name);
-      String _plus_1 = (_plus + " should have the same type.");
-      throw new MismatchedTypeException(_plus_1);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
+  /**
+   * Return the variable name of a given FirstLevelExp.
+   */
   public static String getVariable(final FirstLevelExp exp) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
     return TypeInferrer.getVariable(((SecondLevelExp) _get));
   }
   
+  /**
+   * Return the variable name of a given SecondLevelExp.
+   */
   public static String getVariable(final SecondLevelExp exp) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
     return TypeInferrer.getVariable(((ThirdLevelExp) _get));
   }
   
+  /**
+   * Return the variable name of a given ThirdLevelExp.
+   */
   public static String getVariable(final ThirdLevelExp exp) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
     return TypeInferrer.getVariable(((FourthLevelExp) _get));
   }
   
+  /**
+   * Return the variable name of a given FourthLevelExp.
+   */
   public static String getVariable(final FourthLevelExp exp) {
     EList<EObject> _args = exp.getArgs();
     EObject _get = _args.get(0);
     return TypeInferrer.getVariable(((Term) _get));
   }
   
+  /**
+   * Return the variable name of a given Term.
+   */
   public static String getVariable(final Term term) {
     if ((term instanceof Variable)) {
       return ((Variable) term).getVar();
@@ -1462,6 +1621,9 @@ public class TypeInferrer {
     return null;
   }
   
+  /**
+   * Returns the variable name of a given MyVariable.
+   */
   public static String getVariable(final MyVariable variable) {
     if ((variable instanceof Variable)) {
       return ((Variable) variable).getVar();
@@ -1473,6 +1635,9 @@ public class TypeInferrer {
     return null;
   }
   
+  /**
+   * Converts a given CastedType to a DataType.
+   */
   public static TypeInferrer.DataType getDataTypeFromCast(final CastedType ct) {
     if (ct != null) {
       switch (ct) {
@@ -1491,21 +1656,10 @@ public class TypeInferrer {
     return null;
   }
   
-  public static String getFunctionString(final FunctionDefinition fd) {
-    final String name = fd.getName();
-    TypeInferrer.DataType _get = TypeInferrer.functionTypes.get(name);
-    String res = ((name + "->") + _get);
-    HashMap<String, TypeInferrer.DataType> _get_1 = TypeInferrer.functionParams.get(name);
-    Set<String> _keySet = _get_1.keySet();
-    for (final String p : _keySet) {
-      HashMap<String, TypeInferrer.DataType> _get_2 = TypeInferrer.functionParams.get(name);
-      TypeInferrer.DataType _get_3 = _get_2.get(p);
-      String _plus = ((((res + "\n_") + p) + ":") + _get_3);
-      res = _plus;
-    }
-    return res;
-  }
-  
+  /**
+   * Sets a function type if it's not already been set, or changes it if it wasn't inferred
+   * yet.
+   */
   public static void setFunctionType(final String name, final TypeInferrer.DataType type) {
     boolean _containsKey = TypeInferrer.functionTypes.containsKey(name);
     if (_containsKey) {
@@ -1519,10 +1673,16 @@ public class TypeInferrer {
     }
   }
   
+  /**
+   * Returns the function types map (table).
+   */
   public static HashMap<String, TypeInferrer.DataType> getFunctionTypes() {
     return TypeInferrer.functionTypes;
   }
   
+  /**
+   * Returns the function parameters types map (table).
+   */
   public static HashMap<String, HashMap<String, TypeInferrer.DataType>> getFunctionParams() {
     return TypeInferrer.functionParams;
   }

@@ -24,13 +24,14 @@ import org.eclipse.xtext.validation.Check
  */
 class ListaCompilerValidator extends AbstractListaCompilerValidator {
 	
-	
-	
 	private static val WRONG_PARAMETERS_NUMBER = "wrongParametersNumber";
 	private static val WRONG_EXPRESSION_TYPE = "wrongExpressionType";
 	private static val INVALID_FUNCTION_DECLARATION = "invalidFunctionDeclaration"
 	private static val UNUSED_VARIABLE = "unusedVariable";
 	
+	/**
+	 * Checks that a function definition doesn't have the same name as a predefined function.
+	 */
 	@Check
 	def checkFunctionDefinitionsPreDefNames(Lista lista) {
 		for (fd : lista.definitions) {
@@ -45,6 +46,9 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		}
 	}
 	
+	/**
+	 * Checks that a function definition doesn't have the same name as an already defined function.
+	 */
 	@Check
 	def checkFunctionDefinitionsNames(Lista lista) {
 		val definitions = lista.definitions; 
@@ -62,6 +66,9 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		}
 	}
 	
+	/**
+	 * Checks that a parameters isn't declared more than one time.
+	 */
 	@Check
 	def checkFunctionDefinitionsParameters(FunctionDefinition fd) {
 		var curName = ""
@@ -78,6 +85,9 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		}
 	}
 
+	/**
+	 * Checks the number of parameters for a user defined function.
+	 */
 	@Check
 	def checkUserDefParametersNumber(UserDefFunctionCall fcall) {
 		val params = fcall.function.params.length;
@@ -89,6 +99,9 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		}
 	}
 	
+	/**
+	 * Checks the number of parameters for a predefined function.
+	 */
 	@Check
 	def checkPreDefParametersNumber(PreDefFunctionCall fcall) {
 		val function = fcall.function;
@@ -116,13 +129,18 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		}
 	}
 	
+	/**
+	 * Infers and checks the return expression type of a FunctionDefinition, verifies that it
+	 * satisfy all the expression checks inside TypeInferrer. The infer is done twice because
+	 * in the first one there is a chance that all the variables doesn't infer correctly
+	 * because they may need other variables' types as a pointer to infer it's type.
+	 * If there is an exception, shows an error with the exception message.
+	 */
 	@Check
 	def checkFunctionDefinitionType(FunctionDefinition fd) {
 		TypeInferrer.removeFunctionInfo(fd);
 		TypeInferrer.inferDataType(fd);
 		TypeInferrer.inferDataType(fd);
-		
-		System.out.println(TypeInferrer.getFunctionString(fd));
 		checkFunctionDefinitionParams(fd);
 		try {
 			TypeInferrer.checkDataType(fd.^return);
@@ -138,6 +156,10 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		TypeInferrer.resetCurrentFunction();
 	}
 	
+	/**
+	 * Checks the usage of a FunctionDefinition parameters, if there is an unused variable,
+	 * it shows a warning, if there is a variable that it's not declared it shows an error.
+	 */
 	def checkFunctionDefinitionParams(FunctionDefinition fd) {
 		for (param : fd.params) {
 			if (!TypeInferrer.functionParams.get(fd.name).containsKey(TypeInferrer.getVariable(param))) {
@@ -156,6 +178,9 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		}
 	}
 	
+	/**
+	 * Verifies that a FunctionDefinition contains a given parameter.
+	 */
 	def fdContainsParam(FunctionDefinition fd, String name) {
 		for (param : fd.params) {
 			if (TypeInferrer.getVariable(param).equals(name)) {
@@ -165,6 +190,10 @@ class ListaCompilerValidator extends AbstractListaCompilerValidator {
 		return false;
 	}
 	
+	/**
+	 * Checks an Evaluation return expression type and verifies that it
+	 * satisfy all the expression checks inside TypeInferrer.
+	 */
 	@Check
 	def checkFunctionEvaluationType(Evaluation eval) {
 		try {
