@@ -39,6 +39,9 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
   
   private final static String UNUSED_VARIABLE = "unusedVariable";
   
+  /**
+   * Checks that a function definition doesn't have the same name as a predefined function.
+   */
   @Check
   public void checkFunctionDefinitionsPreDefNames(final Lista lista) {
     EList<FunctionDefinition> _definitions = lista.getDefinitions();
@@ -63,6 +66,9 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     }
   }
   
+  /**
+   * Checks that a function definition doesn't have the same name as an already defined function.
+   */
   @Check
   public void checkFunctionDefinitionsNames(final Lista lista) {
     final EList<FunctionDefinition> definitions = lista.getDefinitions();
@@ -89,6 +95,9 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     }
   }
   
+  /**
+   * Checks that a parameters isn't declared more than one time.
+   */
   @Check
   public void checkFunctionDefinitionsParameters(final FunctionDefinition fd) {
     String curName = "";
@@ -117,6 +126,9 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     }
   }
   
+  /**
+   * Checks the number of parameters for a user defined function.
+   */
   @Check
   public void checkUserDefParametersNumber(final UserDefFunctionCall fcall) {
     FunctionDefinition _function = fcall.getFunction();
@@ -132,6 +144,9 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     }
   }
   
+  /**
+   * Checks the number of parameters for a predefined function.
+   */
   @Check
   public void checkPreDefParametersNumber(final PreDefFunctionCall fcall) {
     final PDFunction function = fcall.getFunction();
@@ -173,6 +188,13 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     }
   }
   
+  /**
+   * Infers and checks the return expression type of a FunctionDefinition, verifies that it
+   * satisfy all the expression checks inside TypeInferrer. The infer is done twice because
+   * in the first one there is a chance that all the variables doesn't infer correctly
+   * because they may need other variables' types as a pointer to infer it's type.
+   * If there is an exception, shows an error with the exception message.
+   */
   @Check
   public String checkFunctionDefinitionType(final FunctionDefinition fd) {
     String _xblockexpression = null;
@@ -180,8 +202,6 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
       TypeInferrer.removeFunctionInfo(fd);
       TypeInferrer.inferDataType(fd);
       TypeInferrer.inferDataType(fd);
-      String _functionString = TypeInferrer.getFunctionString(fd);
-      System.out.println(_functionString);
       this.checkFunctionDefinitionParams(fd);
       try {
         Expression _return = fd.getReturn();
@@ -208,6 +228,10 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     return _xblockexpression;
   }
   
+  /**
+   * Checks the usage of a FunctionDefinition parameters, if there is an unused variable,
+   * it shows a warning, if there is a variable that it's not declared it shows an error.
+   */
   public void checkFunctionDefinitionParams(final FunctionDefinition fd) {
     EList<MyVariable> _params = fd.getParams();
     for (final MyVariable param : _params) {
@@ -241,6 +265,9 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     }
   }
   
+  /**
+   * Verifies that a FunctionDefinition contains a given parameter.
+   */
   public boolean fdContainsParam(final FunctionDefinition fd, final String name) {
     EList<MyVariable> _params = fd.getParams();
     for (final MyVariable param : _params) {
@@ -253,6 +280,10 @@ public class ListaCompilerValidator extends AbstractListaCompilerValidator {
     return false;
   }
   
+  /**
+   * Checks an Evaluation return expression type and verifies that it
+   * satisfy all the expression checks inside TypeInferrer.
+   */
   @Check
   public TypeInferrer.DataType checkFunctionEvaluationType(final Evaluation eval) {
     TypeInferrer.DataType _xtrycatchfinallyexpression = null;

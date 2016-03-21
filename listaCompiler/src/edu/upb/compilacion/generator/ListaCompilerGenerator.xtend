@@ -52,6 +52,9 @@ class ListaCompilerGenerator implements IGenerator {
 		fsa.generateFile('SEKs.java', lista.generate)
 	}
 	
+	/**
+	 * Complementary file that contains predefined LISTA methods.
+	 */
 	def generateComplementaryFile() '''public class SEKsComplements {
 	«generatePreDefFunctions»
 }'''
@@ -60,6 +63,9 @@ class ListaCompilerGenerator implements IGenerator {
 	«generateMain(lista.evaluations)»«'\n\n'»«FOR fd : lista.definitions SEPARATOR '\n\n'»«fd.generate»«ENDFOR»«'\n'»
 }'''
 	
+	/**
+	 * All Evaluations are inside a main method.
+	 */
 	def generateMain(EList<Evaluation> evaluations) '''public static void main(String[] args) {
 	«FOR eval : evaluations SEPARATOR '\n'»«eval.generate»;«ENDFOR»
 }'''
@@ -191,24 +197,45 @@ class ListaCompilerGenerator implements IGenerator {
 		}
 	}
 	
+	/**
+	 * The predefined LISTA functions are static inside a SEKsComplements class. They are called
+	 * in a static form.
+	 */
 	def generate (PreDefFunctionCall pdf) '''SEKsComplements.«pdf.function.getName»(«FOR exp : pdf.args SEPARATOR ','»«exp.generate»«ENDFOR»)'''
 	
+	/**
+	 * The predefined LISTA functions are static inside the generated SEKs class. They are called
+	 * in a static form.
+	 */
 	def generate (UserDefFunctionCall udf) '''SEKs.«udf.function.getName»(«FOR exp : udf.args SEPARATOR ','»«exp.generate»«ENDFOR»)'''
 	
+	/**
+	 * Short notation for if.
+	 */
 	def generate (IfControlFlow icf) '''((«icf.cond.generate») ? («icf.iftrue.generate») : («icf.iffalse.generate»))'''
 	
 	def generate (BracketExpression be) {
 		return "(" + be.exp.generate + ")"
 	}
 	
+	/**
+	 * Prints escape \n caracter.
+	 */
 	def generate (MyString myStr) {
 		return myStr.^val.replaceAll("\n", "\\\\n");
 	}
 	
+	/**
+	 * Each user defined function is declared as a static function so it can be used on the
+	 * rest of the functions and the Evaluations.
+	 */
 	def generate(FunctionDefinition funcd) '''public static «TypeInferrer.getFunctionTypes.get(funcd.name).convertDTtoString» «funcd.name»(«FOR fp : funcd.params SEPARATOR ','»«TypeInferrer.functionParams.get(funcd.name).get(fp.generate).convertDTtoString + ' ' + fp.generate»«ENDFOR») {
 	«IF !TypeInferrer.functionTypes.get(funcd.name).equals(DataType.VOID)»«"return "»«ENDIF»«funcd.^return.exp.generate»;
 }'''
-
+	
+	/**
+	 * Converts a DataType to it's java equivalent.
+	 */
 	def convertDTtoString(DataType dt) {
 		switch(dt) {
 			case DataType.BOOL:
@@ -226,6 +253,9 @@ class ListaCompilerGenerator implements IGenerator {
 		}
 	}
 	
+	/**
+	 * Complementary methods for predefined LISTA functions.
+	 */
 	def generatePreDefFunctions() '''public static int[] cons(int x, int[] l) {
     int[] res = new int[l.length + 1];
     res[0] = x;

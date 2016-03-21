@@ -66,6 +66,9 @@ public class ListaCompilerGenerator implements IGenerator {
     fsa.generateFile("SEKs.java", _generate);
   }
   
+  /**
+   * Complementary file that contains predefined LISTA methods.
+   */
   public CharSequence generateComplementaryFile() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public class SEKsComplements {");
@@ -106,6 +109,9 @@ public class ListaCompilerGenerator implements IGenerator {
     return _builder;
   }
   
+  /**
+   * All Evaluations are inside a main method.
+   */
   public CharSequence generateMain(final EList<Evaluation> evaluations) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public static void main(String[] args) {");
@@ -379,6 +385,10 @@ public class ListaCompilerGenerator implements IGenerator {
     return null;
   }
   
+  /**
+   * The predefined LISTA functions are static inside a SEKsComplements class. They are called
+   * in a static form.
+   */
   public CharSequence generate(final PreDefFunctionCall pdf) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("SEKsComplements.");
@@ -403,6 +413,10 @@ public class ListaCompilerGenerator implements IGenerator {
     return _builder;
   }
   
+  /**
+   * The predefined LISTA functions are static inside the generated SEKs class. They are called
+   * in a static form.
+   */
   public CharSequence generate(final UserDefFunctionCall udf) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("SEKs.");
@@ -427,6 +441,9 @@ public class ListaCompilerGenerator implements IGenerator {
     return _builder;
   }
   
+  /**
+   * Short notation for if.
+   */
   public CharSequence generate(final IfControlFlow icf) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("((");
@@ -452,11 +469,18 @@ public class ListaCompilerGenerator implements IGenerator {
     return (_plus + ")");
   }
   
+  /**
+   * Prints escape \n caracter.
+   */
   public String generate(final MyString myStr) {
     String _val = myStr.getVal();
     return _val.replaceAll("\n", "\\\\n");
   }
   
+  /**
+   * Each user defined function is declared as a static function so it can be used on the
+   * rest of the functions and the Evaluations.
+   */
   public CharSequence generate(final FunctionDefinition funcd) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public static ");
@@ -513,6 +537,9 @@ public class ListaCompilerGenerator implements IGenerator {
     return _builder;
   }
   
+  /**
+   * Converts a DataType to it's java equivalent.
+   */
   public String convertDTtoString(final TypeInferrer.DataType dt) {
     if (dt != null) {
       switch (dt) {
@@ -537,6 +564,9 @@ public class ListaCompilerGenerator implements IGenerator {
     }
   }
   
+  /**
+   * Complementary methods for predefined LISTA functions.
+   */
   public CharSequence generatePreDefFunctions() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public static int[] cons(int x, int[] l) {");
