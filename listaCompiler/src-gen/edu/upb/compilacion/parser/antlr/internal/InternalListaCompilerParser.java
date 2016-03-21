@@ -2579,7 +2579,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                 if ( (LA13_1==19) ) {
                     alt13=2;
                 }
-                else if ( (LA13_1==EOF||(LA13_1>=RULE_IDFUNCVAR && LA13_1<=RULE_INT)||(LA13_1>=15 && LA13_1<=16)||LA13_1==18||LA13_1==23) ) {
+                else if ( (LA13_1==EOF||(LA13_1>=15 && LA13_1<=16)) ) {
                     alt13=1;
                 }
                 else {
@@ -4382,22 +4382,22 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleListElem"
-    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1679:1: ruleListElem returns [EObject current=null] : (this_MyInteger_0= ruleMyInteger | this_MyVariable_1= ruleMyVariable ) ;
+    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1679:1: ruleListElem returns [EObject current=null] : (this_MyInteger_0= ruleMyInteger | this_Variable_1= ruleVariable ) ;
     public final EObject ruleListElem() throws RecognitionException {
         EObject current = null;
 
         EObject this_MyInteger_0 = null;
 
-        EObject this_MyVariable_1 = null;
+        EObject this_Variable_1 = null;
 
 
          enterRule(); 
             
         try {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1682:28: ( (this_MyInteger_0= ruleMyInteger | this_MyVariable_1= ruleMyVariable ) )
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1683:1: (this_MyInteger_0= ruleMyInteger | this_MyVariable_1= ruleMyVariable )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1682:28: ( (this_MyInteger_0= ruleMyInteger | this_Variable_1= ruleVariable ) )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1683:1: (this_MyInteger_0= ruleMyInteger | this_Variable_1= ruleVariable )
             {
-            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1683:1: (this_MyInteger_0= ruleMyInteger | this_MyVariable_1= ruleMyVariable )
+            // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1683:1: (this_MyInteger_0= ruleMyInteger | this_Variable_1= ruleVariable )
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -4433,18 +4433,18 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1694:5: this_MyVariable_1= ruleMyVariable
+                    // ../listaCompiler/src-gen/edu/upb/compilacion/parser/antlr/internal/InternalListaCompiler.g:1694:5: this_Variable_1= ruleVariable
                     {
                      
-                            newCompositeNode(grammarAccess.getListElemAccess().getMyVariableParserRuleCall_1()); 
+                            newCompositeNode(grammarAccess.getListElemAccess().getVariableParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleMyVariable_in_ruleListElem3767);
-                    this_MyVariable_1=ruleMyVariable();
+                    pushFollow(FOLLOW_ruleVariable_in_ruleListElem3767);
+                    this_Variable_1=ruleVariable();
 
                     state._fsp--;
 
                      
-                            current = this_MyVariable_1; 
+                            current = this_Variable_1; 
                             afterParserOrEnumRuleCall();
                         
 
@@ -5405,7 +5405,7 @@ public class InternalListaCompilerParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleListElem_in_entryRuleListElem3683 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleListElem3693 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMyInteger_in_ruleListElem3740 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMyVariable_in_ruleListElem3767 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariable_in_ruleListElem3767 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_24_in_ruleBool3816 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_25_in_ruleBool3833 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_26_in_rulePDFunction3878 = new BitSet(new long[]{0x0000000000000002L});

@@ -3283,7 +3283,7 @@ public class InternalListaCompilerParser extends AbstractInternalContentAssistPa
                 if ( (LA8_1==40) ) {
                     alt8=2;
                 }
-                else if ( (LA8_1==EOF||(LA8_1>=RULE_IDFUNCVAR && LA8_1<=RULE_INT)||LA8_1==26||LA8_1==37||LA8_1==39||LA8_1==44) ) {
+                else if ( (LA8_1==EOF||LA8_1==37||LA8_1==39) ) {
                     alt8=1;
                 }
                 else {
@@ -3593,13 +3593,13 @@ public class InternalListaCompilerParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__ListElem__Alternatives"
-    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1228:1: rule__ListElem__Alternatives : ( ( ruleMyInteger ) | ( ruleMyVariable ) );
+    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1228:1: rule__ListElem__Alternatives : ( ( ruleMyInteger ) | ( ruleVariable ) );
     public final void rule__ListElem__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1232:1: ( ( ruleMyInteger ) | ( ruleMyVariable ) )
+            // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1232:1: ( ( ruleMyInteger ) | ( ruleVariable ) )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -3636,18 +3636,18 @@ public class InternalListaCompilerParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 2 :
-                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1239:6: ( ruleMyVariable )
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1239:6: ( ruleVariable )
                     {
-                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1239:6: ( ruleMyVariable )
-                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1240:1: ruleMyVariable
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1239:6: ( ruleVariable )
+                    // ../listaCompiler.ui/src-gen/edu/upb/compilacion/ui/contentassist/antlr/internal/InternalListaCompiler.g:1240:1: ruleVariable
                     {
-                     before(grammarAccess.getListElemAccess().getMyVariableParserRuleCall_1()); 
-                    pushFollow(FOLLOW_ruleMyVariable_in_rule__ListElem__Alternatives2596);
-                    ruleMyVariable();
+                     before(grammarAccess.getListElemAccess().getVariableParserRuleCall_1()); 
+                    pushFollow(FOLLOW_ruleVariable_in_rule__ListElem__Alternatives2596);
+                    ruleVariable();
 
                     state._fsp--;
 
-                     after(grammarAccess.getListElemAccess().getMyVariableParserRuleCall_1()); 
+                     after(grammarAccess.getListElemAccess().getVariableParserRuleCall_1()); 
 
                     }
 
@@ -12156,7 +12156,7 @@ public class InternalListaCompilerParser extends AbstractInternalContentAssistPa
     public static final BitSet FOLLOW_rulePreDefFunctionCall_in_rule__FunctionCall__Alternatives2530 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUserDefFunctionCall_in_rule__FunctionCall__Alternatives2547 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMyInteger_in_rule__ListElem__Alternatives2579 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMyVariable_in_rule__ListElem__Alternatives2596 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariable_in_rule__ListElem__Alternatives2596 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_12_in_rule__Bool__Alternatives2629 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_13_in_rule__Bool__Alternatives2650 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_14_in_rule__PDFunction__Alternatives2686 = new BitSet(new long[]{0x0000000000000002L});

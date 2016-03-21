@@ -2,6 +2,7 @@
  */
 package edu.upb.compilacion.listaCompiler;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +20,7 @@ package edu.upb.compilacion.listaCompiler;
  * @model
  * @generated
  */
-public interface MyVariable extends ListElem
+public interface MyVariable extends EObject
 {
   /**
    * Returns the value of the '<em><b>Var</b></em>' attribute.

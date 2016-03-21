@@ -166,18 +166,18 @@ public class VariableImpl extends SimpleTermImpl implements Variable
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
   {
-    if (baseClass == ListElem.class)
-    {
-      switch (derivedFeatureID)
-      {
-        default: return -1;
-      }
-    }
     if (baseClass == MyVariable.class)
     {
       switch (derivedFeatureID)
       {
         case ListaCompilerPackage.VARIABLE__VAR: return ListaCompilerPackage.MY_VARIABLE__VAR;
+        default: return -1;
+      }
+    }
+    if (baseClass == ListElem.class)
+    {
+      switch (derivedFeatureID)
+      {
         default: return -1;
       }
     }
@@ -192,18 +192,18 @@ public class VariableImpl extends SimpleTermImpl implements Variable
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
   {
-    if (baseClass == ListElem.class)
-    {
-      switch (baseFeatureID)
-      {
-        default: return -1;
-      }
-    }
     if (baseClass == MyVariable.class)
     {
       switch (baseFeatureID)
       {
         case ListaCompilerPackage.MY_VARIABLE__VAR: return ListaCompilerPackage.VARIABLE__VAR;
+        default: return -1;
+      }
+    }
+    if (baseClass == ListElem.class)
+    {
+      switch (baseFeatureID)
+      {
         default: return -1;
       }
     }

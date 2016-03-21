@@ -57,10 +57,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="NegInteger" eSuperTypes="#//MyInteger">
     <eStructuralFeatures xsi:type="ecore:EReference" name="val" eType="#//Term" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MyVariable" eSuperTypes="#//ListElem">
+  <eClassifiers xsi:type="ecore:EClass" name="MyVariable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="var" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//SimpleTerm #//MyVariable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//SimpleTerm #//MyVariable #//ListElem"/>
   <eClassifiers xsi:type="ecore:EClass" name="CastedVariable" eSuperTypes="#//MyVariable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CastedType"/>
   </eClassifiers>

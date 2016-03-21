@@ -196,7 +196,6 @@ public class ListaCompilerSwitch<T> extends Switch<T>
       {
         MyVariable myVariable = (MyVariable)theEObject;
         T result = caseMyVariable(myVariable);
-        if (result == null) result = caseListElem(myVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -206,8 +205,8 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         T result = caseVariable(variable);
         if (result == null) result = caseSimpleTerm(variable);
         if (result == null) result = caseMyVariable(variable);
-        if (result == null) result = caseTerm(variable);
         if (result == null) result = caseListElem(variable);
+        if (result == null) result = caseTerm(variable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -216,7 +215,6 @@ public class ListaCompilerSwitch<T> extends Switch<T>
         CastedVariable castedVariable = (CastedVariable)theEObject;
         T result = caseCastedVariable(castedVariable);
         if (result == null) result = caseMyVariable(castedVariable);
-        if (result == null) result = caseListElem(castedVariable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

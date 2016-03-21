@@ -15,6 +15,7 @@ import edu.upb.compilacion.listaCompiler.FunctionCall;
 import edu.upb.compilacion.listaCompiler.FunctionDefinition;
 import edu.upb.compilacion.listaCompiler.IfControlFlow;
 import edu.upb.compilacion.listaCompiler.List;
+import edu.upb.compilacion.listaCompiler.ListElem;
 import edu.upb.compilacion.listaCompiler.MyBool;
 import edu.upb.compilacion.listaCompiler.MyInteger;
 import edu.upb.compilacion.listaCompiler.MyString;
@@ -319,7 +320,7 @@ public class TypeInferrer {
           TypeInferrer.inferDataType(((MyBool) term), fdName);
         } else {
           if ((term instanceof List)) {
-            TypeInferrer.setFunctionType(fdName, TypeInferrer.DataType.LIST);
+            TypeInferrer.inferDataType(((List) term), fdName);
           } else {
             if ((term instanceof Variable)) {
               TypeInferrer.setFunctionType(fdName, TypeInferrer.DataType.VAR);
@@ -328,6 +329,18 @@ public class TypeInferrer {
         }
       }
     }
+  }
+  
+  public static void inferDataType(final List li, final String fdName) {
+    EList<ListElem> _elems = li.getElems();
+    for (final ListElem el : _elems) {
+      if ((el instanceof Variable)) {
+        HashMap<String, TypeInferrer.DataType> _get = TypeInferrer.functionParams.get(fdName);
+        String _var = ((Variable) el).getVar();
+        _get.put(_var, TypeInferrer.DataType.INT);
+      }
+    }
+    TypeInferrer.setFunctionType(fdName, TypeInferrer.DataType.LIST);
   }
   
   public static void inferDataType(final ComplexTerm term, final String fdName) {
@@ -1090,7 +1103,7 @@ public class TypeInferrer {
           return TypeInferrer.checkDataType(((MyBool) term));
         } else {
           if ((term instanceof List)) {
-            return TypeInferrer.DataType.LIST;
+            return TypeInferrer.checkDataType(((List) term));
           } else {
             if ((term instanceof Variable)) {
               return TypeInferrer.getDataType(((Variable) term));
@@ -1100,6 +1113,25 @@ public class TypeInferrer {
       }
     }
     return null;
+  }
+  
+  public static TypeInferrer.DataType checkDataType(final List li) {
+    try {
+      EList<ListElem> _elems = li.getElems();
+      for (final ListElem el : _elems) {
+        if ((el instanceof Variable)) {
+          TypeInferrer.DataType _dataType = TypeInferrer.getDataType(((Variable) el));
+          boolean _equals = _dataType.equals(TypeInferrer.DataType.INT);
+          boolean _not = (!_equals);
+          if (_not) {
+            throw new MismatchedTypeException("List elements must be INT.");
+          }
+        }
+      }
+      return TypeInferrer.DataType.LIST;
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   public static TypeInferrer.DataType checkDataType(final ComplexTerm term) {
@@ -1251,22 +1283,29 @@ public class TypeInferrer {
       final TypeInferrer.DataType arg = TypeInferrer.checkDataType(_get);
       boolean _or = false;
       boolean _or_1 = false;
+      boolean _or_2 = false;
       boolean _equals = arg.equals(TypeInferrer.DataType.INT);
       if (_equals) {
-        _or_1 = true;
+        _or_2 = true;
       } else {
         boolean _equals_1 = arg.equals(TypeInferrer.DataType.STRING);
-        _or_1 = _equals_1;
+        _or_2 = _equals_1;
+      }
+      if (_or_2) {
+        _or_1 = true;
+      } else {
+        boolean _equals_2 = arg.equals(TypeInferrer.DataType.BOOL);
+        _or_1 = _equals_2;
       }
       if (_or_1) {
         _or = true;
       } else {
-        boolean _equals_2 = arg.equals(TypeInferrer.DataType.BOOL);
-        _or = _equals_2;
+        boolean _equals_3 = arg.equals(TypeInferrer.DataType.LIST);
+        _or = _equals_3;
       }
       boolean _not = (!_or);
       if (_not) {
-        throw new MismatchedTypeException("Argument type should be INT, STRING or BOOL");
+        throw new MismatchedTypeException("Unknown data type to show");
       }
       return TypeInferrer.DataType.VOID;
     } catch (Throwable _e) {

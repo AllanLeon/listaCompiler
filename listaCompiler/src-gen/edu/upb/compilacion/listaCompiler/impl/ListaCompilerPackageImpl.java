@@ -1176,9 +1176,9 @@ public class ListaCompilerPackageImpl extends EPackageImpl implements ListaCompi
     myIntegerEClass.getESuperTypes().add(this.getListElem());
     posIntegerEClass.getESuperTypes().add(this.getMyInteger());
     negIntegerEClass.getESuperTypes().add(this.getMyInteger());
-    myVariableEClass.getESuperTypes().add(this.getListElem());
     variableEClass.getESuperTypes().add(this.getSimpleTerm());
     variableEClass.getESuperTypes().add(this.getMyVariable());
+    variableEClass.getESuperTypes().add(this.getListElem());
     castedVariableEClass.getESuperTypes().add(this.getMyVariable());
     myBoolEClass.getESuperTypes().add(this.getSimpleTerm());
     posBoolEClass.getESuperTypes().add(this.getMyBool());

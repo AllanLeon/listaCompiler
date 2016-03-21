@@ -111,7 +111,7 @@ List:
 ;
 
 ListElem:
-	MyInteger | MyVariable
+	MyInteger | Variable
 ;
 
 enum Bool:
