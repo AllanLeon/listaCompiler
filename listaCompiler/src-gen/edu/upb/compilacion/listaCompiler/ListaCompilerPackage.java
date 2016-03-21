@@ -505,25 +505,6 @@ public interface ListaCompilerPackage extends EPackage
   int NEG_INTEGER_FEATURE_COUNT = MY_INTEGER_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.ListElemImpl <em>List Elem</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.upb.compilacion.listaCompiler.impl.ListElemImpl
-   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getListElem()
-   * @generated
-   */
-  int LIST_ELEM = 27;
-
-  /**
-   * The number of structural features of the '<em>List Elem</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LIST_ELEM_FEATURE_COUNT = 0;
-
-  /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.MyVariableImpl <em>My Variable</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -540,7 +521,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MY_VARIABLE__VAR = LIST_ELEM_FEATURE_COUNT + 0;
+  int MY_VARIABLE__VAR = 0;
 
   /**
    * The number of structural features of the '<em>My Variable</em>' class.
@@ -549,7 +530,7 @@ public interface ListaCompilerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MY_VARIABLE_FEATURE_COUNT = LIST_ELEM_FEATURE_COUNT + 1;
+  int MY_VARIABLE_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.VariableImpl <em>Variable</em>}' class.
@@ -894,6 +875,25 @@ public interface ListaCompilerPackage extends EPackage
    * @ordered
    */
   int LIST_FEATURE_COUNT = SIMPLE_TERM_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.impl.ListElemImpl <em>List Elem</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.upb.compilacion.listaCompiler.impl.ListElemImpl
+   * @see edu.upb.compilacion.listaCompiler.impl.ListaCompilerPackageImpl#getListElem()
+   * @generated
+   */
+  int LIST_ELEM = 27;
+
+  /**
+   * The number of structural features of the '<em>List Elem</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_ELEM_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link edu.upb.compilacion.listaCompiler.Bool <em>Bool</em>}' enum.

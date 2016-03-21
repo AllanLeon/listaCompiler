@@ -83,11 +83,6 @@ public class ListaCompilerGenerator implements IGenerator {
     _builder.append("public class SEKs {");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("private SEKs s;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
     EList<Evaluation> _evaluations = lista.getEvaluations();
     CharSequence _generateMain = this.generateMain(_evaluations);
     _builder.append(_generateMain, "\t");
@@ -116,11 +111,14 @@ public class ListaCompilerGenerator implements IGenerator {
     _builder.append("public static void main(String[] args) {");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("SEKs s = new SEKs();");
-    _builder.newLine();
-    _builder.append("\t");
     {
+      boolean _hasElements = false;
       for(final Evaluation eval : evaluations) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate("\n", "\t");
+        }
         CharSequence _generate = this.generate(eval);
         _builder.append(_generate, "\t");
         _builder.append(";");
@@ -330,7 +328,7 @@ public class ListaCompilerGenerator implements IGenerator {
   
   public CharSequence generate(final List li) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("[");
+    _builder.append("new int[]{");
     {
       EList<ListElem> _elems = li.getElems();
       boolean _hasElements = false;
@@ -344,7 +342,7 @@ public class ListaCompilerGenerator implements IGenerator {
         _builder.append(_generate, "");
       }
     }
-    _builder.append("]");
+    _builder.append("}");
     return _builder;
   }
   
@@ -383,19 +381,10 @@ public class ListaCompilerGenerator implements IGenerator {
   
   public CharSequence generate(final PreDefFunctionCall pdf) {
     StringConcatenation _builder = new StringConcatenation();
-    {
-      PDFunction _function = pdf.getFunction();
-      String _name = _function.getName();
-      boolean _equals = _name.equals("show");
-      if (_equals) {
-        _builder.append("System.out.println", "");
-      } else {
-        _builder.append("Complements.");
-        PDFunction _function_1 = pdf.getFunction();
-        String _name_1 = _function_1.getName();
-        _builder.append(_name_1, "");
-      }
-    }
+    _builder.append("SEKsComplements.");
+    PDFunction _function = pdf.getFunction();
+    String _name = _function.getName();
+    _builder.append(_name, "");
     _builder.append("(");
     {
       EList<Expression> _args = pdf.getArgs();
@@ -416,7 +405,7 @@ public class ListaCompilerGenerator implements IGenerator {
   
   public CharSequence generate(final UserDefFunctionCall udf) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("s.");
+    _builder.append("SEKs.");
     FunctionDefinition _function = udf.getFunction();
     String _name = _function.getName();
     _builder.append(_name, "");
@@ -470,7 +459,7 @@ public class ListaCompilerGenerator implements IGenerator {
   
   public CharSequence generate(final FunctionDefinition funcd) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("public ");
+    _builder.append("public static ");
     HashMap<String, TypeInferrer.DataType> _functionTypes = TypeInferrer.getFunctionTypes();
     String _name = funcd.getName();
     TypeInferrer.DataType _get = _functionTypes.get(_name);
@@ -604,7 +593,7 @@ public class ListaCompilerGenerator implements IGenerator {
     _builder.append("public static boolean isEmpty(int[] l) {");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("return (l.length > 1) ? false : true;");
+    _builder.append("return (l.length > 0) ? false : true;");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
@@ -613,6 +602,59 @@ public class ListaCompilerGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("    ");
     _builder.append("return s.length();");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public static void show(int x) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("System.out.println(x);");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public static void show(String x) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("System.out.println(x);");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public static void show(boolean x) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("System.out.println(x);");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public static void show(int[] x) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("System.out.print(\"[\");");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("for (int i = 0; i < x.length; i++) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("if (i > 0) {");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("System.out.print(\",\");");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("System.out.print(x[i]);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("System.out.println(\"]\");");
     _builder.newLine();
     _builder.append("}");
     return _builder;

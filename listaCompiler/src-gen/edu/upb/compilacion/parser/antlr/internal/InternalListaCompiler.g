@@ -1692,11 +1692,11 @@ ruleListElem returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getListElemAccess().getMyVariableParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getListElemAccess().getVariableParserRuleCall_1()); 
     }
-    this_MyVariable_1=ruleMyVariable
+    this_Variable_1=ruleVariable
     { 
-        $current = $this_MyVariable_1.current; 
+        $current = $this_Variable_1.current; 
         afterParserOrEnumRuleCall();
     }
 )

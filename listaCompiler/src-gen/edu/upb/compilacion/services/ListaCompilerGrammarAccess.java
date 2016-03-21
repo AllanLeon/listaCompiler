@@ -894,20 +894,20 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ListElem");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cMyIntegerParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cMyVariableParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cVariableParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//ListElem:
-		//	MyInteger | MyVariable;
+		//	MyInteger | Variable;
 		@Override public ParserRule getRule() { return rule; }
 
-		//MyInteger | MyVariable
+		//MyInteger | Variable
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//MyInteger
 		public RuleCall getMyIntegerParserRuleCall_0() { return cMyIntegerParserRuleCall_0; }
 
-		//MyVariable
-		public RuleCall getMyVariableParserRuleCall_1() { return cMyVariableParserRuleCall_1; }
+		//Variable
+		public RuleCall getVariableParserRuleCall_1() { return cVariableParserRuleCall_1; }
 	}
 	
 	
@@ -1553,7 +1553,7 @@ public class ListaCompilerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ListElem:
-	//	MyInteger | MyVariable;
+	//	MyInteger | Variable;
 	public ListElemElements getListElemAccess() {
 		return pListElem;
 	}

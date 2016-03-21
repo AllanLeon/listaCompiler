@@ -57,14 +57,11 @@ class ListaCompilerGenerator implements IGenerator {
 }'''
 	
 	def generate(Lista lista) '''public class SEKs {
-	private SEKs s;
-	
 	«generateMain(lista.evaluations)»«'\n\n'»«FOR fd : lista.definitions SEPARATOR '\n\n'»«fd.generate»«ENDFOR»«'\n'»
 }'''
 	
 	def generateMain(EList<Evaluation> evaluations) '''public static void main(String[] args) {
-	SEKs s = new SEKs();
-	«FOR eval : evaluations»«eval.generate»;«ENDFOR»
+	«FOR eval : evaluations SEPARATOR '\n'»«eval.generate»;«ENDFOR»
 }'''
 	
 	def generate(Evaluation ev) '''«ev.^return.generate»'''
@@ -168,7 +165,7 @@ class ListaCompilerGenerator implements IGenerator {
 		}
 	}
 	
-	def generate (List li) '''[«FOR elm : li.elems SEPARATOR ','»«elm.generate»«ENDFOR»]'''
+	def generate (List li) '''new int[]{«FOR elm : li.elems SEPARATOR ','»«elm.generate»«ENDFOR»}'''
 	
 	def generate (MyVariable mv) {
 		if (mv instanceof Variable) {
@@ -194,9 +191,9 @@ class ListaCompilerGenerator implements IGenerator {
 		}
 	}
 	
-	def generate (PreDefFunctionCall pdf) '''«IF pdf.function.getName.equals("show")»«"System.out.println"»«ELSE»Complements.«pdf.function.getName»«ENDIF»(«FOR exp : pdf.args SEPARATOR ','»«exp.generate»«ENDFOR»)'''
+	def generate (PreDefFunctionCall pdf) '''SEKsComplements.«pdf.function.getName»(«FOR exp : pdf.args SEPARATOR ','»«exp.generate»«ENDFOR»)'''
 	
-	def generate (UserDefFunctionCall udf) '''s.«udf.function.getName»(«FOR exp : udf.args SEPARATOR ','»«exp.generate»«ENDFOR»)'''
+	def generate (UserDefFunctionCall udf) '''SEKs.«udf.function.getName»(«FOR exp : udf.args SEPARATOR ','»«exp.generate»«ENDFOR»)'''
 	
 	def generate (IfControlFlow icf) '''((«icf.cond.generate») ? («icf.iftrue.generate») : («icf.iffalse.generate»))'''
 	
@@ -208,7 +205,7 @@ class ListaCompilerGenerator implements IGenerator {
 		return myStr.^val.replaceAll("\n", "\\\\n");
 	}
 	
-	def generate(FunctionDefinition funcd) '''public «TypeInferrer.getFunctionTypes.get(funcd.name).convertDTtoString» «funcd.name»(«FOR fp : funcd.params SEPARATOR ','»«TypeInferrer.functionParams.get(funcd.name).get(fp.generate).convertDTtoString + ' ' + fp.generate»«ENDFOR») {
+	def generate(FunctionDefinition funcd) '''public static «TypeInferrer.getFunctionTypes.get(funcd.name).convertDTtoString» «funcd.name»(«FOR fp : funcd.params SEPARATOR ','»«TypeInferrer.functionParams.get(funcd.name).get(fp.generate).convertDTtoString + ' ' + fp.generate»«ENDFOR») {
 	«IF !TypeInferrer.functionTypes.get(funcd.name).equals(DataType.VOID)»«"return "»«ENDIF»«funcd.^return.exp.generate»;
 }'''
 
@@ -251,10 +248,33 @@ public static int[] cdr(int[] l) {
 }
 
 public static boolean isEmpty(int[] l) {
-    return (l.length > 1) ? false : true;
+    return (l.length > 0) ? false : true;
 }
 
 public static int length(String s) {
     return s.length();
+}
+
+public static void show(int x) {
+	System.out.println(x);
+}
+
+public static void show(String x) {
+	System.out.println(x);
+}
+
+public static void show(boolean x) {
+	System.out.println(x);
+}
+
+public static void show(int[] x) {
+	System.out.print("[");
+	for (int i = 0; i < x.length; i++) {
+		if (i > 0) {
+			System.out.print(",");
+		}
+		System.out.print(x[i]);
+	}
+	System.out.println("]");
 }'''
 }

@@ -234,10 +234,19 @@ class TypeInferrer {
 		} else if (term instanceof MyBool) {
 			inferDataType((term as MyBool), fdName);
 		} else if (term instanceof List) {
-			setFunctionType(fdName, DataType.LIST);
+			inferDataType((term as List), fdName);
 		} else if (term instanceof Variable) {
 			setFunctionType(fdName, DataType.VAR);
 		}
+	}
+	
+	static def void inferDataType(List li, String fdName) {
+		for (el : li.elems) {
+			if (el instanceof Variable) {
+				functionParams.get(fdName).put((el as Variable).^var, DataType.INT);
+			}
+		}
+		setFunctionType(fdName, DataType.LIST);
 	}
 	
 	static def void inferDataType(ComplexTerm term, String fdName) {
@@ -712,10 +721,21 @@ class TypeInferrer {
 		} else if (term instanceof MyBool) {
 			return (term as MyBool).checkDataType;
 		} else if (term instanceof List) {
-			return DataType.LIST;
+			return (term as List).checkDataType;
 		} else if (term instanceof Variable) {
 			return (term as Variable).getDataType;
 		}
+	}
+	
+	static def DataType checkDataType(List li) {
+		for (el : li.elems) {
+			if (el instanceof Variable) {
+				if  (!(el as Variable).getDataType.equals(DataType.INT)) {
+					throw new MismatchedTypeException("List elements must be INT.");
+				} 
+			}
+		}
+		return DataType.LIST;
 	}
 	
 	static def DataType checkDataType(ComplexTerm term) {
@@ -809,8 +829,8 @@ class TypeInferrer {
 	
 	static def DataType checkShowDataType(PreDefFunctionCall fcall) {
 		val arg = fcall.args.get(0).checkDataType;
-		if (!(arg.equals(DataType.INT) || arg.equals(DataType.STRING) || arg.equals(DataType.BOOL))) {
-			throw new MismatchedTypeException("Argument type should be INT, STRING or BOOL");
+		if (!(arg.equals(DataType.INT) || arg.equals(DataType.STRING) || arg.equals(DataType.BOOL) || arg.equals(DataType.LIST))) {
+			throw new MismatchedTypeException("Unknown data type to show");
 		}
 		return DataType.VOID;
 	}

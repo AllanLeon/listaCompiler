@@ -1237,9 +1237,9 @@ rule__ListElem__Alternatives
 )
 
     |(
-{ before(grammarAccess.getListElemAccess().getMyVariableParserRuleCall_1()); }
-	ruleMyVariable
-{ after(grammarAccess.getListElemAccess().getMyVariableParserRuleCall_1()); }
+{ before(grammarAccess.getListElemAccess().getVariableParserRuleCall_1()); }
+	ruleVariable
+{ after(grammarAccess.getListElemAccess().getVariableParserRuleCall_1()); }
 )
 
 ;
